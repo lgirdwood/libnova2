@@ -35,6 +35,10 @@ extern "C" {
 /*! \fn void ln_get_equ_pm(struct ln_equ_posn *mean_position, struct ln_equ_posn *proper_motion, double JD, struct ln_equ_posn *position);
 * \brief Calculate a stars equatorial position wrt proper motion (J2000).
 * \ingroup motion
+* \param mean_position Mean equatorial position
+* \param proper_motion Proper motion parameters
+* \param JD Julian Day
+* \param position Pointer to store new equatorial position
 */
 /* Equ 20.2, 20.3, 20.4 pg 126 */
 void LIBNOVA_EXPORT ln_get_equ_pm(struct ln_equ_posn *mean_position,
@@ -43,6 +47,11 @@ void LIBNOVA_EXPORT ln_get_equ_pm(struct ln_equ_posn *mean_position,
 
 /*! \fn void ln_get_equ_pm_epoch(struct ln_equ_posn *mean_position, struct ln_equ_posn *proper_motion, double JD, double epoch_JD, struct ln_equ_posn *position)
 * \brief Calculate a stars equatorial position wrt proper motion and epoch.
+* \param mean_position Mean equatorial position
+* \param proper_motion Proper motion parameters
+* \param JD Julian Day
+* \param epoch_JD Epoch Julian Day
+* \param position Pointer to store new equatorial position
 */
 /* Equ 20.2, 20.3, 20.4 pg 126 
 */

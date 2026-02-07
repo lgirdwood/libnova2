@@ -36,6 +36,10 @@ extern "C" {
 * \brief Calculate the adjustment in altitude of a body due to atmospheric 
 * refraction.
 * \ingroup refraction
+* \param altitude Altitude in degrees
+* \param atm_pres Atmospheric pressure in mbar
+* \param temp Temperature in degrees Celsius
+* \return Adjustment in altitude in degrees
 */
 double LIBNOVA_EXPORT ln_get_refraction_adj(double altitude, double atm_pres,
 	double temp);

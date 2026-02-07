@@ -30,6 +30,8 @@ extern "C" {
 /*! \fn const char* ln_get_constellation(struct ln_equ_posn *position)
 * \ingroup constellations
 * \brief Returns name of the constellation at the given position
+* \param position Equatorial position
+* \return Constellation name
 */
 const char* LIBNOVA_EXPORT ln_get_constellation(struct ln_equ_posn *position);
 

@@ -36,6 +36,10 @@ extern "C" {
 /*! \fn void ln_get_apparent_posn(struct ln_equ_posn *mean_position, struct ln_equ_posn *proper_motion, double JD, struct ln_equ_posn *position);
 * \brief Calculate the apparent position of a star.  
 * \ingroup apparent
+* \param mean_position Mean position of the star
+* \param proper_motion Proper motion of the star
+* \param JD Julian Day
+* \param position Pointer to store the apparent position
 */
 void LIBNOVA_EXPORT ln_get_apparent_posn(struct ln_equ_posn *mean_position,
 	struct ln_equ_posn *proper_motion, double JD, struct ln_equ_posn *position);

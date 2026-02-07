@@ -28,6 +28,12 @@ extern "C" {
 /*! \fn void ln_get_parallax(struct ln_equ_posn *object, double au_distance, struct ln_lnlat_posn *observer, double height, double JD, struct ln_equ_posn *parallax);
 * \ingroup parallax
 * \brief Calculate parallax in RA and DEC for given geographic location
+* \param object Equatorial position of object
+* \param au_distance Distance to object in AU
+* \param observer Observer's position
+* \param height Observer's height in meters
+* \param JD Julian Day
+* \param parallax Pointer to store parallax corrected position
 */
 void LIBNOVA_EXPORT ln_get_parallax(struct ln_equ_posn *object,
 	double au_distance, struct ln_lnlat_posn *observer, double height,
@@ -36,6 +42,12 @@ void LIBNOVA_EXPORT ln_get_parallax(struct ln_equ_posn *object,
 /*! \fn void ln_get_parallax_ha(struct ln_equ_posn *object, double au_distance, struct ln_lnlat_posn *observer, double height, double H, struct ln_equ_posn *parallax);
 * \ingroup parallax
 * \brief Calculate parallax in RA and DEC for given geographic location
+* \param object Equatorial position of object
+* \param au_distance Distance to object in AU
+* \param observer Observer's position
+* \param height Observer's height in meters
+* \param H Hour angle in degrees
+* \param parallax Pointer to store parallax corrected position
 */
 void LIBNOVA_EXPORT ln_get_parallax_ha(struct ln_equ_posn *object,
 	double au_distance, struct ln_lnlat_posn *observer, double height,

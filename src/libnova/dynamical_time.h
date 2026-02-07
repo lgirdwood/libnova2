@@ -34,12 +34,16 @@ extern "C" {
 /*! \fn double ln_get_dynamical_time_diff(double JD)
 * \ingroup dynamical
 * \brief Calculate approximate dynamical time difference from Julian day in seconds
+* \param JD Julian Day
+* \return Dynamical time difference
 */
 double LIBNOVA_EXPORT ln_get_dynamical_time_diff(double JD);
 
 /*! \fn double ln_get_jde(double JD)
 * \brief Calculate Julian ephemeris day(JDE)
 * \ingroup dynamical 
+* \param JD Julian Day
+* \return Julian ephemeris day
 */
 double LIBNOVA_EXPORT ln_get_jde(double JD);
 	

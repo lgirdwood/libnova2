@@ -35,17 +35,30 @@ extern "C" {
 /*!
 * \fn double ln_get_asteroid_mag(double JD, struct ln_ell_orbit *orbit, double H, double G)
 * \brief Calculate the visual magnitude of an asteroid.
+* \param JD Julian Day
+* \param orbit Orbital parameters
+* \param H Absolute magnitude
+* \param G Slope parameter
+* \return Visual magnitude
 */
 double LIBNOVA_EXPORT ln_get_asteroid_mag(double JD, struct ln_ell_orbit *orbit,
 	double H, double G);
 	
 /*! \fn double ln_get_asteroid_sdiam_km(double H, double A)
 * \brief Calculate the semi-diameter of an asteroid in km.
+* \param H Absolute magnitude
+* \param A Albedo
+* \return Semi-diameter in km
 */
 double LIBNOVA_EXPORT ln_get_asteroid_sdiam_km(double H, double A);
 	
 /*! \fn double ln_get_asteroid_sdiam_arc(double JD, struct ln_ell_orbit *orbit, double H, double A)
 * \brief Calculate the semi-diameter of an asteroid in arc seconds.
+* \param JD Julian Day
+* \param orbit Orbital parameters
+* \param H Absolute magnitude
+* \param A Albedo
+* \return Semi-diameter in arc seconds
 */
 double LIBNOVA_EXPORT ln_get_asteroid_sdiam_arc(double JD,
 	struct ln_ell_orbit *orbit, double H, double A);

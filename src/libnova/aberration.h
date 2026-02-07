@@ -36,6 +36,9 @@ extern "C" {
 /*! \fn void ln_get_equ_aber(struct ln_equ_posn *mean_position, double JD, struct ln_equ_posn *position);
 * \brief Calculate equatorial coordinates with the effects of aberration.
 * \ingroup aberration
+* \param mean_position Mean position
+* \param JD Julian Day
+* \param position Pointer to store new position
 */
 /* Equ 22.3, 22.4 and Ron-Vondrak expression */
 void LIBNOVA_EXPORT ln_get_equ_aber(struct ln_equ_posn *mean_position,
@@ -44,6 +47,9 @@ void LIBNOVA_EXPORT ln_get_equ_aber(struct ln_equ_posn *mean_position,
 /*! \fn void ln_get_ecl_aber(struct ln_lnlat_posn *mean_position, double JD, struct ln_lnlat_posn *position);
 * \brief Calculate ecliptical coordinates with the effects of aberration.
 * \ingroup aberration
+* \param mean_position Mean position
+* \param JD Julian Day
+* \param position Pointer to store new position
 */
 /* Equ 22.2 pg 139 */
 void LIBNOVA_EXPORT ln_get_ecl_aber(struct ln_lnlat_posn *mean_position,

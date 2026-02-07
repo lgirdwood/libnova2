@@ -36,6 +36,9 @@ extern "C" {
 /*! \fn double ln_get_angular_separation(struct ln_equ_posn* posn1, struct ln_equ_posn* posn2);
 * \brief Calculate the angular separation between 2 bodies
 * \ingroup angular
+* \param posn1 Position of first body
+* \param posn2 Position of second body
+* \return Angular separation in degrees
 */		
 double LIBNOVA_EXPORT ln_get_angular_separation(struct ln_equ_posn *posn1,
 	struct ln_equ_posn *posn2);
@@ -43,6 +46,9 @@ double LIBNOVA_EXPORT ln_get_angular_separation(struct ln_equ_posn *posn1,
 /*! \fn double ln_get_rel_posn_angle(struct ln_equ_posn* posn1, struct ln_equ_posn* posn2);
 * \brief Calculate the relative position angle between 2 bodies
 * \ingroup angular
+* \param posn1 Position of first body
+* \param posn2 Position of second body
+* \return Position angle in degrees
 */	
 double LIBNOVA_EXPORT ln_get_rel_posn_angle(struct ln_equ_posn *posn1,
 	struct ln_equ_posn *posn2);

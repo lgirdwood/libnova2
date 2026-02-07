@@ -34,12 +34,16 @@ extern "C" {
 /*! \fn ln_double ln_get_mean_sidereal_time(double JD)
 * \brief Calculate mean sidereal time from date. 
 * \ingroup sidereal
+* \param JD Julian Day
+* \return Mean sidereal time in degrees
 */ 
 double LIBNOVA_EXPORT ln_get_mean_sidereal_time(double JD);
 
 /*! \fn ln_get_apparent_sidereal_time(double JD)
 * \brief Calculate apparent sidereal time from date.
 * \ingroup sidereal
+* \param JD Julian Day
+* \return Apparent sidereal time in degrees
 */
  
 double LIBNOVA_EXPORT ln_get_apparent_sidereal_time(double JD);

@@ -34,6 +34,8 @@ extern "C" {
 /*! \fn void ln_vsop87_to_fk5(struct ln_helio_posn *position, double JD);
 * \ingroup VSOP87
 * \brief Transform from VSOP87 to FK5 reference system. 
+* \param position Heliocentric position
+* \param JD Julian Day
 */
 /* equation 31.3 Pg 207         */
 /* JD Julian Day */
@@ -48,8 +50,14 @@ struct ln_vsop
 };
 
 
-double LIBNOVA_EXPORT ln_calc_series(const struct ln_vsop *data, int terms,
-	double t);
+/*! \fn double ln_calc_series(const struct ln_vsop *data, int terms, double t)
+* \ingroup VSOP87
+* \brief Calculate VSOP87 series.
+* \param data VSOP87 data
+* \param terms Number of terms
+* \param t Time
+* \return Result of series calculation
+*/
 
 #ifdef __cplusplus
 };

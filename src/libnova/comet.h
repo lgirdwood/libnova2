@@ -36,6 +36,11 @@ extern "C" {
 * \fn double ln_get_ell_comet_mag(double JD, struct ln_ell_orbit *orbit, double g, double k)
 * \ingroup comet
 * \brief Calculate the visual magnitude of a comet in an elliptic orbit.
+* \param JD Julian Day
+* \param orbit Orbital parameters
+* \param g Absolute magnitude
+* \param k Slope parameter
+* \return Visual magnitude
 */
 double LIBNOVA_EXPORT ln_get_ell_comet_mag(double JD,
 	struct ln_ell_orbit *orbit, double g, double k);
@@ -44,6 +49,11 @@ double LIBNOVA_EXPORT ln_get_ell_comet_mag(double JD,
 * \fn double ln_get_par_comet_mag(double JD, struct ln_par_orbit *orbit, double g, double k)
 * \ingroup comet
 * \brief Calculate the visual magnitude of a comet in a parabolic orbit.
+* \param JD Julian Day
+* \param orbit Orbital parameters
+* \param g Absolute magnitude
+* \param k Slope parameter
+* \return Visual magnitude
 */
 double LIBNOVA_EXPORT ln_get_par_comet_mag(double JD,
 	struct ln_par_orbit *orbit, double g, double k);

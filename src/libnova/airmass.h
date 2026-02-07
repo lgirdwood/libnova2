@@ -29,12 +29,18 @@ extern "C" {
 /*! \fn double ln_get_airmass(double alt, double airmass_scale);
  * \brief Calculate air mass in given altitude.
  * \ingroup airmass
+ * \param alt Altitude in degrees
+ * \param airmass_scale Scale of airmass
+ * \return Air mass
  */
 double LIBNOVA_EXPORT ln_get_airmass(double alt, double airmass_scale);
 
 /*! \fn double ln_get_alt_from_airmass(double X, double airmass_scale)
  * \brief Calculate altitude for given air mass.
  * \ingroup airmass
+ * \param X Air mass
+ * \param airmass_scale Scale of airmass
+ * \return Altitude in degrees
  */
 double LIBNOVA_EXPORT ln_get_alt_from_airmass(double X, double airmass_scale);
 

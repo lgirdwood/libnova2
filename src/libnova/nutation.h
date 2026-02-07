@@ -38,12 +38,17 @@ extern "C" {
 /*! \fn void ln_get_nutation(double JD, struct ln_nutation *nutation);
 * \ingroup nutation
 * \brief Calculate nutation. 
+* \param JD Julian Day
+* \param nutation Pointer to store nutation parameters
 */
 void LIBNOVA_EXPORT ln_get_nutation(double JD, struct ln_nutation *nutation);
 
 /*! \fn void ln_get_equ_nut(struct ln_equ_posn *mean_position, double JD, struct ln_equ_posn *position);
 * \brief Calculate equatorial coordinates with the effects of nutation.
 * \ingroup nutation
+* \param mean_position Mean equatorial position
+* \param JD Julian Day
+* \param position Pointer to store new equatorial position
 */
 void LIBNOVA_EXPORT ln_get_equ_nut(struct ln_equ_posn *mean_position, double JD, struct ln_equ_posn *position);
 	

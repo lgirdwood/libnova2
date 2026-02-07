@@ -40,6 +40,8 @@ extern "C" {
 /*! \fn void ln_get_earth_helio_coords(double JD, struct ln_helio_posn *position);
 * \brief Calculate Earth's heliocentric coordinates
 * \ingroup earth
+* \param JD Julian Day
+* \param position Pointer to store heliocentric position
 */ 
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 */
 void LIBNOVA_EXPORT ln_get_earth_helio_coords(double JD,
@@ -48,6 +50,7 @@ void LIBNOVA_EXPORT ln_get_earth_helio_coords(double JD,
 /*! \fn void ln_get_earth_solar_dist(double JD);
 * \brief Calculate the distance between Earth and the Sun.
 * \ingroup earth
+* \param JD Julian Day
 * \return Distance in AU
 */ 
 /* Chapter ?? */
@@ -56,6 +59,8 @@ double LIBNOVA_EXPORT ln_get_earth_solar_dist(double JD);
 /*! \fn void ln_get_earth_rect_helio(double JD, struct ln_rect_posn *position)
 * \ingroup earth
 * \brief Calculate the Earths rectangular heliocentric coordinates.
+* \param JD Julian Day
+* \param position Pointer to store rectangular position
 */
 void LIBNOVA_EXPORT ln_get_earth_rect_helio(double JD,
 	struct ln_rect_posn *position);
@@ -63,6 +68,10 @@ void LIBNOVA_EXPORT ln_get_earth_rect_helio(double JD,
 /*! \fn void ln_get_earth_centre_dist(float height, double latitude, double *p_sin_o, double *p_cos_o);
 * \ingroup earth
 * \brief Calculate Earth globe centre distance.
+* \param height Height above sea level in meters
+* \param latitude Latitude in degrees
+* \param p_sin_o Pointer to store p * sin(o')
+* \param p_cos_o Pointer to store p * cos(o')
 */
 void LIBNOVA_EXPORT ln_get_earth_centre_dist(float height, double latitude,
 		double *p_sin_o, double *p_cos_o);

@@ -113,6 +113,7 @@ doc/Makefile
 doc/doxyfile
 examples/Makefile
 m4/Makefile
+libnova.pc
 ])
 
 AC_OUTPUT

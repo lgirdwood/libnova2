@@ -1,73 +1,107 @@
-cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 
-project(libnova)
+project(libnova VERSION 2.0.0 DESCRIPTION "Astrometry Library" LANGUAGES C)
 
-# define the name of the library
-set(LIBRARY_NAME libnova)
+include(GNUInstallDirs)
+include(CheckIncludeFile)
+include(CheckFunctionExists)
+include(CheckSymbolExists)
+include(CheckLibraryExists)
 
-option(BUILD_SHARED_LIBRARY "Set to ON to build libnova as a shared library." ON)
-if(BUILD_SHARED_LIBRARY)
-    set(BUILD_SHARED_LIBS TRUE)
-    add_definitions(-DLIBNOVA_SHARED)
-else(BUILD_SHARED_LIBRARY)
-    set(BUILD_SHARED_LIBS FALSE)
-    add_definitions(-DLIBNOVA_STATIC)
-endif(BUILD_SHARED_LIBRARY)
+# Shared/Static option
+option(BUILD_SHARED_LIBS "Build shared libraries" ON)
 
-# add some definitions
+if(BUILD_SHARED_LIBS)
+    add_compile_definitions(LIBNOVA_SHARED)
+else()
+    add_compile_definitions(LIBNOVA_STATIC)
+endif()
+
+# Windows/MSVC specific definitions
 if(WIN32)
-    add_definitions(-D_USE_MATH_DEFINES)
-    add_definitions(-D_SCL_SECURE_NO_WARNINGS)
-    add_definitions(-D_CRT_SECURE_NO_DEPRECATE)
-    add_definitions(-D__WIN32__)
-endif(WIN32)
-
-# add more optimization flags to the visual studio release compilation
-if(MSVC)
-    set(CMAKE_CXX_FLAGS_RELEASE "/MD /Ox /Ob2 /D NDEBUG")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /arch:SSE2 /GS-")
-endif(MSVC)
-
-
-# set the debug postfix
-set(CMAKE_DEBUG_POSTFIX "d" CACHE STRING "add a postfix, usually d on windows")
-
-# set LIB_POSTFIX
-if(UNIX AND NOT WIN32 AND NOT APPLE)
-  if(CMAKE_SIZEOF_VOID_P MATCHES "8")
-      set(LIB_POSTFIX "64" CACHE STRING "suffix for 32/64 dir placement")
-      mark_as_advanced(LIB_POSTFIX)
-  endif(CMAKE_SIZEOF_VOID_P MATCHES "8")
-endif(UNIX AND NOT WIN32 AND NOT APPLE)
-if(NOT DEFINED LIB_POSTFIX)
-    set(LIB_POSTFIX "")
-endif(NOT DEFINED LIB_POSTFIX)
-
-
-# set and create the EXECUTABLE_OUTPUT_PATH
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
-file(MAKE_DIRECTORY ${EXECUTABLE_OUTPUT_PATH})
-
-# set and create the LIBRARY_OUTPUT_PATH
-set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
-file(MAKE_DIRECTORY ${LIBRARY_OUTPUT_PATH})
-
-
-# define a macro to setup executable program which are linked with libnova
-macro(SETUP_EXECUTABLE EXECUTABLE_NAME)
-    add_executable(${EXECUTABLE_NAME} ${EXECUTABLE_NAME}.c)
-    target_link_libraries(${EXECUTABLE_NAME} libnova)
-    set_target_properties(${EXECUTABLE_NAME} PROPERTIES DEBUG_POSTFIX "${CMAKE_DEBUG_POSTFIX}")
+    add_compile_definitions(_USE_MATH_DEFINES)
+    add_compile_definitions(_SCL_SECURE_NO_WARNINGS)
+    add_compile_definitions(_CRT_SECURE_NO_DEPRECATE)
+    add_compile_definitions(__WIN32__)
+    
     if(MSVC)
-        set_target_properties(${EXECUTABLE_NAME} PROPERTIES PREFIX "../")
-    endif(MSVC)
-    INSTALL(TARGETS ${EXECUTABLE_NAME} RUNTIME DESTINATION bin)
-endmacro(SETUP_EXECUTABLE EXECUTABLE_NAME)
+        if(CMAKE_CONFIGURATION_TYPES OR CMAKE_BUILD_TYPE STREQUAL "Release")
+             add_compile_options($<$<CONFIG:Release>:/MD> $<$<CONFIG:Release>:/Ox> $<$<CONFIG:Release>:/Ob2>)
+        endif()
+        add_compile_options(/arch:SSE2 /GS-)
+    endif()
+    
+    set(CMAKE_DEBUG_POSTFIX "d")
+endif()
 
-# add include directory to all projects
-include_directories(${libnova_SOURCE_DIR}/src)
+# Feature Checks
+check_include_file("malloc.h" HAVE_MALLOC_H)
+check_include_file("sys/time.h" HAVE_SYS_TIME_H)
+check_include_file("time.h" HAVE_TIME_H)
 
-# traverse the sub directories
+check_function_exists("gettimeofday" HAVE_GETTIMEOFDAY)
+check_function_exists("tzset" HAVE_TZSET)
+check_function_exists("strchr" HAVE_STRCHR)
+check_function_exists("strpbrk" HAVE_STRPBRK)
+check_function_exists("strtol" HAVE_STRTOL)
+check_function_exists("strtok_r" HAVE_STRTOK_R)
+check_function_exists("modf" HAVE_MODF)
+check_function_exists("pow" HAVE_POW)
+check_function_exists("sqrt" HAVE_SQRT)
+check_function_exists("cbrt" HAVE_CBRT)
+
+# Math functions in libm or sunmath
+check_library_exists(m round "" HAVE_ROUND)
+check_library_exists(m pow "" HAVE_LIBM) # Just to check if we have libm
+check_library_exists(sunmath acosl "" HAVE_LIBSUNMATH)
+
+# Long double functions - Check in default libs and libm
+set(CMAKE_REQUIRED_LIBRARIES m) 
+check_symbol_exists(cosl "math.h" HAVE_COSL)
+check_symbol_exists(sinl "math.h" HAVE_SINL)
+check_symbol_exists(acosl "math.h" HAVE_ACOSL)
+check_symbol_exists(asinl "math.h" HAVE_ASINL)
+check_symbol_exists(atan2l "math.h" HAVE_ATAN2L)
+unset(CMAKE_REQUIRED_LIBRARIES)
+
+# Generate config.h
+configure_file(config.h.in config.h)
+
+# Helper function for examples
+function(libnova_add_example EXECUTABLE_NAME)
+    add_executable(${EXECUTABLE_NAME} ${EXECUTABLE_NAME}.c)
+    target_link_libraries(${EXECUTABLE_NAME} PRIVATE nova)
+    if(UNIX)
+        target_link_libraries(${EXECUTABLE_NAME} PRIVATE m)
+    endif()
+    
+    if(WIN32)
+        set_target_properties(${EXECUTABLE_NAME} PROPERTIES DEBUG_POSTFIX "${CMAKE_DEBUG_POSTFIX}")
+        if(MSVC)
+            set_target_properties(${EXECUTABLE_NAME} PROPERTIES PREFIX "../")
+        endif()
+    endif()
+    
+    install(TARGETS ${EXECUTABLE_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+endfunction()
+
+# Include directories
 add_subdirectory(src)
+
+# Testing
+enable_testing()
 add_subdirectory(lntest)
+add_test(NAME libnova_test COMMAND $<TARGET_FILE:libnova_test_exec>)
+
 add_subdirectory(examples)
+
+# pkg-config generation
+set(prefix ${CMAKE_INSTALL_PREFIX})
+set(exec_prefix ${CMAKE_INSTALL_PREFIX})
+set(libdir ${CMAKE_INSTALL_FULL_LIBDIR})
+set(includedir ${CMAKE_INSTALL_FULL_INCLUDEDIR})
+
+configure_file(libnova.pc.in libnova.pc @ONLY)
+
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libnova.pc
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)

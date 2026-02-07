@@ -1,4 +1,4 @@
-set(HEADER_PATH ${libnova_SOURCE_DIR}/src/${LIBRARY_NAME})
+set(HEADER_PATH ${CMAKE_CURRENT_SOURCE_DIR}/libnova)
 
 set(LIBRARY_PUBLIC_HEADERS
 	${HEADER_PATH}/julian_day.h
@@ -36,10 +36,11 @@ set(LIBRARY_PUBLIC_HEADERS
 	${HEADER_PATH}/parallax.h
 	${HEADER_PATH}/airmass.h
 	${HEADER_PATH}/heliocentric_time.h
+	${HEADER_PATH}/constellation.h
 )
 
-add_library(${LIBRARY_NAME} 
-  ${LIBRARY_PUBLIC_HEADERS}
+add_library(nova
+	${LIBRARY_PUBLIC_HEADERS}
 	julian_day.c
 	dynamical_time.c
 	sidereal_time.c
@@ -73,38 +74,31 @@ add_library(${LIBRARY_NAME}
 	parallax.c
 	airmass.c
 	heliocentric_time.c
+	constellation.c
 )
 
-if(MSVC)
-    if(BUILD_SHARED_LIBRARY)
-        set_target_properties(${LIBRARY_NAME} PROPERTIES PREFIX "../../bin/" IMPORT_PREFIX "../")
-    else(BUILD_SHARED_LIBRARY)
-        set_target_properties(${LIBRARY_NAME} PROPERTIES PREFIX "../")
-    endif(BUILD_SHARED_LIBRARY)
-endif(MSVC)
+# ELP seems to be a subdirectory that might contain some code or data?
+# The original CMakeLists.txt had subdirs(elp) but no linking to it in add_library(nova ...).
+# Let's check what was in elp.
+add_subdirectory(elp)
 
-
-
-
-# install stuff
-set(INSTALL_INCDIR include)
-set(INSTALL_BINDIR bin)
-if(WIN32)
-    set(INSTALL_LIBDIR bin)
-    set(INSTALL_ARCHIVEDIR lib)
-else(WIN32)
-    set(INSTALL_LIBDIR lib${LIB_POSTFIX})
-    set(INSTALL_ARCHIVEDIR lib${LIB_POSTFIX})
-endif(WIN32)
-
-install(
-    TARGETS ${LIBRARY_NAME}
-    RUNTIME DESTINATION ${INSTALL_BINDIR}
-    LIBRARY DESTINATION ${INSTALL_LIBDIR}
-    ARCHIVE DESTINATION ${INSTALL_ARCHIVEDIR}
+target_include_directories(nova PUBLIC 
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
-install(
-    FILES       ${LIBRARY_PUBLIC_HEADERS}
-    DESTINATION ${INSTALL_INCDIR}/${LIBRARY_NAME}
-)
+set_target_properties(nova PROPERTIES
+    VERSION ${PROJECT_VERSION}
+    SOVERSION 1
+    PUBLIC_HEADER "${LIBRARY_PUBLIC_HEADERS}")
+
+install(TARGETS nova
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/libnova)
+
+if(UNIX)
+    target_link_libraries(nova PRIVATE m)
+endif()

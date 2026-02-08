@@ -187,9 +187,9 @@ struct ln_equ_posn {
 */
 
 struct ln_hrz_posn {
-    double az;	/*!< AZ. Object azimuth. <p>
-		  0 deg = South, 90 deg = West, 180 deg = Nord, 270 deg = East */
-    double alt;	/*!< ALT. Object altitude. <p> 0 deg = horizon, 90 deg = zenit, -90 deg = nadir */
+    double az;	/*!< AZ. Object azimuth in radians. <p>
+		  0 = South, PI/2 = West, PI = North, 3PI/2 = East */
+    double alt;	/*!< ALT. Object altitude in radians. <p> 0 = horizon, PI/2 = zenith, -PI/2 = nadir */
 };
 
 

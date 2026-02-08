@@ -106,8 +106,8 @@ void ln_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object,
 		cos(declination) * cos(H);
 	h = asin(A);
 
-	/* convert back to degrees */
-	position->alt = ln_rad_to_deg(h);   
+	/* output in radians */
+	position->alt = h;   
 
 	/* zenith distance, Telescope Control 6.8a */
 	Z = acos(A);
@@ -118,14 +118,14 @@ void ln_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object,
 	/* sane check for zenith distance; don't try to divide by 0 */
 	if (fabs(Zs) < 1e-5) {
 		if (object->dec > 0.0)
-			position->az = 180.0;
+			position->az = M_PI;
 		else
 			position->az = 0.0;
 		if ((object->dec > 0.0 && observer->lat > 0.0)
 		   || (object->dec < 0.0 && observer->lat < 0.0))
-		  	position->alt = 90.0;
+		  	position->alt = M_PI_2;
 		else
-		  	position->alt = -90.0;
+		  	position->alt = -M_PI_2;
 		return;
 	}
 
@@ -137,15 +137,15 @@ void ln_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object,
 	// don't blom at atan2
 	if (Ac == 0.0 && As == 0.0) {
 	        if (object->dec > 0)
-			position->az = 180.0;
+			position->az = M_PI;
 		else
 			position->az = 0.0;
 		return;
 	}
 	A = atan2(As, Ac);
 
-	/* convert back to degrees */
-	position->az = ln_range_degrees(ln_rad_to_deg(A));
+	/* output in radians */
+	position->az = ln_range_radians(A);
 }
 
 /*! \fn void ln_get_equ_from_hrz(struct ln_hrz_posn *object, struct ln_lnlat_posn *observer, double JD, struct ln_equ_posn *position)
@@ -165,8 +165,8 @@ void ln_get_equ_from_hrz(struct ln_hrz_posn *object,
 	/* change observer/object position into radians */
 
 	/* object alt/az */
-	A = ln_deg_to_rad(object->az);
-	h = ln_deg_to_rad(object->alt);
+	A = object->az;
+	h = object->alt;
 
 	/* observer long / lat */
 	longitude = ln_deg_to_rad(observer->lng);

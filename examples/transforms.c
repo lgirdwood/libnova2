@@ -71,8 +71,8 @@ int main (int argc, const char *argv[])
 	ln_hlnlat_to_lnlat(&hobserver, &observer);
 
 	ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
-	fprintf(stdout, "(Alnilam) Equ to Horiz ALT %f\n", hrz.alt);
-	fprintf(stdout, "(Alnilam) Equ to Horiz AZ %f\n", hrz.az);
+	fprintf(stdout, "(Alnilam) Equ to Horiz ALT %f\n", ln_rad_to_deg(hrz.alt));
+	fprintf(stdout, "(Alnilam) Equ to Horiz AZ %f\n", ln_rad_to_deg(hrz.az));
 
 	ln_hrz_to_hhrz(&hrz, &hhrz);
 	fprintf(stdout, "ALT %d:%d:%f  AZ %d:%d:%f\n",

@@ -433,9 +433,9 @@ static int transform_test(void)
 	
 	ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
 	failed += test_result("(Transforms) Equ to Horiz ALT ",
-		hrz.alt, 15.12426274, 0.00000001);
+		ln_rad_to_deg(hrz.alt), 15.12426274, 0.00000001);
 	failed += test_result("(Transforms) Equ to Horiz AZ ",
-		hrz.az, 68.03429264, 0.00000001);
+		ln_rad_to_deg(hrz.az), 68.03429264, 0.00000001);
 
 	ln_get_hrz_from_equ_sidereal_time(&object, &observer, ln_get_apparent_sidereal_time(JD), &hrz);
 	ln_get_equ_from_hrz(&hrz, &observer, JD, &object_hrz);
@@ -449,33 +449,33 @@ static int transform_test(void)
 
 	ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
 	failed += test_result("(Transforms) Equ to Horiz ALT ",
-		hrz.alt, 38.9213888888, 0.00000001);
+		ln_rad_to_deg(hrz.alt), 38.9213888888, 0.00000001);
 	failed += test_result("(Transforms) Equ to Horiz AZ ",
-		hrz.az, 180.0, 0.00000001);
+		ln_rad_to_deg(hrz.az), 180.0, 0.00000001);
 	
 	object.dec = ln_deg_to_rad(-90.0);
 
 	ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
 	failed += test_result("(Transforms) Equ to Horiz ALT ",
-		hrz.alt, -38.9213888888, 0.00000001);
+		ln_rad_to_deg(hrz.alt), -38.9213888888, 0.00000001);
 	failed += test_result("(Transforms) Equ to Horiz AZ ",
-		hrz.az, 0.0, 0.00000001);
+		ln_rad_to_deg(hrz.az), 0.0, 0.00000001);
 
 	observer.lat *= -1.0;
 
 	ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
 	failed += test_result("(Transforms) Equ to Horiz ALT ",
-		hrz.alt, 38.9213888888, 0.00000001);
+		ln_rad_to_deg(hrz.alt), 38.9213888888, 0.00000001);
 	failed += test_result("(Transforms) Equ to Horiz AZ ",
-		hrz.az, 0.0, 0.00000001);
+		ln_rad_to_deg(hrz.az), 0.0, 0.00000001);
 	
 	object.dec = ln_deg_to_rad(90.0);
 
 	ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
 	failed += test_result("(Transforms) Equ to Horiz ALT ",
-		hrz.alt, -38.9213888888, 0.00000001);
+		ln_rad_to_deg(hrz.alt), -38.9213888888, 0.00000001);
 	failed += test_result("(Transforms) Equ to Horiz AZ ",
-		hrz.az, 180.0, 0.00000001);
+		ln_rad_to_deg(hrz.az), 180.0, 0.00000001);
 
 	/* Equ position of Pollux */
 	hpollux.ra.hours = 7;
@@ -2472,8 +2472,8 @@ static int utility_conversion_test(void)
 	hhrz.az.degrees = 100; hhrz.az.minutes = 0; hhrz.az.seconds = 0; hhrz.az.neg = 0;
 	hhrz.alt.degrees = 50; hhrz.alt.minutes = 0; hhrz.alt.seconds = 0; hhrz.alt.neg = 0;
 	ln_hhrz_to_hrz(&hhrz, &hrz);
-	failed += test_result("(Utility) hhrz_to_hrz az", hrz.az, 100.0, 1e-6);
-	failed += test_result("(Utility) hhrz_to_hrz alt", hrz.alt, 50.0, 1e-6);
+	failed += test_result("(Utility) hhrz_to_hrz az", ln_rad_to_deg(hrz.az), 100.0, 1e-6);
+	failed += test_result("(Utility) hhrz_to_hrz alt", ln_rad_to_deg(hrz.alt), 50.0, 1e-6);
 
 	/* hrz to nswe */
 	/* 0=N, 90=E? No, 0=S? */
@@ -2488,6 +2488,16 @@ static int utility_conversion_test(void)
 		failed++;
 	} else {
 		printf("TEST (Utility) hrz_to_nswe %s....[PASSED]\n", loc_str);
+	}
+
+	/* Also test radians? Az=0 -> S. PI -> N. */
+	hrz.az = M_PI;
+	loc_str = ln_hrz_to_nswe(&hrz);
+	if (strcmp(loc_str, "N") != 0) {
+		printf("TEST (Utility) hrz_to_nswe N (radians)....[FAILED]\n");
+		failed++;
+	} else {
+		printf("TEST (Utility) hrz_to_nswe N (radians)....[PASSED]\n");
 	}
 
 	/* Version */

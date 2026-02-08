@@ -354,8 +354,8 @@ void ln_equ_to_hequ(struct ln_equ_posn *pos, struct lnh_equ_posn *hpos)
 */
 void ln_hhrz_to_hrz(struct lnh_hrz_posn *hpos, struct ln_hrz_posn *pos)
 {
-	pos->alt = ln_dms_to_deg(&hpos->alt);
-	pos->az = ln_dms_to_deg(&hpos->az);
+	pos->alt = ln_dms_to_rad(&hpos->alt);
+	pos->az = ln_dms_to_rad(&hpos->az);
 }
 
 /*! \fn void ln_hrz_to_hhrz(struct ln_hrz_posn *pos, struct lnh_hrz_posn *hpos)
@@ -364,8 +364,8 @@ void ln_hhrz_to_hrz(struct lnh_hrz_posn *hpos, struct ln_hrz_posn *pos)
 */
 void ln_hrz_to_hhrz(struct ln_hrz_posn *pos, struct lnh_hrz_posn *hpos)
 {
-	ln_deg_to_dms(pos->alt, &hpos->alt);
-	ln_deg_to_dms(pos->az, &hpos->az);
+	ln_rad_to_dms(pos->alt, &hpos->alt);
+	ln_rad_to_dms(pos->az, &hpos->az);
 }
 
 /*! \fn const char * ln_hrz_to_nswe(struct ln_hrz_posn *pos);
@@ -378,7 +378,7 @@ const char *ln_hrz_to_nswe(struct ln_hrz_posn *pos)
 		{"S", "SSW", "SW", "SWW", "W", "NWW", "NW", "NNW",
 		"N", "NNE", "NE", "NEE", "E", "SEE", "SE", "SSE"};
 
-	return directions[(int)(pos->az / 22.5)];
+	return directions[(int)(ln_rad_to_deg(pos->az) / 22.5)];
 }
 	
 /*! \fn void ln_hlnlat_to_lnlat(struct lnh_lnlat_posn *hpos, struct ln_lnlat_posn *pos)

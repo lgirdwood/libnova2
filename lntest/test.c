@@ -2326,7 +2326,7 @@ static int solar_earth_test(void)
 	double JD, res;
 	struct ln_rect_posn rect;
 	struct ln_lnlat_posn ecl;
-	struct ln_rst_time rst;
+	struct ln_rst_time rst = {0, 0, 0};
 	struct ln_lnlat_posn observer;
 
 	JD = 2451545.0; /* J2000 */
@@ -2349,7 +2349,7 @@ static int solar_earth_test(void)
 	/* Solar RST Horizon */
 	observer.lng = ln_deg_to_rad(0.0); observer.lat = ln_deg_to_rad(50.0);
 	/* Horizon -18 (Astronomical Twilight) */
-	ln_get_solar_rst_horizon(JD, &observer, -18.0, &rst);
+	ln_get_solar_rst_horizon(JD, &observer, ln_deg_to_rad(-18.0), &rst);
 	/* Check validity */
 	if (rst.rise == 0.0 && rst.set == 0.0) {
 		/* It might be valid if it doesn't rise/set, but sun usually does at lat 50 */

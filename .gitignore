@@ -70,5 +70,4 @@ libnova-*.tar.gz
 test_output*.txt
 
 # Visual Studio / VS Code
-.vscode/
 .vs/

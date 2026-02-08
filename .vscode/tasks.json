@@ -1,0 +1,74 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CMake: Configure",
+            "type": "shell",
+            "command": "cmake ..",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Configure the project using CMake"
+        },
+        {
+            "label": "CMake: Build",
+            "type": "shell",
+            "command": "cmake --build .",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$gcc",
+            "detail": "Build the project"
+        },
+        {
+            "label": "CMake: Clean",
+            "type": "shell",
+            "command": "cmake --build . --target clean",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Clean the project"
+        },
+        {
+            "label": "CMake: Test",
+            "type": "shell",
+            "command": "ctest --output-on-failure",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "group": "test",
+            "problemMatcher": [],
+            "detail": "Run unit tests"
+        },
+        {
+            "label": "CMake: Documentation",
+            "type": "shell",
+            "command": "cmake --build . --target doc",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Generate documentation"
+        },
+        {
+            "label": "CMake: Install",
+            "type": "shell",
+            "command": "cmake --install .",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Install the project (may require sudo privileges)"
+        }
+    ]
+}

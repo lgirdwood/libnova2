@@ -2626,7 +2626,7 @@ int main(int argc, const char *argv[])
 	failed += utility_conversion_test();
 	failed += asteroids_misc_test();
 	failed += airmass_test ();
-        failed += constellation_test ();
+    failed += constellation_test ();
 	
 	end_timer();
 	fprintf(stdout, "Test completed: %d tests, %d errors.\n",

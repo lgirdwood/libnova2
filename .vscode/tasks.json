@@ -4,9 +4,9 @@
         {
             "label": "CMake: Configure",
             "type": "shell",
-            "command": "cmake ..",
+            "command": "cmake -B ../build-libnova",
             "options": {
-                "cwd": "${workspaceFolder}/build"
+                "cwd": "${workspaceFolder}"
             },
             "group": "build",
             "problemMatcher": [],
@@ -15,9 +15,9 @@
         {
             "label": "CMake: Build",
             "type": "shell",
-            "command": "cmake --build .",
+            "command": "cmake --build build",
             "options": {
-                "cwd": "${workspaceFolder}/build"
+                "cwd": "${workspaceFolder}"
             },
             "group": {
                 "kind": "build",
@@ -29,20 +29,31 @@
         {
             "label": "CMake: Clean",
             "type": "shell",
-            "command": "cmake --build . --target clean",
+            "command": "cmake --build ../build-libnova --target clean",
             "options": {
-                "cwd": "${workspaceFolder}/build"
+                "cwd": "${workspaceFolder}"
             },
             "group": "build",
             "problemMatcher": [],
             "detail": "Clean the project"
         },
         {
+            "label": "CMake: Pristine Build",
+            "type": "shell",
+            "command": "rm -rf ../build-libnova && cmake -B ../build-libnova && cmake --build ../build-libnova",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build",
+            "problemMatcher": "$gcc",
+            "detail": "Remove build directory and rebuild from scratch"
+        },
+        {
             "label": "CMake: Test",
             "type": "shell",
-            "command": "ctest --output-on-failure",
+            "command": "ctest --test-dir ../build-libnova --output-on-failure",
             "options": {
-                "cwd": "${workspaceFolder}/build"
+                "cwd": "${workspaceFolder}"
             },
             "group": "test",
             "problemMatcher": [],
@@ -51,9 +62,9 @@
         {
             "label": "CMake: Documentation",
             "type": "shell",
-            "command": "cmake --build . --target doc",
+            "command": "cmake --build ../build-libnova --target doc",
             "options": {
-                "cwd": "${workspaceFolder}/build"
+                "cwd": "${workspaceFolder}"
             },
             "group": "build",
             "problemMatcher": [],
@@ -62,20 +73,20 @@
         {
             "label": "CMake: Install",
             "type": "shell",
-            "command": "cmake --install .",
+            "command": "cmake --install ../build-libnova",
             "options": {
-                "cwd": "${workspaceFolder}/build"
+                "cwd": "${workspaceFolder}"
             },
             "group": "build",
             "problemMatcher": [],
             "detail": "Install the project (may require sudo privileges)"
-        }
+        },
         {
             "label": "CMake: Configure Debug",
             "type": "shell",
-            "command": "cmake -DCMAKE_BUILD_TYPE=Debug ..",
+            "command": "cmake -B ../build-libnova -DCMAKE_BUILD_TYPE=Debug",
             "options": {
-                "cwd": "${workspaceFolder}/build"
+                "cwd": "${workspaceFolder}"
             },
             "group": "build",
             "problemMatcher": [],
@@ -84,10 +95,10 @@
         {
             "label": "CMake: Build Debug",
             "type": "shell",
-            "command": "cmake --build .",
+            "command": "cmake --build ../build-libnova",
             "dependsOn": "CMake: Configure Debug",
             "options": {
-                "cwd": "${workspaceFolder}/build"
+                "cwd": "${workspaceFolder}"
             },
             "group": "build",
             "problemMatcher": "$gcc",

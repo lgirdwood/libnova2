@@ -22,23 +22,18 @@
 
 libnova uses **CMake** for its build system.
 
-1. Create a build directory:
+1. Configure the project:
    ```bash
-   mkdir build
-   cd build
-   ```
-
-2. Configure the project:
-   ```bash
-   cmake ..
+   cmake -B build
    ```
    
    Options:
    - `-DBUILD_SHARED_LIBS=ON` (default): Build shared libraries. Set to `OFF` for static libraries.
+   - `-DCMAKE_BUILD_TYPE=Debug`: Build with debug symbols.
 
-3. Build the library:
+2. Build the library:
    ```bash
-   cmake --build .
+   cmake --build build
    ```
 
 ## Installation
@@ -46,12 +41,12 @@ libnova uses **CMake** for its build system.
 To install the library and headers (requires permissions):
 
 ```bash
-cmake --install .
+cmake --install build
 ```
 
 Default installation prefix is `/usr/local` on Linux. You can change this during configuration:
 ```bash
-cmake .. -DCMAKE_INSTALL_PREFIX=/custom/path
+cmake -B build -DCMAKE_INSTALL_PREFIX=/custom/path
 ```
 
 ## Running Tests
@@ -59,13 +54,12 @@ cmake .. -DCMAKE_INSTALL_PREFIX=/custom/path
 Unit tests are built by default. To run the tests:
 
 ```bash
-cd build
-ctest --output-on-failure
+ctest --test-dir build --output-on-failure
 ```
 
 Or run the test executable directly for verbose output:
 ```bash
-./lntest/libnova_test_exec
+./build/lntest/libnova_test_exec
 ```
 
 ## Documentation
@@ -73,8 +67,7 @@ Or run the test executable directly for verbose output:
 To generate the API documentation (requires Doxygen):
 
 ```bash
-cd build
-cmake --build . --target doc
+cmake --build build --target doc
 ```
 
 The documentation will be generated in `doc/html/index.html`.

@@ -29,14 +29,14 @@ extern "C" {
 *
 * Functions relating to the planet Mercury.
 *
-* All angles are expressed in degrees.
+* All angles are expressed in radians.
 */
 
 /*! \fn double ln_get_mercury_sdiam(double JD)
-* \brief Calculate the semidiameter of Mercury in arc seconds.
+* \brief Calculate the semidiameter of Mercury in radians.
 * \ingroup mercury
 * \param JD Julian Day
-* \return Semidiameter in arc seconds
+* \return Semidiameter in radians
 */
 double LIBNOVA_EXPORT ln_get_mercury_sdiam(double JD);
 
@@ -111,7 +111,7 @@ double LIBNOVA_EXPORT ln_get_mercury_disk(double JD);
 * \brief Calculate the phase angle of Mercury (Sun - Mercury - Earth)
 * \ingroup mercury
 * \param JD Julian Day
-* \return Phase angle of Mercury (degrees)
+* \return Phase angle of Mercury (radians)
 */ 
 /* Chapter 41 */
 double LIBNOVA_EXPORT ln_get_mercury_phase(double JD);

@@ -30,7 +30,7 @@ extern "C" {
 * Functions relating to an the angular separation and position
 * angle between 2 bodies.
 *
-* All angles are expressed in degrees.
+* All angles are expressed in radians.
 */		
 		
 /*! \fn double ln_get_angular_separation(struct ln_equ_posn* posn1, struct ln_equ_posn* posn2);
@@ -38,7 +38,7 @@ extern "C" {
 * \ingroup angular
 * \param posn1 Position of first body
 * \param posn2 Position of second body
-* \return Angular separation in degrees
+* \return Angular separation in radians
 */		
 double LIBNOVA_EXPORT ln_get_angular_separation(struct ln_equ_posn *posn1,
 	struct ln_equ_posn *posn2);
@@ -48,7 +48,7 @@ double LIBNOVA_EXPORT ln_get_angular_separation(struct ln_equ_posn *posn1,
 * \ingroup angular
 * \param posn1 Position of first body
 * \param posn2 Position of second body
-* \return Position angle in degrees
+* \return Position angle in radians
 */	
 double LIBNOVA_EXPORT ln_get_rel_posn_angle(struct ln_equ_posn *posn1,
 	struct ln_equ_posn *posn2);

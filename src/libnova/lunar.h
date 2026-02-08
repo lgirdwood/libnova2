@@ -97,8 +97,10 @@ void LIBNOVA_EXPORT ln_get_lunar_ecl_coords(double JD,
 /*! \fn double ln_get_lunar_phase(double JD);
 * \brief Calculate the phase angle of the Moon.
 * \ingroup lunar
+*
+* Calculates the angle Sun - Moon - Earth.
 * \param JD Julian Day
-* \return Phase angle of the Moon
+* \return Phase angle in radians.
 */ 
 double LIBNOVA_EXPORT ln_get_lunar_phase(double JD);
 
@@ -122,31 +124,37 @@ double LIBNOVA_EXPORT ln_get_lunar_earth_dist(double JD);
 * \brief Calculate the position angle of the Moon's bright limb.
 * \ingroup lunar
 * \param JD Julian Day
-* \return Position angle of visible bright limb
+* \return The position angle in radians.
 */ 
 double LIBNOVA_EXPORT ln_get_lunar_bright_limb(double JD);
 
 /*! \fn double ln_get_lunar_long_asc_node(double JD);
 * \brief Calculate the longitude of the Moon's mean ascending node.
 * \ingroup lunar
+*
+* Calculate the mean longitude of the Moons ascening node
 * \param JD Julian Day
-* \return Longitude of ascending node
+* \return Longitude of ascending node in radians.
 */ 
 double LIBNOVA_EXPORT ln_get_lunar_long_asc_node(double JD);
 
 /*! \fn double ln_get_lunar_long_perigee(double JD);
 * \brief Calculate the longitude of the Moon's mean perigee.
 * \ingroup lunar
+*
+* Calculate the longitude of the Moon's mean perigee.
 * \param JD Julian Day
-* \return Longitude of perigee
+* \return Longitude of Moons mean perigee in radians.
 */ 
 double LIBNOVA_EXPORT ln_get_lunar_long_perigee(double JD);
 
 /*! \fn double ln_get_lunar_arg_latitude(double JD);
 * \brief Calculate the Moon's argument of latitude (mean distance of the Moon from its ascending node)
 * \ingroup lunar
+*
+* Calculate the Moon's argument of latitude (mean distance of the Moon from its ascending node)
 * \param JD Julian Day
-* \return Argument of latitude
+* \return Moon's argument of latitude in radians
 */
 double LIBNOVA_EXPORT ln_get_lunar_arg_latitude(double JD);
 

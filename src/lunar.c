@@ -1282,7 +1282,7 @@ double ln_get_lunar_phase(double JD)
 	delta = ln_get_lunar_earth_dist(JD);
 	R = R * AU; /* convert R to km */
 	phase = atan2((R * sin(lunar_elong)), (delta - R * cos(lunar_elong)));
-	return ln_rad_to_deg(phase);
+	return phase;
 }
 
 /*! \fn double ln_get_lunar_disk(double JD);
@@ -1298,7 +1298,7 @@ double ln_get_lunar_disk(double JD)
 	double i;
 
 	/* Equ 48.1 */
-	i = ln_deg_to_rad(ln_get_lunar_phase(JD));
+	i = ln_get_lunar_phase(JD);
 	return (1.0 + cos(i)) / 2.0;
 }
 
@@ -1326,14 +1326,14 @@ double ln_get_lunar_bright_limb(double JD)
 	ln_get_solar_equ_coords(JD, &sunlp);
 
 	/* Equ 48.5 */
-	x = cos(ln_deg_to_rad(sunlp.dec)) * sin(ln_deg_to_rad(sunlp.ra - moon.ra));
-	y = sin((ln_deg_to_rad(sunlp.dec)) * cos(ln_deg_to_rad(moon.dec)))
-		- (cos(ln_deg_to_rad(sunlp.dec)) * sin(ln_deg_to_rad(moon.dec))
-		* cos(ln_deg_to_rad(sunlp.ra - moon.ra)));
+	x = cos(sunlp.dec) * sin(sunlp.ra - moon.ra);
+	y = sin(sunlp.dec) * cos(moon.dec)
+		- (cos(sunlp.dec) * sin(moon.dec)
+		* cos(sunlp.ra - moon.ra));
 	angle = atan2(x,y);
 
 	angle = ln_range_radians(angle);
-	return ln_rad_to_deg(angle);
+	return angle;
 }
 
 
@@ -1393,7 +1393,7 @@ double ln_get_lunar_long_asc_node(double JD)
 	/* equ 47.7 */
 	omega -= 1934.1362891 * T + 0.0020754 * T2 + T3 / 467441.0 -
 		T4 / 60616000.0;
-	return omega;
+	return ln_deg_to_rad(omega);
 }
 
 
@@ -1415,7 +1415,7 @@ double ln_get_lunar_long_perigee(double JD)
 	/* equ 47.7 */
 	per += 4069.0137287 * T - 0.0103200 * T2 -
 		T3 / 80053.0 + T4 / 18999000.0;
-	return per;
+	return ln_deg_to_rad(per);
 }
 
 /*! \fn double ln_get_lunar_arg_latitude(double JD);
@@ -1437,7 +1437,7 @@ double ln_get_lunar_arg_latitude(double JD)
 	arg += 483202.0175273 * T - 0.0034029 * T2 -
 		T3 / 3526000.0 + T4 / 863310000.0;
 
-	return arg;
+	return ln_deg_to_rad(arg);
 }
 
 void ln_get_lunar_selenographic_coords(double JD, struct ln_lnlat_posn *moon,
@@ -1446,21 +1446,21 @@ void ln_get_lunar_selenographic_coords(double JD, struct ln_lnlat_posn *moon,
 	/* equ 51.1 */
 	static const double I = 0.02692030744861093755; // 1.54242 deg in radians
 	double Omega = ln_get_lunar_long_asc_node(JD);
-	double W = ln_deg_to_rad(moon->lng - Omega);
+	double W = moon->lng - Omega;
 	double F = ln_get_lunar_arg_latitude(JD);
 
-	double tan_Ay = sin(W) * cos(ln_deg_to_rad(moon->lat)) * cos(I) -
-		sin(ln_deg_to_rad(moon->lat)) * sin(I);
-	double tan_Ax = cos(W) * cos(ln_deg_to_rad(moon->lat));
+	double tan_Ay = sin(W) * cos(moon->lat) * cos(I) -
+		sin(moon->lat) * sin(I);
+	double tan_Ax = cos(W) * cos(moon->lat);
 
 	position->lng =
-		ln_range_degrees(ln_rad_to_deg(atan2(tan_Ay, tan_Ax)) - F);
+		ln_range_radians(atan2(tan_Ay, tan_Ax) - F);
 	/* Remove deg conversion for output */
 	position->lng =
-		(position->lng > 180.0 ? position->lng - 360.0 : position->lng);
+		(position->lng > M_PI ? position->lng - 2.0 * M_PI : position->lng);
 	position->lat =
-		ln_rad_to_deg(asin(-sin(W) * cos(ln_deg_to_rad(moon->lat)) * sin(I) -
-		sin(ln_deg_to_rad(moon->lat))*cos(I)));
+		asin(-sin(W) * cos(moon->lat) * sin(I) -
+		sin(moon->lat)*cos(I));
 }
 
 /*! \fn void ln_get_lunar_opt_libr_coords(double JD, struct ln_lnlat_posn *position)

@@ -170,7 +170,7 @@ struct lnh_lnlat_posn {
 *
 * The Right Ascension and Declination of an object.
 *
-* Angles are expressed in degrees.
+* Angles are expressed in radians.
 */
 
 struct ln_equ_posn {
@@ -183,7 +183,7 @@ struct ln_equ_posn {
 *
 * The Azimuth and Altitude of an object.
 *
-* Angles are expressed in degrees.
+* Angles are expressed in radians.
 */
 
 struct ln_hrz_posn {
@@ -213,12 +213,12 @@ struct ln_lnlat_posn {
 * A heliocentric position is an objects position relative to the
 * centre of the Sun. 
 *
-* Angles are expressed in degrees.
+* Angles are expressed in radians.
 * Radius vector is in AU.
 */
 struct ln_helio_posn {
-	double L;	/*!< Heliocentric longitude */
-	double B;	/*!< Heliocentric latitude */
+	double L;	/*!< Heliocentric longitude in radians */
+	double B;	/*!< Heliocentric latitude in radians */
 	double R;	/*!< Heliocentric radius vector */
 };
 
@@ -248,11 +248,11 @@ struct ln_rect_posn {
 *
 * The Galactic Latitude and Longitude of and object.
 *
-* Angles are expressed in degrees.
+* Angles are expressed in radians.
 */
 struct ln_gal_posn {
-	double l;	/*!< Galactic longitude (degrees) */
-	double b;	/*!< Galactic latitude (degrees) */
+	double l;	/*!< Galactic longitude (radians) */
+	double b;	/*!< Galactic latitude (radians) */
 };
 
 /*!
@@ -260,14 +260,14 @@ struct ln_gal_posn {
 * \brief Elliptic Orbital elements
 *
 *  TODO.
-* Angles are expressed in degrees.
+* Angles are expressed in radians.
 */
 struct ln_ell_orbit {
 	double a;	/*!< Semi major axis, in AU */
 	double e;	/*!< Eccentricity */
-	double i;	/*!< Inclination in degrees */
-	double w;	/*!< Argument of perihelion in degrees */
-	double omega;	/*!< Longitude of ascending node in degrees*/
+	double i;	/*!< Inclination in radians */
+	double w;	/*!< Argument of perihelion in radians */
+	double omega;	/*!< Longitude of ascending node in radians*/
 	double n;	/*!< Mean motion, in degrees/day */
 	double JD;	/*!< Time of last passage in Perihelion, in julian day*/
 };
@@ -277,13 +277,13 @@ struct ln_ell_orbit {
 * \brief Parabolic Orbital elements
 *
 *  TODO.
-* Angles are expressed in degrees.
+* Angles are expressed in radians.
 */
 struct ln_par_orbit {
 	double q;	/*!< Perihelion distance in AU */
-	double i;	/*!< Inclination in degrees */
-	double w;	/*!< Argument of perihelion in degrees */
-	double omega;	/*!< Longitude of ascending node in degrees*/
+	double i;	/*!< Inclination in radians */
+	double w;	/*!< Argument of perihelion in radians */
+	double omega;	/*!< Longitude of ascending node in radians*/
 	double JD;	/*!< Time of last passage in Perihelion, in julian day */
 };
 
@@ -292,14 +292,14 @@ struct ln_par_orbit {
 * \brief Hyperbolic Orbital elements
 *
 *  TODO.
-* Angles are expressed in degrees.
+* Angles are expressed in radians.
 */
 struct ln_hyp_orbit {
 	double q;	/*!< Perihelion distance in AU */
 	double e;	/*!< Eccentricity */
-	double i;	/*!< Inclination in degrees */
-	double w;	/*!< Argument of perihelion in degrees */
-	double omega;	/*!< Longitude of ascending node in degrees*/
+	double i;	/*!< Inclination in radians */
+	double w;	/*!< Argument of perihelion in radians */
+	double omega;	/*!< Longitude of ascending node in radians*/
 	double JD;	/*!< Time of last passage in Perihelion, in julian day*/
 };
 
@@ -309,7 +309,6 @@ struct ln_hyp_orbit {
 *
 * Contains the Rise, Set and transit times for a body.
 *  
-* Angles are expressed in degrees.
 */
 struct ln_rst_time {
 	double rise;		/*!< Rise time in JD */
@@ -323,12 +322,12 @@ struct ln_rst_time {
 *
 * Contains Nutation in longitude, obliquity and ecliptic obliquity. 
 *
-* Angles are expressed in degrees.
+* Angles are expressed in radians.
 */
 struct ln_nutation {
-	double longitude;	/*!< Nutation in longitude, in degrees */
-	double obliquity;	/*!< Nutation in obliquity, in degrees */
-	double ecliptic;	/*!< Mean obliquity of the ecliptic, in degrees */
+	double longitude;	/*!< Nutation in longitude, in radians */
+	double obliquity;	/*!< Nutation in obliquity, in radians */
+	double ecliptic;	/*!< Mean obliquity of the ecliptic, in radians */
 };
 
 #if defined(__WIN32__) && !defined(__MINGW__)

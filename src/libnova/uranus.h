@@ -30,14 +30,14 @@ extern "C" {
 *
 * Functions relating to the planet Uranus.
 *
-* All angles are expressed in degrees.
+* All angles are expressed in radians.
 */
 
 /*! \fn double ln_get_uranus_sdiam(double JD)
-* \brief Calculate the semidiameter of Uranus in arc seconds.
+* \brief Calculate the semidiameter of Uranus in radians.
 * \ingroup uranus
 * \param JD Julian Day
-* \return Semidiameter in arc seconds
+* \return Semidiameter in radians
 */
 double LIBNOVA_EXPORT ln_get_uranus_sdiam(double JD);
 
@@ -112,7 +112,7 @@ double LIBNOVA_EXPORT ln_get_uranus_disk(double JD);
 * \brief Calculate the phase angle of Uranus.
 * \ingroup uranus
 * \param JD Julian Day
-* \return Phase angle of Uranus (degrees)
+* \return Phase angle of Uranus (radians)
 */ 
 /* Chapter 41 */
 double LIBNOVA_EXPORT ln_get_uranus_phase(double JD);

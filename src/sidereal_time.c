@@ -44,8 +44,8 @@ double ln_get_mean_sidereal_time(double JD)
 	/* add a convenient multiple of 360 degrees */
 	sidereal = ln_range_degrees(sidereal);
 
-	/* change to hours */
-	sidereal *= 24.0 / 360.0;
+	/* change to radians */
+	sidereal = ln_deg_to_rad(sidereal);
 
 	return sidereal;
 } 
@@ -71,8 +71,8 @@ double ln_get_apparent_sidereal_time(double JD)
 	the ecliptic */
 	ln_get_nutation(JD, &nutation);
 
-	correction = (nutation.longitude / 15.0 *
-	cos(ln_deg_to_rad(nutation.obliquity)));
+	correction = (nutation.longitude *
+	cos(nutation.obliquity));
 
 	sidereal += correction;
 

@@ -53,16 +53,15 @@ void ln_vsop87_to_fk5(struct ln_helio_posn *position, double JD)
 	/* get julian centuries from 2000 */
 	T =(JD - 2451545.0) / 36525.0;
 	
-	LL = position->L + (- 1.397 - 0.00031 * T) * T;
-	LL = ln_deg_to_rad(LL);
+	LL = position->L + ln_deg_to_rad((- 1.397 - 0.00031 * T) * T);
 	cos_LL = cos(LL);
 	sin_LL = sin(LL);
-	B = ln_deg_to_rad(position->B);
+	B = position->B;
 	
 	delta_L = (-0.09033 / 3600.0) + (0.03916 / 3600.0) *
 			(cos_LL + sin_LL) * tan(B);
 	delta_B = (0.03916 / 3600.0) * (cos_LL - sin_LL);
 	
-	position->L += delta_L;
-	position->B += delta_B;
+	position->L += ln_deg_to_rad(delta_L);
+	position->B += ln_deg_to_rad(delta_B);
 }

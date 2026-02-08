@@ -98,10 +98,11 @@ void LIBNOVA_EXPORT ln_get_solar_geo_coords(double JD,
 	struct ln_rect_posn *position);
 
 /*! \fn double ln_get_solar_sdiam(double JD)
-* \brief Calculate the semidiameter of the Sun in arc seconds.
-* \ingroup solar
-* \param JD Julian Day
-* \return Semidiameter in arc seconds
+* \param JD Julian day
+* \return Semidiameter in radians
+*
+* Calculate the semidiameter of the Sun in radians for the 
+* given julian day.
 */
 double LIBNOVA_EXPORT ln_get_solar_sdiam(double JD);
 

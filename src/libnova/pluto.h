@@ -29,14 +29,14 @@ extern "C" {
 *
 * Functions relating to the planet Pluto.
 *
-* All angles are expressed in degrees.
+* All angles are expressed in radians.
 */
 
 /*! \fn double ln_get_pluto_sdiam(double JD)
-* \brief Calculate the semidiameter of Pluto in arc seconds.
+* \brief Calculate the semidiameter of Pluto in radians.
 * \ingroup pluto
 * \param JD Julian Day
-* \return Semidiameter in arc seconds
+* \return Semidiameter in radians
 */
 double LIBNOVA_EXPORT ln_get_pluto_sdiam(double JD);
 
@@ -111,7 +111,7 @@ double LIBNOVA_EXPORT ln_get_pluto_disk(double JD);
 * \brief Calculate the phase angle of Pluto. 
 * \ingroup pluto
 * \param JD Julian Day
-* \return Phase angle of Pluto (degrees).
+* \return Phase angle of Pluto (radians).
 */ 
 /* Chapter 41 */
 double LIBNOVA_EXPORT ln_get_pluto_phase(double JD);

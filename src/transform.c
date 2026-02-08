@@ -89,8 +89,7 @@ void ln_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object,
 {
 	long double H, ra, latitude, declination, A, Ac, As, h, Z, Zs;
 
-	/* change sidereal_time from hours to radians*/
-	sidereal *= 2.0 * M_PI / 24.0;
+	/* sidereal time is in radians */
 
 	/* calculate hour angle of object at observers position */
 	ra = object->ra;
@@ -177,9 +176,8 @@ void ln_get_equ_from_hrz(struct ln_hrz_posn *object,
 	declination = sin(latitude) * sin(h) - cos(latitude) * cos(h) * cos(A);
 	declination = asin(declination);
 
-	/* get ra = sidereal - longitude + H and change sidereal to radians*/
+	/* get ra = sidereal - longitude + H */
 	sidereal = ln_get_apparent_sidereal_time(JD);
-	sidereal *= 2.0 * M_PI / 24.0;
 
 	position->ra = ln_range_radians(sidereal - H + longitude);
 	position->dec = declination;
@@ -201,9 +199,8 @@ void ln_get_equ_from_ecl(struct ln_lnlat_posn *object, double JD,
 	double ra, declination, longitude, latitude;
 	struct ln_nutation nutation;
 
-	/* get obliquity of ecliptic and change it to rads */
-	ln_get_nutation(JD, &nutation);
-	nutation.ecliptic = ln_deg_to_rad(nutation.ecliptic); 
+	/* get obliquity of ecliptic */
+	ln_get_nutation(JD, &nutation); 
 
 	/* change object's position into radians */
 
@@ -243,7 +240,6 @@ void ln_get_ecl_from_equ(struct ln_equ_posn *object, double JD,
 	ra = object->ra;
 	declination = object->dec;
 	ln_get_nutation(JD, &nutation);
-	nutation.ecliptic = ln_deg_to_rad(nutation.ecliptic);
 
 	/* Equ 12.1, 12.2 */
 	longitude = atan2((sin(ra) * cos(nutation.ecliptic) + tan(declination) *
@@ -292,10 +288,10 @@ void ln_get_equ_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ)
 	SIN_27_4 = sin(RAD_27_4);
 	COS_27_4 = cos(RAD_27_4);
 
-	l_123 = ln_deg_to_rad(gal->l - 123);
+	l_123 = gal->l - ln_deg_to_rad(123.0);
 	cos_l_123 = cos(l_123);
 
-	rad_gal_b = ln_deg_to_rad(gal->b);
+	rad_gal_b = gal->b;
 
 	sin_b = sin(rad_gal_b);
 	cos_b = cos(rad_gal_b);
@@ -346,9 +342,9 @@ void ln_get_gal_from_equ(struct ln_equ_posn *equ, struct ln_gal_posn *gal)
 
 	x = atan2(sin(ra_192_25),
 		cos_ra_192_25 * SIN_27_4 - (sin_dec / cos_dec) * COS_27_4);
-	gal->l = ln_range_degrees(303 - ln_rad_to_deg(x));
-	gal->b = ln_rad_to_deg(asin(sin_dec * SIN_27_4 + cos_dec *
-		COS_27_4 * cos_ra_192_25));
+	gal->l = ln_range_radians(ln_deg_to_rad(303.0) - x);
+	gal->b = asin(sin_dec * SIN_27_4 + cos_dec *
+		COS_27_4 * cos_ra_192_25);
 }
 
 /*! \fn void ln_get_gal_from_equ2000(struct ln_equ_posn *equ, struct ln_gal_posn *gal)

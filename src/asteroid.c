@@ -40,7 +40,6 @@ double ln_get_asteroid_mag(double JD, struct ln_ell_orbit *orbit, double H,
 	
 	/* get phase angle */
 	b = ln_get_ell_body_phase_angle(JD, orbit);
-	b = ln_deg_to_rad(b);
 	
 	/* get mean anomaly */
 	if (orbit->n == 0)
@@ -95,7 +94,7 @@ double ln_get_asteroid_sdiam_arc(double JD, struct ln_ell_orbit *orbit, double H
 	dist = ln_get_ell_body_earth_dist(JD, orbit);
 	
 	d = 3.13 - 0.2 * H - (0.5 * log10(A));
-	return 0.0013788 * d / dist;
+	return d / (dist * 149597870.7);
 }
 
 /*! \example asteroid.c

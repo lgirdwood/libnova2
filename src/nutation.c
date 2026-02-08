@@ -245,15 +245,16 @@ void ln_get_nutation(double JD, struct ln_nutation *nutation)
 		c_longitude /= 10000.0;
 		c_obliquity /= 10000.0;
 
-		/* change to degrees */
-		c_longitude /= (60.0 * 60.0);
-		c_obliquity /= (60.0 * 60.0);
+		/* change to radians */
+		c_longitude = ln_deg_to_rad(c_longitude / 3600.0);
+		c_obliquity = ln_deg_to_rad(c_obliquity / 3600.0);
 		
 		/* calculate mean ecliptic - Meeus 2nd edition, eq. 22.2 */
 		c_ecliptic = 23.0 + 26.0 / 60.0 + 21.448 / 3600.0
                    - 46.8150 / 3600.0 * T
                    - 0.00059 / 3600.0 * T2
                    + 0.001813 / 3600.0 * T3;
+		c_ecliptic = ln_deg_to_rad(c_ecliptic);
 
 		/* c_ecliptic += c_obliquity; * Uncomment this if function should 
                                          return true obliquity rather than
@@ -288,8 +289,8 @@ void ln_get_equ_nut(struct ln_equ_posn *mean_position, double JD,
 	mean_dec = mean_position->dec;
 
 	// Equ 22.1
-
-	long double nut_ecliptic = ln_deg_to_rad(nut.ecliptic + nut.obliquity);
+	
+	long double nut_ecliptic = nut.ecliptic + nut.obliquity;
 	long double sin_ecliptic = sin(nut_ecliptic);
 
 	long double sin_ra = sin(mean_ra);
@@ -297,9 +298,9 @@ void ln_get_equ_nut(struct ln_equ_posn *mean_position, double JD,
 
 	long double tan_dec = tan(mean_dec);
 
-	/* nutation is in degrees, convert to radians for addition */
-	long double nut_longitude_rad = ln_deg_to_rad(nut.longitude);
-	long double nut_obliquity_rad = ln_deg_to_rad(nut.obliquity);
+	/* nutation is in radians */
+	long double nut_longitude_rad = nut.longitude;
+	long double nut_obliquity_rad = nut.obliquity;
 
 	delta_ra = (cos (nut_ecliptic) + sin_ecliptic * sin_ra * tan_dec) * nut_longitude_rad - cos_ra * tan_dec * nut_obliquity_rad;
 	delta_dec = (sin_ecliptic * cos_ra) * nut_longitude_rad + sin_ra * nut_obliquity_rad;

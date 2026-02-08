@@ -62,7 +62,7 @@ double ln_get_par_true_anomaly(double q, double t)
 	s = ln_solve_barker(q, t);
 	v = 2.0 * atan(s);
 	
-	return ln_range_degrees(ln_rad_to_deg(v));
+	return ln_range_radians(v);
 }
 
 /*! \fn double ln_get_par_radius_vector (double q, double t);
@@ -107,10 +107,10 @@ void ln_get_par_helio_rect_posn(struct ln_par_orbit *orbit, double JD,
 	cos_e = 0.917482062;
 	
 	/* equ 33.7 */
-	sin_omega = sin(ln_deg_to_rad(orbit->omega));
-	cos_omega = cos(ln_deg_to_rad(orbit->omega));
-	sin_i = sin(ln_deg_to_rad(orbit->i));
-	cos_i = cos(ln_deg_to_rad(orbit->i));
+	sin_omega = sin(orbit->omega);
+	cos_omega = cos(orbit->omega);
+	sin_i = sin(orbit->i);
+	cos_i = cos(orbit->i);
 	F = cos_omega;
 	G = sin_omega * cos_e;
 	H = sin_omega * sin_e;
@@ -133,9 +133,10 @@ void ln_get_par_helio_rect_posn(struct ln_par_orbit *orbit, double JD,
 	r = ln_get_par_radius_vector(orbit->q, t);
 
 	/* equ 33.9 */
-	posn->X = r * a * sin(A + ln_deg_to_rad(orbit->w + v));
-	posn->Y = r * b * sin(B + ln_deg_to_rad(orbit->w + v));
-	posn->Z = r * c * sin(C + ln_deg_to_rad(orbit->w + v));
+	/* equ 33.9 */
+	posn->X = r * a * sin(A + orbit->w + v);
+	posn->Y = r * b * sin(B + orbit->w + v);
+	posn->Z = r * c * sin(C + orbit->w + v);
 }
 
 
@@ -272,7 +273,7 @@ double ln_get_par_body_phase_angle(double JD, struct ln_par_orbit *orbit)
 	d = ln_get_par_body_solar_dist(JD, orbit);
 
 	phase = (r * r + d * d - R * R) / (2.0 * r * d );
-	return ln_range_degrees(ln_rad_to_deg(acos(phase)));
+	return ln_range_radians(acos(phase));
 }
 
 /*! \fn double ln_get_par_body_elong(double JD, struct ln_par_orbit *orbit);
@@ -299,7 +300,7 @@ double ln_get_par_body_elong(double JD, struct ln_par_orbit *orbit)
 	d = ln_get_par_body_solar_dist(JD, orbit);
 
 	elong = (R * R + d * d - r * r) / ( 2.0 * R * d );
-	return ln_range_degrees(ln_rad_to_deg(acos(elong)));
+	return ln_range_radians(acos(elong));
 }
 
 /*! \fn double ln_get_par_body_rst(double JD, struct ln_lnlat_posn *observer, struct ln_par_orbit *orbit, struct ln_rst_time *rst);

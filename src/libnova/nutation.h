@@ -32,7 +32,7 @@ extern "C" {
 * Nutation is a period oscillation of the Earths rotational axis around it's
 * mean position.
 *
-* All angles are expressed in degrees.
+* All angles are expressed in radians.
 */
 
 /*! \fn void ln_get_nutation(double JD, struct ln_nutation *nutation);

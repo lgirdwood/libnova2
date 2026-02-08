@@ -110,7 +110,7 @@ double ln_get_hyp_true_anomaly (double q, double e, double t)
 	s = ln_solve_hyp_barker(Q, gama, t);
 	v = 2.0 * atan(s);
 
-	return ln_range_degrees(ln_rad_to_deg(v));
+	return ln_range_radians(v);
 }
 
 /*! \fn double ln_get_hyp_radius_vector (double q, double e, double t);
@@ -125,7 +125,7 @@ double ln_get_hyp_true_anomaly (double q, double e, double t)
 double ln_get_hyp_radius_vector (double q, double e, double t)
 {
 	return q * (1.0 + e) /
-		(1.0 + e * cos(ln_deg_to_rad(ln_get_hyp_true_anomaly(q, e, t))));
+		(1.0 + e * cos(ln_get_hyp_true_anomaly(q, e, t)));
 }
 
 /*! \fn void ln_get_hyp_helio_rect_posn(struct ln_hyp_orbit *orbit, double JD, struct ln_rect_posn *posn);
@@ -153,10 +153,10 @@ void ln_get_hyp_helio_rect_posn(struct ln_hyp_orbit *orbit, double JD,
 	cos_e = 0.917482062;
 	
 	/* equ 33.7 */
-	sin_omega = sin(ln_deg_to_rad(orbit->omega));
-	cos_omega = cos(ln_deg_to_rad(orbit->omega));
-	sin_i = sin(ln_deg_to_rad(orbit->i));
-	cos_i = cos(ln_deg_to_rad(orbit->i));
+	sin_omega = sin(orbit->omega);
+	cos_omega = cos(orbit->omega);
+	sin_i = sin(orbit->i);
+	cos_i = cos(orbit->i);
 	F = cos_omega;
 	G = sin_omega * cos_e;
 	H = sin_omega * sin_e;
@@ -179,9 +179,9 @@ void ln_get_hyp_helio_rect_posn(struct ln_hyp_orbit *orbit, double JD,
 	r = ln_get_hyp_radius_vector(orbit->q, orbit->e, t);
 
 	/* equ 33.9 */
-	posn->X = r * a * sin(A + ln_deg_to_rad(orbit->w + v));
-	posn->Y = r * b * sin(B + ln_deg_to_rad(orbit->w + v));
-	posn->Z = r * c * sin(C + ln_deg_to_rad(orbit->w + v));
+	posn->X = r * a * sin(A + orbit->w + v);
+	posn->Y = r * b * sin(B + orbit->w + v);
+	posn->Z = r * c * sin(C + orbit->w + v);
 }
 
 /*! \fn void ln_get_hyp_geo_rect_posn(struct ln_hyp_orbit *orbit, double JD, struct ln_rect_posn *posn);
@@ -314,7 +314,7 @@ double ln_get_hyp_body_phase_angle(double JD, struct ln_hyp_orbit *orbit)
 	d = ln_get_hyp_body_solar_dist(JD, orbit);
 
 	phase = (r * r + d * d - R * R) / (2.0 * r * d);
-	return ln_range_degrees(ln_rad_to_deg(acos(phase)));
+	return ln_range_radians(acos(phase));
 }
 
 /*! \fn double ln_get_hyp_body_elong(double JD, struct ln_hyp_orbit *orbit);
@@ -341,7 +341,7 @@ double ln_get_hyp_body_elong(double JD, struct ln_hyp_orbit *orbit)
 	d = ln_get_hyp_body_solar_dist(JD, orbit);
 
 	elong = (R * R + d * d - r * r) / ( 2.0 * R * d );
-	return ln_range_degrees(ln_rad_to_deg(acos(elong)));
+	return ln_range_radians(acos(elong));
 }
 
 /*! \fn double ln_get_hyp_body_rst(double JD, struct ln_lnlat_posn *observer, struct ln_hyp_orbit *orbit, struct ln_rst_time *rst);

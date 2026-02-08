@@ -30,22 +30,22 @@ extern "C" {
 *
 * Functions relating to the planet Jupiter.
 *
-* All angles are expressed in degrees.
+* All angles are expressed in radians.
 */
 
 /*! \fn double ln_get_jupiter_equ_sdiam(double JD)
-* \brief Calculate the equatorial semidiameter of Jupiter in arc seconds.
+* \brief Calculate the equatorial semidiameter of Jupiter in radians.
 * \ingroup jupiter
 * \param JD Julian Day
-* \return Equatorial semidiameter in arc seconds
+* \return Equatorial semidiameter in radians
 */
 double LIBNOVA_EXPORT ln_get_jupiter_equ_sdiam(double JD);
 
 /*! \fn double ln_get_jupiter_pol_sdiam(double JD)
-* \brief Calculate the polar semidiameter of Jupiter in arc seconds.
+* \brief Calculate the polar semidiameter of Jupiter in radians.
 * \ingroup jupiter
 * \param JD Julian Day
-* \return Polar semidiameter in arc seconds
+* \return Polar semidiameter in radians
 */
 double LIBNOVA_EXPORT ln_get_jupiter_pol_sdiam(double JD);
 
@@ -120,7 +120,7 @@ double LIBNOVA_EXPORT ln_get_jupiter_disk(double JD);
 * \brief Calculate the phase angle of Jupiter.
 * \ingroup jupiter
 * \param JD Julian Day
-* \return Phase angle of Jupiter (degrees)
+* \return Phase angle of Jupiter (radians)
 */ 
 /* Chapter 41 */
 double LIBNOVA_EXPORT ln_get_jupiter_phase(double JD);

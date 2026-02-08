@@ -30,7 +30,7 @@ extern "C" {
 *
 * Functions relating to the planet Earth.
 *
-* All angles are expressed in degrees.
+* All angles are expressed in radians.
 */
 
 /*
@@ -38,7 +38,9 @@ extern "C" {
 */
 
 /*! \fn void ln_get_earth_helio_coords(double JD, struct ln_helio_posn *position);
-* \brief Calculate Earth's heliocentric coordinates
+* \brief Calculate Earths heliocentric (referred to the centre of the Sun) coordinates 
+* for given julian day.
+* Longitude and Latitude are in radians, whilst radius vector is in AU.
 * \ingroup earth
 * \param JD Julian Day
 * \param position Pointer to store heliocentric position
@@ -69,7 +71,7 @@ void LIBNOVA_EXPORT ln_get_earth_rect_helio(double JD,
 * \ingroup earth
 * \brief Calculate Earth globe centre distance.
 * \param height Height above sea level in meters
-* \param latitude Latitude in degrees
+* \param latitude Latitude in radians
 * \param p_sin_o Pointer to store p * sin(o')
 * \param p_cos_o Pointer to store p * cos(o')
 */

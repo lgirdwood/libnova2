@@ -41,8 +41,8 @@ void ln_get_solar_geom_coords(double JD, struct ln_helio_posn *position)
 	/* get earths heliocentric position */
 	ln_get_earth_helio_coords(JD, position);
 
-	position->L += 180.0;
-	position->L = ln_range_degrees(position->L);
+	position->L += M_PI;
+	position->L = ln_range_radians(position->L);
 	position->B *= -1.0;
 }
 
@@ -68,7 +68,7 @@ void ln_get_solar_equ_coords(double JD, struct ln_equ_posn *position)
 	sol.L += nutation.longitude;
 
 	/* aberration */
-	aberration = (20.4898 / (360.0 * 60.0 * 60.0)) / sol.R;
+	aberration = ln_deg_to_rad(20.4898 / 3600.0) / sol.R;
 	sol.L -= aberration;
 	
 	/* transform to equatorial */
@@ -98,11 +98,11 @@ void ln_get_solar_ecl_coords(double JD, struct ln_lnlat_posn *position)
 	sol.L += nutation.longitude;
 
 	/* aberration */
-	aberration = (20.4898 / (360.0 * 60.0 * 60.0)) / sol.R;
+	aberration = ln_deg_to_rad(20.4898 / 3600.0) / sol.R;
 	sol.L -= aberration;
 	
-	position->lng = ln_deg_to_rad(sol.L);
-	position->lat = ln_deg_to_rad(sol.B);
+	position->lng = sol.L;
+	position->lat = sol.B;
 }
 
 /*! \fn void ln_get_solar_geo_coords(double JD, struct ln_rect_posn *position)
@@ -158,7 +158,7 @@ double ln_get_solar_sdiam(double JD)
 	double dist;
 	
 	dist = ln_get_earth_solar_dist(JD);
-	return So / dist;
+	return ln_deg_to_rad(So / 3600.0) / dist;
 }
 
 /*! \example sun.c

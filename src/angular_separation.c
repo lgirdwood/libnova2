@@ -52,7 +52,7 @@ double ln_get_angular_separation(struct ln_equ_posn* posn1,
 	y = y * y;
 	d = atan2(sqrt(x + y), z);
 	
-	return ln_rad_to_deg(d);
+	return d;
 }
 
 /*! \fn double ln_get_rel_posn_angle(struct ln_equ_posn* posn1, struct ln_equ_posn* posn2);
@@ -80,5 +80,5 @@ double ln_get_rel_posn_angle(struct ln_equ_posn* posn1,
 	x = (cos(d2) * tan(d1)) - (sin(d2) * cos(a1 - a2));
 	
 	P = atan2(y, x);
-	return ln_rad_to_deg(P);
+	return P;
 }

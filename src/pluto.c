@@ -329,9 +329,9 @@ void ln_get_pluto_helio_coords(double JD, struct ln_helio_posn *position)
 		sum_radius += radius[i].A * sin_a + radius[i].B * cos_a;
 	}
 	
-	/* calc L, B, R */
-	position->L = 238.958116 + 144.96 * t + sum_longitude * 0.000001;
-	position->B = -3.908239 + sum_latitude * 0.000001;
+	/* calc L, B, R, return in radians */
+	position->L = ln_range_radians(ln_deg_to_rad(238.958116 + 144.96 * t + sum_longitude * 0.000001));
+	position->B = ln_deg_to_rad(-3.908239 + sum_latitude * 0.000001);
 	position->R = 40.7241346 + sum_radius * 0.0000001; 
 	
 	/* save cache */
@@ -448,7 +448,7 @@ double ln_get_pluto_phase(double JD)
 	/* calc phase */
 	i = (r * r + delta * delta - R * R) / (2.0 * r * delta);
 	i = acos(i);
-	return ln_rad_to_deg(i);
+	return i;
 }
 
 
@@ -485,7 +485,7 @@ double ln_get_pluto_sdiam(double JD)
 	double dist;
 	
 	dist = ln_get_pluto_earth_dist(JD);
-	return So / dist;
+	return ln_deg_to_rad(So / 3600.0) / dist;
 }
 	
 /*! \fn void ln_get_pluto_rect_helio(double JD, struct ln_rect_posn *position)

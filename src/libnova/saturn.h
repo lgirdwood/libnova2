@@ -29,22 +29,22 @@ extern "C" {
 *
 * Functions relating to the planet Saturn.
 *
-* All angles are expressed in degrees.
+* All angles are expressed in radians.
 */
 
 /*! \fn double ln_get_saturn_equ_sdiam(double JD)
-* \brief Calculate the equatorial semidiameter of Saturn in arc seconds.
+* \brief Calculate the equatorial semidiameter of Saturn in radians.
 * \ingroup saturn
 * \param JD Julian Day
-* \return Equatorial semidiameter in arc seconds
+* \return Equatorial semidiameter in radians
 */
 double LIBNOVA_EXPORT ln_get_saturn_equ_sdiam(double JD);
 
 /*! \fn double ln_get_saturn_pol_sdiam(double JD)
-* \brief Calculate the polar semidiameter of Saturn in arc seconds.
+* \brief Calculate the polar semidiameter of Saturn in radians.
 * \ingroup saturn
 * \param JD Julian Day
-* \return Polar semidiameter in arc seconds
+* \return Polar semidiameter in radians
 */
 double LIBNOVA_EXPORT ln_get_saturn_pol_sdiam(double JD);
 
@@ -119,7 +119,7 @@ double LIBNOVA_EXPORT ln_get_saturn_disk(double JD);
 * \brief Calculate the phase angle of Saturn.
 * \ingroup saturn
 * \param JD Julian Day
-* \return Phase angle of Saturn (degrees)
+* \return Phase angle of Saturn (radians)
 */ 
 /* Chapter 41 */
 double LIBNOVA_EXPORT ln_get_saturn_phase(double JD);

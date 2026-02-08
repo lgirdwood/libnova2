@@ -35,7 +35,7 @@ extern "C" {
 * \brief Calculate mean sidereal time from date. 
 * \ingroup sidereal
 * \param JD Julian Day
-* \return Mean sidereal time in degrees
+* \return Mean sidereal time in radians
 */ 
 double LIBNOVA_EXPORT ln_get_mean_sidereal_time(double JD);
 
@@ -43,7 +43,7 @@ double LIBNOVA_EXPORT ln_get_mean_sidereal_time(double JD);
 * \brief Calculate apparent sidereal time from date.
 * \ingroup sidereal
 * \param JD Julian Day
-* \return Apparent sidereal time in degrees
+* \return Apparent sidereal time in radians
 */
  
 double LIBNOVA_EXPORT ln_get_apparent_sidereal_time(double JD);

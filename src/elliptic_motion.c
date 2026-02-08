@@ -58,7 +58,7 @@ double ln_solve_kepler(double e, double M)
 	int i;
 	
 	/* covert to radians */
-	M = ln_deg_to_rad(M);
+	/* M is already in radians */
 	
 	F = sgn(M);
 	M = fabs(M) / (2.0 * M_PI);
@@ -82,7 +82,7 @@ double ln_solve_kepler(double e, double M)
 	Eo *= F;
 	
 	/* back to degrees */
-	Eo = ln_rad_to_deg(Eo);
+	/* Eo is radians */
 	return Eo;
 }
 
@@ -110,10 +110,10 @@ double ln_get_ell_true_anomaly(double e, double E)
 {
 	double v;
 	
-	E = ln_deg_to_rad(E);
+	/* E is radians */
 	v = sqrt((1.0 + e) / (1.0 - e)) * tan(E / 2.0);
 	v = 2.0 * atan(v);
-	v = ln_range_degrees(ln_rad_to_deg(v));
+	v = ln_range_radians(v);
 	return v;
 }
 
@@ -128,7 +128,7 @@ double ln_get_ell_true_anomaly(double e, double E)
 /* equ 30.2 */
 double ln_get_ell_radius_vector(double a, double e, double E)
 {	
-	return a * (1.0 - e * cos(ln_deg_to_rad(E)));
+	return a * (1.0 - e * cos(E));
 }
 
 
@@ -164,7 +164,7 @@ double ln_get_ell_sminor_diam(double e, double a)
 */
 double ln_get_ell_mean_motion(double a)
 {
-	double q = 0.9856076686; /* Gaussian gravitational constant (degrees)*/
+	double q = 0.01720209895; /* Gaussian gravitational constant (radians)*/
 	return q / (a * sqrt(a));
 }
 
@@ -192,10 +192,10 @@ void ln_get_ell_helio_rect_posn(struct ln_ell_orbit *orbit, double JD,
 	cos_e = 0.917482062;
 	
 	/* equ 33.7 */
-	sin_omega = sin(ln_deg_to_rad(orbit->omega));
-	cos_omega = cos(ln_deg_to_rad(orbit->omega));
-	sin_i = sin(ln_deg_to_rad(orbit->i));
-	cos_i = cos(ln_deg_to_rad(orbit->i));
+	sin_omega = sin(orbit->omega);
+	cos_omega = cos(orbit->omega);
+	sin_i = sin(orbit->i);
+	cos_i = cos(orbit->i);
 	F = cos_omega;
 	G = sin_omega * cos_e;
 	H = sin_omega * sin_e;
@@ -228,9 +228,9 @@ void ln_get_ell_helio_rect_posn(struct ln_ell_orbit *orbit, double JD,
 	r = ln_get_ell_radius_vector(orbit->a, orbit->e, E);
 
 	/* equ 33.9 */
-	posn->X = r * a * sin(A + ln_deg_to_rad(orbit->w + v));
-	posn->Y = r * b * sin(B + ln_deg_to_rad(orbit->w + v));
-	posn->Z = r * c * sin(C + ln_deg_to_rad(orbit->w + v));
+	posn->X = r * a * sin(A + orbit->w + v);
+	posn->Y = r * b * sin(B + orbit->w + v);
+	posn->Z = r * c * sin(C + orbit->w + v);
 }
 
 /*! \fn void ln_get_ell_geo_rect_posn(struct ln_ell_orbit *orbit, double JD, struct ln_rect_posn *posn);
@@ -446,7 +446,7 @@ double ln_get_ell_body_phase_angle(double JD, struct ln_ell_orbit *orbit)
 	d = ln_get_ell_body_solar_dist(JD, orbit);
 	
 	phase = (r * r + d * d - R * R) / ( 2.0 * r * d);
-	return ln_range_degrees(acos(ln_deg_to_rad(phase)));
+	return ln_range_radians(acos(phase));
 }
 
 
@@ -483,7 +483,7 @@ double ln_get_ell_body_elong(double JD, struct ln_ell_orbit *orbit)
 	d = ln_get_ell_body_solar_dist(JD, orbit);
 
 	elong = (R * R + d * d - r * r) / ( 2.0 * R * d);
-	return ln_range_degrees(ln_rad_to_deg(acos(elong)));
+	return ln_range_radians(acos(elong));
 }
 
 /*! \fn double ln_get_ell_body_rst(double JD, struct ln_lnlat_posn *observer, struct ln_ell_orbit *orbit, struct ln_rst_time *rst);

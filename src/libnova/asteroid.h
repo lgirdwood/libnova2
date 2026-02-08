@@ -29,7 +29,7 @@ extern "C" {
 *
 * Functions relating to Asteroids.
 *
-* All angles are expressed in degrees.
+* All angles are expressed in radians.
 */
 	
 /*!

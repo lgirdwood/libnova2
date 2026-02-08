@@ -30,7 +30,7 @@ extern "C" {
 * Precession is the changing direction of the Earth's rotational axis over time and
 * is due to the gravitational influence of the Sun and the Moon.
 *
-* All angles are expressed in degrees.
+* All angles are expressed in radians.
 */
 
 /*! \fn void ln_get_equ_prec(struct ln_equ_posn *mean_position, double JD, struct ln_equ_posn *position);

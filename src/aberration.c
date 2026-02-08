@@ -337,11 +337,10 @@ void ln_get_ecl_aber(struct ln_lnlat_posn *mean_position, double JD,
 
 	/* suns longitude in radians */
 	ln_get_solar_geom_coords(JD, &sol_position);
-	true_longitude = ln_deg_to_rad(sol_position.B);
+	true_longitude = sol_position.B;
 
 	/* Earth orbit ecentricity */
 	e = 0.016708617 - 0.000042037 * T - 0.0000001236 * T2;
-	e = ln_deg_to_rad(e);
 
 	/* longitude of perihelion Earths orbit */
 	t = 102.93735 + 1.71953 * T + 0.000046 * T2;

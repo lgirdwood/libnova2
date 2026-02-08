@@ -112,7 +112,7 @@ int ln_get_object_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer,
 	O *= 15.0;
 
 	/* equ 15.1 */
-	H0 = (sin(ln_deg_to_rad(horizon)) -
+	H0 = (sin(horizon) -
 		 sin(observer->lat) * sin(object->dec));
 	H1 = (cos(observer->lat) * cos(object->dec));
 
@@ -122,7 +122,7 @@ int ln_get_object_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer,
 		struct ln_equ_posn obj_deg;
 		obj_deg.ra = ln_rad_to_deg(object->ra);
 		obj_deg.dec = ln_rad_to_deg(object->dec);
-		ret = check_coords (observer, H1, horizon, &obj_deg);
+		ret = check_coords (observer, H1, ln_rad_to_deg(horizon), &obj_deg);
 	}
 	if (ret)
 		return ret;
@@ -182,9 +182,9 @@ int ln_get_object_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer,
 			Hat -= 360;
 
 		dmt = -(Hat / 360.0);
-		dmr = (altr - horizon) / (360 * cos(object->dec) *
+		dmr = (altr - ln_rad_to_deg(horizon)) / (360 * cos(object->dec) *
 			cos(observer->lat) * sin(ln_deg_to_rad(Har)));
-		dms = (alts - horizon) / (360 * cos(object->dec) *
+		dms = (alts - ln_rad_to_deg(horizon)) / (360 * cos(object->dec) *
 			cos(observer->lat) * sin(ln_deg_to_rad(Has)));
 
 		/* add corrections and change to JD */
@@ -372,13 +372,13 @@ int ln_get_body_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer,
 
 	/* equ 15.1 */
 	H0 =
-		(sin(ln_deg_to_rad(horizon)) -
+		(sin(horizon) -
 		 sin(observer->lat) * sin(ln_deg_to_rad(sol2.dec)));
 	H1 = (cos(observer->lat) * cos(ln_deg_to_rad(sol2.dec)));
 
 	H1 = H0 / H1;
 
-	ret = check_coords (observer, H1, horizon, &sol2);
+	ret = check_coords (observer, H1, ln_rad_to_deg(horizon), &sol2);
 	if (ret)
 		return ret;
 
@@ -461,9 +461,9 @@ int ln_get_body_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer,
 			Hat -= 360;
 
 		dmt = -(Hat / 360.0);
-		dmr = (altr - horizon) / (360.0 * cos(ln_deg_to_rad(posr.dec)) *
+		dmr = (altr - ln_rad_to_deg(horizon)) / (360.0 * cos(ln_deg_to_rad(posr.dec)) *
 			cos(observer->lat) * sin(ln_deg_to_rad(Har)));
-		dms = (alts - horizon) / (360.0 * cos(ln_deg_to_rad(poss.dec)) *
+		dms = (alts - ln_rad_to_deg(horizon)) / (360.0 * cos(ln_deg_to_rad(poss.dec)) *
 			cos(observer->lat) * sin(ln_deg_to_rad(Has)));
 
 		/* add corrections and change to JD */

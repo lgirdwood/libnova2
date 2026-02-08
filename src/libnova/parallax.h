@@ -46,7 +46,7 @@ void LIBNOVA_EXPORT ln_get_parallax(struct ln_equ_posn *object,
 * \param au_distance Distance to object in AU
 * \param observer Observer's position
 * \param height Observer's height in meters
-* \param H Hour angle in degrees
+* \param H Hour angle in hours
 * \param parallax Pointer to store parallax corrected position
 */
 void LIBNOVA_EXPORT ln_get_parallax_ha(struct ln_equ_posn *object,

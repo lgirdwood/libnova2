@@ -2692,7 +2692,7 @@ static const struct ln_vsop ALIGN32 earth_radius_r5[RADIUS_R5] = {
 *
 * Calculate Earths heliocentric (referred to the centre of the Sun) coordinates 
 * for given julian day.
-* Longitude and Latitude are in degrees, whilst radius vector is in AU.
+* Longitude and Latitude are in radians, whilst radius vector is in AU.
 */ 
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 
 */
@@ -2748,9 +2748,7 @@ void ln_get_earth_helio_coords(double JD, struct ln_helio_posn *position)
 	position->R = (R0 + R1 * t + R2 * t2 + R3 * t3 + R4 * t4 + R5 * t5);
 	
 	/* change to degrees in correct quadrant */
-	position->L = ln_rad_to_deg(position->L);
-	position->B = ln_rad_to_deg(position->B);
-	position->L = ln_range_degrees(position->L);
+	position->L = ln_range_radians(position->L);
 	
 	/* change to fk5 reference frame */
 	ln_vsop87_to_fk5(position, JD);
@@ -2795,7 +2793,7 @@ void ln_get_earth_centre_dist (float height, double latitude, double *p_sin_o,
 {
      double a,b,f,u;
 
-     double lat_rad = ln_deg_to_rad(latitude);
+     double lat_rad = latitude;
      
      a = 6378.14;
      f = 1.0 / 298.257;

@@ -48,7 +48,7 @@ void LIBNOVA_EXPORT ln_get_hrz_from_equ(struct ln_equ_posn *object,
 * \ingroup transform 
 * \param object Equatorial position of object
 * \param observer Observer's position
-* \param sidereal Sidereal time in degrees
+* \param sidereal Sidereal time in radians
 * \param position Pointer to store horizontal position
 */
 /* Equ 12.5,12.6 pg 88 */

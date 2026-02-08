@@ -29,14 +29,14 @@ extern "C" {
 *
 * Functions relating to the planet Mars.
 *
-* All angles are expressed in degrees.
+* All angles are expressed in radians.
 */
 
 /*! \fn double ln_get_mars_sdiam(double JD)
-* \brief Calculate the semidiameter of Mars in arc seconds.
+* \brief Calculate the semidiameter of Mars in radians.
 * \ingroup mars
 * \param JD Julian Day
-* \return Semidiameter in arc seconds
+* \return Semidiameter in radians
 */
 double LIBNOVA_EXPORT ln_get_mars_sdiam(double JD);
 	
@@ -111,7 +111,7 @@ double LIBNOVA_EXPORT ln_get_mars_disk(double JD);
 * \brief Calculate the phase angle of Mars.
 * \ingroup mars
 * \param JD Julian Day
-* \return Phase angle of Mars (degrees)
+* \return Phase angle of Mars (radians)
 */ 
 /* Chapter 41 */
 double LIBNOVA_EXPORT ln_get_mars_phase(double JD);

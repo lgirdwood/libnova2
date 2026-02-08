@@ -29,14 +29,14 @@ extern "C" {
 *
 * Functions relating to the planet Venus.
 *
-* All angles are expressed in degrees.
+* All angles are expressed in radians.
 */
 
 /*! \fn double ln_get_venus_sdiam(double JD)
-* \brief Calculate the semidiameter of Venus in arc seconds.
+* \brief Calculate the semidiameter of Venus in radians.
 * \ingroup venus
 * \param JD Julian Day
-* \return Semidiameter in arc seconds
+* \return Semidiameter in radians
 */
 double LIBNOVA_EXPORT ln_get_venus_sdiam(double JD);
 
@@ -111,7 +111,7 @@ double LIBNOVA_EXPORT ln_get_venus_disk(double JD);
 * \brief Calculate the phase angle of Venus.
 * \ingroup venus
 * \param JD Julian Day
-* \return Phase angle of Venus (degrees)
+* \return Phase angle of Venus (radians)
 */ 
 /* Chapter 41 */
 double LIBNOVA_EXPORT ln_get_venus_phase(double JD);

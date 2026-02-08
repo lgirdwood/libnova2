@@ -3856,10 +3856,8 @@ void ln_get_jupiter_helio_coords(double JD, struct ln_helio_posn *position)
 	R5 = ln_calc_series(jupiter_radius_r5, RADIUS_R5, t);
 	position->R = (R0 + R1 * t + R2 * t2 + R3 * t3 + R4 * t4 + R5 * t5);
 	
-	/* change to degrees in correct quadrant */
-	position->L = ln_rad_to_deg(position->L);
-	position->B = ln_rad_to_deg(position->B);
-	position->L = ln_range_degrees(position->L);
+	/* change to radians in correct quadrant */
+	position->L = ln_range_radians(position->L);
 	
 	/* change to fk5 reference frame */
 	ln_vsop87_to_fk5(position, JD);
@@ -3982,7 +3980,7 @@ double ln_get_jupiter_phase(double JD)
 	/* calc phase */
 	i = (r * r + delta * delta - R * R) / (2.0 * r * delta);
 	i = acos(i);
-	return ln_rad_to_deg(i);
+	return i;
 }
 
 
@@ -4019,7 +4017,7 @@ double ln_get_jupiter_equ_sdiam(double JD)
 	double dist;
 	
 	dist = ln_get_jupiter_earth_dist(JD);
-	return So / dist;
+	return ln_deg_to_rad(So / 3600.0) / dist;
 }
 
 /*! \fn double ln_get_jupiter_pol_sdiam(double JD)
@@ -4036,7 +4034,7 @@ double ln_get_jupiter_pol_sdiam(double JD)
 	double dist;
 	
 	dist = ln_get_jupiter_earth_dist(JD);
-	return So / dist;
+	return ln_deg_to_rad(So / 3600.0) / dist;
 }
 
 /*! \fn void ln_get_jupiter_rect_helio(double JD, struct ln_rect_posn *position)

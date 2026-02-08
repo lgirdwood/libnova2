@@ -21,7 +21,7 @@
 
 #include <libnova/ln_types.h>
 
-#define LN_STAR_STANDART_HORIZON		-0.5667
+#define LN_STAR_STANDART_HORIZON		-0.00989019909
 
 #ifdef __cplusplus
 extern "C" {
@@ -32,7 +32,7 @@ extern "C" {
 *
 * Functions relating to an objects rise, set and transit
 *
-* All angles are expressed in degrees.
+* All angles are expressed in radians.
 */
 
 /*! \fn int ln_get_object_rst(double JD, struct ln_lnlat_posn *observer, struct ln_equ_posn *object,struct ln_rst_time *rst);

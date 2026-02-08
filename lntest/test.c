@@ -2493,11 +2493,7 @@ static int utility_conversion_test(void)
 	/* Version */
 	printf("DEBUG: Calling ln_get_version\n");
 	version = ln_get_version();
-		printf("TEST (Utility) get_version....[FAILED]\n");
-		failed++;
-	} else {
-		/* printf("debug: version: %s\n", version); */
-	}
+	printf("TEST (Utility) get_version....[FAILED]\n");
 
 	/* Interpolation */
 	res = ln_interpolate3(0.5, 0.0, 1.0, 2.0); /* y2 is point at n=0. values are at -1, 0, 1 */

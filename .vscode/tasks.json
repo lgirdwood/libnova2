@@ -70,5 +70,28 @@
             "problemMatcher": [],
             "detail": "Install the project (may require sudo privileges)"
         }
+        {
+            "label": "CMake: Configure Debug",
+            "type": "shell",
+            "command": "cmake -DCMAKE_BUILD_TYPE=Debug ..",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Configure the project with Debug build type"
+        },
+        {
+            "label": "CMake: Build Debug",
+            "type": "shell",
+            "command": "cmake --build .",
+            "dependsOn": "CMake: Configure Debug",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "group": "build",
+            "problemMatcher": "$gcc",
+            "detail": "Build the project with Debug configuration"
+        }
     ]
 }

@@ -1,11 +1,44 @@
-add_executable(libnova_test_exec test.c)
-target_link_libraries(libnova_test_exec PRIVATE nova)
+add_executable(libnova_test_exec 
+    main_test.c
+    test_helpers.c
+    test_julian.c
+    test_dynamical.c
+    test_heliocentric.c
+    test_sidereal.c
+    test_nutation.c
+    test_aber_prec_nut.c
+    test_transform.c
+    test_solar.c
+    test_aberration.c
+    test_precession.c
+    test_apparent_position.c
+    test_vsop87.c
+    test_planetary.c
+    test_lunar.c
+    test_elliptic_motion.c
+    test_parabolic_motion.c
+    test_hyperbolic_motion.c
+    test_elliptic_parabolic.c
+    test_rst.c
+    test_parallax.c
+    test_angular.c
+    test_utility.c
+    test_asteroid.c
+    test_airmass.c
+    test_constellation.c
+    test_aberration.c
+)
+target_link_libraries(libnova_test_exec PRIVATE nova m)
 if(UNIX)
     target_link_libraries(libnova_test_exec PRIVATE m)
 endif()
 
+add_executable(libnova_test_old test.c)
+target_link_libraries(libnova_test_old PRIVATE nova PRIVATE m)
+
 if(WIN32)
-    set_target_properties(libnova_test_exec PROPERTIES DEBUG_POSTFIX "${CMAKE_DEBUG_POSTFIX}")
+    set_property(TARGET libnova_test_exec PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
+    set_property(TARGET libnova_test_old PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
     if(MSVC)
         set_target_properties(libnova_test_exec PROPERTIES PREFIX "../")
     endif()

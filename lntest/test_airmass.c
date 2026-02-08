@@ -1,0 +1,30 @@
+/*
+ * Airmass Tests
+ */
+
+#include <stdio.h>
+#include <libnova/libnova.h>
+#include "test_helpers.h"
+
+int airmass_test(void)
+{
+	int failed = 0;
+	double x, X, res;
+
+	X = ln_get_airmass(ln_deg_to_rad(90.0), 750.0);
+	failed += test_result("(Airmass) Airmass at Zenith", X, 1.0, 0.01);
+ 
+	X = ln_get_airmass(ln_deg_to_rad(10.0), 750.0);
+	failed += test_result("(Airmass) Airmass at 10 degrees altitude",
+		X, 5.64, 0.1);
+	
+	X = ln_get_alt_from_airmass(1.0, 750.0);
+	failed += test_result("(Airmass) Altitude at airmass 1", ln_rad_to_deg(X), 90.0, 0.01);
+
+	for (x = -10; x < 90; x += 10.54546456) {
+		res = ln_get_alt_from_airmass(ln_get_airmass(ln_deg_to_rad(x), 750.0), 750.0);
+		failed += test_result("(Airmass) Altitude->Airmass->Altitude", ln_rad_to_deg(res), x, 0.0001);
+	}
+
+	return failed;
+}

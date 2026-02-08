@@ -58,6 +58,7 @@ struct ln_vsop
 * \param t Time
 * \return Result of series calculation
 */
+double LIBNOVA_EXPORT ln_calc_series(const struct ln_vsop *data, int terms, double t);
 
 #ifdef __cplusplus
 };

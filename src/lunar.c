@@ -1274,8 +1274,8 @@ double ln_get_lunar_phase(double JD)
 	ln_get_solar_ecl_coords(JD, &sunlp);
 
 	/* calc lunar geocentric elongation equ 48.2 */
-	lunar_elong = acos(cos(ln_deg_to_rad(moon.lat)) *
-		cos(ln_deg_to_rad(sunlp.lng - moon.lng)));
+	lunar_elong = acos(cos(moon.lat) *
+		cos(sunlp.lng - moon.lng));
 
 	/* now calc phase Equ 48.2 */
 	R = ln_get_earth_solar_dist(JD);

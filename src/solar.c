@@ -101,8 +101,8 @@ void ln_get_solar_ecl_coords(double JD, struct ln_lnlat_posn *position)
 	aberration = (20.4898 / (360.0 * 60.0 * 60.0)) / sol.R;
 	sol.L -= aberration;
 	
-	position->lng = sol.L;
-	position->lat = sol.B;
+	position->lng = ln_deg_to_rad(sol.L);
+	position->lat = ln_deg_to_rad(sol.B);
 }
 
 /*! \fn void ln_get_solar_geo_coords(double JD, struct ln_rect_posn *position)

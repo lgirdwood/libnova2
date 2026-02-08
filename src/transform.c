@@ -94,11 +94,11 @@ void ln_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object,
 
 	/* calculate hour angle of object at observers position */
 	ra = object->ra;
-	H = sidereal + ln_deg_to_rad(observer->lng) - ra;
+	H = sidereal + observer->lng - ra;
 
 	/* hence formula 12.5 and 12.6 give */
 	/* convert to radians - hour angle, observers latitude, object declination */
-	latitude = ln_deg_to_rad(observer->lat);
+	latitude = observer->lat;
 	declination = object->dec;
 
 	/* formula 12.6 *; missuse of A (you have been warned) */
@@ -169,8 +169,8 @@ void ln_get_equ_from_hrz(struct ln_hrz_posn *object,
 	h = object->alt;
 
 	/* observer long / lat */
-	longitude = ln_deg_to_rad(observer->lng);
-	latitude = ln_deg_to_rad(observer->lat);
+	longitude = observer->lng;
+	latitude = observer->lat;
 
 	/* equ on pg89 */
 	H = atan2(sin(A), (cos(A) * sin(latitude) + tan(h) * cos(latitude)));
@@ -208,8 +208,8 @@ void ln_get_equ_from_ecl(struct ln_lnlat_posn *object, double JD,
 	/* change object's position into radians */
 
 	/* object */
-	longitude = ln_deg_to_rad(object->lng);
-	latitude = ln_deg_to_rad(object->lat);
+	longitude = object->lng;
+	latitude = object->lat;
 
 	/* Equ 12.3, 12.4 */
 	ra = atan2((sin(longitude) * cos(nutation.ecliptic) -
@@ -253,8 +253,8 @@ void ln_get_ecl_from_equ(struct ln_equ_posn *object, double JD,
 	latitude = asin(latitude);
 
 	/* store in position */
-	position->lat = ln_rad_to_deg(latitude);
-	position->lng = ln_range_degrees(ln_rad_to_deg(longitude));
+	position->lat = latitude;
+	position->lng = ln_range_radians(longitude);
 }
 
 /*! \fn void ln_get_ecl_from_rect(struct ln_rect_posn *rect, struct ln_lnlat_posn *posn)
@@ -270,8 +270,8 @@ void ln_get_ecl_from_rect(struct ln_rect_posn *rect, struct ln_lnlat_posn *posn)
 	double t;
 	
 	t = sqrt(rect->X * rect->X + rect->Y * rect->Y);
-	posn->lng = ln_range_degrees(ln_rad_to_deg(atan2(rect->X, rect->Y)));
-	posn->lat = ln_rad_to_deg(atan2(t, rect->Z));
+	posn->lng = ln_range_radians(atan2(rect->X, rect->Y));
+	posn->lat = atan2(t, rect->Z);
 }
 
 /*! \fn void ln_get_equ_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ)

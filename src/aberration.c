@@ -348,8 +348,8 @@ void ln_get_ecl_aber(struct ln_lnlat_posn *mean_position, double JD,
 	t = ln_deg_to_rad(t);
 
 	/* change object long/lat to radians */
-	mean_lng = ln_deg_to_rad(mean_position->lng);
-	mean_lat = ln_deg_to_rad(mean_position->lat);
+	mean_lng = mean_position->lng;
+	mean_lat = mean_position->lat;
 
 	/* equ 22.2 */
 	delta_lng = (-k * cos(true_longitude - mean_lng)
@@ -360,6 +360,6 @@ void ln_get_ecl_aber(struct ln_lnlat_posn *mean_position, double JD,
 	mean_lng += delta_lng;
 	mean_lat += delta_lat;
 
-	position->lng = ln_rad_to_deg(mean_lng);
-	position->lat = ln_rad_to_deg(mean_lat);
+	position->lng = ln_range_radians(mean_lng);
+	position->lat = mean_lat;
 }

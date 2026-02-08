@@ -33,7 +33,7 @@ static int check_coords(struct ln_lnlat_posn *observer, double H1,
 	if (fabs(H1) > 1.0) {
 		/* check if maximal height < horizon */
 		// h = asin(cos(ln_deg_to_rad(observer->lat - object->dec)))
-		h = 90.0 + object->dec - observer->lat;
+		h = 90.0 + object->dec - ln_rad_to_deg(observer->lat);
 		// normalize to <-90;+90>
 		if (h > 90.0)
 			h = 180.0 - h;
@@ -113,8 +113,8 @@ int ln_get_object_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer,
 
 	/* equ 15.1 */
 	H0 = (sin(ln_deg_to_rad(horizon)) -
-		 sin(ln_deg_to_rad(observer->lat)) * sin(object->dec));
-	H1 = (cos(ln_deg_to_rad(observer->lat)) * cos(object->dec));
+		 sin(observer->lat) * sin(object->dec));
+	H1 = (cos(observer->lat) * cos(object->dec));
 
 	H1 = H0 / H1;
 
@@ -131,7 +131,7 @@ int ln_get_object_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer,
 	H0 = ln_rad_to_deg(H0);
 
 	/* equ 15.2 */
-	mt = (ln_rad_to_deg(object->ra) - observer->lng - O) / 360.0;
+	mt = (ln_rad_to_deg(object->ra) - ln_rad_to_deg(observer->lng) - O) / 360.0;
 	mr = mt - H0 / 360.0;
 	ms = mt + H0 / 360.0;
 
@@ -156,19 +156,19 @@ int ln_get_object_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer,
 		mss = O + 360.985647 * ms;
 
 		/* find local hour angle */
-		Hat = mst + observer->lng - ln_rad_to_deg(object->ra);
-		Har = msr + observer->lng - ln_rad_to_deg(object->ra);
-		Has = mss + observer->lng - ln_rad_to_deg(object->ra);
+		Hat = mst + ln_rad_to_deg(observer->lng) - ln_rad_to_deg(object->ra);
+		Har = msr + ln_rad_to_deg(observer->lng) - ln_rad_to_deg(object->ra);
+		Has = mss + ln_rad_to_deg(observer->lng) - ln_rad_to_deg(object->ra);
 
 		/* find altitude for rise and set */
-		altr = sin(ln_deg_to_rad(observer->lat)) *
+		altr = sin(observer->lat) *
 			sin(object->dec) +
-			cos(ln_deg_to_rad(observer->lat)) *
+			cos(observer->lat) *
 			cos(object->dec) *
 			cos(ln_deg_to_rad(Har));
-		alts = sin(ln_deg_to_rad(observer->lat)) *
+		alts = sin(observer->lat) *
 			sin(object->dec) +
-			cos(ln_deg_to_rad(observer->lat)) *
+			cos(observer->lat) *
 			cos(object->dec) *
 			cos(ln_deg_to_rad(Has));
 
@@ -183,9 +183,9 @@ int ln_get_object_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer,
 
 		dmt = -(Hat / 360.0);
 		dmr = (altr - horizon) / (360 * cos(object->dec) *
-			cos(ln_deg_to_rad(observer->lat)) * sin(ln_deg_to_rad(Har)));
+			cos(observer->lat) * sin(ln_deg_to_rad(Har)));
 		dms = (alts - horizon) / (360 * cos(object->dec) *
-			cos(ln_deg_to_rad(observer->lat)) * sin(ln_deg_to_rad(Has)));
+			cos(observer->lat) * sin(ln_deg_to_rad(Has)));
 
 		/* add corrections and change to JD */
 		mt += dmt;
@@ -373,8 +373,8 @@ int ln_get_body_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer,
 	/* equ 15.1 */
 	H0 =
 		(sin(ln_deg_to_rad(horizon)) -
-		 sin(ln_deg_to_rad(observer->lat)) * sin(ln_deg_to_rad(sol2.dec)));
-	H1 = (cos(ln_deg_to_rad(observer->lat)) * cos(ln_deg_to_rad(sol2.dec)));
+		 sin(observer->lat) * sin(ln_deg_to_rad(sol2.dec)));
+	H1 = (cos(observer->lat) * cos(ln_deg_to_rad(sol2.dec)));
 
 	H1 = H0 / H1;
 
@@ -399,7 +399,7 @@ int ln_get_body_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer,
 		sol3.ra -= 360.0;
 
 	/* equ 15.2 */
-	mt = (sol2.ra - observer->lng - O) / 360.0;
+	mt = (sol2.ra - ln_rad_to_deg(observer->lng) - O) / 360.0;
 	mr = mt - H0 / 360.0;
 	ms = mt + H0 / 360.0;
 
@@ -435,19 +435,19 @@ int ln_get_body_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer,
 		poss.dec = ln_interpolate3(ns, sol1.dec, sol2.dec, sol3.dec);
 
 		/* find local hour angle */
-		Hat = mst + observer->lng - post.ra;
-		Har = msr + observer->lng - posr.ra;
-		Has = mss + observer->lng - poss.ra;
+		Hat = mst + ln_rad_to_deg(observer->lng) - post.ra;
+		Har = msr + ln_rad_to_deg(observer->lng) - posr.ra;
+		Has = mss + ln_rad_to_deg(observer->lng) - poss.ra;
 
 		/* find altitude for rise and set */
-		altr = sin(ln_deg_to_rad(observer->lat)) *
+		altr = sin(observer->lat) *
 				sin(ln_deg_to_rad(posr.dec)) +
-				cos(ln_deg_to_rad(observer->lat)) *
+				cos(observer->lat) *
 				cos(ln_deg_to_rad(posr.dec)) *
 				cos(ln_deg_to_rad(Har));
-		alts = sin(ln_deg_to_rad(observer->lat)) *
+		alts = sin(observer->lat) *
 				sin(ln_deg_to_rad(poss.dec)) +
-				cos(ln_deg_to_rad(observer->lat)) *
+				cos(observer->lat) *
 				cos(ln_deg_to_rad(poss.dec)) *
 				cos(ln_deg_to_rad(Has));
 
@@ -462,9 +462,9 @@ int ln_get_body_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer,
 
 		dmt = -(Hat / 360.0);
 		dmr = (altr - horizon) / (360.0 * cos(ln_deg_to_rad(posr.dec)) *
-			cos(ln_deg_to_rad(observer->lat)) * sin(ln_deg_to_rad(Har)));
+			cos(observer->lat) * sin(ln_deg_to_rad(Har)));
 		dms = (alts - horizon) / (360.0 * cos(ln_deg_to_rad(poss.dec)) *
-			cos(ln_deg_to_rad(observer->lat)) * sin(ln_deg_to_rad(Has)));
+			cos(observer->lat) * sin(ln_deg_to_rad(Has)));
 
 		/* add corrections and change to JD */
 		mt += dmt;

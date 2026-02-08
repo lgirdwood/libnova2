@@ -41,7 +41,7 @@ void ln_get_parallax(struct ln_equ_posn *object, double au_distance,
   	double H;
 
 	H = ln_get_apparent_sidereal_time(JD) +
-			(observer->lng - ln_rad_to_deg(object->ra)) / 15.0;
+			(ln_rad_to_deg(observer->lng) - ln_rad_to_deg(object->ra)) / 15.0;
 	ln_get_parallax_ha(object, au_distance, observer, height, H, parallax);
 }
 
@@ -65,7 +65,7 @@ void ln_get_parallax_ha(struct ln_equ_posn *object, double au_distance,
 {
 	double sin_pi, ro_sin, ro_cos, sin_H, cos_H, cos_dec;
 
-	ln_get_earth_centre_dist (height, observer->lat, &ro_sin, &ro_cos);
+	ln_get_earth_centre_dist (height, ln_rad_to_deg(observer->lat), &ro_sin, &ro_cos);
 	sin_pi = sin(ln_deg_to_rad((8.794 / au_distance) / 3600.0));  // (39.1)
 
 	/* change hour angle from hours to radians*/

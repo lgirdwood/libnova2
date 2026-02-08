@@ -26,6 +26,7 @@ A simple example showing some planetary calculations.
 #include <libnova/rise_set.h>
 #include <libnova/transform.h>
 #include <libnova/utility.h>
+#include <libnova/utility.h>
 
 static void print_date(char *title, struct ln_zonedate *date)
 {
@@ -50,8 +51,8 @@ int main(int argc, const char *argv[])
 	double au;
 	
 	/* observers location (Edinburgh), used to calc rst */
-	observer.lat = 55.92; /* 55.92 N */
-	observer.lng = -3.18; /* 3.18 W */
+	observer.lat = ln_deg_to_rad(55.92); /* 55.92 N */
+	observer.lng = ln_deg_to_rad(-3.18); /* 3.18 W */
 	
 	/* get Julian day from local time */
 	JD = ln_get_julian_from_sys();	

@@ -23,6 +23,7 @@ A simple example showing the asteroid Pallas.
 #include <stdio.h>
 #include <libnova/asteroid.h>
 #include <libnova/julian_day.h>
+#include <libnova/utility.h>
 #include <libnova/rise_set.h>
 #include <libnova/transform.h>
 #include <libnova/elliptic_motion.h>
@@ -55,8 +56,8 @@ int main(int argc, const char *argv[])
 	char *M_epoch = "K036A";
 	
 	/* observers location (Edinburgh), used to calc rst */
-	observer.lat = 55.92; /* 55.92 N */
-	observer.lng = -3.18; /* 3.18 W */
+	observer.lat = ln_deg_to_rad(55.92); /* 55.92 N */
+	observer.lng = ln_deg_to_rad(-3.18); /* 3.18 W */
 	
 	/* get Julian day from local time */
 	JD = ln_get_julian_from_sys();	

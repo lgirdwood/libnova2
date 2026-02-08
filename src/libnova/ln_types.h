@@ -198,12 +198,12 @@ struct ln_hrz_posn {
 *
 * The Ecliptical (or celestial) Latitude and Longitude of and object.
 *
-* Angles are expressed in degrees. East is positive, West negative.
+* Angles are expressed in radians. East is positive, West negative.
 */
 
 struct ln_lnlat_posn {
-    double lng; /*!< longitude. Object longitude. */
-    double lat; /*!< latitude. Object latitude */
+    double lng; /*!< longitude. Object longitude in radians. */
+    double lat; /*!< latitude. Object latitude in radians. */
 };
 
 

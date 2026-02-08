@@ -387,8 +387,8 @@ const char *ln_hrz_to_nswe(struct ln_hrz_posn *pos)
 */
 void ln_hlnlat_to_lnlat(struct lnh_lnlat_posn *hpos, struct ln_lnlat_posn *pos)
 {
-	pos->lng = ln_dms_to_deg(&hpos->lng);
-	pos->lat = ln_dms_to_deg(&hpos->lat);
+	pos->lng = ln_dms_to_rad(&hpos->lng);
+	pos->lat = ln_dms_to_rad(&hpos->lat);
 }
 	
 /*! \fn void ln_lnlat_to_hlnlat(struct ln_lnlat_posn *pos, struct lnh_lnlat_posn *hpos)
@@ -397,8 +397,8 @@ void ln_hlnlat_to_lnlat(struct lnh_lnlat_posn *hpos, struct ln_lnlat_posn *pos)
 */
 void ln_lnlat_to_hlnlat(struct ln_lnlat_posn *pos, struct lnh_lnlat_posn *hpos)
 {
-	ln_deg_to_dms(pos->lng, &hpos->lng);
-	ln_deg_to_dms(pos->lat, &hpos->lat);
+	ln_rad_to_dms(pos->lng, &hpos->lng);
+	ln_rad_to_dms(pos->lat, &hpos->lat);
 }
 
 /*

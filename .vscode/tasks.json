@@ -15,7 +15,7 @@
         {
             "label": "CMake: Build",
             "type": "shell",
-            "command": "cmake --build build",
+            "command": "cmake --build ../build-libnova",
             "options": {
                 "cwd": "${workspaceFolder}"
             },

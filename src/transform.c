@@ -44,10 +44,10 @@ void ln_get_rect_from_helio
 	cos_e = 0.917482062;
 
 	/* calc common values */
-	cos_B = cos(ln_deg_to_rad(object->B));
-	cos_L = cos(ln_deg_to_rad(object->L));
-	sin_B = sin(ln_deg_to_rad(object->B));
-	sin_L = sin(ln_deg_to_rad(object->L));
+	cos_B = cos(object->B);
+	cos_L = cos(object->L);
+	sin_B = sin(object->B);
+	sin_L = sin(object->L);
 	
 	/* equ 37.1 */
 	position->X = object->R * cos_L * cos_B;
@@ -93,13 +93,13 @@ void ln_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object,
 	sidereal *= 2.0 * M_PI / 24.0;
 
 	/* calculate hour angle of object at observers position */
-	ra = ln_deg_to_rad(object->ra);
+	ra = object->ra;
 	H = sidereal + ln_deg_to_rad(observer->lng) - ra;
 
 	/* hence formula 12.5 and 12.6 give */
 	/* convert to radians - hour angle, observers latitude, object declination */
 	latitude = ln_deg_to_rad(observer->lat);
-	declination = ln_deg_to_rad(object->dec);
+	declination = object->dec;
 
 	/* formula 12.6 *; missuse of A (you have been warned) */
 	A = sin(latitude) * sin(declination) + cos(latitude) *
@@ -181,8 +181,8 @@ void ln_get_equ_from_hrz(struct ln_hrz_posn *object,
 	sidereal = ln_get_apparent_sidereal_time(JD);
 	sidereal *= 2.0 * M_PI / 24.0;
 
-	position->ra = ln_range_degrees(ln_rad_to_deg(sidereal - H + longitude));
-	position->dec = ln_rad_to_deg(declination);
+	position->ra = ln_range_radians(sidereal - H + longitude);
+	position->dec = declination;
 }
 
 /*! \fn void ln_get_equ_from_ecl(struct ln_lnlat_posn *object, double JD, struct ln_equ_posn *position)
@@ -218,9 +218,9 @@ void ln_get_equ_from_ecl(struct ln_lnlat_posn *object, double JD,
 		sin(nutation.ecliptic) * sin(longitude);
 	declination = asin(declination);
 	
-	/* store in position */
-	position->ra = ln_range_degrees(ln_rad_to_deg(ra));
-	position->dec = ln_rad_to_deg(declination);
+	/* store in position and normalize */
+	position->ra = ln_range_radians(ra);
+	position->dec = declination;
 }
 
 /*! \fn void ln_get_ecl_from_equ(struct ln_equ_posn *object, double JD, struct ln_lnlat_posn *position)
@@ -240,8 +240,8 @@ void ln_get_ecl_from_equ(struct ln_equ_posn *object, double JD,
 	struct ln_nutation nutation;
 	
 	/* object position */
-	ra = ln_deg_to_rad(object->ra);
-	declination = ln_deg_to_rad(object->dec);
+	ra = object->ra;
+	declination = object->dec;
 	ln_get_nutation(JD, &nutation);
 	nutation.ecliptic = ln_deg_to_rad(nutation.ecliptic);
 
@@ -301,9 +301,8 @@ void ln_get_equ_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ)
 	cos_b = cos(rad_gal_b);
 
 	y = atan2(sin(l_123), cos_l_123 * SIN_27_4 - (sin_b / cos_b) * COS_27_4);
-	equ->ra = ln_range_degrees(ln_rad_to_deg(y) + 12.25);
-	equ->dec =
-		ln_rad_to_deg(asin(sin_b * SIN_27_4 + cos_b * COS_27_4 * cos_l_123));
+	equ->ra = ln_range_radians(y + ln_deg_to_rad(12.25));
+	equ->dec = asin(sin_b * SIN_27_4 + cos_b * COS_27_4 * cos_l_123);
 }
 
 /*! \fn void ln_get_equ2000_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ)
@@ -337,10 +336,10 @@ void ln_get_gal_from_equ(struct ln_equ_posn *equ, struct ln_gal_posn *gal)
 	SIN_27_4 = sin(RAD_27_4);
 	COS_27_4 = cos(RAD_27_4);
 
-	ra_192_25 = ln_deg_to_rad(192.25 - equ->ra);
+	ra_192_25 = ln_deg_to_rad(192.25) - equ->ra;
 	cos_ra_192_25 = cos(ra_192_25);
 
-	rad_equ_dec = ln_deg_to_rad(equ->dec);
+	rad_equ_dec = equ->dec;
 
 	sin_dec = sin(rad_equ_dec);
 	cos_dec = cos(rad_equ_dec);

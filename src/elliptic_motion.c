@@ -291,8 +291,8 @@ void ln_get_ell_body_equ_coords(double JD, struct ln_ell_orbit *orbit,
 	y = sol_rect_posn.Y + body_rect_posn.Y;
 	z = sol_rect_posn.Z + body_rect_posn.Z;
 
-	posn->ra = ln_range_degrees(ln_rad_to_deg(atan2(y,x)));
-	posn->dec = ln_rad_to_deg(asin(z / sqrt(x * x + y * y + z * z)));
+	posn->ra = ln_range_radians(atan2(y,x));
+	posn->dec = asin(z / sqrt(x * x + y * y + z * z));
 }
 
 

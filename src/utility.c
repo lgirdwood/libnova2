@@ -334,8 +334,8 @@ void ln_add_hms(struct ln_hms *source, struct ln_hms *dest)
 */
 void ln_hequ_to_equ(struct lnh_equ_posn *hpos, struct ln_equ_posn *pos)
 {
-	pos->ra = ln_hms_to_deg(&hpos->ra);
-	pos->dec = ln_dms_to_deg(&hpos->dec);
+	pos->ra = ln_hms_to_rad(&hpos->ra);
+	pos->dec = ln_dms_to_rad(&hpos->dec);
 }
 	
 /*! \fn void ln_equ_to_hequ(struct ln_equ_posn *pos, struct lnh_equ_posn *hpos)
@@ -344,8 +344,8 @@ void ln_hequ_to_equ(struct lnh_equ_posn *hpos, struct ln_equ_posn *pos)
 */
 void ln_equ_to_hequ(struct ln_equ_posn *pos, struct lnh_equ_posn *hpos)
 {
-	ln_deg_to_hms(pos->ra, &hpos->ra);
-	ln_deg_to_dms(pos->dec, &hpos->dec);
+	ln_rad_to_hms(pos->ra, &hpos->ra);
+	ln_rad_to_dms(pos->dec, &hpos->dec);
 }
 	
 /*! \fn void ln_hhrz_to_hrz(struct lnh_hrz_posn *hpos, struct ln_hrz_posn *pos)

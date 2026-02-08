@@ -72,7 +72,7 @@ double ln_get_asteroid_mag(double JD, struct ln_ell_orbit *orbit, double H,
 */
 double ln_get_asteroid_sdiam_km (double H, double A)
 {	
-	return 3.13 - 0.2 * H - (0.5 * log10(A));
+	return pow(10, 3.13 - 0.2 * H - (0.5 * log10(A)));
 }
 
 /*! \fn double ln_get_asteroid_sdiam_arc(double JD, struct ln_ell_orbit *orbit, double H, double A)

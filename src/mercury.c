@@ -7302,9 +7302,9 @@ void ln_get_mercury_equ_coords(double JD, struct ln_equ_posn *position)
 	dec = c / delta;
 	dec = asin(dec);
 
-	/* back to hours, degrees */
-	position->ra = ln_range_degrees(ln_rad_to_deg(ra));
-	position->dec = ln_rad_to_deg(dec);
+	/* output in radians */
+	position->ra = ln_range_radians(ra);
+	position->dec = dec;
 }
 	
 

@@ -69,9 +69,9 @@ void ln_get_equ_prec(struct ln_equ_posn *mean_position, double JD,
 	long double t, t2, t3, A, B, C, zeta, eta, theta,
 		ra, dec, mean_ra, mean_dec;
 	
-	/* change original ra and dec to radians */
-	mean_ra = ln_deg_to_rad(mean_position->ra);
-	mean_dec = ln_deg_to_rad(mean_position->dec);
+	/* input is in radians */
+	mean_ra = mean_position->ra;
+	mean_dec = mean_position->dec;
 
 	/* calc t, zeta, eta and theta for J2000.0 Equ 20.3 */
 	t =(JD - JD2000) / 36525.0;
@@ -105,9 +105,9 @@ void ln_get_equ_prec(struct ln_equ_posn *mean_position, double JD,
 		dec = asinl(C);
 	}
 
-	/* change to degrees */
-	position->ra = ln_range_degrees(ln_rad_to_deg(ra));
-	position->dec = ln_rad_to_deg(dec);
+	/* output in radians */
+	position->ra = ln_range_radians(ra);
+	position->dec = dec;
 }
 
 /*! \fn void ln_get_equ_prec2(struct ln_equ_posn *mean_position, double fromJD, double toJD, struct ln_equ_posn *position);
@@ -128,9 +128,9 @@ void ln_get_equ_prec2(struct ln_equ_posn *mean_position, double fromJD,
 	long double t, t2, t3, A, B, C, zeta, eta, theta, ra, dec, mean_ra,
 		mean_dec, T, T2;
 	
-	/* change original ra and dec to radians */
-	mean_ra = ln_deg_to_rad(mean_position->ra);
-	mean_dec = ln_deg_to_rad(mean_position->dec);
+	/* input is in radians */
+	mean_ra = mean_position->ra;
+	mean_dec = mean_position->dec;
 
 	/* calc t, T, zeta, eta and theta Equ 20.2 */
 	T = ((long double) (fromJD - JD2000)) / 36525.0;
@@ -170,9 +170,9 @@ void ln_get_equ_prec2(struct ln_equ_posn *mean_position, double fromJD,
 		dec = asinl(C);
 	}
 
-	/* change to degrees */
-	position->ra = ln_range_degrees(ln_rad_to_deg(ra));
-	position->dec = ln_rad_to_deg(dec);
+	/* output in radians */
+	position->ra = ln_range_radians(ra);
+	position->dec = dec;
 }
 
 /*! \fn void ln_get_ecl_prec(struct ln_lnlat_posn *mean_position, double JD, struct ln_lnlat_posn *position)

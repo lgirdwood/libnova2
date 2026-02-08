@@ -57,13 +57,15 @@ void ln_get_equ_pm_epoch(struct ln_equ_posn *mean_position,
 	struct ln_equ_posn *position)
 {
 	long double T;
+	long double ra, dec;
 	
 	T = (JD - epoch_JD) / 365.25;
 	
 	/* calc proper motion */
-	position->ra = mean_position->ra + T * proper_motion->ra;
-	position->dec = mean_position->dec + T * proper_motion->dec;
-	
-	/* change to degrees */
-	position->ra = ln_range_degrees(position->ra);
+	/* Equ 20.1 */
+	ra = mean_position->ra + (JD - epoch_JD) * proper_motion->ra / 36525.0;
+	dec = mean_position->dec + (JD - epoch_JD) * proper_motion->dec / 36525.0;
+
+	position->ra = ln_range_radians(ra);
+	position->dec = dec;
 }

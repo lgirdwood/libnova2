@@ -284,8 +284,8 @@ void ln_get_equ_nut(struct ln_equ_posn *mean_position, double JD,
 
 	long double mean_ra, mean_dec, delta_ra, delta_dec;
 
-	mean_ra = ln_deg_to_rad(mean_position->ra);
-	mean_dec = ln_deg_to_rad(mean_position->dec);
+	mean_ra = mean_position->ra;
+	mean_dec = mean_position->dec;
 
 	// Equ 22.1
 
@@ -297,8 +297,12 @@ void ln_get_equ_nut(struct ln_equ_posn *mean_position, double JD,
 
 	long double tan_dec = tan(mean_dec);
 
-	delta_ra = (cos (nut_ecliptic) + sin_ecliptic * sin_ra * tan_dec) * nut.longitude - cos_ra * tan_dec * nut.obliquity;
-	delta_dec = (sin_ecliptic * cos_ra) * nut.longitude + sin_ra * nut.obliquity;
+	/* nutation is in degrees, convert to radians for addition */
+	long double nut_longitude_rad = ln_deg_to_rad(nut.longitude);
+	long double nut_obliquity_rad = ln_deg_to_rad(nut.obliquity);
+
+	delta_ra = (cos (nut_ecliptic) + sin_ecliptic * sin_ra * tan_dec) * nut_longitude_rad - cos_ra * tan_dec * nut_obliquity_rad;
+	delta_dec = (sin_ecliptic * cos_ra) * nut_longitude_rad + sin_ra * nut_obliquity_rad;
 
 	position->ra = mean_position->ra + delta_ra;
 	position->dec = mean_position->dec + delta_dec;

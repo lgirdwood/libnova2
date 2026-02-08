@@ -268,8 +268,8 @@ void ln_get_equ_aber(struct ln_equ_posn *mean_position, double JD,
 	}
 
 	/* Equ 22.4 */
-	mean_ra = ln_deg_to_rad(mean_position->ra);
-	mean_dec = ln_deg_to_rad(mean_position->dec);
+	mean_ra = mean_position->ra;
+	mean_dec = mean_position->dec;
 	
 	if (mean_dec < M_PI * 0.4999 ) {
 		delta_ra = (Y * cos(mean_ra) - X * sin(mean_ra)) / cos(mean_dec);
@@ -277,8 +277,8 @@ void ln_get_equ_aber(struct ln_equ_posn *mean_position, double JD,
 		delta_dec = (X * cos(mean_ra) + Y * sin(mean_ra)) * sin(mean_dec) - Z * cos(mean_dec);
 		delta_dec /= -c;
 	
-		position->ra = ln_rad_to_deg(mean_ra + delta_ra);
-		position->dec = ln_rad_to_deg(mean_dec + delta_dec);
+		position->ra = ln_range_radians(mean_ra + delta_ra);
+		position->dec = mean_dec + delta_dec;
 	} else {
 		/* cos(mean_dec) gets to small when approaching (or at) 90.0 degrees
 		   Use an alternative method:
@@ -305,8 +305,8 @@ void ln_get_equ_aber(struct ln_equ_posn *mean_position, double JD,
 
 		dec += cos_dec * Z;
 
-		position->ra = ln_rad_to_deg(ra);
-		position->dec = ln_rad_to_deg(dec);
+		position->ra = ln_range_radians(ra);
+		position->dec = dec;
 	}
 }
 

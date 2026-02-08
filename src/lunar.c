@@ -1236,8 +1236,6 @@ void ln_get_lunar_ecl_coords(double JD, struct ln_lnlat_posn *position,
 	position->lng = atan2(moon.Y, moon.X);
 	position->lat = atan2(moon.Z,
 		(sqrt((moon.X * moon.X) + (moon.Y * moon.Y))));
-	position->lng = ln_range_degrees(ln_rad_to_deg(position->lng));
-	position->lat = ln_rad_to_deg(position->lat);
 }
 
 /*! \fn double ln_get_lunar_earth_dist(double JD);
@@ -1457,6 +1455,7 @@ void ln_get_lunar_selenographic_coords(double JD, struct ln_lnlat_posn *moon,
 
 	position->lng =
 		ln_range_degrees(ln_rad_to_deg(atan2(tan_Ay, tan_Ax)) - F);
+	/* Remove deg conversion for output */
 	position->lng =
 		(position->lng > 180.0 ? position->lng - 360.0 : position->lng);
 	position->lat =

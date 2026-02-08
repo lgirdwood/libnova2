@@ -250,7 +250,7 @@ static int heliocentric_test(void)
 	int failed = 0;
 
 	object.ra = 0.0;
-	object.dec = 60.0;
+	object.dec = ln_deg_to_rad(60.0);
 
 	date.years = 2000;
 	date.months = 1;
@@ -266,8 +266,8 @@ static int heliocentric_test(void)
 	failed += test_result("(Heliocentric time) TD for 01/01, object on 0h +60",
 		diff, 15.0 * 0.0001, 0.0001);
 
-	object.ra = 270.0;
-	object.dec = 50.0;
+	object.ra = ln_deg_to_rad(270.0);
+	object.dec = ln_deg_to_rad(50.0);
 
 	diff = ln_get_heliocentric_time_diff(JD, &object);
 
@@ -360,30 +360,30 @@ static int aber_prec_nut_test()
 	ln_hequ_to_equ(&hmean_position, &mean_position);
 
 	failed += test_result("(Nutation) Theta Persei RA",
-		mean_position.ra, 41.0540613, 0.00001);
+		ln_rad_to_deg(mean_position.ra), 41.0540613, 0.00001);
 	failed += test_result("(Nutation) Theta Persei DEC",
-		mean_position.dec, 49.2277489, 0.00001);
+		ln_rad_to_deg(mean_position.dec), 49.2277489, 0.00001);
 
 	ln_get_equ_aber(&mean_position, JD, &aberated);
 
 	failed += test_result ("(Aberation) Theta Persei position on 13th November 2028 RA",
-		aberated.ra, 41.0623836, 0.0001);
+		ln_rad_to_deg(aberated.ra), 41.0623836, 0.0001);
 	failed += test_result ("(Aberation) Theta Persei position on 13th November 2028 DEC",
-		aberated.dec, 49.2296238, 0.00001);
+		ln_rad_to_deg(aberated.dec), 49.2296238, 0.00001);
 
 	ln_get_equ_prec(&aberated, JD, &precessed);
 
 	failed += test_result ("(Aberation + Precession) Theta Persei position on 13th November 2028 RA",
-		precessed.ra, 41.5555635, 0.0001);
+		ln_rad_to_deg(precessed.ra), 41.5555635, 0.0001);
 	failed += test_result ("(Aberation + Precession) Theta Persei position on 13th November 2028 DEC",
-		precessed.dec, 49.3503415, 0.00001);
+		ln_rad_to_deg(precessed.dec), 49.3503415, 0.00001);
 
 	ln_get_equ_nut(&precessed, JD, &nutated);
 
 	failed += test_result ("(Aberation + Precession + Nutation) Theta Persei position on 13th November 2028 RA",
-		nutated.ra, 41.5599646, 0.0001);
+		ln_rad_to_deg(nutated.ra), 41.5599646, 0.0001);
 	failed += test_result ("(Aberation + Precession + Nutation) Theta Persei position on 13th November 2028 DEC",
-		nutated.dec, 49.3520685, 0.00001);
+		ln_rad_to_deg(nutated.dec), 49.3520685, 0.00001);
 
 	return failed;
 }
@@ -440,12 +440,12 @@ static int transform_test(void)
 	ln_get_hrz_from_equ_sidereal_time(&object, &observer, ln_get_apparent_sidereal_time(JD), &hrz);
 	ln_get_equ_from_hrz(&hrz, &observer, JD, &object_hrz);
 	failed += test_result("(Transforms) Horiz to Equ RA ",
-		object_hrz.ra, object.ra, 0.00000001);
+		ln_rad_to_deg(object_hrz.ra), ln_rad_to_deg(object.ra), 0.00000001);
 	failed += test_result("(Transforms) Horiz to Equ DEC ",
-		object_hrz.dec, object.dec, 0.00000001);
+		ln_rad_to_deg(object_hrz.dec), ln_rad_to_deg(object.dec), 0.00000001);
 
 	/* try something close to the pole */
-	object.dec = 90.0;
+	object.dec = ln_deg_to_rad(90.0);
 
 	ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
 	failed += test_result("(Transforms) Equ to Horiz ALT ",
@@ -453,7 +453,7 @@ static int transform_test(void)
 	failed += test_result("(Transforms) Equ to Horiz AZ ",
 		hrz.az, 180.0, 0.00000001);
 	
-	object.dec = -90.0;
+	object.dec = ln_deg_to_rad(-90.0);
 
 	ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
 	failed += test_result("(Transforms) Equ to Horiz ALT ",
@@ -469,7 +469,7 @@ static int transform_test(void)
 	failed += test_result("(Transforms) Equ to Horiz AZ ",
 		hrz.az, 0.0, 0.00000001);
 	
-	object.dec = 90.0;
+	object.dec = ln_deg_to_rad(90.0);
 
 	ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
 	failed += test_result("(Transforms) Equ to Horiz ALT ",
@@ -497,9 +497,9 @@ static int transform_test(void)
 
 	ln_get_equ_from_ecl(&ecl, JD, &equ);
 	failed += test_result ("(Transforms) Ecl to Equ RA ",
-		equ.ra, 116.32894167, 0.00000001);
+		ln_rad_to_deg(equ.ra), 116.32894167, 0.00000001);
 	failed += test_result ("(Transforms) Ecl to Equ DEC",
-		equ.dec, 28.02618333, 0.00000001);
+		ln_rad_to_deg(equ.dec), 28.02618333, 0.00000001);
 
 	/* Gal pole */
 	gal.l = 0.0;
@@ -507,9 +507,9 @@ static int transform_test(void)
 	
 	ln_get_equ_from_gal(&gal, &equ);
 	failed += test_result("(Transforms) Gal to Equ RA",
-		equ.ra, 192.25, 0.00000001);
+		ln_rad_to_deg(equ.ra), 192.25, 0.00000001);
 	failed += test_result("(Transforms) Gal to Equ DEC",
-		equ.dec, 27.4, 0.00000001);
+		ln_rad_to_deg(equ.dec), 27.4, 0.00000001);
 
 	ln_get_gal_from_equ(&equ, &gal);
 	failed += test_result("(Transforms) Equ to Gal b",
@@ -517,8 +517,8 @@ static int transform_test(void)
 
 	// Swift triger 174738
 	
-	equ.ra = 125.2401;
-	equ.dec = +31.9260;
+	equ.ra = ln_deg_to_rad(125.2401);
+	equ.dec = ln_deg_to_rad(+31.9260);
 
 	ln_get_gal_from_equ2000(&equ, &gal);
 	failed += test_result("(Transforms) Equ J2000 to Gal l",
@@ -599,9 +599,9 @@ static int aberration_test(void)
 
 	ln_hequ_to_equ(&hobject, &object);
 	ln_get_equ_aber(&object, JD, &pos);
-	failed += test_result("(Aberration) RA  ", pos.ra,
+	failed += test_result("(Aberration) RA  ", ln_rad_to_deg(pos.ra),
 		41.06238352, 0.00000001);
-	failed += test_result("(Aberration) DEC  ", pos.dec,
+	failed += test_result("(Aberration) DEC  ", ln_rad_to_deg(pos.dec),
 		49.22962359, 0.00000001);
 	return failed;
 }
@@ -626,39 +626,39 @@ static int precession_test(void)
 	JD = 2462088.69;
 	ln_hequ_to_equ(&hobject, &object);
 
-	pm.ra = 0.03425 * (15.0 / 3600.0);
-	pm.dec = -0.0895 / 3600.0;
+	pm.ra = ln_deg_to_rad(0.03425 * (15.0 / 3600.0));
+	pm.dec = ln_deg_to_rad(-0.0895 / 3600.0);
 	
 	ln_get_equ_pm(&object, &pm, JD, &object);
 
 	failed += test_result("(Proper motion) RA on JD 2462088.69  ",
-		object.ra, 41.054063, 0.00001);
+		ln_rad_to_deg(object.ra), 41.054063, 0.00001);
 	failed += test_result("(Proper motion) DEC on JD 2462088.69  ",
-		object.dec, 49.227750, 0.00001);
+		ln_rad_to_deg(object.dec), 49.227750, 0.00001);
 
 	ln_get_equ_prec(&object, JD, &pos);
 	failed += test_result("(Precession) RA on JD 2462088.69  ",
-		pos.ra, 41.547212, 0.00003);
+		ln_rad_to_deg(pos.ra), 41.547212, 0.00003);
 	failed += test_result("(Precession) DEC on JD 2462088.69  ",
-		pos.dec, 49.348483, 0.00001);
+		ln_rad_to_deg(pos.dec), 49.348483, 0.00001);
 
 	ln_get_equ_prec2(&object, JD2000, JD, &pos);
 
 	failed += test_result("(Precession 2) RA on JD 2462088.69  ",
-		pos.ra, 41.547212, 0.00001);
+		ln_rad_to_deg(pos.ra), 41.547212, 0.00001);
 	failed += test_result("(Precession 2) DEC on JD 2462088.69  ",
-		pos.dec, 49.348483, 0.00001);
+		ln_rad_to_deg(pos.dec), 49.348483, 0.00001);
 
 	ln_get_equ_prec2(&pos, JD, JD2000, &pos2);
 
 	failed += test_result("(Precession 2) RA on JD 2451545.0  ",
-		pos2.ra, object.ra, 0.00001);
+		ln_rad_to_deg(pos2.ra), ln_rad_to_deg(object.ra), 0.00001);
 	failed += test_result("(Precession 2) DEC on JD 2451545.0  ",
-		pos2.dec, object.dec, 0.00001);
+		ln_rad_to_deg(pos2.dec), ln_rad_to_deg(object.dec), 0.00001);
 
 	// INTEGRAL GRB050922A coordinates lead to RA not in <0-360> range
-	pos.ra = 271.2473;
-	pos.dec = -32.0227;
+	pos.ra = ln_deg_to_rad(271.2473);
+	pos.dec = ln_deg_to_rad(-32.0227);
 
 	grb_date.years = 2005;
 	grb_date.months = 9;
@@ -672,9 +672,9 @@ static int precession_test(void)
 	ln_get_equ_prec2 (&pos, JD, JD2000, &pos2);
 
 	failed += test_result("(Precession 2) RA on JD 2451545.0  ",
-		pos2.ra, 271.1541, 0.0002);
+		ln_rad_to_deg(pos2.ra), 271.1541, 0.0002);
 	failed += test_result("(Precession 2) DEC on JD 2451545.0  ",
-		pos2.dec, -32.0235, 0.0002);
+		ln_rad_to_deg(pos2.dec), -32.0235, 0.0002);
 
 	// second test from AA, p. 128
 	hobject.ra.hours = 2;
@@ -688,8 +688,8 @@ static int precession_test(void)
 	ln_hequ_to_equ (&hobject, &object);
 
 	// proper motions
-	pm.ra = ((long double) 0.19877) * (15.0 / 3600.0);
-	pm.dec = ((long double) -0.0152) / 3600.0;
+	pm.ra = ln_deg_to_rad(((long double) 0.19877) * (15.0 / 3600.0));
+	pm.dec = ln_deg_to_rad(((long double) -0.0152) / 3600.0);
 
 	ln_get_equ_pm(&object, &pm, B1900, &pos);
 	
@@ -700,9 +700,9 @@ static int precession_test(void)
 	// I checked results agains SLAlib on-line calculator and SLAlib performs
 	// even worse then we
 	
-	failed += test_result ("(Precession 2) RA on B1900  ", pos2.ra,
+	failed += test_result ("(Precession 2) RA on B1900  ", ln_rad_to_deg(pos2.ra),
 		20.6412499980, 0.002);
-	failed += test_result ("(Precession 2) DEC on B1900  ", pos2.dec,
+	failed += test_result ("(Precession 2) DEC on B1900  ", ln_rad_to_deg(pos2.dec),
 		88.7739388888, 0.0001);
 
 	ln_get_equ_pm(&object, &pm, JD2050, &pos);
@@ -710,9 +710,9 @@ static int precession_test(void)
 	ln_get_equ_prec2(&pos, JD2000, JD2050, &pos2);
 
 	failed += test_result("(Precession 2) RA on J2050  ",
-		pos2.ra, 57.0684583320, 0.003);
+		ln_rad_to_deg(pos2.ra), 57.0684583320, 0.003);
 	failed += test_result("(Precession 2) DEC on J2050  ",
-		pos2.dec, 89.4542722222, 0.0001);
+		ln_rad_to_deg(pos2.dec), 89.4542722222, 0.0001);
 
 	return failed;
 }
@@ -748,9 +748,9 @@ static int apparent_position_test(void)
 	ln_get_apparent_posn(&object, &pm, JD, &pos);
 
 	failed += test_result("(Apparent Position) RA on JD 2462088.69  ",
-		pos.ra, 41.56406641, 0.00000001);
+		ln_rad_to_deg(pos.ra), 41.56406641, 0.00000001);
 	failed += test_result("(Apparent Position) DEC on JD 2462088.69  ",
-		pos.dec, 49.35135029, 0.0000001);
+		ln_rad_to_deg(pos.dec), 49.35135029, 0.0000001);
 	return failed;
 }
 
@@ -780,9 +780,9 @@ static int vsop87_test(void)
 	
 	ln_get_solar_equ_coords(JD, &equ);
 	failed += test_result("(Solar Position) RA on JD 2448976.5  ",
-		equ.ra, 268.32146893, 0.00000001);
+		ln_rad_to_deg(equ.ra), 268.32146893, 0.00000001);
 	failed += test_result("(Solar Position) DEC on JD 2448976.5  ",
-		equ.dec, -23.43026873, 0.00000001);
+		ln_rad_to_deg(equ.dec), -23.43026873, 0.00000001);
 	
 	ln_get_mercury_helio_coords(JD, &pos);
 	printf("Mercury L %f B %f R %f\n", pos.L, pos.B, pos.R);
@@ -956,7 +956,7 @@ int lunar_test ()
 	ln_get_lunar_ecl_coords(JD, &ecl, 0);
 	fprintf(stdout, "lunar long %f  lat %f\n",ecl.lng, ecl.lat);
 	ln_get_lunar_equ_coords_prec(JD, &equ, 0);
-	fprintf(stdout, "lunar RA %f  Dec %f\n",equ.ra, equ.dec);
+	fprintf(stdout, "lunar RA %f  Dec %f\n",ln_rad_to_deg(equ.ra), ln_rad_to_deg(equ.dec));
 	fprintf(stdout, "lunar distance km %f\n", ln_get_lunar_earth_dist(JD));
 	fprintf(stdout, "lunar disk %f\n", ln_get_lunar_disk(JD));
 	fprintf(stdout, "lunar phase %f\n", ln_get_lunar_phase(JD));
@@ -1019,8 +1019,8 @@ int elliptic_motion_test ()
 	failed += test_result ("(Heliocentric Rect Coords Z) for comet Enckle   ", posn.Z, 0.35716517, 0.00000001);
 	
 	ln_get_ell_body_equ_coords (o_JD, &orbit, &equ_posn);
-	failed += test_result ("(RA) for comet Enckle   ", equ_posn.ra, 158.58242653, 0.00000001);
-	failed += test_result ("(Dec) for comet Enckle   ", equ_posn.dec, 19.13924815, 0.00000001);
+	failed += test_result ("(RA) for comet Enckle   ", ln_rad_to_deg(equ_posn.ra), 158.58242653, 0.00000001);
+	failed += test_result ("(Dec) for comet Enckle   ", ln_rad_to_deg(equ_posn.dec), 19.13924815, 0.00000001);
 	
 	l = ln_get_ell_orbit_len (&orbit);
 	failed += test_result ("(Orbit Length) for comet Enckle in AU   ", l, 10.85028112, 0.00000001);
@@ -1073,8 +1073,8 @@ int elliptic_motion_test ()
 	orbit.JD -= 147.09926 / orbit.n;
 
 	ln_get_ell_body_equ_coords (o_JD, &orbit, &equ_posn);
-	failed += test_result ("(RA) for TNO K05F09Y   ", equ_posn.ra, 184.3699999995, 0.001);
-	failed += test_result ("(Dec) for TNO K05F09Y  ", equ_posn.dec, 30.3316666666, 0.001);
+	failed += test_result ("(RA) for TNO K05F09Y   ", ln_rad_to_deg(equ_posn.ra), 184.3699999995, 0.001);
+	failed += test_result ("(Dec) for TNO K05F09Y  ", ln_rad_to_deg(equ_posn.dec), 30.3316666666, 0.001);
 
 	return failed;
 }
@@ -1130,8 +1130,8 @@ int parabolic_motion_test ()
 	failed += test_result ("(Heliocentric Rect Coords Z) for comet C/2002 X5 (Kudo-Fujikawa)   ", posn.Z, 0.61328397, 0.00000001);
 	
 	ln_get_par_body_equ_coords (o_JD, &orbit, &equ_posn);
-	failed += test_result ("(RA) for comet C/2002 X5 (Kudo-Fujikawa)   ", equ_posn.ra, 287.79617309, 0.00000001);
-	failed += test_result ("(Dec) for comet C/2002 X5 (Kudo-Fujikawa)   ", equ_posn.dec, 14.11800859, 0.00000001);
+	failed += test_result ("(RA) for comet C/2002 X5 (Kudo-Fujikawa)   ", ln_rad_to_deg(equ_posn.ra), 287.79617309, 0.00000001);
+	failed += test_result ("(Dec) for comet C/2002 X5 (Kudo-Fujikawa)   ", ln_rad_to_deg(equ_posn.dec), 14.11800859, 0.00000001);
 	
 	dist = ln_get_par_body_solar_dist (o_JD, &orbit);
 	failed += test_result ("(Body Solar Dist) for comet C/2002 X5 (Kudo-Fujikawa) in AU   ", dist, 0.62085992, 0.00001);
@@ -1190,8 +1190,8 @@ int hyperbolic_motion_test ()
 	failed += test_result ("(Radius Vector) r for C/2001 Q4 (NEAT)   ", r, 0.962, 0.001);
 
 	ln_get_hyp_body_equ_coords (o_JD, &orbit, &equ_posn);
-	failed += test_result ("(RA) for comet C/2001 Q4 (NEAT)   ", equ_posn.ra, 128.01, 0.01);
-	failed += test_result ("(Dec) for comet C/2001 Q4 (NEAT)   ", equ_posn.dec, 18.3266666666, 0.03);
+	failed += test_result ("(RA) for comet C/2001 Q4 (NEAT)   ", ln_rad_to_deg(equ_posn.ra), 128.01, 0.01);
+	failed += test_result ("(Dec) for comet C/2001 Q4 (NEAT)   ", ln_rad_to_deg(equ_posn.dec), 18.3266666666, 0.03);
 
 	dist = ln_get_hyp_body_solar_dist (o_JD, &orbit);
 	failed += test_result ("(Body Solar Dist) for comet C/2001 Q4 (NEAT) in AU   ", dist, 0.962, 0.001);
@@ -1205,8 +1205,8 @@ int hyperbolic_motion_test ()
 	failed += test_result ("(Radius Vector) r for C/2001 Q4 (NEAT)   ", r, 3.581, 0.001);
 
 	ln_get_hyp_body_equ_coords (o_JD, &orbit, &equ_posn);
-	failed += test_result ("(RA) for comet C/2001 Q4 (NEAT)   ", equ_posn.ra, 332.9025, 0.01);
-	failed += test_result ("(Dec) for comet C/2001 Q4 (NEAT)   ", equ_posn.dec, 58.6116666666, 0.001);
+	failed += test_result ("(RA) for comet C/2001 Q4 (NEAT)   ", ln_rad_to_deg(equ_posn.ra), 332.9025, 0.01);
+	failed += test_result ("(Dec) for comet C/2001 Q4 (NEAT)   ", ln_rad_to_deg(equ_posn.dec), 58.6116666666, 0.001);
 	
 	return failed;
 }
@@ -1234,8 +1234,8 @@ int rst_test ()
 	dms.minutes = 10;
 	dms.seconds = 56.7;
 
-	object.ra = ln_hms_to_deg (&hms);
-	object.dec = ln_dms_to_deg (&dms);
+	object.ra = ln_hms_to_rad (&hms);
+	object.dec = ln_dms_to_rad (&dms);
 
 	date.years = 2006;
 	date.months = 1;
@@ -1528,30 +1528,30 @@ int rst_test ()
 
 	observer.lat = 37;
 
-	object.dec = -54;
+	object.dec = ln_deg_to_rad(-54.0);
 	failed += test_result ("Object at dec -54 never rise at 37 N", ln_get_object_rst(JD, &observer, &object, &rst), -1, 0);
 
-	object.dec = -52;
+	object.dec = ln_deg_to_rad(-52.0);
 	failed += test_result ("Object at dec -52 rise at 37 N", ln_get_object_rst(JD, &observer, &object, &rst), 0, 0);
 
-	object.dec = 54;
+	object.dec = ln_deg_to_rad(54.0);
 	failed += test_result ("Object at dec 54 is always above the horizon at 37 N", ln_get_object_rst(JD, &observer, &object, &rst), 1, 0);
 
-	object.dec = 52;
+	object.dec = ln_deg_to_rad(52.0);
 	failed += test_result ("Object at dec 52 rise at 37 N", ln_get_object_rst(JD, &observer, &object, &rst), 0, 0);
 
 	observer.lat = -37;
 
-	object.dec = 54;
+	object.dec = ln_deg_to_rad(54.0);
 	failed += test_result ("Object at dec 54 never rise at 37 S", ln_get_object_rst(JD, &observer, &object, &rst), -1, 0);
 
-	object.dec = 52;
+	object.dec = ln_deg_to_rad(52.0);
 	failed += test_result ("Object at dec 52 rise at 37 S", ln_get_object_rst(JD, &observer, &object, &rst), 0, 0);
 
-	object.dec = -54;
+	object.dec = ln_deg_to_rad(-54.0);
 	failed += test_result ("Object at dec -54 is always above the horizon at 37 S", ln_get_object_rst(JD, &observer, &object, &rst), 1, 0);
 
-	object.dec = -52;
+	object.dec = ln_deg_to_rad(-52.0);
 	failed += test_result ("Object at dec -52 rise at 37 S", ln_get_object_rst(JD, &observer, &object, &rst), 0, 0);
 
 	/* Venus on 1988 March 20 at Boston */
@@ -1928,9 +1928,9 @@ static int parallax_test(void)
 
 	/* parallax is hard to calculate, so we allow relatively big error */
 	failed += test_result("Mars RA parallax for Palomar observatory at "
-		"2003/08/28 3:17 UT  ", parallax.ra, 0.003552, 0.00001);
+		"2003/08/28 3:17 UT  ", ln_rad_to_deg(parallax.ra), 0.003552, 0.00001);
 	failed += test_result("Mars DEC parallax for Palomar observatory at "
-		"2003/08/28 3:17 UT  ", parallax.dec, -20.01 / 3600.0, 0.00002);
+		"2003/08/28 3:17 UT  ", ln_rad_to_deg(parallax.dec), -20.01 / 3600.0, 0.00002);
 
 	return failed;
 }
@@ -1942,12 +1942,12 @@ static int angular_test(void)
 	struct ln_equ_posn posn1, posn2;
 		
 	/* alpha Bootes (Arcturus) */
-	posn1.ra = 213.9154;
-	posn1.dec = 19.1825;
+	posn1.ra = ln_deg_to_rad(213.9154);
+	posn1.dec = ln_deg_to_rad(19.1825);
 	
 	/* alpha Virgo (Spica) */
-	posn2.ra = 201.2983;
-	posn2.dec = -11.1614;
+	posn2.ra = ln_deg_to_rad(201.2983);
+	posn2.dec = ln_deg_to_rad(-11.1614);
 	
 	d = ln_get_angular_separation(&posn1, &posn2);
 	failed += test_result("(Angular) Separation of Arcturus and Spica   ",
@@ -2567,8 +2567,8 @@ static int constellation_test(void)
 		const char *constel;
 		char test_r[200];
 
-		equ.ra = test_c[i].ra;
-		equ.dec = test_c[i].dec;
+		equ.ra = ln_deg_to_rad(test_c[i].ra);
+		equ.dec = ln_deg_to_rad(test_c[i].dec);
 		constel = ln_get_constellation(&equ);
 		sprintf(test_r, "Constellation at %.04f %+.04f", equ.ra, equ.dec);
 		failed += test_str_result(test_r, constel, test_c[i].constel);

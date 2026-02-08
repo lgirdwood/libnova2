@@ -37,11 +37,11 @@ double ln_get_angular_separation(struct ln_equ_posn* posn1,
 	double x,y,z;
 	double a1,a2,d1,d2;
 	
-	/* covert to radians */
-	a1 = ln_deg_to_rad(posn1->ra);
-	d1 = ln_deg_to_rad(posn1->dec);
-	a2 = ln_deg_to_rad(posn2->ra);
-	d2 = ln_deg_to_rad(posn2->dec);
+	/* input is in radians */
+	a1 = posn1->ra;
+	d1 = posn1->dec;
+	a2 = posn2->ra;
+	d2 = posn2->dec;
 	
 	x = (cos(d1) * sin(d2)) 
 		- (sin(d1) * cos(d2) * cos(a2 - a1));
@@ -70,11 +70,11 @@ double ln_get_rel_posn_angle(struct ln_equ_posn* posn1,
 	double a1,a2,d1,d2;
 	double x,y;
 	
-	/* covert to radians */
-	a1 = ln_deg_to_rad(posn1->ra);
-	d1 = ln_deg_to_rad(posn1->dec);
-	a2 = ln_deg_to_rad(posn2->ra);
-	d2 = ln_deg_to_rad(posn2->dec);
+	/* input is in radians */
+	a1 = posn1->ra;
+	d1 = posn1->dec;
+	a2 = posn2->ra;
+	d2 = posn2->dec;
 	
 	y = sin(a1 - a2);
 	x = (cos(d2) * tan(d1)) - (sin(d2) * cos(a1 - a2));

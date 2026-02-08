@@ -20,6 +20,7 @@
 #include <libnova/julian_day.h>
 #include <libnova/rise_set.h>
 #include <libnova/transform.h>
+#include <libnova/utility.h>
 
 /*! \fn const char* ln_get_constellation(struct ln_equ_posn *position)
 * \param position Equitorial position
@@ -1569,10 +1570,15 @@ const char* ln_get_constellation(struct ln_equ_posn *position)
 	};
 
 	int i = 0;
+	double ra, dec;
+	
+	/* convert to degrees */
+	ra = ln_rad_to_deg(position->ra);
+	dec = ln_rad_to_deg(position->dec);
 
-	if((position->ra >= 0) || (position->ra < 360) || (position->dec >= -90) || (position->dec <= 90))
+	if((ra >= 0) || (ra < 360) || (dec >= -90) || (dec <= 90))
 	{
-		while((position->ra < ra_lower[i]) || (position->ra >= ra_upper[i]) || (position->dec < dec_lower[i]))
+		while((ra < ra_lower[i]) || (ra >= ra_upper[i]) || (dec < dec_lower[i]))
 			i++;
 
 		return constel_names[constel_numbers[i] - 1];

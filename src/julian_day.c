@@ -298,10 +298,12 @@ void ln_get_local_date(double JD, struct ln_zonedate *zonedate) {
 int ln_get_date_from_mpc(struct ln_date *date, char *mpc_date) {
   char year[3];
   char month[2];
-  char day[2];
+  char day[3];
+
+  memset(date, 0, sizeof(struct ln_date));
 
   /* is mpc_date correct length */
-  if (strlen(mpc_date) != 5)
+  if (strlen(mpc_date) != 7)
     return -1;
 
   /* get the century */
@@ -332,13 +334,10 @@ int ln_get_date_from_mpc(struct ln_date *date, char *mpc_date) {
 
   /* day */
   day[0] = *(mpc_date + 4);
-  day[1] = 0;
+  day[1] = *(mpc_date + 5);
+  day[2] = 0;
   date->days = strtol(day, 0, 32);
 
-  /* reset hours,min,secs to 0 */
-  date->hours = 0;
-  date->minutes = 0;
-  date->seconds = 0;
   return 0;
 }
 

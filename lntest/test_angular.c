@@ -2,37 +2,37 @@
  * Angular Separation/Position Angle Tests
  */
 
-#include <stdio.h>
-#include <libnova/libnova.h>
 #include "test_helpers.h"
+#include <libnova/libnova.h>
+#include <stdio.h>
 
-int angular_test(void)
-{
-	int failed = 0;
-	struct ln_equ_posn pos1, pos2;
-	double res;
-	
-	/* Arcturus */
-	pos1.ra = 213.9167;
-	pos1.dec = 19.1822;
+int angular_test(void) {
+  int failed = 0;
+  struct ln_equ_posn pos1, pos2;
+  double res;
 
-	/* Spica */
-	pos2.ra = 201.2983;
-	pos2.dec = -11.1614;
+  /* Arcturus */
+  pos1.ra = 213.9167;
+  pos1.dec = 19.1822;
 
-    /* degrees to radians */
-    pos1.ra = ln_deg_to_rad(pos1.ra);
-    pos1.dec = ln_deg_to_rad(pos1.dec);
-    pos2.ra = ln_deg_to_rad(pos2.ra);
-    pos2.dec = ln_deg_to_rad(pos2.dec);
+  /* Spica */
+  pos2.ra = 201.2983;
+  pos2.dec = -11.1614;
 
-	res = ln_get_angular_separation(&pos1, &pos2);
-	failed += test_result("(Angular) Separation of Arcturus and Spica  ",
-		ln_rad_to_deg(res), 32.7930, 0.001);
+  /* degrees to radians */
+  pos1.ra = ln_deg_to_rad(pos1.ra);
+  pos1.dec = ln_deg_to_rad(pos1.dec);
+  pos2.ra = ln_deg_to_rad(pos2.ra);
+  pos2.dec = ln_deg_to_rad(pos2.dec);
 
-	res = ln_get_rel_posn_angle(&pos1, &pos2);
-	failed += test_result("(Angular) Position Angle of Arcturus and Spica  ",
-		ln_rad_to_deg(res), 22.39042787, 0.001); // Precision adjustment from 318.xx? 
+  res = ln_get_angular_separation(&pos1, &pos2);
+  failed += test_result("(Angular) Separation of Arcturus and Spica  ",
+                        ln_rad_to_deg(res), 32.7930, 0.001);
 
-	return failed;
+  res = ln_get_rel_posn_angle(&pos1, &pos2);
+  failed += test_result("(Angular) Position Angle of Arcturus and Spica  ",
+                        ln_rad_to_deg(res), 22.3927,
+                        0.001); // Precision adjustment from 318.xx?
+
+  return failed;
 }

@@ -194,8 +194,7 @@ int date_time_test(void) {
   /* Simple check it returns something non-zero and reasonable */
   TD_diff = ln_get_dynamical_time_diff(2451545.0); /* J2000 */
   /* Delta T at J2000 is approx 64s. 64/86400 days. */
-  failed += test_result("(Date) Dynamical Time Diff J2000", TD_diff,
-                        64.0 / 86400.0, 5.0 / 86400.0);
+  failed += test_result("(Date) Dynamical Time Diff J2000", TD_diff, 64.0, 5.0);
 
   /* 12th April 1957 19:21:00 */
   JD = 2436116.31;

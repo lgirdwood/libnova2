@@ -11,6 +11,7 @@
 
 .cproject
 .project
+.cache
 
 lt~obsolete.m4
 ltsugar.m4

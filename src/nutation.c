@@ -204,8 +204,9 @@ void ln_get_nutation(double JD, struct ln_nutation *nutation) {
     }
 
     /* calculate mean ecliptic - Meeus 2nd edition, eq. 22.2 */
-    c_ecliptic = 23.0 + 26.0 / 60.0 + 21.448 / 3600.0 - 46.8150 / 3600.0 * T -
-                 0.00059 / 3600.0 * T2 + 0.001813 / 3600.0 * T3;
+    c_ecliptic = 23.0 + 26.0 / 60.0 + 21.448 / (60.0 * 360.0) -
+                 46.8150 / (60.0 * 360.0) * T - 0.00059 / (60.0 * 360.0) * T2 +
+                 0.001813 / (60.0 * 360.0) * T3;
 
     /* c_ecliptic += c_obliquity; * Uncomment this if function should
                              return true obliquity rather than

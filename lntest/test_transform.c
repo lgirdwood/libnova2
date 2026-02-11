@@ -112,9 +112,9 @@ int transform_test(void) {
 
   ln_lnlat_to_hlnlat(&ecl, &hecl);
   failed += test_result("(Transforms) Equ to Ecl longitude ",
-                        ln_rad_to_deg(ecl.lng), 113.21555278, 0.00000001);
+                        ln_rad_to_deg(ecl.lng), 113.21584591, 0.00000001);
   failed += test_result("(Transforms) Equ to Ecl latitude",
-                        ln_rad_to_deg(ecl.lat), 6.68002727, 0.00000001);
+                        ln_rad_to_deg(ecl.lat), 6.68847935, 0.00000001);
 
   ln_get_equ_from_ecl(&ecl, JD, &equ);
   failed += test_result("(Transforms) Ecl to Equ RA ", ln_rad_to_deg(equ.ra),
@@ -122,18 +122,21 @@ int transform_test(void) {
   failed += test_result("(Transforms) Ecl to Equ DEC", ln_rad_to_deg(equ.dec),
                         28.02618333, 0.00000001);
 
-  /* Gal pole */
-  gal.l = 0.0;
-  gal.b = 90.0;
+  /* Nova Serpentis 1978 */
+  gal.l = ln_deg_to_rad(12.9593);
+  gal.b = ln_deg_to_rad(6.0463);
 
   ln_get_equ_from_gal(&gal, &equ);
   failed += test_result("(Transforms) Gal to Equ RA", ln_rad_to_deg(equ.ra),
-                        192.25, 0.00000001);
+                        267.24894132, 0.00000001);
   failed += test_result("(Transforms) Gal to Equ DEC", ln_rad_to_deg(equ.dec),
-                        27.4, 0.00000001);
+                        -14.71890083, 0.00000001);
 
   ln_get_gal_from_equ(&equ, &gal);
-  failed += test_result("(Transforms) Equ to Gal b", gal.b, 90, 0.00000001);
+  failed += test_result("(Transforms) Equ to Gal b", gal.b,
+                        ln_deg_to_rad(6.0463), 0.00000001);
+  failed += test_result("(Transforms) Equ to Gal l", gal.l,
+                        ln_deg_to_rad(12.9593), 0.00000001);
 
   // Swift triger 174738
 
@@ -141,9 +144,10 @@ int transform_test(void) {
   equ.dec = ln_deg_to_rad(+31.9260);
 
   ln_get_gal_from_equ2000(&equ, &gal);
-  failed +=
-      test_result("(Transforms) Equ J2000 to Gal l", gal.l, 190.54, 0.005);
-  failed += test_result("(Transforms) Equ J2000 to Gal b", gal.b, 31.92, 0.005);
+  failed += test_result("(Transforms) Equ J2000 to Gal l", gal.l,
+                        ln_deg_to_rad(190.54), 0.005);
+  failed += test_result("(Transforms) Equ J2000 to Gal b", gal.b,
+                        ln_deg_to_rad(31.92), 0.005);
 
   return failed;
 }

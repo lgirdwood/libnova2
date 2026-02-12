@@ -12,10 +12,10 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *  
+ *
  *  Copyright (C) 2000 - 2005 Liam Girdwood <lgirdwood@gmail.com>
  */
- 
+
 #include <libnova/proper_motion.h>
 #include <libnova/utility.h>
 
@@ -23,49 +23,52 @@
 ** Proper Motion.
 */
 
-/*! \fn void ln_get_equ_pm(struct ln_equ_posn *mean_position, struct ln_equ_posn *proper_motion, double JD, struct ln_equ_posn *position)
-* \param mean_position Mean position of object.
-* \param proper_motion Annual Proper motion of object.
-* \param JD Julian Day.
-* \param position Pointer to store new object position.
-*
-* Calculate a stars equatorial coordinates from it's mean coordinates (J2000.0)
-* with the effects of proper motion for a given Julian Day. 
-*/ 
-/* Example 20.b pg 126 
-*/
+/*! \fn void ln_get_equ_pm(struct ln_equ_posn *mean_position, struct ln_equ_posn
+ * *proper_motion, double JD, struct ln_equ_posn *position)
+ * \param mean_position Mean position of object.
+ * \param proper_motion Annual Proper motion of object.
+ * \param JD Julian Day.
+ * \param position Pointer to store new object position.
+ *
+ * Calculate a stars equatorial coordinates from it's mean coordinates (J2000.0)
+ * with the effects of proper motion for a given Julian Day.
+ */
+/* Example 20.b pg 126
+ */
 void ln_get_equ_pm(struct ln_equ_posn *mean_position,
-	struct ln_equ_posn *proper_motion, double JD, struct ln_equ_posn *position)
-{
-	ln_get_equ_pm_epoch (mean_position, proper_motion, JD, JD2000, position);
+                   struct ln_equ_posn *proper_motion, double JD,
+                   struct ln_equ_posn *position) {
+  ln_get_equ_pm_epoch(mean_position, proper_motion, JD, JD2000, position);
 }
 
-/*! \fn void ln_get_equ_pm_epoch(struct ln_equ_posn *mean_position, struct ln_equ_posn *proper_motion, double JD, double epoch_JD, struct ln_equ_posn *position)
-* \param mean_position Mean position of object.
-* \param proper_motion Annual Proper motion of object.
-* \param JD Julian Day.
-* \param JD_epoch Mean position epoch in JD
-* \param position Pointer to store new object position.
-*
-* Calculate a stars equatorial coordinates from it's mean coordinates and epoch
-* with the effects of proper motion for a given Julian Day. 
-*/ 
+/*! \fn void ln_get_equ_pm_epoch(struct ln_equ_posn *mean_position, struct
+ * ln_equ_posn *proper_motion, double JD, double epoch_JD, struct ln_equ_posn
+ * *position)
+ * \param mean_position Mean position of object.
+ * \param proper_motion Annual Proper motion of object.
+ * \param JD Julian Day.
+ * \param JD_epoch Mean position epoch in JD
+ * \param position Pointer to store new object position.
+ *
+ * Calculate a stars equatorial coordinates from it's mean coordinates and epoch
+ * with the effects of proper motion for a given Julian Day.
+ */
 /* Example 20.b, pg 126
-*/
+ */
 void ln_get_equ_pm_epoch(struct ln_equ_posn *mean_position,
-	struct ln_equ_posn *proper_motion, double JD, double epoch_JD,
-	struct ln_equ_posn *position)
-{
-	long double T;
-	long double ra, dec;
-	
-	T = (JD - epoch_JD) / 365.25;
-	
-	/* calc proper motion */
-	/* Equ 20.1 */
-	ra = mean_position->ra + (JD - epoch_JD) * proper_motion->ra / 36525.0;
-	dec = mean_position->dec + (JD - epoch_JD) * proper_motion->dec / 36525.0;
+                         struct ln_equ_posn *proper_motion, double JD,
+                         double epoch_JD, struct ln_equ_posn *position) {
+  long double T;
+  long double ra, dec;
 
-	position->ra = ln_range_radians(ra);
-	position->dec = dec;
+  /* time delta in years*/
+  T = (JD - epoch_JD) / 365.25;
+
+  /* calc proper motion */
+  /* Equ 20.1 */
+  ra = mean_position->ra + T * proper_motion->ra;
+  dec = mean_position->dec + T * proper_motion->dec;
+
+  position->ra = ln_range_radians(ra);
+  position->dec = dec;
 }

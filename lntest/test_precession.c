@@ -63,12 +63,7 @@ int precession_test(void) {
   pos.ra = ln_deg_to_rad(271.2473);
   pos.dec = ln_deg_to_rad(-32.0227);
 
-  grb_date.years = 2005;
-  grb_date.months = 9;
-  grb_date.days = 22;
-  grb_date.hours = 13;
-  grb_date.minutes = 43;
-  grb_date.seconds = 18.0;
+  grb_date = LN_DATE(2005, 9, 22, 13, 43, 18.0);
 
   JD = ln_get_julian_day(&grb_date);
 

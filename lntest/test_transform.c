@@ -37,12 +37,8 @@ int transform_test(void) {
   hobject.dec.seconds = 11.61;
 
   /* date and time */
-  date.years = 1987;
-  date.months = 4;
-  date.days = 10;
-  date.hours = 19;
-  date.minutes = 21;
-  date.seconds = 0.0;
+  /* date and time */
+  date = LN_DATE(1987, 4, 10, 19, 21, 0.0);
 
   JD = ln_get_julian_day(&date);
   ln_hequ_to_equ(&hobject, &object);

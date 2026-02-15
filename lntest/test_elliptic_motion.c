@@ -16,19 +16,9 @@ int elliptic_motion_test(void) {
   struct ln_equ_posn equ_posn;
   int failed = 0;
 
-  obs_date.years = 1990;
-  obs_date.months = 10;
-  obs_date.days = 6;
-  obs_date.hours = 0;
-  obs_date.minutes = 0;
-  obs_date.seconds = 0;
+  obs_date = LN_DATE(1990, 10, 6, 0, 0, 0);
 
-  epoch_date.years = 1990;
-  epoch_date.months = 10;
-  epoch_date.days = 28;
-  epoch_date.hours = 12;
-  epoch_date.minutes = 30;
-  epoch_date.seconds = 0;
+  epoch_date = LN_DATE(1990, 10, 28, 12, 30, 0);
 
   e_JD = ln_get_julian_day(&epoch_date);
   o_JD = ln_get_julian_day(&obs_date);
@@ -102,19 +92,9 @@ int elliptic_motion_test(void) {
 
   // TNO http://www.cfa.harvard.edu/mpec/K05/K05O42.html
 
-  obs_date.years = 2006;
-  obs_date.months = 5;
-  obs_date.days = 5;
-  obs_date.hours = 0;
-  obs_date.minutes = 0;
-  obs_date.seconds = 0;
+  obs_date = LN_DATE(2006, 5, 5, 0, 0, 0);
 
-  epoch_date.years = 2006;
-  epoch_date.months = 3;
-  epoch_date.days = 6;
-  epoch_date.hours = 0;
-  epoch_date.minutes = 0;
-  epoch_date.seconds = 0;
+  epoch_date = LN_DATE(2006, 3, 6, 0, 0, 0);
 
   e_JD = ln_get_julian_day(&epoch_date);
   o_JD = ln_get_julian_day(&obs_date);

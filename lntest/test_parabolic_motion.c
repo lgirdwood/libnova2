@@ -17,19 +17,9 @@ int parabolic_motion_test(void) {
   struct ln_equ_posn equ_posn;
   int failed = 0;
 
-  obs_date.years = 2003;
-  obs_date.months = 1;
-  obs_date.days = 11;
-  obs_date.hours = 0;
-  obs_date.minutes = 0;
-  obs_date.seconds = 0;
+  obs_date = LN_DATE(2003, 1, 11, 0, 0, 0);
 
-  epoch_date.years = 2003;
-  epoch_date.months = 1;
-  epoch_date.days = 29;
-  epoch_date.hours = 0;
-  epoch_date.minutes = 6;
-  epoch_date.seconds = 37.44;
+  epoch_date = LN_DATE(2003, 1, 29, 0, 6, 37.44);
 
   e_JD = ln_get_julian_day(&epoch_date);
   o_JD = ln_get_julian_day(&obs_date);

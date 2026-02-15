@@ -30,19 +30,9 @@ int hyperbolic_motion_test(void) {
                   10.668551, 0.00001);
 
   // and now something real.. C/2001 Q4 (NEAT)
-  obs_date.years = 2004;
-  obs_date.months = 5;
-  obs_date.days = 15;
-  obs_date.hours = 0;
-  obs_date.minutes = 0;
-  obs_date.seconds = 0;
+  obs_date = LN_DATE(2004, 5, 15, 0, 0, 0);
 
-  epoch_date.years = 2004;
-  epoch_date.months = 5;
-  epoch_date.days = 15;
-  epoch_date.hours = 23;
-  epoch_date.minutes = 12;
-  epoch_date.seconds = 37.44;
+  epoch_date = LN_DATE(2004, 5, 15, 23, 12, 37.44);
 
   e_JD = ln_get_julian_day(&epoch_date);
   o_JD = ln_get_julian_day(&obs_date);
@@ -68,8 +58,30 @@ int hyperbolic_motion_test(void) {
   failed += test_result("(Body Solar Dist) for comet C/2001 Q4 (NEAT) in AU   ",
                         dist, 0.962, 0.001);
 
-  obs_date.years = 2005;
-  obs_date.months = 1;
+  /* obs_date.years = 2005; */
+  /* obs_date.months = 1; */
+  /* obs_date.days = ??; */
+  /* This part seems incomplete or relying on previous values, but let's just
+     leave it or fix it if full context allows. Wait, lines 71-72:
+     obs_date.years = 2005;
+     obs_date.months = 1;
+     It reuses days, hours, minutes, seconds from before?
+     Previous obs_date was 2004-05-15 00:00:00.
+     So this makes it 2005-01-15 00:00:00.
+     I should probably not use the macro if it's a partial update unless I
+     construct the whole thing. But looking at the code, it seems simpler to
+     just set the fields. However, to be consistent with the request "use this
+     in ALL tests and examples", I should probably rewrite it to valid full
+     initialization if possible, or leave it if it's just a partial update.
+     actually, let's look at the code again.
+     obs_date is a struct ln_date.
+     It was initialized before.
+     Now only years and months are updated.
+     days, hours, minutes, seconds retain values (15, 0, 0, 0).
+     So effectively it is 2005-01-15 00:00:00.
+     I can use LN_DATE for this.
+  */
+  obs_date = LN_DATE(2005, 1, 15, 0, 0, 0);
 
   o_JD = ln_get_julian_day(&obs_date);
 

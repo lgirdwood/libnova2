@@ -29,12 +29,7 @@ int nutation_test(void) {
       "(Nutation) ecliptic (deg) for JD 2446895.5", nutation.ecliptic,
       ln_deg_to_rad(23.0 + 26.0 / 60.0 + 27.407 / (60.0 * 360.0)), 0.000001);
 
-  date.years = 2028;
-  date.months = 11;
-  date.days = 13;
-  date.hours = 4;
-  date.minutes = 33;
-  date.seconds = 36;
+  date = LN_DATE(2028, 11, 13, 4, 33, 36);
 
   JD = ln_get_julian_day(&date);
 

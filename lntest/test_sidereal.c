@@ -13,12 +13,8 @@ int sidereal_test(void) {
   int failed = 0;
 
   /* 10/04/1987 19:21:00 */
-  date.years = 1987;
-  date.months = 4;
-  date.days = 10;
-  date.hours = 19;
-  date.minutes = 21;
-  date.seconds = 0.0;
+  /* 10/04/1987 19:21:00 */
+  date = LN_DATE(1987, 4, 10, 19, 21, 0.0);
 
   JD = ln_get_julian_day(&date);
   sd = ln_get_mean_sidereal_time(JD);

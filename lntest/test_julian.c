@@ -15,30 +15,22 @@ int julian_test(void) {
   struct ln_zonedate zonedate;
 
   /* Get julian day for 04/10/1957 19:00:00 */
-  date.years = 1957;
-  date.months = 10;
-  date.days = 4;
-  date.hours = 19;
-  date.minutes = 0;
-  date.seconds = 0;
+  /* Get julian day for 04/10/1957 19:00:00 */
+  date = LN_DATE(1957, 10, 4, 19, 0, 0);
   JD = ln_get_julian_day(&date);
   failed += test_result("(Julian Day) JD for 4/10/1957 19:00:00", JD,
                         2436116.29166667, 0.00001);
 
   /* Get julian day for 27/01/333 12:00:00 */
-  date.years = 333;
-  date.months = 1;
-  date.days = 27;
-  date.hours = 12;
+  /* Get julian day for 27/01/333 12:00:00 */
+  date = LN_DATE(333, 1, 27, 12, 0, 0);
   JD = ln_get_julian_day(&date);
   failed +=
       test_result("(Julian Day) JD for 27/01/333 12:00:00", JD, 1842713.0, 0.1);
 
   /* Get julian day for 30/06/1954 00:00:00 */
-  date.years = 1954;
-  date.months = 6;
-  date.days = 30;
-  date.hours = 0;
+  /* Get julian day for 30/06/1954 00:00:00 */
+  date = LN_DATE(1954, 6, 30, 0, 0, 0);
   JD = ln_get_julian_day(&date);
   failed += test_result("(Julian Day) JD for 30/06/1954 00:00:00", JD,
                         2434923.5, 0.1);
@@ -84,67 +76,43 @@ int julian_test(void) {
   /* printf("Sys JD %f\n", JD); */
 
   /* Get julian day for 01/01/1987 00:00:00 */
-  date.years = 1987;
-  date.months = 1;
-  date.days = 1; /* 1987 JAN 1.5 ? */
-  date.hours = 0;
-  date.minutes = 0;
-  date.seconds = 0;
+  /* Get julian day for 01/01/1987 00:00:00 */
+  date = LN_DATE(1987, 1, 1, 0, 0, 0);
   JD = ln_get_julian_day(&date);
   failed += test_result("(Julian Day) JD for 01/01/1987 00:00:00", JD,
                         2446796.5, 0.00001);
 
   /* Get julian day for 01/01/1900 00:00:00 */
-  date.years = 1900;
-  date.months = 1;
-  date.days = 1;
-  date.hours = 0;
-  date.minutes = 0;
-  date.seconds = 0;
+  /* Get julian day for 01/01/1900 00:00:00 */
+  date = LN_DATE(1900, 1, 1, 0, 0, 0);
   JD = ln_get_julian_day(&date);
   failed += test_result("(Julian Day) JD for 01/01/1900 00:00:00", JD,
                         2415020.5, 0.00001);
 
   /* Get julian day for 01/01/1600 00:00:00 */
-  date.years = 1600;
-  date.months = 1;
-  date.days = 1;
-  date.hours = 0;
-  date.minutes = 0;
-  date.seconds = 0;
+  /* Get julian day for 01/01/1600 00:00:00 */
+  date = LN_DATE(1600, 1, 1, 0, 0, 0);
   JD = ln_get_julian_day(&date);
   failed += test_result("(Julian Day) JD for 01/01/1600 00:00:00", JD,
                         2305447.5, 0.00001);
 
   /* Get julian day for 31/12/1600 00:00:00 */
-  date.years = 1600;
-  date.months = 12;
-  date.days = 31;
-  date.hours = 0;
-  date.minutes = 0;
-  date.seconds = 0;
+  /* Get julian day for 31/12/1600 00:00:00 */
+  date = LN_DATE(1600, 12, 31, 0, 0, 0);
   JD = ln_get_julian_day(&date);
   failed += test_result("(Julian Day) JD for 31/12/1600 00:00:00", JD,
                         2305812.5, 0.00001);
 
   /* Get julian day for 10/04/1957 19:21:00 */
-  date.years = 1957;
-  date.months = 10;
-  date.days = 4;
-  date.hours = 19;
-  date.minutes = 26;
-  date.seconds = 24;
+  /* Get julian day for 10/04/1957 19:21:00 */
+  date = LN_DATE(1957, 10, 4, 19, 26, 24);
   JD = ln_get_julian_day(&date);
   failed += test_result("(Julian Day) JD for 10/04/1957 19:26:24", JD,
                         2436116.31, 0.00001);
 
   /* Get julian day for 27/01/333 12:00:00 */
-  date.years = 333;
-  date.months = 1;
-  date.days = 27;
-  date.hours = 12;
-  date.minutes = 0;
-  date.seconds = 0;
+  /* Get julian day for 27/01/333 12:00:00 */
+  date = LN_DATE(333, 1, 27, 12, 0, 0);
   JD = ln_get_julian_day(&date);
   failed += test_result("(Julian Day) JD for 27/01/333 12:00:00", JD, 1842713.0,
                         0.00001);
@@ -181,12 +149,8 @@ int date_time_test(void) {
   /* Example: J96J010 = 1996 Oct 1 */
   JD = ln_get_julian_from_mpc("K019090");
   /* 2001 Sept 09 */
-  date.years = 2001;
-  date.months = 9;
-  date.days = 9;
-  date.hours = 0;
-  date.minutes = 0;
-  date.seconds = 0;
+  /* 2001 Sept 09 */
+  date = LN_DATE(2001, 9, 9, 0, 0, 0);
   failed +=
       test_result("(Date) MPC 'K019090'", JD, ln_get_julian_day(&date), 1e-6);
 

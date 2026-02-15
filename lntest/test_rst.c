@@ -18,13 +18,8 @@ int rst_test(void) {
   int failed = 0;
 
   /* Venus on 1988 March 20 at Boston */
-  date.years = 1988;
-  date.months = 3;
-  date.days = 20;
-
-  date.hours = 0;
-  date.minutes = 0;
-  date.seconds = 0;
+  /* Venus on 1988 March 20 at Boston */
+  date = LN_DATE(1988, 3, 20, 0, 0, 0);
 
   JD = ln_get_julian_day(&date);
 
@@ -74,13 +69,7 @@ int ell_rst_test(void) {
   observer.lng = ln_deg_to_rad(135.0);
   observer.lat = ln_deg_to_rad(35.0);
 
-  date.years = 1996;
-  date.months = 5;
-  date.days = 1;
-
-  date.hours = 0;
-  date.minutes = 0;
-  date.seconds = 0.0;
+  date = LN_DATE(1996, 5, 1, 0, 0, 0.0);
 
   orbit.JD = ln_get_julian_day(&date);
   orbit.JD += 0.39481;
@@ -91,12 +80,7 @@ int ell_rst_test(void) {
   orbit.w = ln_deg_to_rad(130.17654);
   orbit.n = 0.0;
 
-  date.years = 1996;
-  date.months = 3;
-  date.days = 24;
-
-  date.hours = date.minutes = 0;
-  date.seconds = 0.0;
+  date = LN_DATE(1996, 3, 24, 0, 0, 0.0);
 
   JD = ln_get_julian_day(&date);
 
@@ -109,6 +93,12 @@ int ell_rst_test(void) {
   date.days = 28;
   date.hours = 10;
   date.minutes = 42;
+  /* partial update again.
+     Previous date was 1996-03-24 00:00:00.
+     This makes it 1996-03-28 10:42:00.
+     I can make it a full update since I know the previous state.
+  */
+  date = LN_DATE(1996, 3, 28, 10, 42, 0.0);
 
   JD = ln_get_julian_day(&date);
 
@@ -147,13 +137,7 @@ int hyp_future_rst_test(void) {
   orbit.omega = ln_deg_to_rad(267.414398193359);
   orbit.JD = 2454113.251;
 
-  date.years = 2007;
-  date.months = 1;
-  date.days = 17;
-
-  date.hours = 12;
-  date.minutes = 0;
-  date.seconds = 0.0;
+  date = LN_DATE(2007, 1, 17, 12, 0, 0.0);
 
   JD = ln_get_julian_day(&date);
 
@@ -177,12 +161,7 @@ int body_future_rst_test(void) {
   observer.lng = ln_deg_to_rad(0.0);
   observer.lat = ln_deg_to_rad(85.0);
 
-  date.years = 2006;
-  date.months = 1;
-  date.days = 1;
-
-  date.hours = date.minutes = 0;
-  date.seconds = 0.0;
+  date = LN_DATE(2006, 1, 1, 0, 0, 0.0);
 
   JD = ln_get_julian_day(&date);
 

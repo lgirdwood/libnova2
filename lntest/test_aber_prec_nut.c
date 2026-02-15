@@ -14,12 +14,7 @@ int aber_prec_nut_test(void) {
 
   int failed = 0;
 
-  date.years = 2028;
-  date.months = 11;
-  date.days = 13;
-  date.hours = 4;
-  date.minutes = 33;
-  date.seconds = 36;
+  date = LN_DATE(2028, 11, 13, 4, 33, 36);
 
   JD = ln_get_julian_day(&date);
 

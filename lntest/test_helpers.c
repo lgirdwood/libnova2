@@ -85,7 +85,7 @@ int test_result_dms(char *test, double calc, double expect, double tolerance)
 	double diff;
 	struct ln_dms dms_calc, dms_expect, dms_diff;
 
-	fprintf(stdout, "TEST1 %s....", test);
+	fprintf(stdout, "TEST %s....", test);
 
 	test_number++;
 
@@ -96,14 +96,15 @@ int test_result_dms(char *test, double calc, double expect, double tolerance)
 		ln_deg_to_dms(diff, &dms_diff);
 
 		fprintf(stdout, "[FAILED]\n");
-		fprintf(stdout, "	Expected %d %d %f but calculated %d %d %f. Error %d %d %f\n\n", dms_expect.degrees,
-				dms_expect.minutes, dms_expect.seconds, dms_calc.degrees, dms_calc.minutes, dms_calc.seconds,
-				dms_diff.degrees, dms_diff.minutes, dms_diff.seconds);
+		fprintf(stdout,
+				"	Expected %d\xc2\xb0%d\'%f\" but calculated %d\xc2\xb0%d\'%f\". Error %d\xc2\xb0%d\'%f\"\n\n",
+				dms_expect.degrees, dms_expect.minutes, dms_expect.seconds, dms_calc.degrees, dms_calc.minutes,
+				dms_calc.seconds, dms_diff.degrees, dms_diff.minutes, dms_diff.seconds);
 		return 1;
 	} else {
 		ln_deg_to_dms(calc, &dms_calc);
 		fprintf(stdout, "[PASSED]\n");
-		fprintf(stdout, "	Expected and calculated %d %d %f.\n\n", dms_calc.degrees, dms_calc.minutes,
+		fprintf(stdout, "\tExpected and calculated %d\xc2\xb0%d\'%f\".\n\n", dms_calc.degrees, dms_calc.minutes,
 				dms_calc.seconds);
 		return 0;
 	}

@@ -320,6 +320,18 @@ struct ln_hyp_orbit {
 	double JD; /*!< Time of last passage in Perihelion, in julian day*/
 };
 
+/*
+ * \def LN_HYP_ORBIT_DEG
+ * \brief Macro to initialize a ln_hyp_orbit structure with angles in degrees
+ */
+#define LN_HYP_ORBIT_DEG(_q, _e, _i, _w, _omega, _JD)             \
+	((struct ln_hyp_orbit){ .q = (_q),                            \
+							.e = (_e),                            \
+							.i = ((_i) * (M_PI / 180.0)),         \
+							.w = ((_w) * (M_PI / 180.0)),         \
+							.omega = ((_omega) * (M_PI / 180.0)), \
+							.JD = (_JD) })
+
 /*!
  * \struct ln_rst_time
  * \brief Rise, Set and Transit times.

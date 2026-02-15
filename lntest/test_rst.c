@@ -116,12 +116,8 @@ int hyp_future_rst_test(void)
 
 	/* C/2006 P1 (McNaught) */
 
-	orbit.q = 0.170742005109787;
-	orbit.e = 1.00001895427704;
-	orbit.i = ln_deg_to_rad(77.8348999023438);
-	orbit.w = ln_deg_to_rad(155.977096557617);
-	orbit.omega = ln_deg_to_rad(267.414398193359);
-	orbit.JD = 2454113.251;
+	orbit = LN_HYP_ORBIT_DEG(0.170742005109787, 1.00001895427704, 77.8348999023438, 155.977096557617, 267.414398193359,
+							 2454113.251);
 
 	date = LN_DATE(2007, 1, 17, 12, 0, 0.0);
 

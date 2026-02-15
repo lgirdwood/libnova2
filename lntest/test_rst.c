@@ -85,9 +85,9 @@ int ell_rst_test(void) {
   orbit.JD += 0.39481;
   orbit.a = 1014.2022026431;
   orbit.e = 0.9997730;
-  orbit.i = 124.92379;
-  orbit.omega = 188.04546;
-  orbit.w = 130.17654;
+  orbit.i = ln_deg_to_rad(124.92379);
+  orbit.omega = ln_deg_to_rad(188.04546);
+  orbit.w = ln_deg_to_rad(130.17654);
   orbit.n = 0.0;
 
   date.years = 1996;
@@ -100,10 +100,10 @@ int ell_rst_test(void) {
   JD = ln_get_julian_day(&date);
 
   ln_get_ell_body_equ_coords(JD, &orbit, &pos);
-  failed += test_result("(RA) for Hyakutake 1996/03/28 00:00", pos.ra, 220.8554,
-                        0.001);
+  failed += test_result("(RA) for Hyakutake 1996/03/28 00:00", pos.ra,
+                        ln_deg_to_rad(220.8554), 0.001);
   failed += test_result("(Dec) for Hyakutake 1996/03/28 00:00", pos.dec,
-                        36.5341, 0.001);
+                        ln_deg_to_rad(36.5341), 0.001);
 
   date.days = 28;
 
@@ -113,10 +113,10 @@ int ell_rst_test(void) {
   JD = ln_get_julian_day(&date);
 
   ln_get_ell_body_equ_coords(JD, &orbit, &pos);
-  failed += test_result("(RA) for Hyakutake 1996/03/28 10:42", pos.ra, 56.2140,
-                        0.001);
+  failed += test_result("(RA) for Hyakutake 1996/03/28 10:42", pos.ra,
+                        ln_deg_to_rad(56.2140), 0.001);
   failed += test_result("(Dec) for Hyakutake 1996/03/28 10:42", pos.dec,
-                        75.4925, 0.001);
+                        ln_deg_to_rad(75.4925), 0.001);
 
   ret = ln_get_ell_body_rst(JD, &observer, &orbit, &rst);
   if (!ret) {
@@ -165,9 +165,9 @@ int hyp_future_rst_test(void) {
 
   orbit.q = 0.170742005109787;
   orbit.e = 1.00001895427704;
-  orbit.i = 77.8348999023438;
-  orbit.w = 155.977096557617;
-  orbit.omega = 267.414398193359;
+  orbit.i = ln_deg_to_rad(77.8348999023438);
+  orbit.w = ln_deg_to_rad(155.977096557617);
+  orbit.omega = ln_deg_to_rad(267.414398193359);
   orbit.JD = 2454113.251;
 
   date.years = 2007;

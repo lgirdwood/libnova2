@@ -110,6 +110,35 @@ int test_result_dms(char *test, double calc, double expect, double tolerance)
 	}
 }
 
+int test_result_hms(char *test, double calc, double expect, double tolerance)
+{
+	double diff;
+	struct ln_hms hms_calc, hms_expect, hms_diff;
+
+	fprintf(stdout, "TEST %s....", test);
+
+	test_number++;
+
+	diff = compare_results(calc, expect, tolerance);
+	if (diff != 0.0) {
+		ln_deg_to_hms(calc * 15.0, &hms_calc);
+		ln_deg_to_hms(expect * 15.0, &hms_expect);
+		ln_deg_to_hms(diff * 15.0, &hms_diff);
+
+		fprintf(stdout, "[FAILED]\n");
+		fprintf(stdout, "	Expected %dh %dm %fs but calculated %dh %dm %fs. Error %dh %dm %fs\n\n", hms_expect.hours,
+				hms_expect.minutes, hms_expect.seconds, hms_calc.hours, hms_calc.minutes, hms_calc.seconds,
+				hms_diff.hours, hms_diff.minutes, hms_diff.seconds);
+		return 1;
+	} else {
+		ln_deg_to_hms(calc * 15.0, &hms_calc);
+		fprintf(stdout, "[PASSED]\n");
+		fprintf(stdout, "\tExpected and calculated %dh %dm %fs.\n\n", hms_calc.hours, hms_calc.minutes,
+				hms_calc.seconds);
+		return 0;
+	}
+}
+
 int test_str_result(char *test, const char *calc, const char *expect)
 {
 	int diff;

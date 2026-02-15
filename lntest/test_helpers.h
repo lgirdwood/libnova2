@@ -13,6 +13,8 @@ int test_result(char *test, double calc, double expect, double tolerance);
 
 int test_result_dms(char *test, double calc, double expect, double tolerance);
 
+int test_result_hms(char *test, double calc, double expect, double tolerance);
+
 int test_str_result(char *test, const char *calc, const char *expect);
 
 extern int test_number;

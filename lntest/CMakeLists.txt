@@ -13,7 +13,16 @@ add_executable(libnova_test_exec
     test_precession.c
     test_apparent_position.c
     test_vsop87.c
-    test_planetary.c
+    test_vsop87.c
+    test_mercury.c
+    test_venus.c
+    test_earth.c
+    test_mars.c
+    test_jupiter.c
+    test_saturn.c
+    test_uranus.c
+    test_neptune.c
+    test_pluto.c
     test_lunar.c
     test_elliptic_motion.c
     test_parabolic_motion.c
@@ -33,7 +42,18 @@ if(UNIX)
     target_link_libraries(libnova_test_exec PRIVATE m)
 endif()
 
-add_executable(libnova_test_old test.c)
+add_executable(libnova_test_old test.c
+    test_helpers.c
+    test_mercury.c
+    test_venus.c
+    test_earth.c
+    test_mars.c
+    test_jupiter.c
+    test_saturn.c
+    test_uranus.c
+    test_neptune.c
+    test_pluto.c
+)
 target_link_libraries(libnova_test_old PRIVATE nova PRIVATE m)
 
 if(WIN32)

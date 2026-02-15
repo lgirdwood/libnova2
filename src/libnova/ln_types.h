@@ -35,8 +35,7 @@
 extern "C" {
 #endif
 
-#if defined(_MSC_VER) || defined(__CYGWIN__) || defined(__MINGW32__) ||        \
-    defined(__BCPLUSPLUS__) || defined(__MWERKS__)
+#if defined(_MSC_VER) || defined(__CYGWIN__) || defined(__MINGW32__) || defined(__BCPLUSPLUS__) || defined(__MWERKS__)
 #if defined(LIBNOVA_STATIC)
 #define LIBNOVA_EXPORT
 #elif defined(LIBNOVA_SHARED)
@@ -77,25 +76,20 @@ extern "C" {
 */
 
 struct ln_date {
-  int years;      /*!< Years. All values are valid */
-  int months;     /*!< Months. Valid values : 1 (January) - 12 (December) */
-  int days;       /*!< Days. Valid values 1 - 28,29,30,31 Depends on month.*/
-  int hours;      /*!< Hours. Valid values 0 - 23. */
-  int minutes;    /*!< Minutes. Valid values 0 - 59. */
-  double seconds; /*!< Seconds. Valid values 0 - 59.99999.... */
+	int years; /*!< Years. All values are valid */
+	int months; /*!< Months. Valid values : 1 (January) - 12 (December) */
+	int days; /*!< Days. Valid values 1 - 28,29,30,31 Depends on month.*/
+	int hours; /*!< Hours. Valid values 0 - 23. */
+	int minutes; /*!< Minutes. Valid values 0 - 59. */
+	double seconds; /*!< Seconds. Valid values 0 - 59.99999.... */
 };
 
 /*
  * \def LN_DATE
  * \brief Macro to initialize a ln_date structure
  */
-#define LN_DATE(y, m, d, h, min, s)                                            \
-  ((struct ln_date){.years = (y),                                              \
-                    .months = (m),                                             \
-                    .days = (d),                                               \
-                    .hours = (h),                                              \
-                    .minutes = (min),                                          \
-                    .seconds = (s)})
+#define LN_DATE(y, m, d, h, min, s) \
+	((struct ln_date){ .years = (y), .months = (m), .days = (d), .hours = (h), .minutes = (min), .seconds = (s) })
 
 /*!
 ** Zone date
@@ -108,13 +102,13 @@ struct ln_date {
 */
 
 struct ln_zonedate {
-  int years;      /*!< Years. All values are valid */
-  int months;     /*!< Months. Valid values : 1 (January) - 12 (December) */
-  int days;       /*!< Days. Valid values 1 - 28,29,30,31 Depends on month.*/
-  int hours;      /*!< Hours. Valid values 0 - 23. */
-  int minutes;    /*!< Minutes. Valid values 0 - 59. */
-  double seconds; /*!< Seconds. Valid values 0 - 59.99999.... */
-  long gmtoff; /*!< Timezone offset. Seconds east of UTC. Valid values 0..86400
+	int years; /*!< Years. All values are valid */
+	int months; /*!< Months. Valid values : 1 (January) - 12 (December) */
+	int days; /*!< Days. Valid values 1 - 28,29,30,31 Depends on month.*/
+	int hours; /*!< Hours. Valid values 0 - 23. */
+	int minutes; /*!< Minutes. Valid values 0 - 59. */
+	double seconds; /*!< Seconds. Valid values 0 - 59.99999.... */
+	long gmtoff; /*!< Timezone offset. Seconds east of UTC. Valid values 0..86400
                 */
 };
 
@@ -125,10 +119,10 @@ struct ln_zonedate {
 */
 
 struct ln_dms {
-  unsigned short neg;     /*!< Non zero if negative */
-  unsigned short degrees; /*!< Degrees. Valid 0 - 360 */
-  unsigned short minutes; /*!< Minutes. Valid 0 - 59 */
-  double seconds;         /*!< Seconds. Valid 0 - 59.9999... */
+	unsigned short neg; /*!< Non zero if negative */
+	unsigned short degrees; /*!< Degrees. Valid 0 - 360 */
+	unsigned short minutes; /*!< Minutes. Valid 0 - 59 */
+	double seconds; /*!< Seconds. Valid 0 - 59.9999... */
 };
 
 /*! \struct ln_hms
@@ -138,9 +132,9 @@ struct ln_dms {
 */
 
 struct ln_hms {
-  unsigned short hours;   /*!< Hours. Valid 0 - 23 */
-  unsigned short minutes; /*!< Minutes. Valid 0 - 59 */
-  double seconds;         /*!< Seconds. Valid 0 - 59.9999... */
+	unsigned short hours; /*!< Hours. Valid 0 - 23 */
+	unsigned short minutes; /*!< Minutes. Valid 0 - 59 */
+	double seconds; /*!< Seconds. Valid 0 - 59.9999... */
 };
 
 /*! \struct lnh_equ_posn
@@ -150,8 +144,8 @@ struct ln_hms {
 */
 
 struct lnh_equ_posn {
-  struct ln_hms ra;  /*!< RA. Object right ascension.*/
-  struct ln_dms dec; /*!< DEC. Object declination */
+	struct ln_hms ra; /*!< RA. Object right ascension.*/
+	struct ln_dms dec; /*!< DEC. Object declination */
 };
 
 /*! \struct lnh_hrz_posn
@@ -161,8 +155,8 @@ struct lnh_equ_posn {
 */
 
 struct lnh_hrz_posn {
-  struct ln_dms az;  /*!< AZ. Object azimuth. */
-  struct ln_dms alt; /*!< ALT. Object altitude. */
+	struct ln_dms az; /*!< AZ. Object azimuth. */
+	struct ln_dms alt; /*!< ALT. Object altitude. */
 };
 
 /*! \struct lnh_lnlat_posn
@@ -172,8 +166,8 @@ struct lnh_hrz_posn {
 */
 
 struct lnh_lnlat_posn {
-  struct ln_dms lng; /*!< longitude. Object longitude.*/
-  struct ln_dms lat; /*!< latitude. Object latitude */
+	struct ln_dms lng; /*!< longitude. Object longitude.*/
+	struct ln_dms lat; /*!< latitude. Object latitude */
 };
 
 /*! \struct ln_equ_posn
@@ -185,8 +179,8 @@ struct lnh_lnlat_posn {
 */
 
 struct ln_equ_posn {
-  double ra;  /*!< RA. Object right ascension in radians.*/
-  double dec; /*!< DEC. Object declination in radians */
+	double ra; /*!< RA. Object right ascension in radians.*/
+	double dec; /*!< DEC. Object declination in radians */
 };
 
 /*! \struct ln_hrz_posn
@@ -198,9 +192,9 @@ struct ln_equ_posn {
 */
 
 struct ln_hrz_posn {
-  double az;  /*!< AZ. Object azimuth in radians. <p>
+	double az; /*!< AZ. Object azimuth in radians. <p>
                 0 = South, PI/2 = West, PI = North, 3PI/2 = East */
-  double alt; /*!< ALT. Object altitude in radians. <p> 0 = horizon, PI/2 =
+	double alt; /*!< ALT. Object altitude in radians. <p> 0 = horizon, PI/2 =
                  zenith, -PI/2 = nadir */
 };
 
@@ -213,8 +207,8 @@ struct ln_hrz_posn {
 */
 
 struct ln_lnlat_posn {
-  double lng; /*!< longitude. Object longitude in radians. */
-  double lat; /*!< latitude. Object latitude in radians. */
+	double lng; /*!< longitude. Object longitude in radians. */
+	double lat; /*!< latitude. Object latitude in radians. */
 };
 
 /*! \struct ln_helio_posn
@@ -227,9 +221,9 @@ struct ln_lnlat_posn {
  * Radius vector is in AU.
  */
 struct ln_helio_posn {
-  double L; /*!< Heliocentric longitude in radians */
-  double B; /*!< Heliocentric latitude in radians */
-  double R; /*!< Heliocentric radius vector */
+	double L; /*!< Heliocentric longitude in radians */
+	double B; /*!< Heliocentric latitude in radians */
+	double R; /*!< Heliocentric radius vector */
 };
 
 /*! \struct ln_rect_posn
@@ -247,9 +241,9 @@ struct ln_helio_posn {
  * for the Moon.
  */
 struct ln_rect_posn {
-  double X; /*!< Rectangular X coordinate */
-  double Y; /*!< Rectangular Y coordinate */
-  double Z; /*!< Rectangular Z coordinate */
+	double X; /*!< Rectangular X coordinate */
+	double Y; /*!< Rectangular Y coordinate */
+	double Z; /*!< Rectangular Z coordinate */
 };
 
 /*!
@@ -261,8 +255,8 @@ struct ln_rect_posn {
  * Angles are expressed in radians.
  */
 struct ln_gal_posn {
-  double l; /*!< Galactic longitude (radians) */
-  double b; /*!< Galactic latitude (radians) */
+	double l; /*!< Galactic longitude (radians) */
+	double b; /*!< Galactic latitude (radians) */
 };
 
 /*!
@@ -273,14 +267,27 @@ struct ln_gal_posn {
  * Angles are expressed in radians.
  */
 struct ln_ell_orbit {
-  double a;     /*!< Semi major axis, in AU */
-  double e;     /*!< Eccentricity */
-  double i;     /*!< Inclination in radians */
-  double w;     /*!< Argument of perihelion in radians */
-  double omega; /*!< Longitude of ascending node in radians*/
-  double n;     /*!< Mean motion, in degrees/day */
-  double JD;    /*!< Time of last passage in Perihelion, in julian day*/
+	double a; /*!< Semi major axis, in AU */
+	double e; /*!< Eccentricity */
+	double i; /*!< Inclination in radians */
+	double w; /*!< Argument of perihelion in radians */
+	double omega; /*!< Longitude of ascending node in radians*/
+	double n; /*!< Mean motion, in degrees/day */
+	double JD; /*!< Time of last passage in Perihelion, in julian day*/
 };
+
+/*
+ * \def LN_ELL_ORBIT_DEG
+ * \brief Macro to initialize a ln_ell_orbit structure with angles in degrees
+ */
+#define LN_ELL_ORBIT_DEG(_a, _e, _i, _w, _omega, _n, _JD)         \
+	((struct ln_ell_orbit){ .a = (_a),                            \
+							.e = (_e),                            \
+							.i = ((_i) * (M_PI / 180.0)),         \
+							.w = ((_w) * (M_PI / 180.0)),         \
+							.omega = ((_omega) * (M_PI / 180.0)), \
+							.n = ((_n) * (M_PI / 180.0)),         \
+							.JD = (_JD) })
 
 /*!
  * \struct ln_par_orbit
@@ -290,11 +297,11 @@ struct ln_ell_orbit {
  * Angles are expressed in radians.
  */
 struct ln_par_orbit {
-  double q;     /*!< Perihelion distance in AU */
-  double i;     /*!< Inclination in radians */
-  double w;     /*!< Argument of perihelion in radians */
-  double omega; /*!< Longitude of ascending node in radians*/
-  double JD;    /*!< Time of last passage in Perihelion, in julian day */
+	double q; /*!< Perihelion distance in AU */
+	double i; /*!< Inclination in radians */
+	double w; /*!< Argument of perihelion in radians */
+	double omega; /*!< Longitude of ascending node in radians*/
+	double JD; /*!< Time of last passage in Perihelion, in julian day */
 };
 
 /*!
@@ -305,12 +312,12 @@ struct ln_par_orbit {
  * Angles are expressed in radians.
  */
 struct ln_hyp_orbit {
-  double q;     /*!< Perihelion distance in AU */
-  double e;     /*!< Eccentricity */
-  double i;     /*!< Inclination in radians */
-  double w;     /*!< Argument of perihelion in radians */
-  double omega; /*!< Longitude of ascending node in radians*/
-  double JD;    /*!< Time of last passage in Perihelion, in julian day*/
+	double q; /*!< Perihelion distance in AU */
+	double e; /*!< Eccentricity */
+	double i; /*!< Inclination in radians */
+	double w; /*!< Argument of perihelion in radians */
+	double omega; /*!< Longitude of ascending node in radians*/
+	double JD; /*!< Time of last passage in Perihelion, in julian day*/
 };
 
 /*!
@@ -321,9 +328,9 @@ struct ln_hyp_orbit {
  *
  */
 struct ln_rst_time {
-  double rise;    /*!< Rise time in JD */
-  double set;     /*!< Set time in JD */
-  double transit; /*!< Transit time in JD */
+	double rise; /*!< Rise time in JD */
+	double set; /*!< Set time in JD */
+	double transit; /*!< Transit time in JD */
 };
 
 /*!
@@ -335,9 +342,9 @@ struct ln_rst_time {
  * Angles are expressed in radians.
  */
 struct ln_nutation {
-  double longitude; /*!< Nutation in longitude, in radians */
-  double obliquity; /*!< Nutation in obliquity, in radians */
-  double ecliptic;  /*!< Mean obliquity of the ecliptic, in radians */
+	double longitude; /*!< Nutation in longitude, in radians */
+	double obliquity; /*!< Nutation in obliquity, in radians */
+	double ecliptic; /*!< Mean obliquity of the ecliptic, in radians */
 };
 
 #if defined(__WIN32__) && !defined(__MINGW__)
@@ -345,13 +352,13 @@ struct ln_nutation {
 #include <time.h>
 
 struct timeval {
-  time_t tv_sec; /* count of seconds since Jan. 1, 1970 */
-  long tv_usec;  /* and microseconds */
+	time_t tv_sec; /* count of seconds since Jan. 1, 1970 */
+	long tv_usec; /* and microseconds */
 };
 
 struct timezone {
-  int tz_minuteswest; /* Minutes west of GMT */
-  int tz_dsttime;     /* DST correction offset */
+	int tz_minuteswest; /* Minutes west of GMT */
+	int tz_dsttime; /* DST correction offset */
 };
 
 #endif /* __WIN32__ */

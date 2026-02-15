@@ -72,7 +72,7 @@ double ln_get_apparent_sidereal_time(double JD) {
   correction = (nutation.longitude * cos(nutation.obliquity));
 
   /* convert radians to hours */
-  correction = ln_rad_to_deg(correction) / 15.0;
+  correction = LN_R2D(correction) / 15.0;
 
   sidereal += correction;
 

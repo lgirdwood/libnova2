@@ -48,8 +48,8 @@ int elliptic_motion_test(void)
 	failed += test_result("(Heliocentric Rect Coords Z) for comet Enckle   ", posn.Z, 0.35716517, 0.00000001);
 
 	ln_get_ell_body_equ_coords(o_JD, &orbit, &equ_posn);
-	failed += test_result("(RA) for comet Enckle   ", ln_rad_to_deg(equ_posn.ra), 158.58060390, 0.00000001);
-	failed += test_result("(Dec) for comet Enckle   ", ln_rad_to_deg(equ_posn.dec), 19.13851393, 0.00000001);
+	failed += test_result("(RA) for comet Enckle   ", LN_R2D(equ_posn.ra), 158.58060390, 0.00000001);
+	failed += test_result("(Dec) for comet Enckle   ", LN_R2D(equ_posn.dec), 19.13851393, 0.00000001);
 
 	l = ln_get_ell_orbit_len(&orbit);
 	failed += test_result("(Orbit Length) for comet Enckle in AU   ", l, 10.85028112, 0.00000001);
@@ -86,8 +86,8 @@ int elliptic_motion_test(void)
 	orbit.JD -= LN_D2R(147.09926) / orbit.n;
 
 	ln_get_ell_body_equ_coords(o_JD, &orbit, &equ_posn);
-	failed += test_result("(RA) for TNO K05F09Y   ", ln_rad_to_deg(equ_posn.ra), 184.3699999995, 0.001);
-	failed += test_result("(Dec) for TNO K05F09Y  ", ln_rad_to_deg(equ_posn.dec), 30.3316666666, 0.001);
+	failed += test_result("(RA) for TNO K05F09Y   ", LN_R2D(equ_posn.ra), 184.3699999995, 0.001);
+	failed += test_result("(Dec) for TNO K05F09Y  ", LN_R2D(equ_posn.dec), 30.3316666666, 0.001);
 
 	return failed;
 }

@@ -16,9 +16,9 @@ int vsop87_test(void) {
 
   ln_get_solar_equ_coords(JD, &equ);
   failed += test_result("(Solar Position) RA on JD 2448976.5  ",
-                        ln_rad_to_deg(equ.ra), 268.30941158, 0.00000001);
+                        LN_R2D(equ.ra), 268.30941158, 0.00000001);
   failed += test_result("(Solar Position) DEC on JD 2448976.5  ",
-                        ln_rad_to_deg(equ.dec), -23.42585297, 0.00000001);
+                        LN_R2D(equ.dec), -23.42585297, 0.00000001);
 
   ln_get_mercury_helio_coords(JD, &pos);
   printf("Mercury L %f B %f R %f\n", pos.L, pos.B, pos.R);

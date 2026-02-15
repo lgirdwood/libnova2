@@ -68,7 +68,7 @@ ln_lunar_next_phase
 ln_lunar_previous_apsis
 ln_lunar_previous_node
 ln_lunar_previous_phase
-ln_rad_to_deg
+LN_R2D
 ln_range_degrees
 ln_range_radians
 ln_range_radians2

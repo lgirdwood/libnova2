@@ -51,9 +51,9 @@ int parabolic_motion_test(void)
 						  0.00000001);
 
 	ln_get_par_body_equ_coords(o_JD, &orbit, &equ_posn);
-	failed += test_result("(RA) for comet C/2002 X5 (Kudo-Fujikawa)   ", ln_rad_to_deg(equ_posn.ra), 287.79459742,
+	failed += test_result("(RA) for comet C/2002 X5 (Kudo-Fujikawa)   ", LN_R2D(equ_posn.ra), 287.79459742,
 						  0.00000001);
-	failed += test_result("(Dec) for comet C/2002 X5 (Kudo-Fujikawa)   ", ln_rad_to_deg(equ_posn.dec), 14.11891688,
+	failed += test_result("(Dec) for comet C/2002 X5 (Kudo-Fujikawa)   ", LN_R2D(equ_posn.dec), 14.11891688,
 						  0.00000001);
 
 	dist = ln_get_par_body_solar_dist(o_JD, &orbit);

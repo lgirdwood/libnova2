@@ -60,6 +60,7 @@ extern "C" {
 
 /* Degree to Radian conversion */
 #define LN_D2R(d) ((d) * (M_PI / 180.0))
+#define LN_R2D(r) ((r) * (180.0 / M_PI))
 
 /* 1.1.2000 Julian Day & others */
 #define JD2000 2451545.0

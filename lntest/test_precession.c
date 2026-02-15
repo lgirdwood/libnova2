@@ -33,31 +33,31 @@ int precession_test(void) {
   ln_get_equ_pm(&object, &pm, JD, &object);
 
   failed += test_result("(Proper motion) RA on JD 2462088.69  ",
-                        ln_rad_to_deg(object.ra), 41.05021630, 0.00001);
+                        LN_R2D(object.ra), 41.05021630, 0.00001);
   failed += test_result("(Proper motion) DEC on JD 2462088.69  ",
-                        ln_rad_to_deg(object.dec), 49.227750, 0.00001);
+                        LN_R2D(object.dec), 49.227750, 0.00001);
 
   ln_get_equ_prec(&object, JD, &pos);
   failed += test_result("(Precession) RA on JD 2462088.69  ",
-                        ln_rad_to_deg(pos.ra), 41.54333349, 0.00003);
+                        LN_R2D(pos.ra), 41.54333349, 0.00003);
   failed += test_result("(Precession) DEC on JD 2462088.69  ",
-                        ln_rad_to_deg(pos.dec), 49.34849687, 0.00001);
+                        LN_R2D(pos.dec), 49.34849687, 0.00001);
 
   ln_get_equ_prec2(&object, JD2000, JD, &pos);
 
   failed += test_result("(Precession 2) RA on JD 2462088.69  ",
-                        ln_rad_to_deg(pos.ra), 41.54333349, 0.00001);
+                        LN_R2D(pos.ra), 41.54333349, 0.00001);
   failed += test_result("(Precession 2) DEC on JD 2462088.69  ",
-                        ln_rad_to_deg(pos.dec), 49.34849687, 0.00001);
+                        LN_R2D(pos.dec), 49.34849687, 0.00001);
 
   ln_get_equ_prec2(&pos, JD, JD2000, &pos2);
 
   failed +=
-      test_result("(Precession 2) RA on JD 2451545.0  ", ln_rad_to_deg(pos2.ra),
-                  ln_rad_to_deg(object.ra), 0.00001);
+      test_result("(Precession 2) RA on JD 2451545.0  ", LN_R2D(pos2.ra),
+                  LN_R2D(object.ra), 0.00001);
   failed +=
       test_result("(Precession 2) DEC on JD 2451545.0  ",
-                  ln_rad_to_deg(pos2.dec), ln_rad_to_deg(object.dec), 0.00001);
+                  LN_R2D(pos2.dec), LN_R2D(object.dec), 0.00001);
 
   // INTEGRAL GRB050922A coordinates lead to RA not in <0-360> range
   pos.ra = LN_D2R(271.2473);
@@ -70,9 +70,9 @@ int precession_test(void) {
   ln_get_equ_prec2(&pos, JD, JD2000, &pos2);
 
   failed += test_result("(Precession 2) RA on JD 2451545.0  ",
-                        ln_rad_to_deg(pos2.ra), 271.1541, 0.0002);
+                        LN_R2D(pos2.ra), 271.1541, 0.0002);
   failed += test_result("(Precession 2) DEC on JD 2451545.0  ",
-                        ln_rad_to_deg(pos2.dec), -32.0235, 0.0002);
+                        LN_R2D(pos2.dec), -32.0235, 0.0002);
 
   // second test from AA, p. 128
   hobject.ra.hours = 2;
@@ -98,19 +98,19 @@ int precession_test(void) {
   // I checked results agains SLAlib on-line calculator and SLAlib performs
   // even worse then we
 
-  failed += test_result("(Precession 2) RA on B1900  ", ln_rad_to_deg(pos2.ra),
+  failed += test_result("(Precession 2) RA on B1900  ", LN_R2D(pos2.ra),
                         20.68729628, 0.002);
   failed += test_result("(Precession 2) DEC on B1900  ",
-                        ln_rad_to_deg(pos2.dec), 88.77431170, 0.0001);
+                        LN_R2D(pos2.dec), 88.77431170, 0.0001);
 
   ln_get_equ_pm(&object, &pm, JD2050, &pos);
 
   ln_get_equ_prec2(&pos, JD2000, JD2050, &pos2);
 
-  failed += test_result("(Precession 2) RA on J2050  ", ln_rad_to_deg(pos2.ra),
+  failed += test_result("(Precession 2) RA on J2050  ", LN_R2D(pos2.ra),
                         57.02160084, 0.003);
   failed += test_result("(Precession 2) DEC on J2050  ",
-                        ln_rad_to_deg(pos2.dec), 89.45444522, 0.0001);
+                        LN_R2D(pos2.dec), 89.45444522, 0.0001);
 
   return failed;
 }

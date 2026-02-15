@@ -42,7 +42,7 @@ int utility_conversion_test(void)
 	failed += test_result("(Utility) deg_to_rad 180", res, M_PI, 1e-6);
 
 	val = M_PI;
-	res = ln_rad_to_deg(val);
+	res = LN_R2D(val);
 	failed += test_result("(Utility) rad_to_deg PI", res, 180.0, 1e-6);
 
 	/* Range functions */
@@ -70,8 +70,8 @@ int utility_conversion_test(void)
 	hlnlat.lng.degrees = 100; hlnlat.lng.minutes = 0; hlnlat.lng.seconds = 0; hlnlat.lng.neg = 0;
 	hlnlat.lat.degrees = 50; hlnlat.lat.minutes = 0; hlnlat.lat.seconds = 0; hlnlat.lat.neg = 0;
 	ln_hlnlat_to_lnlat(&hlnlat, &lnlat);
-	failed += test_result("(Utility) hlnlat_to_lnlat lng", ln_rad_to_deg(lnlat.lng), 100.0, 1e-6);
-	failed += test_result("(Utility) hlnlat_to_lnlat lat", ln_rad_to_deg(lnlat.lat), 50.0, 1e-6);
+	failed += test_result("(Utility) hlnlat_to_lnlat lng", LN_R2D(lnlat.lng), 100.0, 1e-6);
+	failed += test_result("(Utility) hlnlat_to_lnlat lat", LN_R2D(lnlat.lat), 50.0, 1e-6);
 
 	/* hrz to nswe */
 	/* 0=N, 90=E? No, 0=S? */

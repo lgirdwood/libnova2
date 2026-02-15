@@ -30,9 +30,9 @@ int aberration_test(void) {
 
   ln_hequ_to_equ(&hobject, &object);
   ln_get_equ_aber(&object, JD, &pos);
-  failed += test_result("(Aberration) RA  ", ln_rad_to_deg(pos.ra), 41.06238352,
+  failed += test_result("(Aberration) RA  ", LN_R2D(pos.ra), 41.06238352,
                         0.00000001);
-  failed += test_result("(Aberration) DEC  ", ln_rad_to_deg(pos.dec),
+  failed += test_result("(Aberration) DEC  ", LN_R2D(pos.dec),
                         49.22962359, 0.00000001);
   return failed;
 }

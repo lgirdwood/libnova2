@@ -83,9 +83,10 @@ const char *ln_get_version(void)
 }
 
 /* convert radians to degrees */
+/* convert radians to degrees */
 double ln_rad_to_deg(double radians)
 {
-	return (radians * R2D);
+	return LN_R2D(radians);
 }
 
 /* convert degrees to radians */
@@ -153,7 +154,7 @@ void ln_rad_to_hms(double radians, struct ln_hms *hms)
 	double degrees;
 
 	radians = ln_range_radians(radians);
-	degrees = ln_rad_to_deg(radians);
+	degrees = LN_R2D(radians);
 
 	ln_deg_to_hms(degrees, hms);
 }
@@ -224,7 +225,7 @@ void ln_deg_to_dms(double degrees, struct ln_dms *dms)
 /* convert radians to dms */
 void ln_rad_to_dms(double radians, struct ln_dms *dms)
 {
-	double degrees = ln_rad_to_deg(radians);
+	double degrees = LN_R2D(radians);
 
 	ln_deg_to_dms(degrees, dms);
 }
@@ -385,7 +386,7 @@ const char *ln_hrz_to_nswe(struct ln_hrz_posn *pos)
 	const char *directions[] = { "S", "SSW", "SW", "SWW", "W", "NWW", "NW", "NNW",
 								 "N", "NNE", "NE", "NEE", "E", "SEE", "SE", "SSE" };
 
-	return directions[(int)(ln_rad_to_deg(pos->az) / 22.5)];
+	return directions[(int)(LN_R2D(pos->az) / 22.5)];
 }
 
 /*! \fn void ln_hlnlat_to_lnlat(struct lnh_lnlat_posn *hpos, struct

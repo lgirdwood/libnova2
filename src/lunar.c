@@ -1045,7 +1045,7 @@ static double lunar_phase(double jd, double *arg)
 	ln_get_lunar_ecl_coords(jd, &moon, 0);
 	ln_get_solar_geom_coords(jd, &sol);
 
-	phase = fmod((ln_rad_to_deg(moon.lng - sol.L))
+	phase = fmod((LN_R2D(moon.lng - sol.L))
 		+ 3.0 * M_PI - arg[0], 2.0 * M_PI) - M_PI;
 
 	return phase;

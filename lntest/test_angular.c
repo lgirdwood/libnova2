@@ -27,11 +27,11 @@ int angular_test(void) {
 
   res = ln_get_angular_separation(&pos1, &pos2);
   failed += test_result("(Angular) Separation of Arcturus and Spica  ",
-                        ln_rad_to_deg(res), 32.7930, 0.001);
+                        LN_R2D(res), 32.7930, 0.001);
 
   res = ln_get_rel_posn_angle(&pos1, &pos2);
   failed += test_result("(Angular) Position Angle of Arcturus and Spica  ",
-                        ln_rad_to_deg(res), 22.3927,
+                        LN_R2D(res), 22.3927,
                         0.001); // Precision adjustment from 318.xx?
 
   return failed;

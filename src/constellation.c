@@ -1573,8 +1573,8 @@ const char* ln_get_constellation(struct ln_equ_posn *position)
 	double ra, dec;
 	
 	/* convert to degrees */
-	ra = ln_rad_to_deg(position->ra);
-	dec = ln_rad_to_deg(position->dec);
+	ra = LN_R2D(position->ra);
+	dec = LN_R2D(position->dec);
 
 	if((ra >= 0) || (ra < 360) || (dec >= -90) || (dec <= 90))
 	{

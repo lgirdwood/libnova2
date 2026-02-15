@@ -28,10 +28,10 @@ int parallax_test(void) {
 
   failed += test_result(
       "Mars RA parallax for Palomar observatory at 2003/08/28 3:17 UT ",
-      ln_rad_to_deg(parallax.ra), 0.00152849, 0.0001);
+      LN_R2D(parallax.ra), 0.00152849, 0.0001);
   failed += test_result(
       "Mars DEC parallax for Palomar observatory at 2003/08/28 3:17 UT ",
-      ln_rad_to_deg(parallax.dec), -0.00614280, 0.0001);
+      LN_R2D(parallax.dec), -0.00614280, 0.0001);
 
   return failed;
 }

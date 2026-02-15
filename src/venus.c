@@ -2111,7 +2111,7 @@ double ln_get_venus_sdiam(double JD)
 	double dist;
 	
 	dist = ln_get_venus_earth_dist(JD);
-	return ln_deg_to_rad(So / 3600.0) / dist;
+	return LN_D2R(So / 3600.0) / dist;
 }
 	
 /*! \fn void ln_get_venus_rect_helio(double JD, struct ln_rect_posn *position)

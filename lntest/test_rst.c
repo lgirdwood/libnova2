@@ -24,8 +24,8 @@ int rst_test(void)
 
 	JD = ln_get_julian_day(&date);
 
-	observer.lng = ln_deg_to_rad(-71.0833);
-	observer.lat = ln_deg_to_rad(42.3333);
+	observer.lng = LN_D2R(-71.0833);
+	observer.lat = LN_D2R(42.3333);
 
 	ret = ln_get_venus_rst(JD, &observer, &rst);
 	failed += test_result("Venus sometime rise on 1988/03/20 at Boston", ret, 0, 0);
@@ -61,8 +61,8 @@ int ell_rst_test(void)
 
 	/* Comment C/1996 B2 (Hyakutake) somewhere at Japan */
 
-	observer.lng = ln_deg_to_rad(135.0);
-	observer.lat = ln_deg_to_rad(35.0);
+	observer.lng = LN_D2R(135.0);
+	observer.lat = LN_D2R(35.0);
 
 	date = LN_DATE(1996, 5, 1, 0, 0, 0.0);
 
@@ -74,7 +74,7 @@ int ell_rst_test(void)
 	JD = ln_get_julian_day(&date);
 
 	ln_get_ell_body_equ_coords(JD, &orbit, &pos);
-	failed += test_result("(RA) for Hyakutake 1996/03/28 00:00", pos.ra, ln_deg_to_rad(220.8554), 0.001);
+	failed += test_result("(RA) for Hyakutake 1996/03/28 00:00", pos.ra, LN_D2R(220.8554), 0.001);
 	failed += test_result("(Dec) for Hyakutake 1996/03/28 00:00", pos.dec, 0.63755628, 0.001);
 
 	date.days = 28;
@@ -90,7 +90,7 @@ int ell_rst_test(void)
 	JD = ln_get_julian_day(&date);
 
 	ln_get_ell_body_equ_coords(JD, &orbit, &pos);
-	failed += test_result("(RA) for Hyakutake 1996/03/28 10:42", pos.ra, ln_deg_to_rad(56.2140), 0.001);
+	failed += test_result("(RA) for Hyakutake 1996/03/28 10:42", pos.ra, LN_D2R(56.2140), 0.001);
 	failed += test_result("(Dec) for Hyakutake 1996/03/28 10:42", pos.dec, 1.29918254, 0.001);
 
 	circumpolar = ln_get_ell_body_rst(JD, &observer, &orbit, &rst);
@@ -111,8 +111,8 @@ int hyp_future_rst_test(void)
 	int circumpolar;
 	int failed = 0;
 
-	observer.lng = ln_deg_to_rad(15.0);
-	observer.lat = ln_deg_to_rad(50.0);
+	observer.lng = LN_D2R(15.0);
+	observer.lat = LN_D2R(50.0);
 
 	/* C/2006 P1 (McNaught) */
 
@@ -140,8 +140,8 @@ int body_future_rst_test(void)
 	int failed = 0;
 	int circumpolar;
 
-	observer.lng = ln_deg_to_rad(0.0);
-	observer.lat = ln_deg_to_rad(85.0);
+	observer.lng = LN_D2R(0.0);
+	observer.lat = LN_D2R(85.0);
 
 	date = LN_DATE(2006, 1, 1, 0, 0, 0.0);
 

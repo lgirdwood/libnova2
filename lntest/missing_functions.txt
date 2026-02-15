@@ -1,4 +1,4 @@
-ln_deg_to_rad
+LN_D2R
 ln_find_max
 ln_find_zero
 ln_get_asteroid_sdiam_arc

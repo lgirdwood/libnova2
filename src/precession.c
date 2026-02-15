@@ -80,9 +80,9 @@ void ln_get_equ_prec(struct ln_equ_posn *mean_position, double JD,
   zeta = 2306.2181 * t + 0.30188 * t2 + 0.017998 * t3;
   eta = 2306.2181 * t + 1.09468 * t2 + 0.041833 * t3;
   theta = 2004.3109 * t - 0.42665 * t2 - 0.041833 * t3;
-  zeta = ln_deg_to_rad(zeta);
-  eta = ln_deg_to_rad(eta);
-  theta = ln_deg_to_rad(theta);
+  zeta = LN_D2R(zeta);
+  eta = LN_D2R(eta);
+  theta = LN_D2R(theta);
 
   /* calc A,B,C equ 20.4 */
   A = cosl(mean_dec) * sinl(mean_ra + zeta);
@@ -146,9 +146,9 @@ void ln_get_equ_prec2(struct ln_equ_posn *mean_position, double fromJD,
         (1.09468 + 0.000066 * T) * t2 + 0.018203 * t3;
   theta = (2004.3109 - 0.85330 * T - 0.000217 * T2) * t -
           (0.42665 + 0.000217 * T) * t2 - 0.041833 * t3;
-  zeta = ln_deg_to_rad(zeta);
-  eta = ln_deg_to_rad(eta);
-  theta = ln_deg_to_rad(theta);
+  zeta = LN_D2R(zeta);
+  eta = LN_D2R(eta);
+  theta = LN_D2R(theta);
 
   /* calc A,B,C equ 20.4 */
   A = cosl(mean_dec) * sinl(mean_ra + zeta);

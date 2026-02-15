@@ -40,7 +40,7 @@ static int check_coords(struct ln_lnlat_posn *observer, double H1,
   /* check if body is circumpolar */
   if (fabs(H1) > 1.0) {
     /* check if maximal height < horizon */
-    // h = asin(cos(ln_deg_to_rad(observer->lat - object->dec)))
+    // h = asin(cos(LN_D2R(observer->lat - object->dec)))
     h = M_PI_2 + object->dec - observer->lat;
     // normalize to <-90;+90>
     if (h > M_PI_2)
@@ -156,9 +156,9 @@ int ln_get_object_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer,
       ms++;
 
     /* find sidereal time at Greenwich, in degrees, for each m */
-    mst = O + ln_deg_to_rad(360.985647) * mt;
-    msr = O + ln_deg_to_rad(360.985647) * mr;
-    mss = O + ln_deg_to_rad(360.985647) * ms;
+    mst = O + LN_D2R(360.985647) * mt;
+    msr = O + LN_D2R(360.985647) * mr;
+    mss = O + LN_D2R(360.985647) * ms;
 
     /* find local hour angle */
     Hat = mst + observer->lng - object->ra;
@@ -414,9 +414,9 @@ int ln_get_body_rst_horizon_offset(
       ms++;
 
     /* find sidereal time at Greenwich, in degrees, for each m */
-    mst = O + ln_deg_to_rad(360.985647) * mt;
-    msr = O + ln_deg_to_rad(360.985647) * mr;
-    mss = O + ln_deg_to_rad(360.985647) * ms;
+    mst = O + LN_D2R(360.985647) * mt;
+    msr = O + LN_D2R(360.985647) * mr;
+    mss = O + LN_D2R(360.985647) * ms;
 
     nt = mt + T / 86400.0;
     nr = mr + T / 86400.0;
@@ -691,9 +691,9 @@ int ln_get_motion_body_rst_horizon_offset(
       ms++;
 
     /* find sidereal time at Greenwich, in degrees, for each m*/
-    mst = O + ln_deg_to_rad(360.985647) * mt;
-    msr = O + ln_deg_to_rad(360.985647) * mr;
-    mss = O + ln_deg_to_rad(360.985647) * ms;
+    mst = O + LN_D2R(360.985647) * mt;
+    msr = O + LN_D2R(360.985647) * mr;
+    mss = O + LN_D2R(360.985647) * ms;
 
     nt = mt + T / 86400.0;
     nr = mr + T / 86400.0;

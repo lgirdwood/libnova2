@@ -81,10 +81,10 @@ int solar_earth_test(void)
 	failed += test_result("(Solar) Ecl Longitude J2000", ln_rad_to_deg(ecl.lng), 280.46, 1.0);
 
 	/* Solar RST Horizon */
-	observer.lng = ln_deg_to_rad(0.0);
-	observer.lat = ln_deg_to_rad(50.0);
+	observer.lng = LN_D2R(0.0);
+	observer.lat = LN_D2R(50.0);
 	/* Horizon -18 (Astronomical Twilight) */
-	ln_get_solar_rst_horizon(JD, &observer, ln_deg_to_rad(-18.0), &rst);
+	ln_get_solar_rst_horizon(JD, &observer, LN_D2R(-18.0), &rst);
 	/* Check validity */
 	if (rst.rise == 0.0 && rst.set == 0.0) {
 		/* It might be valid if it doesn't rise/set, but sun usually does at lat 50

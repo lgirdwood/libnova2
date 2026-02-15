@@ -56,8 +56,8 @@ int main(int argc, const char *argv[])
 	char *M_epoch = "K036A";
 
 	/* observers location (Edinburgh), used to calc rst */
-	observer.lat = ln_deg_to_rad(55.92); /* 55.92 N */
-	observer.lng = ln_deg_to_rad(-3.18); /* 3.18 W */
+	observer.lat = LN_D2R(55.92); /* 55.92 N */
+	observer.lng = LN_D2R(-3.18); /* 3.18 W */
 
 	/* get Julian day from local time */
 	JD = ln_get_julian_from_sys();
@@ -75,7 +75,7 @@ int main(int argc, const char *argv[])
 
 	/* calc last passage in Perihelion, in julian day  */
 	M_JD = ln_get_julian_from_mpc(M_epoch);
-	orbit.JD = ln_get_ell_last_perihelion(M_JD, ln_deg_to_rad(260.69458), orbit.n);
+	orbit.JD = ln_get_ell_last_perihelion(M_JD, LN_D2R(260.69458), orbit.n);
 	fprintf(stdout, "JD (Perihelion) %f\n", orbit.JD);
 
 	/* calc the earth centered position */

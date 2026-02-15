@@ -26,13 +26,13 @@ int elliptic_motion_test(void)
 
 	orbit = LN_ELL_ORBIT_DEG(2.2091404, 0.8502196, 11.94525, 186.23352, 334.75006, 0.0, e_JD);
 
-	E = ln_solve_kepler(0.1, ln_deg_to_rad(5.0));
-	failed += test_result("(Equation of kepler) E when e is 0.1 and M is 5.0   ", E, ln_deg_to_rad(5.554589253872320),
+	E = ln_solve_kepler(0.1, LN_D2R(5.0));
+	failed += test_result("(Equation of kepler) E when e is 0.1 and M is 5.0   ", E, LN_D2R(5.554589253872320),
 						  0.000000000001);
 
 	v = ln_get_ell_true_anomaly(0.1, E);
 	failed +=
-		test_result("(True Anomaly) v when e is 0.1 and E is 5.5545   ", v, ln_deg_to_rad(6.13976152), 0.00000001);
+		test_result("(True Anomaly) v when e is 0.1 and E is 5.5545   ", v, LN_D2R(6.13976152), 0.00000001);
 
 	r = ln_get_ell_radius_vector(0.5, 0.1, E);
 	failed += test_result("(Radius Vector) r when v is , e is 0.1 and E is 5.5545   ", r, 0.45023478, 0.00000001);
@@ -83,7 +83,7 @@ int elliptic_motion_test(void)
 	// MPO refers to Mean anomaly & epoch, we hence need to convert epoch
 	// to perihelion pass
 
-	orbit.JD -= ln_deg_to_rad(147.09926) / orbit.n;
+	orbit.JD -= LN_D2R(147.09926) / orbit.n;
 
 	ln_get_ell_body_equ_coords(o_JD, &orbit, &equ_posn);
 	failed += test_result("(RA) for TNO K05F09Y   ", ln_rad_to_deg(equ_posn.ra), 184.3699999995, 0.001);

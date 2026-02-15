@@ -236,7 +236,7 @@ static int heliocentric_test(void)
 	int failed = 0;
 
 	object.ra = 0.0;
-	object.dec = ln_deg_to_rad(60.0);
+	object.dec = LN_D2R(60.0);
 
 	date.years = 2000;
 	date.months = 1;
@@ -251,8 +251,8 @@ static int heliocentric_test(void)
 
 	failed += test_result("(Heliocentric time) TD for 01/01, object on 0h +60", diff, 15.0 * 0.0001, 0.0001);
 
-	object.ra = ln_deg_to_rad(270.0);
-	object.dec = ln_deg_to_rad(50.0);
+	object.ra = LN_D2R(270.0);
+	object.dec = LN_D2R(50.0);
 
 	diff = ln_get_heliocentric_time_diff(JD, &object);
 
@@ -416,7 +416,7 @@ static int transform_test(void)
 	failed += test_result("(Transforms) Equ to Horiz ALT ", ln_rad_to_deg(hrz.alt), 15.12426274, 0.00000001);
 	failed += test_result("(Transforms) Equ to Horiz AZ ", ln_rad_to_deg(hrz.az), 68.03429264, 0.00000001);
 
-	ln_get_hrz_from_equ_sidereal_time(&object, &observer, ln_deg_to_rad(ln_get_apparent_sidereal_time(JD) * 15.0),
+	ln_get_hrz_from_equ_sidereal_time(&object, &observer, LN_D2R(ln_get_apparent_sidereal_time(JD) * 15.0),
 									  &hrz);
 	ln_get_equ_from_hrz(&hrz, &observer, JD, &object_hrz);
 	failed += test_result("(Transforms) Horiz to Equ RA ", ln_rad_to_deg(object_hrz.ra), ln_rad_to_deg(object.ra),
@@ -425,13 +425,13 @@ static int transform_test(void)
 						  0.00000001);
 
 	/* try something close to the pole */
-	object.dec = ln_deg_to_rad(90.0);
+	object.dec = LN_D2R(90.0);
 
 	ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
 	failed += test_result("(Transforms) Equ to Horiz ALT ", ln_rad_to_deg(hrz.alt), 38.9213888888, 0.00000001);
 	failed += test_result("(Transforms) Equ to Horiz AZ ", ln_rad_to_deg(hrz.az), 180.0, 0.00000001);
 
-	object.dec = ln_deg_to_rad(-90.0);
+	object.dec = LN_D2R(-90.0);
 
 	ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
 	failed += test_result("(Transforms) Equ to Horiz ALT ", ln_rad_to_deg(hrz.alt), -38.9213888888, 0.00000001);
@@ -443,7 +443,7 @@ static int transform_test(void)
 	failed += test_result("(Transforms) Equ to Horiz ALT ", ln_rad_to_deg(hrz.alt), 38.9213888888, 0.00000001);
 	failed += test_result("(Transforms) Equ to Horiz AZ ", ln_rad_to_deg(hrz.az), 0.0, 0.00000001);
 
-	object.dec = ln_deg_to_rad(90.0);
+	object.dec = LN_D2R(90.0);
 
 	ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
 	failed += test_result("(Transforms) Equ to Horiz ALT ", ln_rad_to_deg(hrz.alt), -38.9213888888, 0.00000001);
@@ -482,8 +482,8 @@ static int transform_test(void)
 
 	// Swift triger 174738
 
-	equ.ra = ln_deg_to_rad(125.2401);
-	equ.dec = ln_deg_to_rad(+31.9260);
+	equ.ra = LN_D2R(125.2401);
+	equ.dec = LN_D2R(+31.9260);
 
 	ln_get_gal_from_equ2000(&equ, &gal);
 	failed += test_result("(Transforms) Equ J2000 to Gal l", gal.l, 190.54, 0.005);
@@ -582,8 +582,8 @@ static int precession_test(void)
 	JD = 2462088.69;
 	ln_hequ_to_equ(&hobject, &object);
 
-	pm.ra = ln_deg_to_rad(0.03425 * (15.0 / 3600.0));
-	pm.dec = ln_deg_to_rad(-0.0895 / 3600.0);
+	pm.ra = LN_D2R(0.03425 * (15.0 / 3600.0));
+	pm.dec = LN_D2R(-0.0895 / 3600.0);
 
 	ln_get_equ_pm(&object, &pm, JD, &object);
 
@@ -607,8 +607,8 @@ static int precession_test(void)
 						  0.00001);
 
 	// INTEGRAL GRB050922A coordinates lead to RA not in <0-360> range
-	pos.ra = ln_deg_to_rad(271.2473);
-	pos.dec = ln_deg_to_rad(-32.0227);
+	pos.ra = LN_D2R(271.2473);
+	pos.dec = LN_D2R(-32.0227);
 
 	grb_date.years = 2005;
 	grb_date.months = 9;
@@ -636,8 +636,8 @@ static int precession_test(void)
 	ln_hequ_to_equ(&hobject, &object);
 
 	// proper motions
-	pm.ra = ln_deg_to_rad(((long double)0.19877) * (15.0 / 3600.0));
-	pm.dec = ln_deg_to_rad(((long double)-0.0152) / 3600.0);
+	pm.ra = LN_D2R(((long double)0.19877) * (15.0 / 3600.0));
+	pm.dec = LN_D2R(((long double)-0.0152) / 3600.0);
 
 	ln_get_equ_pm(&object, &pm, B1900, &pos);
 
@@ -1202,8 +1202,8 @@ int rst_test()
 
 	JD = ln_get_julian_day(&date);
 
-	observer.lng = ln_deg_to_rad(15.0);
-	observer.lat = ln_deg_to_rad(51.0);
+	observer.lng = LN_D2R(15.0);
+	observer.lat = LN_D2R(51.0);
 
 	ret = ln_get_object_rst(JD, &observer, &object, &rst);
 	failed += test_result("Arcturus sometimes rise at 15 E, 51 N", ret, 0, 0);
@@ -1423,7 +1423,7 @@ int rst_test()
 			test_result("Arcturus next set bellow 20 deg minute on 2006/01/18 at (15 E,51 N)", date.minutes, 48, 0);
 	}
 
-	observer.lat = ln_deg_to_rad(-51.0);
+	observer.lat = LN_D2R(-51.0);
 
 	ret = ln_get_object_rst(JD, &observer, &object, &rst);
 	failed += test_result("Arcturus sometimes rise at 15 E, 51 S", ret, 0, 0);
@@ -1476,36 +1476,36 @@ int rst_test()
 		failed += test_result("Sun set minute on 2006/01/17 at (15 E,51 S)", date.minutes, 7, 0);
 	}
 
-	observer.lat = ln_deg_to_rad(37.0);
+	observer.lat = LN_D2R(37.0);
 
-	object.dec = ln_deg_to_rad(-54.0);
+	object.dec = LN_D2R(-54.0);
 	failed +=
 		test_result("Object at dec -54 never rise at 37 N", ln_get_object_rst(JD, &observer, &object, &rst), -1, 0);
 
-	object.dec = ln_deg_to_rad(-52.0);
+	object.dec = LN_D2R(-52.0);
 	failed += test_result("Object at dec -52 rise at 37 N", ln_get_object_rst(JD, &observer, &object, &rst), 0, 0);
 
-	object.dec = ln_deg_to_rad(54.0);
+	object.dec = LN_D2R(54.0);
 	failed += test_result("Object at dec 54 is always above the horizon at 37 N",
 						  ln_get_object_rst(JD, &observer, &object, &rst), 1, 0);
 
-	object.dec = ln_deg_to_rad(52.0);
+	object.dec = LN_D2R(52.0);
 	failed += test_result("Object at dec 52 rise at 37 N", ln_get_object_rst(JD, &observer, &object, &rst), 0, 0);
 
-	observer.lat = ln_deg_to_rad(-37.0);
+	observer.lat = LN_D2R(-37.0);
 
-	object.dec = ln_deg_to_rad(54.0);
+	object.dec = LN_D2R(54.0);
 	failed +=
 		test_result("Object at dec 54 never rise at 37 S", ln_get_object_rst(JD, &observer, &object, &rst), -1, 0);
 
-	object.dec = ln_deg_to_rad(52.0);
+	object.dec = LN_D2R(52.0);
 	failed += test_result("Object at dec 52 rise at 37 S", ln_get_object_rst(JD, &observer, &object, &rst), 0, 0);
 
-	object.dec = ln_deg_to_rad(-54.0);
+	object.dec = LN_D2R(-54.0);
 	failed += test_result("Object at dec -54 is always above the horizon at 37 S",
 						  ln_get_object_rst(JD, &observer, &object, &rst), 1, 0);
 
-	object.dec = ln_deg_to_rad(-52.0);
+	object.dec = LN_D2R(-52.0);
 	failed += test_result("Object at dec -52 rise at 37 S", ln_get_object_rst(JD, &observer, &object, &rst), 0, 0);
 
 	/* Venus on 1988 March 20 at Boston */
@@ -1519,8 +1519,8 @@ int rst_test()
 
 	JD = ln_get_julian_day(&date);
 
-	observer.lng = ln_deg_to_rad(-71.0833);
-	observer.lat = ln_deg_to_rad(42.3333);
+	observer.lng = LN_D2R(-71.0833);
+	observer.lat = LN_D2R(42.3333);
 
 	ret = ln_get_venus_rst(JD, &observer, &rst);
 	failed += test_result("Venus sometime rise on 1988/03/20 at Boston", ret, 0, 0);
@@ -1555,8 +1555,8 @@ static int ell_rst_test(void)
 
 	/* Comment C/1996 B2 (Hyakutake) somewhere at Japan */
 
-	observer.lng = ln_deg_to_rad(135.0);
-	observer.lat = ln_deg_to_rad(35.0);
+	observer.lng = LN_D2R(135.0);
+	observer.lat = LN_D2R(35.0);
 
 	date.years = 1996;
 	date.months = 5;
@@ -1660,8 +1660,8 @@ static int hyp_future_rst_test(void)
 	int ret;
 	int failed = 0;
 
-	observer.lng = ln_deg_to_rad(15.0);
-	observer.lat = ln_deg_to_rad(50.0);
+	observer.lng = LN_D2R(15.0);
+	observer.lat = LN_D2R(50.0);
 
 	/* C/2006 P1 (McNaught) */
 
@@ -1716,8 +1716,8 @@ static int body_future_rst_test(void)
 	int ret;
 	int failed = 0;
 
-	observer.lng = ln_deg_to_rad(0.0);
-	observer.lat = ln_deg_to_rad(85.0);
+	observer.lng = LN_D2R(0.0);
+	observer.lat = LN_D2R(85.0);
 
 	date.years = 2006;
 	date.months = 1;
@@ -1799,14 +1799,14 @@ static int parallax_test(void)
 	dms.minutes = 21;
 	dms.seconds = 22.0;
 
-	observer.lat = ln_deg_to_rad(ln_dms_to_deg(&dms));
+	observer.lat = LN_D2R(ln_dms_to_deg(&dms));
 
 	dms.neg = 1;
 	dms.degrees = 116;
 	dms.minutes = 51;
 	dms.seconds = 47.0;
 
-	observer.lng = ln_deg_to_rad(ln_dms_to_deg(&dms));
+	observer.lng = LN_D2R(ln_dms_to_deg(&dms));
 
 	date.years = 2003;
 	date.months = 8;
@@ -1840,12 +1840,12 @@ static int angular_test(void)
 	struct ln_equ_posn posn1, posn2;
 
 	/* alpha Bootes (Arcturus) */
-	posn1.ra = ln_deg_to_rad(213.9154);
-	posn1.dec = ln_deg_to_rad(19.1825);
+	posn1.ra = LN_D2R(213.9154);
+	posn1.dec = LN_D2R(19.1825);
 
 	/* alpha Virgo (Spica) */
-	posn2.ra = ln_deg_to_rad(201.2983);
-	posn2.dec = ln_deg_to_rad(-11.1614);
+	posn2.ra = LN_D2R(201.2983);
+	posn2.dec = LN_D2R(-11.1614);
 
 	d = ln_get_angular_separation(&posn1, &posn2);
 	failed += test_result("(Angular) Separation of Arcturus and Spica   ", d, 32.79302684, 0.00001);
@@ -1877,17 +1877,17 @@ static int airmass_test(void)
 	int failed = 0;
 	double x, X, res;
 
-	X = ln_get_airmass(ln_deg_to_rad(90.0), 750.0);
+	X = ln_get_airmass(LN_D2R(90.0), 750.0);
 	failed += test_result("(Airmass) Airmass at Zenith", X, 1.0, 0.01);
 
-	X = ln_get_airmass(ln_deg_to_rad(10.0), 750.0);
+	X = ln_get_airmass(LN_D2R(10.0), 750.0);
 	failed += test_result("(Airmass) Airmass at 10 degrees altitude", X, 5.64, 0.1);
 
 	X = ln_get_alt_from_airmass(1.0, 750.0);
 	failed += test_result("(Airmass) Altitude at airmass 1", ln_rad_to_deg(X), 90.0, 0.01);
 
 	for (x = -10; x < 90; x += 10.54546456) {
-		res = ln_get_alt_from_airmass(ln_get_airmass(ln_deg_to_rad(x), 750.0), 750.0);
+		res = ln_get_alt_from_airmass(ln_get_airmass(LN_D2R(x), 750.0), 750.0);
 		failed += test_result("(Airmass) Altitude->Airmass->Altitude", ln_rad_to_deg(res), x, 0.0001);
 	}
 
@@ -2009,8 +2009,8 @@ static int elliptic_parabolic_test(void)
 	res = ln_get_ell_body_elong(JD, &orbit);
 
 	/* RST */
-	observer.lat = ln_deg_to_rad(50.0);
-	observer.lng = ln_deg_to_rad(0.0);
+	observer.lat = LN_D2R(50.0);
+	observer.lng = LN_D2R(0.0);
 	/* Just call to ensure no crash/link error */
 	ln_get_ell_body_rst(JD, &observer, &orbit, &rst);
 	ln_get_ell_body_next_rst(JD, &observer, &orbit, &rst);
@@ -2219,10 +2219,10 @@ static int solar_earth_test(void)
 	failed += test_result("(Solar) Ecl Longitude J2000", ln_rad_to_deg(ecl.lng), 280.46, 1.0);
 
 	/* Solar RST Horizon */
-	observer.lng = ln_deg_to_rad(0.0);
-	observer.lat = ln_deg_to_rad(50.0);
+	observer.lng = LN_D2R(0.0);
+	observer.lat = LN_D2R(50.0);
 	/* Horizon -18 (Astronomical Twilight) */
-	ln_get_solar_rst_horizon(JD, &observer, ln_deg_to_rad(-18.0), &rst);
+	ln_get_solar_rst_horizon(JD, &observer, LN_D2R(-18.0), &rst);
 	/* Check validity */
 	if (rst.rise == 0.0 && rst.set == 0.0) {
 		/* It might be valid if it doesn't rise/set, but sun usually does at lat 50
@@ -2326,7 +2326,7 @@ static int utility_conversion_test(void)
 
 	/* Degrees <-> Radians */
 	val = 180.0;
-	res = ln_deg_to_rad(val);
+	res = LN_D2R(val);
 	failed += test_result("(Utility) deg_to_rad 180", res, M_PI, 1e-6);
 
 	val = M_PI;
@@ -2447,8 +2447,8 @@ static int constellation_test(void)
 		const char *constel;
 		char test_r[200];
 
-		equ.ra = ln_deg_to_rad(test_c[i].ra);
-		equ.dec = ln_deg_to_rad(test_c[i].dec);
+		equ.ra = LN_D2R(test_c[i].ra);
+		equ.dec = LN_D2R(test_c[i].dec);
 		constel = ln_get_constellation(&equ);
 		sprintf(test_r, "Constellation at %.04f %+.04f", equ.ra, equ.dec);
 		failed += test_str_result(test_r, constel, test_c[i].constel);

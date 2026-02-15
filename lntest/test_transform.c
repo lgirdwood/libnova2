@@ -52,7 +52,7 @@ int transform_test(void) {
 
   ln_get_hrz_from_equ_sidereal_time(
       &object, &observer,
-      ln_deg_to_rad(ln_get_apparent_sidereal_time(JD) * 15.0), &hrz);
+      LN_D2R(ln_get_apparent_sidereal_time(JD) * 15.0), &hrz);
   ln_get_equ_from_hrz(&hrz, &observer, JD, &object_hrz);
   failed +=
       test_result("(Transforms) Horiz to Equ RA ", ln_rad_to_deg(object_hrz.ra),
@@ -62,7 +62,7 @@ int transform_test(void) {
                         ln_rad_to_deg(object.dec), 0.00000001);
 
   /* try something close to the pole */
-  object.dec = ln_deg_to_rad(90.0);
+  object.dec = LN_D2R(90.0);
 
   ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
   failed += test_result("(Transforms) Equ to Horiz ALT ",
@@ -70,7 +70,7 @@ int transform_test(void) {
   failed += test_result("(Transforms) Equ to Horiz AZ ", ln_rad_to_deg(hrz.az),
                         180.0, 0.00000001);
 
-  object.dec = ln_deg_to_rad(-90.0);
+  object.dec = LN_D2R(-90.0);
 
   ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
   failed += test_result("(Transforms) Equ to Horiz ALT ",
@@ -86,7 +86,7 @@ int transform_test(void) {
   failed += test_result("(Transforms) Equ to Horiz AZ ", ln_rad_to_deg(hrz.az),
                         0.0, 0.00000001);
 
-  object.dec = ln_deg_to_rad(90.0);
+  object.dec = LN_D2R(90.0);
 
   ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
   failed += test_result("(Transforms) Equ to Horiz ALT ",
@@ -119,8 +119,8 @@ int transform_test(void) {
                         28.02618333, 0.00000001);
 
   /* Nova Serpentis 1978 */
-  gal.l = ln_deg_to_rad(12.9593);
-  gal.b = ln_deg_to_rad(6.0463);
+  gal.l = LN_D2R(12.9593);
+  gal.b = LN_D2R(6.0463);
 
   ln_get_equ_from_gal(&gal, &equ);
   failed += test_result("(Transforms) Gal to Equ RA", ln_rad_to_deg(equ.ra),
@@ -130,20 +130,20 @@ int transform_test(void) {
 
   ln_get_gal_from_equ(&equ, &gal);
   failed += test_result("(Transforms) Equ to Gal b", gal.b,
-                        ln_deg_to_rad(6.0463), 0.00000001);
+                        LN_D2R(6.0463), 0.00000001);
   failed += test_result("(Transforms) Equ to Gal l", gal.l,
-                        ln_deg_to_rad(12.9593), 0.00000001);
+                        LN_D2R(12.9593), 0.00000001);
 
   // Swift triger 174738
 
-  equ.ra = ln_deg_to_rad(125.2401);
-  equ.dec = ln_deg_to_rad(+31.9260);
+  equ.ra = LN_D2R(125.2401);
+  equ.dec = LN_D2R(+31.9260);
 
   ln_get_gal_from_equ2000(&equ, &gal);
   failed += test_result("(Transforms) Equ J2000 to Gal l", gal.l,
-                        ln_deg_to_rad(190.54), 0.005);
+                        LN_D2R(190.54), 0.005);
   failed += test_result("(Transforms) Equ J2000 to Gal b", gal.b,
-                        ln_deg_to_rad(31.92), 0.005);
+                        LN_D2R(31.92), 0.005);
 
   return failed;
 }

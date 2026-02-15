@@ -29,7 +29,7 @@ int parabolic_motion_test(void)
 
 	v = ln_get_par_true_anomaly(orbit.q, o_JD - e_JD);
 	failed +=
-		test_result("(True Anomaly) v when e is 0.1 and E is 5.5545   ", v, ln_deg_to_rad(247.18968605), 0.00000001);
+		test_result("(True Anomaly) v when e is 0.1 and E is 5.5545   ", v, LN_D2R(247.18968605), 0.00000001);
 
 	r = ln_get_par_radius_vector(orbit.q, o_JD - e_JD);
 	failed += test_result("(Radius Vector) r when v is , e is 0.1 and E is 5.5545   ", r, 0.62085992, 0.00000001);

@@ -1,5 +1,5 @@
 ln_date
-ln_deg_to_rad
+LN_D2R
 ln_dms
 ln_ell_orbit
 ln_equ_posn

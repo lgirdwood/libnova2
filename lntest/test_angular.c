@@ -20,10 +20,10 @@ int angular_test(void) {
   pos2.dec = -11.1614;
 
   /* degrees to radians */
-  pos1.ra = ln_deg_to_rad(pos1.ra);
-  pos1.dec = ln_deg_to_rad(pos1.dec);
-  pos2.ra = ln_deg_to_rad(pos2.ra);
-  pos2.dec = ln_deg_to_rad(pos2.dec);
+  pos1.ra = LN_D2R(pos1.ra);
+  pos1.dec = LN_D2R(pos1.dec);
+  pos2.ra = LN_D2R(pos2.ra);
+  pos2.dec = LN_D2R(pos2.dec);
 
   res = ln_get_angular_separation(&pos1, &pos2);
   failed += test_result("(Angular) Separation of Arcturus and Spica  ",

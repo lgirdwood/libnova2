@@ -66,7 +66,7 @@ void ln_get_solar_equ_coords(double JD, struct ln_equ_posn *position) {
   sol.L += nutation.longitude;
 
   /* aberration */
-  aberration = ln_deg_to_rad(20.4898 / 3600.0) / sol.R;
+  aberration = LN_D2R(20.4898 / 3600.0) / sol.R;
   sol.L -= aberration;
 
   /* transform to equatorial */
@@ -95,7 +95,7 @@ void ln_get_solar_ecl_coords(double JD, struct ln_lnlat_posn *position) {
   sol.L += nutation.longitude;
 
   /* aberration */
-  aberration = ln_deg_to_rad(20.4898 / 3600.0) / sol.R;
+  aberration = LN_D2R(20.4898 / 3600.0) / sol.R;
   sol.L -= aberration;
 
   position->lng = sol.L;

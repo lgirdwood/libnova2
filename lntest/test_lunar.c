@@ -87,17 +87,17 @@ int lunar_extended_test(void)
 	/* Arg Latitude */
 	res = ln_get_lunar_arg_latitude(JD);
 	/* Mean arg lat at J2000 is 93.27 deg */
-	failed += test_result("(Lunar) Arg Latitude J2000", res, ln_deg_to_rad(93.27), 10.0);
+	failed += test_result("(Lunar) Arg Latitude J2000", res, LN_D2R(93.27), 10.0);
 
 	/* Long Asc Node */
 	res = ln_get_lunar_long_asc_node(JD);
 	/* Mean long asc node at J2000 is 125.04 */
-	failed += test_result("(Lunar) Long Asc Node J2000", res, ln_deg_to_rad(125.04), 1.0);
+	failed += test_result("(Lunar) Long Asc Node J2000", res, LN_D2R(125.04), 1.0);
 
 	/* Long Perigee */
 	res = ln_get_lunar_long_perigee(JD);
 	/* Mean long perigee at J2000 is 83.35 */
-	failed += test_result("(Lunar) Long Perigee J2000", res, ln_deg_to_rad(83.35), 1.0);
+	failed += test_result("(Lunar) Long Perigee J2000", res, LN_D2R(83.35), 1.0);
 
 	/* Lunar next/prev phase/node/perigee/apogee */
 	/* ln_lunar_next_phase: phase 0=new, 0.25=first q, 0.5=full, 0.75=last q */

@@ -38,7 +38,7 @@ int utility_conversion_test(void)
 	
 	/* Degrees <-> Radians */
 	val = 180.0;
-	res = ln_deg_to_rad(val);
+	res = LN_D2R(val);
 	failed += test_result("(Utility) deg_to_rad 180", res, M_PI, 1e-6);
 
 	val = M_PI;

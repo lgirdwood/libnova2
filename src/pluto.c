@@ -316,8 +316,8 @@ void ln_get_pluto_helio_coords(double JD, struct ln_helio_posn *position)
 	/* calc periodic terms in table 37.A */
 	for (i = 0; i < PLUTO_COEFFS; i++) {
 		a = argument[i].J * J + argument[i].S * S + argument[i].P * P;
-		sin_a = sin(ln_deg_to_rad(a));
-		cos_a = cos(ln_deg_to_rad(a));
+		sin_a = sin(LN_D2R(a));
+		cos_a = cos(LN_D2R(a));
 		
 		/* longitude */
 		sum_longitude += longitude[i].A * sin_a + longitude[i].B * cos_a;
@@ -330,8 +330,8 @@ void ln_get_pluto_helio_coords(double JD, struct ln_helio_posn *position)
 	}
 	
 	/* calc L, B, R, return in radians */
-	position->L = ln_range_radians(ln_deg_to_rad(238.958116 + 144.96 * t + sum_longitude * 0.000001));
-	position->B = ln_deg_to_rad(-3.908239 + sum_latitude * 0.000001);
+	position->L = ln_range_radians(LN_D2R(238.958116 + 144.96 * t + sum_longitude * 0.000001));
+	position->B = LN_D2R(-3.908239 + sum_latitude * 0.000001);
 	position->R = 40.7241346 + sum_radius * 0.0000001; 
 	
 	/* save cache */
@@ -485,7 +485,7 @@ double ln_get_pluto_sdiam(double JD)
 	double dist;
 	
 	dist = ln_get_pluto_earth_dist(JD);
-	return ln_deg_to_rad(So / 3600.0) / dist;
+	return LN_D2R(So / 3600.0) / dist;
 }
 	
 /*! \fn void ln_get_pluto_rect_helio(double JD, struct ln_rect_posn *position)

@@ -57,8 +57,8 @@ int constellation_test(void)
 		const char *constel;
 		char test_r[200];
 
-		equ.ra = ln_deg_to_rad(test_c[i].ra);
-		equ.dec = ln_deg_to_rad(test_c[i].dec);
+		equ.ra = LN_D2R(test_c[i].ra);
+		equ.dec = LN_D2R(test_c[i].dec);
 		constel = ln_get_constellation(&equ);
 		sprintf(test_r, "Constellation at %.04f %+.04f", equ.ra, equ.dec);
 		failed += test_str_result(test_r, constel, test_c[i].constel);

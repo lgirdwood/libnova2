@@ -21,7 +21,7 @@ int hyperbolic_motion_test(void)
 	// the one from Meeus..
 	v = ln_get_hyp_true_anomaly(orbit.q, orbit.e, 1237.1);
 	failed +=
-		test_result("(True Anomaly) v when q is 3.363943 and e is 1.05731   ", v, ln_deg_to_rad(109.40598), 0.00001);
+		test_result("(True Anomaly) v when q is 3.363943 and e is 1.05731   ", v, LN_D2R(109.40598), 0.00001);
 
 	r = ln_get_hyp_radius_vector(orbit.q, orbit.e, 1237.1);
 	failed += test_result("(Radius Vector) r when q is 3.363943 and e is 1.05731  ", r, 10.668551, 0.00001);

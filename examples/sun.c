@@ -48,8 +48,8 @@ int main (int argc, const char *argv[])
 	double JD;
 	
 	/* observers location (Edinburgh), used to calc rst */
-	observer.lat = ln_deg_to_rad(55.92); /* 55.92 N */
-	observer.lng = ln_deg_to_rad(-3.18); /* 3.18 W */
+	observer.lat = LN_D2R(55.92); /* 55.92 N */
+	observer.lng = LN_D2R(-3.18); /* 3.18 W */
 	
 	/* get Julian day from local time */
 	JD = ln_get_julian_from_sys();	

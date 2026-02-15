@@ -79,7 +79,7 @@ void ln_get_hrz_from_equ(struct ln_equ_posn *object,
 
   /* get mean sidereal time in hours*/
   sidereal = ln_get_mean_sidereal_time(JD);
-  sidereal = ln_deg_to_rad(sidereal * 15.0);
+  sidereal = LN_D2R(sidereal * 15.0);
   ln_get_hrz_from_equ_sidereal_time(object, observer, sidereal, position);
 }
 
@@ -180,7 +180,7 @@ void ln_get_equ_from_hrz(struct ln_hrz_posn *object,
 
   /* get ra = sidereal - longitude + H */
   sidereal = ln_get_apparent_sidereal_time(JD);
-  sidereal = ln_deg_to_rad(sidereal * 15.0);
+  sidereal = LN_D2R(sidereal * 15.0);
 
   position->ra = ln_range_radians(sidereal - H + longitude);
   position->dec = declination;
@@ -292,11 +292,11 @@ void ln_get_equ_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ) {
   double sin_b, cos_b, rad_gal_b;
   double y;
 
-  RAD_27_4 = ln_deg_to_rad(27.4);
+  RAD_27_4 = LN_D2R(27.4);
   SIN_27_4 = sin(RAD_27_4);
   COS_27_4 = cos(RAD_27_4);
 
-  l_123 = gal->l - ln_deg_to_rad(123.0);
+  l_123 = gal->l - LN_D2R(123.0);
   cos_l_123 = cos(l_123);
 
   rad_gal_b = gal->b;
@@ -305,7 +305,7 @@ void ln_get_equ_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ) {
   cos_b = cos(rad_gal_b);
 
   y = atan2(sin(l_123), cos_l_123 * SIN_27_4 - (sin_b / cos_b) * COS_27_4);
-  equ->ra = ln_range_radians(y + ln_deg_to_rad(12.25));
+  equ->ra = ln_range_radians(y + LN_D2R(12.25));
   equ->dec = asin(sin_b * SIN_27_4 + cos_b * COS_27_4 * cos_l_123);
 }
 
@@ -335,11 +335,11 @@ void ln_get_gal_from_equ(struct ln_equ_posn *equ, struct ln_gal_posn *gal) {
   double cos_dec, sin_dec;
   double x;
 
-  RAD_27_4 = ln_deg_to_rad(27.4);
+  RAD_27_4 = LN_D2R(27.4);
   SIN_27_4 = sin(RAD_27_4);
   COS_27_4 = cos(RAD_27_4);
 
-  ra_192_25 = ln_deg_to_rad(192.25) - equ->ra;
+  ra_192_25 = LN_D2R(192.25) - equ->ra;
   cos_ra_192_25 = cos(ra_192_25);
 
   rad_equ_dec = equ->dec;
@@ -349,7 +349,7 @@ void ln_get_gal_from_equ(struct ln_equ_posn *equ, struct ln_gal_posn *gal) {
 
   x = atan2(sin(ra_192_25),
             cos_ra_192_25 * SIN_27_4 - (sin_dec / cos_dec) * COS_27_4);
-  gal->l = ln_range_radians(ln_deg_to_rad(303.0) - x);
+  gal->l = ln_range_radians(LN_D2R(303.0) - x);
   gal->b = asin(sin_dec * SIN_27_4 + cos_dec * COS_27_4 * cos_ra_192_25);
 }
 

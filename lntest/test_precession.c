@@ -27,8 +27,8 @@ int precession_test(void) {
   ln_hequ_to_equ(&hobject, &object);
 
   /* pm measured in arcsec/year - convert to radians */
-  pm.ra = ln_deg_to_rad(0.03425 / 3600.0);
-  pm.dec = ln_deg_to_rad(-0.0895 / 3600.0);
+  pm.ra = LN_D2R(0.03425 / 3600.0);
+  pm.dec = LN_D2R(-0.0895 / 3600.0);
 
   ln_get_equ_pm(&object, &pm, JD, &object);
 
@@ -60,8 +60,8 @@ int precession_test(void) {
                   ln_rad_to_deg(pos2.dec), ln_rad_to_deg(object.dec), 0.00001);
 
   // INTEGRAL GRB050922A coordinates lead to RA not in <0-360> range
-  pos.ra = ln_deg_to_rad(271.2473);
-  pos.dec = ln_deg_to_rad(-32.0227);
+  pos.ra = LN_D2R(271.2473);
+  pos.dec = LN_D2R(-32.0227);
 
   grb_date = LN_DATE(2005, 9, 22, 13, 43, 18.0);
 
@@ -86,8 +86,8 @@ int precession_test(void) {
   ln_hequ_to_equ(&hobject, &object);
 
   // proper motions
-  pm.ra = ln_deg_to_rad(((long double)0.19877) / 3600.0);
-  pm.dec = ln_deg_to_rad(((long double)-0.0152) / 3600.0);
+  pm.ra = LN_D2R(((long double)0.19877) / 3600.0);
+  pm.dec = LN_D2R(((long double)-0.0152) / 3600.0);
 
   ln_get_equ_pm(&object, &pm, B1900, &pos);
 

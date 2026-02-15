@@ -197,7 +197,7 @@ void ln_get_nutation(double JD, struct ln_nutation *nutation) {
 
       argument = arguments[i].D * D + arguments[i].M * M +
                  arguments[i].MM * MM + arguments[i].F * F + arguments[i].O * O;
-      argument = ln_deg_to_rad(argument);
+      argument = LN_D2R(argument);
 
       c_longitude += coeff_sine * sinl(argument);
       c_obliquity += coeff_cos * cosl(argument);
@@ -214,9 +214,9 @@ void ln_get_nutation(double JD, struct ln_nutation *nutation) {
   }
 
   /* return results in radians */
-  nutation->longitude = ln_deg_to_rad(c_longitude);
-  nutation->obliquity = ln_deg_to_rad(c_obliquity);
-  nutation->ecliptic = ln_deg_to_rad(c_ecliptic);
+  nutation->longitude = LN_D2R(c_longitude);
+  nutation->obliquity = LN_D2R(c_obliquity);
+  nutation->ecliptic = LN_D2R(c_ecliptic);
 }
 
 /*! \fn void ln_get_equ_nut(struct ln_equ_posn *mean_position, double JD, struct

@@ -329,7 +329,7 @@ void ln_get_ecl_aber(struct ln_lnlat_posn *mean_position, double JD,
 	struct ln_helio_posn sol_position;
 
 	/* constant of aberration */
-	k = ln_deg_to_rad(20.49552 *  (1.0 / 3600.0));
+	k = LN_D2R(20.49552 *  (1.0 / 3600.0));
 
 	/* Equ 21.1 */
 	T =(JD - 2451545) / 36525;
@@ -344,7 +344,7 @@ void ln_get_ecl_aber(struct ln_lnlat_posn *mean_position, double JD,
 
 	/* longitude of perihelion Earths orbit */
 	t = 102.93735 + 1.71953 * T + 0.000046 * T2;
-	t = ln_deg_to_rad(t);
+	t = LN_D2R(t);
 
 	/* change object long/lat to radians */
 	mean_lng = mean_position->lng;

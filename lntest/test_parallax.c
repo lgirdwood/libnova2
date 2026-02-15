@@ -15,14 +15,14 @@ int parallax_test(void) {
   /* Mars 2003 Aug 28 03:17 UT */
   JD = 2452879.63680556;
   AU = 0.37276;
-  observer.lat = ln_deg_to_rad(33.356111); /* Palomar */
-  observer.lng = ln_deg_to_rad(116.8625);
+  observer.lat = LN_D2R(33.356111); /* Palomar */
+  observer.lng = LN_D2R(116.8625);
 
   H = ln_get_apparent_sidereal_time(JD);
   H = H - observer.lng;
 
-  object.ra = ln_deg_to_rad(339.530208);
-  object.dec = ln_deg_to_rad(-15.773611);
+  object.ra = LN_D2R(339.530208);
+  object.dec = LN_D2R(-15.773611);
 
   ln_get_parallax(&object, AU, &observer, 1706.0, H, &parallax);
 

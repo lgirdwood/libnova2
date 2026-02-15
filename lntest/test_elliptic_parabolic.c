@@ -53,8 +53,8 @@ int elliptic_parabolic_test(void)
 	res = ln_get_ell_body_elong(JD, &orbit);
 
 	/* RST */
-	observer.lat = ln_deg_to_rad(50.0);
-	observer.lng = ln_deg_to_rad(0.0);
+	observer.lat = LN_D2R(50.0);
+	observer.lng = LN_D2R(0.0);
 	/* Just call to ensure no crash/link error */
 	ln_get_ell_body_rst(JD, &observer, &orbit, &rst);
 	ln_get_ell_body_next_rst(JD, &observer, &orbit, &rst);

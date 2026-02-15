@@ -58,6 +58,9 @@ extern "C" {
 #define LN_SIDEREAL_DAY_SEC 86164.09
 #define LN_SIDEREAL_DAY_DAY (LN_SIDEREAL_DAY_SEC / 86400.0)
 
+/* Degree to Radian conversion */
+#define LN_D2R(d) ((d) * (M_PI / 180.0))
+
 /* 1.1.2000 Julian Day & others */
 #define JD2000 2451545.0
 #define JD2050 2469807.50

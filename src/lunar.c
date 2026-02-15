@@ -1393,7 +1393,7 @@ double ln_get_lunar_long_asc_node(double JD)
 	/* equ 47.7 */
 	omega -= 1934.1362891 * T + 0.0020754 * T2 + T3 / 467441.0 -
 		T4 / 60616000.0;
-	return ln_deg_to_rad(omega);
+	return LN_D2R(omega);
 }
 
 
@@ -1415,7 +1415,7 @@ double ln_get_lunar_long_perigee(double JD)
 	/* equ 47.7 */
 	per += 4069.0137287 * T - 0.0103200 * T2 -
 		T3 / 80053.0 + T4 / 18999000.0;
-	return ln_deg_to_rad(per);
+	return LN_D2R(per);
 }
 
 /*! \fn double ln_get_lunar_arg_latitude(double JD);
@@ -1437,7 +1437,7 @@ double ln_get_lunar_arg_latitude(double JD)
 	arg += 483202.0175273 * T - 0.0034029 * T2 -
 		T3 / 3526000.0 + T4 / 863310000.0;
 
-	return ln_deg_to_rad(arg);
+	return LN_D2R(arg);
 }
 
 void ln_get_lunar_selenographic_coords(double JD, struct ln_lnlat_posn *moon,
@@ -1496,8 +1496,8 @@ void ln_get_lunar_subsolar_coords(double JD, struct ln_lnlat_posn *position)
 	ln_get_lunar_ecl_coords(JD, &moon, 0);
 
 	moon.lng = sun.lng + 180.0 + 57.296 * dist_ratio *
-		cos(ln_deg_to_rad(moon.lat)) *
-		sin(ln_deg_to_rad(sun.lng - moon.lng));
+		cos(LN_D2R(moon.lat)) *
+		sin(LN_D2R(sun.lng - moon.lng));
 	moon.lat = dist_ratio * moon.lat;
 
 	ln_get_lunar_selenographic_coords(JD, &moon, position);

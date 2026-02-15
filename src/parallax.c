@@ -70,7 +70,7 @@ void ln_get_parallax_ha(struct ln_equ_posn *object, double au_distance,
   double sin_pi, ro_sin, ro_cos, sin_H, cos_H, cos_dec;
 
   ln_get_earth_centre_dist(height, observer->lat, &ro_sin, &ro_cos);
-  sin_pi = sin(ln_deg_to_rad((8.794 / au_distance) / 3600.0)); // (39.1)
+  sin_pi = sin(LN_D2R((8.794 / au_distance) / 3600.0)); // (39.1)
 
   /* change hour angle from hours to radians*/
   H *= M_PI / 12.0;

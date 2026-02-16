@@ -26,10 +26,14 @@ extern "C" {
 #endif
 
 /*! \defgroup motion Proper Motion
-* Proper motion is the motion in space of a star between 2 epochs. It has components
-* in right ascension and in declination.
 *
-* All angles are expressed in degrees.
+* Proper motion is the apparent angular motion of a star across the sky relative to the background stars.
+*
+* - **Components**:
+*   - **RA**: Rate of change in Right Ascension (usually in seconds of time per year or century).
+*   - **Dec**: Rate of change in Declination (usually in seconds of arc per year or century).
+*
+* All angles are expressed in degrees. Algorithms based on Meeus Chapter 20.
 */
 
 /*! \fn void ln_get_equ_pm(struct ln_equ_posn *mean_position, struct ln_equ_posn *proper_motion, double JD, struct ln_equ_posn *position);
@@ -41,9 +45,8 @@ extern "C" {
 * \param position Pointer to store new equatorial position
 */
 /* Equ 20.2, 20.3, 20.4 pg 126 */
-void LIBNOVA_EXPORT ln_get_equ_pm(struct ln_equ_posn *mean_position,
-	struct ln_equ_posn *proper_motion, double JD,
-	struct ln_equ_posn *position);
+void LIBNOVA_EXPORT ln_get_equ_pm(struct ln_equ_posn *mean_position, struct ln_equ_posn *proper_motion, double JD,
+								  struct ln_equ_posn *position);
 
 /*! \fn void ln_get_equ_pm_epoch(struct ln_equ_posn *mean_position, struct ln_equ_posn *proper_motion, double JD, double epoch_JD, struct ln_equ_posn *position)
 * \brief Calculate a stars equatorial position wrt proper motion and epoch.
@@ -55,9 +58,8 @@ void LIBNOVA_EXPORT ln_get_equ_pm(struct ln_equ_posn *mean_position,
 */
 /* Equ 20.2, 20.3, 20.4 pg 126 
 */
-void LIBNOVA_EXPORT ln_get_equ_pm_epoch(struct ln_equ_posn *mean_position,
-	struct ln_equ_posn *proper_motion, double JD, double epoch_JD,
-	struct ln_equ_posn *position);
+void LIBNOVA_EXPORT ln_get_equ_pm_epoch(struct ln_equ_posn *mean_position, struct ln_equ_posn *proper_motion, double JD,
+										double epoch_JD, struct ln_equ_posn *position);
 
 #ifdef __cplusplus
 };

@@ -19,18 +19,21 @@
 #ifndef _LN_EARTH_H
 #define _LN_EARTH_H
 
-#include <libnova/ln_types.h> 
+#include <libnova/ln_types.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-
 /*! \defgroup earth Earth
 *
 * Functions relating to the planet Earth.
 *
-* All angles are expressed in radians.
+* - **Heliocentric Coordinates**: Calculated using the VSOP87 theory.
+*   - **Longitude/Latitude**: In radians.
+*   - **Radius Vector**: In Astronomical Units (AU).
+*
+* All angles are expressed in radians. Algorithms based on Meeus Chapter 32 (VSOP87).
 */
 
 /*
@@ -38,34 +41,34 @@ extern "C" {
 */
 
 /*! \fn void ln_get_earth_helio_coords(double JD, struct ln_helio_posn *position);
-* \brief Calculate Earths heliocentric (referred to the centre of the Sun) coordinates 
-* for given julian day.
-* Longitude and Latitude are in radians, whilst radius vector is in AU.
+* \brief Calculate Earth's heliocentric coordinates (referenced to the center of the Sun).
 * \ingroup earth
 * \param JD Julian Day
 * \param position Pointer to store heliocentric position
-*/ 
+*
+* Uses the high-precision VSOP87 theory.
+*/
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 */
-void LIBNOVA_EXPORT ln_get_earth_helio_coords(double JD,
-	struct ln_helio_posn *position);
+void LIBNOVA_EXPORT ln_get_earth_helio_coords(double JD, struct ln_helio_posn *position);
 
 /*! \fn void ln_get_earth_solar_dist(double JD);
 * \brief Calculate the distance between Earth and the Sun.
 * \ingroup earth
 * \param JD Julian Day
 * \return Distance in AU
-*/ 
+*
+* Uses VSOP87 to calculate the radius vector.
+*/
 /* Chapter ?? */
 double LIBNOVA_EXPORT ln_get_earth_solar_dist(double JD);
-	
+
 /*! \fn void ln_get_earth_rect_helio(double JD, struct ln_rect_posn *position)
 * \ingroup earth
 * \brief Calculate the Earths rectangular heliocentric coordinates.
 * \param JD Julian Day
 * \param position Pointer to store rectangular position
 */
-void LIBNOVA_EXPORT ln_get_earth_rect_helio(double JD,
-	struct ln_rect_posn *position);
+void LIBNOVA_EXPORT ln_get_earth_rect_helio(double JD, struct ln_rect_posn *position);
 
 /*! \fn void ln_get_earth_centre_dist(float height, double latitude, double *p_sin_o, double *p_cos_o);
 * \ingroup earth
@@ -75,8 +78,7 @@ void LIBNOVA_EXPORT ln_get_earth_rect_helio(double JD,
 * \param p_sin_o Pointer to store p * sin(o')
 * \param p_cos_o Pointer to store p * cos(o')
 */
-void LIBNOVA_EXPORT ln_get_earth_centre_dist(float height, double latitude,
-		double *p_sin_o, double *p_cos_o);
+void LIBNOVA_EXPORT ln_get_earth_centre_dist(float height, double latitude, double *p_sin_o, double *p_cos_o);
 
 #ifdef __cplusplus
 };

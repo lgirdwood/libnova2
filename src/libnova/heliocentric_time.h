@@ -27,6 +27,13 @@ extern "C" {
 
 /*!
 * \defgroup heliocentric Heliocentric time
+*
+* Functions relating to Heliocentric Time Correction.
+*
+* - **Light Time Correction**: The time it takes for light to travel from the object to the Earth.
+* - **Heliocentric Julian Day**: Corrected for the Earth's position relative to the Sun.
+*
+* All angles are expressed in degrees.
 */
 
 /*! \fn double ln_get_heliocentric_time_diff(double JD, struct ln_equ_posn *object)
@@ -34,10 +41,11 @@ extern "C" {
 * \brief Calculate approximate heliocentric (barycentric) time correction for given date and object
 * \param JD Julian Day
 * \param object Equatorial position of object
-* \return Heliocentric time difference
+* \return Heliocentric time difference in days
+*
+* Corrects for the time light takes to travel the distance between the Earth and the Sun, projected onto the line of sight to the object.
 */
-double LIBNOVA_EXPORT ln_get_heliocentric_time_diff(double JD,
-	struct ln_equ_posn *object);
+double LIBNOVA_EXPORT ln_get_heliocentric_time_diff(double JD, struct ln_equ_posn *object);
 
 #ifdef __cplusplus
 };

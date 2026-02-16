@@ -42,9 +42,12 @@ extern "C" {
 const char LIBNOVA_EXPORT *ln_get_version(void);
 
 /*! \defgroup misc Misc. Functions
- *
- * Misc functions.
- */
+*
+* Miscellaneous functions.
+*
+* - **Interpolation**: 3-point and 5-point interpolation (Meeus Chapter 3).
+* - **Zero/Max Finding**: Newton's method and Golden Section search.
+*/
 
 /*! \fn double ln_get_dec_location(char * s)
  * \ingroup misc

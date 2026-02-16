@@ -27,32 +27,36 @@ extern "C" {
 
 /*! \defgroup angular Angular Separation
 *
-* Functions relating to an the angular separation and position
-* angle between 2 bodies.
+* Functions relating to the angular separation and position angle between 2 bodies.
 *
-* All angles are expressed in radians.
-*/		
-		
+* - **Angular Separation**: The shortest apparent distance on the celestial sphere.
+* - **Position Angle**: Angle measured eastward from the North Celestial Pole to the object.
+*
+* All angles are expressed in degrees. Algorithms based on Meeus Chapter 17.
+*/
+
 /*! \fn double ln_get_angular_separation(struct ln_equ_posn* posn1, struct ln_equ_posn* posn2);
 * \brief Calculate the angular separation between 2 bodies
 * \ingroup angular
 * \param posn1 Position of first body
 * \param posn2 Position of second body
-* \return Angular separation in radians
-*/		
-double LIBNOVA_EXPORT ln_get_angular_separation(struct ln_equ_posn *posn1,
-	struct ln_equ_posn *posn2);
+* \return Angular separation in degrees
+*
+* Uses the spherical cosine formula or Haversine formula for better precision at small angles (Meeus Formula 17.1).
+*/
+double LIBNOVA_EXPORT ln_get_angular_separation(struct ln_equ_posn *posn1, struct ln_equ_posn *posn2);
 
 /*! \fn double ln_get_rel_posn_angle(struct ln_equ_posn* posn1, struct ln_equ_posn* posn2);
 * \brief Calculate the relative position angle between 2 bodies
 * \ingroup angular
 * \param posn1 Position of first body
 * \param posn2 Position of second body
-* \return Position angle in radians
-*/	
-double LIBNOVA_EXPORT ln_get_rel_posn_angle(struct ln_equ_posn *posn1,
-	struct ln_equ_posn *posn2);
-	
+* \return Position angle in degrees
+*
+* The angle is measured counter-clockwise (East) from North.
+*/
+double LIBNOVA_EXPORT ln_get_rel_posn_angle(struct ln_equ_posn *posn1, struct ln_equ_posn *posn2);
+
 #ifdef __cplusplus
 };
 #endif

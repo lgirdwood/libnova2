@@ -27,10 +27,13 @@ extern "C" {
 
 /*! \defgroup precession Precession
 *
-* Precession is the changing direction of the Earth's rotational axis over time and
-* is due to the gravitational influence of the Sun and the Moon.
+* Precession is the changing direction of the Earth's rotational axis over time.
 *
-* All angles are expressed in radians.
+* - **General Precession**: The combined effect of luni-solar precession and planetary precession.
+* - **Annual Precession**: The amount of precession in one year (approx 50.29 arcseconds).
+* - **IAU 1976 Precession**: The standard model used here.
+*
+* All angles are expressed in radians. Algorithms based on Meeus Chapter 22.
 */
 
 /*! \fn void ln_get_equ_prec(struct ln_equ_posn *mean_position, double JD, struct ln_equ_posn *position);
@@ -42,8 +45,7 @@ extern "C" {
 */
 
 /* Equ 20.2, 20.3, 20.4 pg 126 */
-void LIBNOVA_EXPORT ln_get_equ_prec(struct ln_equ_posn *mean_position,
-	double JD, struct ln_equ_posn *position);
+void LIBNOVA_EXPORT ln_get_equ_prec(struct ln_equ_posn *mean_position, double JD, struct ln_equ_posn *position);
 
 /*! \fn void ln_get_equ_prec2(struct ln_equ_posn *mean_position, double fromJD, double toJD, struct ln_equ_posn *position);
 * \brief Calculate the effects of precession on equatorial coordinates, between arbitary Jxxxx epochs.
@@ -55,8 +57,8 @@ void LIBNOVA_EXPORT ln_get_equ_prec(struct ln_equ_posn *mean_position,
 */
 
 /* Equ 20.2, 20.3, 20.4 pg 126 */
-void LIBNOVA_EXPORT ln_get_equ_prec2(struct ln_equ_posn *mean_position,
-	double fromJD, double toJD, struct ln_equ_posn *position);
+void LIBNOVA_EXPORT ln_get_equ_prec2(struct ln_equ_posn *mean_position, double fromJD, double toJD,
+									 struct ln_equ_posn *position);
 
 /*! \fn void ln_get_ecl_prec(struct ln_lnlat_posn *mean_position, double JD, struct ln_lnlat_posn *position); 
 * \brief Calculate the effects of precession on ecliptical coordinates.
@@ -66,8 +68,7 @@ void LIBNOVA_EXPORT ln_get_equ_prec2(struct ln_equ_posn *mean_position,
 * \param position Pointer to store new ecliptical position
 */
 /* Equ 20.5, 20.6 pg 128 */
-void LIBNOVA_EXPORT ln_get_ecl_prec(struct ln_lnlat_posn *mean_position,
-	double JD, struct ln_lnlat_posn *position);
+void LIBNOVA_EXPORT ln_get_ecl_prec(struct ln_lnlat_posn *mean_position, double JD, struct ln_lnlat_posn *position);
 
 #ifdef __cplusplus
 };

@@ -25,19 +25,34 @@
 extern "C" {
 #endif
 
+/*! \defgroup parallax Parallax
+*
+* Functions relating to Parallax.
+*
+* - **Equatorial Horizontal Parallax**: The angle subtended by the Earth's equatorial radius as seen from the object.
+*   - \f$ \sin(\pi) = \frac{R_{\oplus}}{\Delta} \f$
+*   - \f$ R_{\oplus} \f$: Earth's equatorial radius (6378.14 km).
+*   - \f$ \Delta \f$: Distance to the object.
+*
+* - **Topocentric Coordinates**: Position seen from a specific location on Earth's surface.
+*
+* All angles are expressed in degrees. Algorithms based on Meeus Chapter 40.
+*/
+
 /*! \fn void ln_get_parallax(struct ln_equ_posn *object, double au_distance, struct ln_lnlat_posn *observer, double height, double JD, struct ln_equ_posn *parallax);
 * \ingroup parallax
 * \brief Calculate parallax in RA and DEC for given geographic location
-* \param object Equatorial position of object
+* \param object Geocentric equatorial position of object
 * \param au_distance Distance to object in AU
-* \param observer Observer's position
+* \param observer Observer's position (geographical coordinates)
 * \param height Observer's height in meters
-* \param JD Julian Day
-* \param parallax Pointer to store parallax corrected position
+* \param JD Julian Day (UT)
+* \param parallax Pointer to store topocentric (parallax corrected) position
+*
+* Calculates the shift in Right Ascension and Declination due to the observer's location on Earth.
 */
-void LIBNOVA_EXPORT ln_get_parallax(struct ln_equ_posn *object,
-	double au_distance, struct ln_lnlat_posn *observer, double height,
-	double JD, struct ln_equ_posn *parallax);
+void LIBNOVA_EXPORT ln_get_parallax(struct ln_equ_posn *object, double au_distance, struct ln_lnlat_posn *observer,
+									double height, double JD, struct ln_equ_posn *parallax);
 
 /*! \fn void ln_get_parallax_ha(struct ln_equ_posn *object, double au_distance, struct ln_lnlat_posn *observer, double height, double H, struct ln_equ_posn *parallax);
 * \ingroup parallax
@@ -49,9 +64,8 @@ void LIBNOVA_EXPORT ln_get_parallax(struct ln_equ_posn *object,
 * \param H Hour angle in hours
 * \param parallax Pointer to store parallax corrected position
 */
-void LIBNOVA_EXPORT ln_get_parallax_ha(struct ln_equ_posn *object,
-	double au_distance, struct ln_lnlat_posn *observer, double height,
-	double H, struct ln_equ_posn *parallax);
+void LIBNOVA_EXPORT ln_get_parallax_ha(struct ln_equ_posn *object, double au_distance, struct ln_lnlat_posn *observer,
+									   double height, double H, struct ln_equ_posn *parallax);
 
 #ifdef __cplusplus
 };

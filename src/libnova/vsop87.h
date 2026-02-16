@@ -27,8 +27,13 @@ extern "C" {
 
 /*! \defgroup VSOP87 VSOP87 Theory
 *
-* Thanks to Messrs. Bretagnon and Francou for publishing planetary 
-* solution VSOP87.
+* The VSOP87 (Variations Séculaires des Orbites Planétaires) theory.
+*
+* - **Authors**: P. Bretagnon and G. Francou (Bureau des Longitudes, Paris).
+* - **Accuracy**: High precision planetary positions.
+* - **Reference**: *Astronomy and Astrophysics*, Vol. 202, p. 309 (1988).
+*
+* Used for calculating heliocentric coordinates of planets.
 */
 
 /*! \fn void ln_vsop87_to_fk5(struct ln_helio_posn *position, double JD);
@@ -41,14 +46,11 @@ extern "C" {
 /* JD Julian Day */
 void LIBNOVA_EXPORT ln_vsop87_to_fk5(struct ln_helio_posn *position, double JD);
 
-
-struct ln_vsop
-{
+struct ln_vsop {
 	double A;
 	double B;
 	double C;
 };
-
 
 /*! \fn double ln_calc_series(const struct ln_vsop *data, int terms, double t)
 * \ingroup VSOP87

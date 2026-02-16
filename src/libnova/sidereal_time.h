@@ -25,18 +25,25 @@
 extern "C" {
 #endif
 
-
 /*! \defgroup sidereal Sidereal Time 
 *
-* TODO
+* Sidereal time is the hour angle of the vernal equinox.
+*
+* - **Mean Sidereal Time**: Considers only the mean position of the equinox (date).
+* - **Apparent Sidereal Time**: Considers the true position of the equinox (date + nutation).
+*
+* All angles are expressed in hours (previously radians, changed in v0.13+). 
+* *Note*: Function return types are double (hours).
 */
 
-/*! \fn ln_double ln_get_mean_sidereal_time(double JD)
-* \brief Calculate mean sidereal time from date. 
+/*! \fn double ln_get_mean_sidereal_time(double JD)
+* \brief Calculate mean sidereal time at Greenwich from Julian day. 
 * \ingroup sidereal
 * \param JD Julian Day
-* \return Mean sidereal time in radians
-*/ 
+* \return Mean sidereal time in hours
+*
+* Formula based on Meeus Chapter 12.
+*/
 double LIBNOVA_EXPORT ln_get_mean_sidereal_time(double JD);
 
 /*! \fn ln_get_apparent_sidereal_time(double JD)
@@ -45,7 +52,7 @@ double LIBNOVA_EXPORT ln_get_mean_sidereal_time(double JD);
 * \param JD Julian Day
 * \return Apparent sidereal time in radians
 */
- 
+
 double LIBNOVA_EXPORT ln_get_apparent_sidereal_time(double JD);
 
 #ifdef __cplusplus

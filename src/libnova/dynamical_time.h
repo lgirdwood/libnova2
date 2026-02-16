@@ -28,25 +28,33 @@ extern "C" {
 /*!
 * \defgroup dynamical Dynamical Time
 *
-* TODO
+* Functions relating to Dynamical Time (TD), which is the uniform time scale used in the ephemerides.
+*
+* - **Delta T (\f$ \Delta T \f$)**: The difference between Dynamical Time (TD) and Universal Time (UT).
+*   - \f$ \Delta T = TD - UT \f$
+*   - It accounts for the non-uniform rotation of the Earth.
+*
+* All angles are expressed in degrees. Algorithms based on Meeus Chapter 10.
 */
 
 /*! \fn double ln_get_dynamical_time_diff(double JD)
 * \ingroup dynamical
 * \brief Calculate approximate dynamical time difference from Julian day in seconds
-* \param JD Julian Day
-* \return Dynamical time difference
+* \param JD Julian Day (UT)
+* \return Dynamical time difference (\f$ \Delta T \f$) in seconds
+*
+* Uses polynomial approximations to estimate \f$ \Delta T \f$ for the given date.
 */
 double LIBNOVA_EXPORT ln_get_dynamical_time_diff(double JD);
 
 /*! \fn double ln_get_jde(double JD)
-* \brief Calculate Julian ephemeris day(JDE)
+* \brief Calculate Julian Ephemeris Day (JDE)
 * \ingroup dynamical 
-* \param JD Julian Day
-* \return Julian ephemeris day
+* \param JD Julian Day (UT)
+* \return Julian Ephemeris Day (JDE = JD + \f$ \Delta T \f$ / 86400)
 */
 double LIBNOVA_EXPORT ln_get_jde(double JD);
-	
+
 #ifdef __cplusplus
 };
 #endif

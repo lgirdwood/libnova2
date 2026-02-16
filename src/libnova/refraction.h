@@ -27,23 +27,27 @@ extern "C" {
 
 /*! \defgroup refraction Atmospheric Refraction
 *
-* Functions relating to Atmospheric Refraction
+* Functions relating to Atmospheric Refraction, which causes celestial bodies to appear higher than they actually are.
 *
-* All angles are expressed in degrees.
+* - **Bennett's Formula**: Used for calculating refraction from apparent altitude (consistent for altitudes > 0).
+* - **Saemundsson's Formula**: Used for calculating true altitude from apparent altitude.
+*
+* All angles are expressed in degrees. Algorithms based on Meeus Chapter 16.
 */
 
 /*! \fn double ln_get_refraction_adj(double altitude, double atm_pres, double temp)
 * \brief Calculate the adjustment in altitude of a body due to atmospheric 
 * refraction.
 * \ingroup refraction
-* \param altitude Altitude in degrees
+* \param altitude Altitude in degrees (Apparent or True depending on context, usually Apparent for Bennett's)
 * \param atm_pres Atmospheric pressure in mbar
 * \param temp Temperature in degrees Celsius
 * \return Adjustment in altitude in degrees
+*
+* Result should be added to true altitude to get apparent altitude, or subtracted from apparent to get true.
 */
-double LIBNOVA_EXPORT ln_get_refraction_adj(double altitude, double atm_pres,
-	double temp);
-	
+double LIBNOVA_EXPORT ln_get_refraction_adj(double altitude, double atm_pres, double temp);
+
 #ifdef __cplusplus
 };
 #endif

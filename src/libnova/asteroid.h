@@ -29,39 +29,50 @@ extern "C" {
 *
 * Functions relating to Asteroids.
 *
-* All angles are expressed in radians.
+* - **Magnitude System**: Uses the IAU (H, G) magnitude system.
+*   - **H**: Absolute magnitude (brightness at 1 AU from Sun and Earth, at zero phase angle).
+*   - **G**: Slope parameter (describes how brightness changes with phase angle).
+*
+* - **Semi-diameter**: Calculated from absolute magnitude and albedo.
+*
+* All angles are expressed in degrees.
 */
-	
+
 /*!
 * \fn double ln_get_asteroid_mag(double JD, struct ln_ell_orbit *orbit, double H, double G)
 * \brief Calculate the visual magnitude of an asteroid.
+* \ingroup asteroid
 * \param JD Julian Day
 * \param orbit Orbital parameters
 * \param H Absolute magnitude
 * \param G Slope parameter
 * \return Visual magnitude
+*
+* Uses the IAU (H, G) magnitude system (Bowell et al. 1989).
 */
-double LIBNOVA_EXPORT ln_get_asteroid_mag(double JD, struct ln_ell_orbit *orbit,
-	double H, double G);
-	
+double LIBNOVA_EXPORT ln_get_asteroid_mag(double JD, struct ln_ell_orbit *orbit, double H, double G);
+
 /*! \fn double ln_get_asteroid_sdiam_km(double H, double A)
 * \brief Calculate the semi-diameter of an asteroid in km.
+* \ingroup asteroid
 * \param H Absolute magnitude
-* \param A Albedo
+* \param A Albedo (0.0 to 1.0)
 * \return Semi-diameter in km
+*
+* Standard relation between diameter, albedo, and absolute magnitude.
 */
 double LIBNOVA_EXPORT ln_get_asteroid_sdiam_km(double H, double A);
-	
+
 /*! \fn double ln_get_asteroid_sdiam_arc(double JD, struct ln_ell_orbit *orbit, double H, double A)
 * \brief Calculate the semi-diameter of an asteroid in arc seconds.
+* \ingroup asteroid
 * \param JD Julian Day
 * \param orbit Orbital parameters
 * \param H Absolute magnitude
 * \param A Albedo
 * \return Semi-diameter in arc seconds
 */
-double LIBNOVA_EXPORT ln_get_asteroid_sdiam_arc(double JD,
-	struct ln_ell_orbit *orbit, double H, double A);
+double LIBNOVA_EXPORT ln_get_asteroid_sdiam_arc(double JD, struct ln_ell_orbit *orbit, double H, double A);
 
 #ifdef __cplusplus
 };

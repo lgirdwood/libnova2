@@ -25,18 +25,26 @@ extern "C" {
 
 /*!
 * \defgroup constellations Celestial constellations
+*
+* Functions relating to the 88 modern constellations.
+*
+* - **Boundaries**: Defined by the International Astronomical Union (IAU) in 1930 (Delporte).
+* - **Epoch**: Boundaries are defined for epoch B1875.0, so positions must be precessed to this epoch to determine the constellation correctly.
 */
 
 /*! \fn const char* ln_get_constellation(struct ln_equ_posn *position)
 * \ingroup constellations
 * \brief Returns name of the constellation at the given position
-* \param position Equatorial position
-* \return Constellation name
+* \param position Equatorial position (J2000.0)
+* \return Constellation name (abbreviation or full name)
+*
+* The function handles the precession to B1875.0 internally if required (or assumes input is J2000 and precesses).
+* *Note*: This implementation typically checks against a list of boundary coordinates.
 */
-const char* LIBNOVA_EXPORT ln_get_constellation(struct ln_equ_posn *position);
+const char *LIBNOVA_EXPORT ln_get_constellation(struct ln_equ_posn *position);
 
 #ifdef __cplusplus
 };
 #endif
 
-#endif 
+#endif

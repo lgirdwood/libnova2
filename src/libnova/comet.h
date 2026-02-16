@@ -29,7 +29,13 @@ extern "C" {
 *
 * Functions relating to Comets.
 *
-* All angles are expressed in radians.
+* - **Magnitude Formula**: \f$ m = g + 5 \log(\Delta) + k \log(r) \f$
+*   - \f$ g \f$: Absolute magnitude.
+*   - \f$ k \f$: Slope parameter (usually 10 for new comets, 15 for periodic).
+*   - \f$ \Delta \f$: Distance from Earth.
+*   - \f$ r \f$: Distance from Sun.
+*
+* All angles are expressed in degrees. Algorithms based on Meeus Chapter 33.
 */
 
 /*!
@@ -41,10 +47,11 @@ extern "C" {
 * \param g Absolute magnitude
 * \param k Slope parameter
 * \return Visual magnitude
+*
+* Based on Meeus Formula 33.1.
 */
-double LIBNOVA_EXPORT ln_get_ell_comet_mag(double JD,
-	struct ln_ell_orbit *orbit, double g, double k);
-	
+double LIBNOVA_EXPORT ln_get_ell_comet_mag(double JD, struct ln_ell_orbit *orbit, double g, double k);
+
 /*!
 * \fn double ln_get_par_comet_mag(double JD, struct ln_par_orbit *orbit, double g, double k)
 * \ingroup comet
@@ -54,12 +61,13 @@ double LIBNOVA_EXPORT ln_get_ell_comet_mag(double JD,
 * \param g Absolute magnitude
 * \param k Slope parameter
 * \return Visual magnitude
+*
+* Based on Meeus Formula 33.1.
 */
-double LIBNOVA_EXPORT ln_get_par_comet_mag(double JD,
-	struct ln_par_orbit *orbit, double g, double k);
-	
+double LIBNOVA_EXPORT ln_get_par_comet_mag(double JD, struct ln_par_orbit *orbit, double g, double k);
+
 #ifdef __cplusplus
 };
 #endif
-	
+
 #endif

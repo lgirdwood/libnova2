@@ -20,18 +20,31 @@
 #ifndef _LN_AIRMASS_H
 #define _LN_AIRMASS_H
 
-#include <libnova/ln_types.h> 
+#include <libnova/ln_types.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+/*! \defgroup airmass Airmass
+*
+* Airmass is a measure of the amount of atmosphere the light from a celestial object passes through.
+*
+* This implementation uses a **Homogeneous Atmosphere Model** with a specific scale height.
+* - **Zenith Airmass**: 1.0
+* - **Horizon Airmass**: Increases with decreasing altitude.
+*
+* The formula accounts for the Earth's curvature, allowing calculations near the horizon where simple `sec(z)` fails.
+*/
+
 /*! \fn double ln_get_airmass(double alt, double airmass_scale);
  * \brief Calculate air mass in given altitude.
  * \ingroup airmass
- * \param alt Altitude in radians
- * \param airmass_scale Scale of airmass
+ * \param alt Altitude in degrees
+ * \param airmass_scale Scale of airmass (usually 750 for sea level, reduces with height)
  * \return Air mass
+ *
+ * Uses a plane-parallel atmosphere approximation with curvature correction.
  */
 double LIBNOVA_EXPORT ln_get_airmass(double alt, double airmass_scale);
 
@@ -39,8 +52,10 @@ double LIBNOVA_EXPORT ln_get_airmass(double alt, double airmass_scale);
  * \brief Calculate altitude for given air mass.
  * \ingroup airmass
  * \param X Air mass
- * \param airmass_scale Scale of airmass
- * \return Altitude in radians
+ * \param airmass_scale Airmass scale
+ * \return Altitude in degrees
+ *
+ * Inverse calculation.
  */
 double LIBNOVA_EXPORT ln_get_alt_from_airmass(double X, double airmass_scale);
 

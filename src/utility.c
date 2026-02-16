@@ -191,6 +191,22 @@ double ln_dms_to_rad(struct ln_dms *dms)
 	return radians;
 }
 
+/* convert dms to radians */
+double ln_dms2_to_rad(int degrees, int minutes, double seconds)
+{
+	double radians;
+
+	radians = fabs((double)degrees / 360.0 * 2.0 * M_PI);
+	radians += fabs((double)minutes / 21600.0 * 2.0 * M_PI);
+	radians += fabs(seconds / 1296000.0 * 2.0 * M_PI);
+
+	// negative ?
+	if (degrees < 0 || minutes < 0 || seconds < 0)
+		radians *= -1.0;
+
+	return radians;
+}
+
 /* convert degrees to dms */
 void ln_deg_to_dms(double degrees, struct ln_dms *dms)
 {

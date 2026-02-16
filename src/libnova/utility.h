@@ -149,6 +149,16 @@ void LIBNOVA_EXPORT ln_deg_to_dms(double degrees, struct ln_dms *dms);
  */
 double LIBNOVA_EXPORT ln_dms_to_rad(struct ln_dms *dms);
 
+/*! \fn double ln_dms2_to_rad(int degrees, int minutes, double seconds)
+ * \brief dms to radians
+ * \ingroup conversion
+ * \param degrees Degrees
+ * \param minutes Minutes
+ * \param seconds Seconds
+ * \return Angle in radians
+ */
+double LIBNOVA_EXPORT ln_dms2_to_rad(int degrees, int minutes, double seconds);
+
 /*! \fn void ln_rad_to_dms(double radians, struct ln_dms *dms)
  * \brief radians to dms
  * \ingroup conversion

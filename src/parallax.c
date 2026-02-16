@@ -21,6 +21,7 @@
 #include <libnova/sidereal_time.h>
 #include <libnova/utility.h>
 #include <math.h>
+#include <stdio.h>
 
 /*! \fn void ln_get_parallax(struct ln_equ_posn *object, double au_distance,
  * struct ln_lnlat_posn *observer, double height, double JD, struct ln_equ_posn
@@ -37,15 +38,15 @@
  */
 /* Equ 39.1, 39.2, 39.3 Pg 263 and 264
  */
-void ln_get_parallax(struct ln_equ_posn *object, double au_distance,
-                     struct ln_lnlat_posn *observer, double height, double JD,
-                     struct ln_equ_posn *parallax) {
-  double H;
+void ln_get_parallax(struct ln_equ_posn *object, double au_distance, struct ln_lnlat_posn *observer, double height,
+					 double JD, struct ln_equ_posn *parallax)
+{
+	double H;
 
-  H = ln_get_apparent_sidereal_time(JD) -
-      ((observer->lng - object->ra) * 12.0 / M_PI);
-  H = ln_range_hours(H);
-  ln_get_parallax_ha(object, au_distance, observer, height, H, parallax);
+	/* use hours for H */
+	H = ln_get_apparent_sidereal_time(JD) - ((observer->lng - object->ra) * 12.0 / M_PI);
+	H = ln_range_hours(H);
+	ln_get_parallax_ha(object, au_distance, observer, height, H, parallax);
 }
 
 /*! \fn void ln_get_parallax_ha(struct ln_equ_posn *object, double au_distance,
@@ -64,31 +65,28 @@ void ln_get_parallax(struct ln_equ_posn *object, double au_distance,
  */
 /* Equ 39.1, 39.2, 39.3 Pg 263 and 264
  */
-void ln_get_parallax_ha(struct ln_equ_posn *object, double au_distance,
-                        struct ln_lnlat_posn *observer, double height, double H,
-                        struct ln_equ_posn *parallax) {
-  double sin_pi, ro_sin, ro_cos, sin_H, cos_H, cos_dec;
+void ln_get_parallax_ha(struct ln_equ_posn *object, double au_distance, struct ln_lnlat_posn *observer, double height,
+						double H, struct ln_equ_posn *parallax)
+{
+	double sin_pi, ro_sin, ro_cos, sin_H, cos_H, cos_dec;
 
-  ln_get_earth_centre_dist(height, observer->lat, &ro_sin, &ro_cos);
-  sin_pi = sin(LN_D2R((8.794 / au_distance) / 3600.0)); // (39.1)
+	ln_get_earth_centre_dist(height, observer->lat, &ro_sin, &ro_cos);
+	sin_pi = sin(LN_D2R((8.794 / au_distance) / 3600.0)); // (39.1)
 
-  /* change hour angle from hours to radians*/
-  H *= M_PI / 12.0;
+	/* change hour angle from hours to radians*/
+	H *= M_PI / 12.0;
 
-  sin_H = sin(H);
-  cos_H = cos(H);
+	sin_H = sin(H);
+	cos_H = cos(H);
+	cos_dec = cos(object->dec);
+	parallax->ra = atan2(-ro_cos * sin_pi * sin_H,
+						 cos_dec - ro_cos * sin_pi * cos_H); // (39.2)
+	parallax->ra = ln_range_radians(parallax->ra);
 
-  cos_dec = cos(object->dec);
-
-  parallax->ra = atan2(-ro_cos * sin_pi * sin_H,
-                       cos_dec - ro_cos * sin_pi * cos_H); // (39.2)
-  parallax->ra = ln_range_radians(parallax->ra);
-
-  /* we use the rigorous method 39.3 but its calculation object + parallax
+	/* we use the rigorous method 39.3 but its calculation object + parallax
    * in one step for declination and we need the delta parallax only so need
    to subtract the object declination*/
-  parallax->dec =
-      atan2((sin(object->dec) - ro_sin * sin_pi) * cos(parallax->ra),
-            cos_dec - ro_cos * sin_pi * cos_H); // (39.3)
-  parallax->dec -= object->dec;
+	parallax->dec = atan2((sin(object->dec) - ro_sin * sin_pi) * cos(parallax->ra),
+						  cos_dec - ro_cos * sin_pi * cos_H); // (39.3)
+	parallax->dec -= object->dec;
 }

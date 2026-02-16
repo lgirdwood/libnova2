@@ -27,13 +27,26 @@ extern "C" {
 #endif
 
 /*! \defgroup calendar General Calendar Functions 
+*
+* Functions for converting between various time systems and calendar formats.
+*
+* The Julian Day (JD) is a continuous count of days since the beginning of the Julian Period 
+* (January 1, 4713 BC at noon UT). It is the primary time variable used in astronomical calculations.
+*
+* - **JD at J2000.0**: 2451545.0 (2000 January 1.5 TD)
+* - **MJD (Modified Julian Day)**: JD - 2400000.5
+*
+* Algorithms are based on Chapter 7 of Meeus's *Astronomical Algorithms*.
 */
- 
+
 /*! \fn double ln_get_julian_day(struct ln_date *date)
 * \ingroup calendar
 * \brief Calculate the julian day from date.
 * \param date Date structure
 * \return Julian Day
+*
+* Formula 7.1 (Meeus). Valid for positive and negative years (using astronomical year numbering, 
+* where 0 = 1 BC, -1 = 2 BC, etc.).
 */
 double LIBNOVA_EXPORT ln_get_julian_day(struct ln_date *date);
 
@@ -42,6 +55,8 @@ double LIBNOVA_EXPORT ln_get_julian_day(struct ln_date *date);
 * \brief Calculate the date from the julian day.
 * \param JD Julian Day
 * \param date Pointer to store date
+*
+* Inverse of Formula 7.1 (Meeus).
 */
 void LIBNOVA_EXPORT ln_get_date(double JD, struct ln_date *date);
 
@@ -51,7 +66,7 @@ void LIBNOVA_EXPORT ln_get_date(double JD, struct ln_date *date);
 * \param t Time_t structure
 * \param date Pointer to store date
 */
-void LIBNOVA_EXPORT ln_get_date_from_timet (time_t *t, struct ln_date *date);
+void LIBNOVA_EXPORT ln_get_date_from_timet(time_t *t, struct ln_date *date);
 
 /*! \fn void ln_get_date_from_tm(struct tm *t, struct ln_date *date)
 * \\ingroup calendar
@@ -74,16 +89,17 @@ void LIBNOVA_EXPORT ln_get_local_date(double JD, struct ln_zonedate *zonedate);
 * \brief Calculate day of the week.
 * \param date Date structure
 * \return Day of week (0=Sunday, 6=Saturday)
+*
+* Based on Meeus Chapter 7.
 */
 unsigned int LIBNOVA_EXPORT ln_get_day_of_week(struct ln_date *date);
-	
+
 /*! \fn double ln_get_julian_from_sys()
 * \brief Calculate julian day from system time.
 * \ingroup calendar
-* \return Julian Day
+* \return Julian Day (UT)
 */
 double LIBNOVA_EXPORT ln_get_julian_from_sys();
-
 
 /*! \fn void ln_get_date_from_sys(struct ln_date *date)
 * \brief Calculate date from system date
@@ -91,14 +107,16 @@ double LIBNOVA_EXPORT ln_get_julian_from_sys();
 * \param date Pointer to store date
 */
 void LIBNOVA_EXPORT ln_get_date_from_sys(struct ln_date *date);
-	
+
 /*! \fn double ln_get_julian_from_timet(time_t *time)
 * \brief Calculate julian day from time_t
 * \ingroup calendar
 * \param in_time Time_t structure
 * \return Julian Day
+*
+* Unix time 1970-01-01 00:00:00 UTC corresponds to JD 2440587.5.
 */
-double LIBNOVA_EXPORT ln_get_julian_from_timet(time_t * in_time);
+double LIBNOVA_EXPORT ln_get_julian_from_timet(time_t *in_time);
 
 /*! \fn void ln_get_timet_from_julian(double JD, time_t * in_time)
 * \brief Calculate time_t from julian day
@@ -106,7 +124,7 @@ double LIBNOVA_EXPORT ln_get_julian_from_timet(time_t * in_time);
 * \param JD Julian Day
 * \param in_time Pointer to store time_t
 */
-void LIBNOVA_EXPORT ln_get_timet_from_julian(double JD, time_t * in_time);
+void LIBNOVA_EXPORT ln_get_timet_from_julian(double JD, time_t *in_time);
 
 /*! \fn double ln_get_julian_local_date(struct ln_zonedate* zonedate)
 * \brief Calculate Julian day from local date
@@ -114,22 +132,26 @@ void LIBNOVA_EXPORT ln_get_timet_from_julian(double JD, time_t * in_time);
 * \param zonedate Zonedate structure
 * \return Julian Day
 */
-double LIBNOVA_EXPORT ln_get_julian_local_date(struct ln_zonedate* zonedate);
-	
+double LIBNOVA_EXPORT ln_get_julian_local_date(struct ln_zonedate *zonedate);
+
 /*! \fn int ln_get_date_from_mpc(struct ln_date *date, char *mpc_date)
 * \brief Calculate the local date from the a MPC packed date.
 * \ingroup calendar
 * \param date Pointer to store date
 * \param mpc_date MPC packed date string
 * \return 0 for success
+*
+* See http://cfa-www.harvard.edu/iau/info/PackedDates.html
 */
 int LIBNOVA_EXPORT ln_get_date_from_mpc(struct ln_date *date, char *mpc_date);
-	
+
 /*! \fn double ln_get_julian_from_mpc(char *mpc_date)
 * \brief Calculate the julian day from the a MPC packed date.
 * \ingroup calendar
 * \param mpc_date MPC packed date string
 * \return Julian Day
+*
+* See http://cfa-www.harvard.edu/iau/info/PackedDates.html
 */
 double LIBNOVA_EXPORT ln_get_julian_from_mpc(char *mpc_date);
 
@@ -140,8 +162,7 @@ double LIBNOVA_EXPORT ln_get_julian_from_mpc(char *mpc_date);
 * \param zonedate Pointer to store zonedate
 * \param gmtoff GMT offset in seconds
 */
-void LIBNOVA_EXPORT ln_date_to_zonedate(struct ln_date *date,
-	struct ln_zonedate *zonedate, long gmtoff);
+void LIBNOVA_EXPORT ln_date_to_zonedate(struct ln_date *date, struct ln_zonedate *zonedate, long gmtoff);
 
 /*! \fn void ln_zonedate_to_date(struct ln_zonedate *zonedate, struct ln_date *date)
 * \brief convert ln_zonedate to ln_date
@@ -149,8 +170,7 @@ void LIBNOVA_EXPORT ln_date_to_zonedate(struct ln_date *date,
 * \param zonedate Zonedate structure
 * \param date Pointer to store date
 */
-void LIBNOVA_EXPORT ln_zonedate_to_date(struct ln_zonedate *zonedate,
-	struct ln_date *date);
+void LIBNOVA_EXPORT ln_zonedate_to_date(struct ln_zonedate *zonedate, struct ln_date *date);
 
 #ifdef __cplusplus
 };

@@ -21,7 +21,7 @@
 
 #include <libnova/ln_types.h>
 
-#define LN_LUNAR_STANDART_HORIZON		0.125
+#define LN_LUNAR_STANDART_HORIZON 0.125
 
 #ifdef __cplusplus
 extern "C" {
@@ -31,7 +31,10 @@ extern "C" {
 *
 * Functions relating to the Moon.
 *
-* All angles are expressed in degrees.
+* - **Theory**: ELP 2000-82B (Ephemeride Lunaire Parisienne) by Chapront-Touze and Chapront.
+* - **Accuracy**: High precision, suitable for modern astrometry.
+*
+* All angles are expressed in degrees. Algorithms based on Meeus Chapter 47.
 */
 
 /*! \fn double ln_get_lunar_sdiam(double JD)
@@ -51,8 +54,7 @@ double LIBNOVA_EXPORT ln_get_lunar_sdiam(double JD);
 * \return 0 for success, 1 for circumpolar, -1 for never rises
 */
 
-int LIBNOVA_EXPORT ln_get_lunar_rst(double JD, struct ln_lnlat_posn *observer,
-	struct ln_rst_time *rst);
+int LIBNOVA_EXPORT ln_get_lunar_rst(double JD, struct ln_lnlat_posn *observer, struct ln_rst_time *rst);
 
 /*! \fn void ln_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon, double precision);
 * \brief Calculate the rectangular geocentric lunar cordinates.
@@ -60,10 +62,9 @@ int LIBNOVA_EXPORT ln_get_lunar_rst(double JD, struct ln_lnlat_posn *observer,
 * \param JD Julian Day
 * \param moon Pointer to store lunar position
 * \param precision Calculation precision
-*/ 
+*/
 /* ELP 2000-82B theory */
-void LIBNOVA_EXPORT ln_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon,
-	double precision);
+void LIBNOVA_EXPORT ln_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon, double precision);
 
 /*! \fn void ln_get_lunar_equ_coords_prec(double JD, struct ln_equ_posn *position, double precision);
 * \brief Calculate lunar equatorial coordinates.
@@ -71,18 +72,16 @@ void LIBNOVA_EXPORT ln_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon,
 * \param JD Julian Day
 * \param position Pointer to store equatorial position
 * \param precision Calculation precision
-*/ 
-void LIBNOVA_EXPORT ln_get_lunar_equ_coords_prec(double JD,
-	struct ln_equ_posn *position, double precision);
+*/
+void LIBNOVA_EXPORT ln_get_lunar_equ_coords_prec(double JD, struct ln_equ_posn *position, double precision);
 
 /*! \fn void ln_get_lunar_equ_coords(double JD, struct ln_equ_posn *position);
 * \brief Calculate lunar equatorial coordinates.
 * \ingroup lunar
 * \param JD Julian Day
 * \param position Pointer to store equatorial position
-*/ 
-void LIBNOVA_EXPORT ln_get_lunar_equ_coords(double JD,
-	struct ln_equ_posn *position);
+*/
+void LIBNOVA_EXPORT ln_get_lunar_equ_coords(double JD, struct ln_equ_posn *position);
 
 /*! \fn void ln_get_lunar_ecl_coords(double JD, struct ln_lnlat_posn *position, double precision);
 * \brief Calculate lunar ecliptical coordinates.
@@ -90,9 +89,8 @@ void LIBNOVA_EXPORT ln_get_lunar_equ_coords(double JD,
 * \param JD Julian Day
 * \param position Pointer to store ecliptical position
 * \param precision Calculation precision
-*/ 
-void LIBNOVA_EXPORT ln_get_lunar_ecl_coords(double JD,
-	struct ln_lnlat_posn *position, double precision);
+*/
+void LIBNOVA_EXPORT ln_get_lunar_ecl_coords(double JD, struct ln_lnlat_posn *position, double precision);
 
 /*! \fn double ln_get_lunar_phase(double JD);
 * \brief Calculate the phase angle of the Moon.
@@ -101,7 +99,7 @@ void LIBNOVA_EXPORT ln_get_lunar_ecl_coords(double JD,
 * Calculates the angle Sun - Moon - Earth.
 * \param JD Julian Day
 * \return Phase angle in radians.
-*/ 
+*/
 double LIBNOVA_EXPORT ln_get_lunar_phase(double JD);
 
 /*! \fn double ln_get_lunar_disk(double JD);
@@ -109,23 +107,23 @@ double LIBNOVA_EXPORT ln_get_lunar_phase(double JD);
 * \ingroup lunar
 * \param JD Julian Day
 * \return Illuminated fraction of the Moons disk
-*/ 
+*/
 double LIBNOVA_EXPORT ln_get_lunar_disk(double JD);
-	
+
 /*! \fn double ln_get_lunar_earth_dist(double JD);
 * \brief Calculate the distance between the Earth and the Moon.
 * \ingroup lunar
 * \param JD Julian Day
 * \return Distance in km
-*/ 
-double LIBNOVA_EXPORT ln_get_lunar_earth_dist(double JD);	
-	
+*/
+double LIBNOVA_EXPORT ln_get_lunar_earth_dist(double JD);
+
 /*! \fn double ln_get_lunar_bright_limb(double JD);
 * \brief Calculate the position angle of the Moon's bright limb.
 * \ingroup lunar
 * \param JD Julian Day
 * \return The position angle in radians.
-*/ 
+*/
 double LIBNOVA_EXPORT ln_get_lunar_bright_limb(double JD);
 
 /*! \fn double ln_get_lunar_long_asc_node(double JD);
@@ -135,7 +133,7 @@ double LIBNOVA_EXPORT ln_get_lunar_bright_limb(double JD);
 * Calculate the mean longitude of the Moons ascening node
 * \param JD Julian Day
 * \return Longitude of ascending node in radians.
-*/ 
+*/
 double LIBNOVA_EXPORT ln_get_lunar_long_asc_node(double JD);
 
 /*! \fn double ln_get_lunar_long_perigee(double JD);
@@ -145,7 +143,7 @@ double LIBNOVA_EXPORT ln_get_lunar_long_asc_node(double JD);
 * Calculate the longitude of the Moon's mean perigee.
 * \param JD Julian Day
 * \return Longitude of Moons mean perigee in radians.
-*/ 
+*/
 double LIBNOVA_EXPORT ln_get_lunar_long_perigee(double JD);
 
 /*! \fn double ln_get_lunar_arg_latitude(double JD);

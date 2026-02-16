@@ -29,29 +29,40 @@ extern "C" {
 
 /*! \defgroup nutation Nutation
 *
-* Nutation is a period oscillation of the Earths rotational axis around it's
+* Nutation is a periodic oscillation of the Earth's rotational axis around its
 * mean position.
 *
-* All angles are expressed in radians.
+* This implementation uses the **IAU 1980 Theory of Nutation**, which includes 63 terms 
+* in the series expansion for longitude and obliquity.
+*
+* - **Longitude**: \f$\Delta \psi\f$
+* - **Obliquity**: \f$\Delta \epsilon\f$
+*
+* All angles are expressed in radians. Algorithms based on Meeus Chapter 22.
 */
 
 /*! \fn void ln_get_nutation(double JD, struct ln_nutation *nutation);
 * \ingroup nutation
 * \brief Calculate nutation. 
 * \param JD Julian Day
-* \param nutation Pointer to store nutation parameters
+* \param nutation Pointer to store nutation parameters (longitude, obliquity, ecliptic obliquity)
+*
+* Calculates the nutation in longitude and obliquity using the IAU 1980 theory (Meeus Table 22.A).
+* Also calculates the mean obliquity of the ecliptic (Meeus Formula 22.2) and the true obliquity.
 */
 void LIBNOVA_EXPORT ln_get_nutation(double JD, struct ln_nutation *nutation);
 
 /*! \fn void ln_get_equ_nut(struct ln_equ_posn *mean_position, double JD, struct ln_equ_posn *position);
 * \brief Calculate equatorial coordinates with the effects of nutation.
 * \ingroup nutation
-* \param mean_position Mean equatorial position
+* \param mean_position Mean equatorial position (J2000.0)
 * \param JD Julian Day
 * \param position Pointer to store new equatorial position
+*
+* Meeus Formula 22.1. Applies the correction to Right Ascension and Declination due to nutation.
 */
 void LIBNOVA_EXPORT ln_get_equ_nut(struct ln_equ_posn *mean_position, double JD, struct ln_equ_posn *position);
-	
+
 #ifdef __cplusplus
 };
 #endif

@@ -28,6 +28,13 @@ extern "C" {
 /*! \defgroup transform Transformation of Coordinates
 *
 * Transformations from one coordinate system to another.
+*
+* - **Equatorial Coordinates**: Right Ascension (RA) and Declination (Dec). Referenced to the equator and equinox of a specific epoch (usually J2000.0).
+* - **Ecliptic Coordinates**: Longitude and Latitude. Referenced to the ecliptic plane.
+* - **Horizontal Coordinates**: Azimuth and Altitude. Topocentric coordinates relative to the observer's local horizon.
+* - **Galactic Coordinates**: Longitude (l) and Latitude (b). Referenced to the galactic plane.
+*
+* Algorithms based on Meeus Chapter 13.
 */
 
 /*! \fn void ln_get_hrz_from_equ(struct ln_equ_posn *object, struct ln_lnlat_posn *observer, double JD, struct ln_hrz_posn *position);
@@ -37,10 +44,12 @@ extern "C" {
 * \param observer Observer's position
 * \param JD Julian Day
 * \param position Pointer to store horizontal position
+*
+* Meeus Chapter 13. Uses the observer's longitude and latitude and the sidereal time at Greenwich (calculated from JD).
 */
 /* Use get_mean_sidereal_time, get_hrz_from_equ_siderealtime */
-void LIBNOVA_EXPORT ln_get_hrz_from_equ(struct ln_equ_posn *object,
-	struct ln_lnlat_posn *observer, double JD, struct ln_hrz_posn *position);
+void LIBNOVA_EXPORT ln_get_hrz_from_equ(struct ln_equ_posn *object, struct ln_lnlat_posn *observer, double JD,
+										struct ln_hrz_posn *position);
 
 /*! \fn void ln_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object, struct ln_lnlat_posn *observer, double sidereal_time, struct ln_hrz_posn *position);
 * \brief Calculate horizontal coordinates from equatorial coordinates,
@@ -50,11 +59,12 @@ void LIBNOVA_EXPORT ln_get_hrz_from_equ(struct ln_equ_posn *object,
 * \param observer Observer's position
 * \param sidereal Sidereal time in radians
 * \param position Pointer to store horizontal position
+*
+* Meeus Formula 13.5 and 13.6.
 */
 /* Equ 12.5,12.6 pg 88 */
-void LIBNOVA_EXPORT ln_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object,
-	struct ln_lnlat_posn *observer, double sidereal,
-	struct ln_hrz_posn *position);
+void LIBNOVA_EXPORT ln_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object, struct ln_lnlat_posn *observer,
+													  double sidereal, struct ln_hrz_posn *position);
 
 /*! \fn void ln_get_equ_from_ecl(struct ln_lnlat_posn *object, double JD, struct ln_equ_posn *position);
 * \brief Calculate equatorial coordinates from ecliptical coordinates
@@ -62,10 +72,11 @@ void LIBNOVA_EXPORT ln_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object
 * \param object Ecliptical position of object
 * \param JD Julian Day
 * \param position Pointer to store equatorial position
+*
+* Meeus Formula 13.3 and 13.4.
 */
 /* Equ 12.3, 12.4 pg 89 */
-void LIBNOVA_EXPORT ln_get_equ_from_ecl(struct ln_lnlat_posn *object,
-	double JD, struct ln_equ_posn *position);
+void LIBNOVA_EXPORT ln_get_equ_from_ecl(struct ln_lnlat_posn *object, double JD, struct ln_equ_posn *position);
 
 /*! \fn void ln_get_ecl_from_equ(struct ln_equ_posn *object, double JD, struct ln_lnlat_posn *position);
 * \brief Calculate ecliptical coordinates from equatorial coordinates 
@@ -73,10 +84,11 @@ void LIBNOVA_EXPORT ln_get_equ_from_ecl(struct ln_lnlat_posn *object,
 * \param object Equatorial position of object
 * \param JD Julian Day
 * \param position Pointer to store ecliptical position
+*
+* Meeus Formula 13.1 and 13.2.
 */
 /* Equ 12.1, 12.2 Pg 88 */
-void LIBNOVA_EXPORT ln_get_ecl_from_equ(struct ln_equ_posn *object, double JD,
-	struct ln_lnlat_posn *position);
+void LIBNOVA_EXPORT ln_get_ecl_from_equ(struct ln_equ_posn *object, double JD, struct ln_lnlat_posn *position);
 
 /*! \fn void ln_get_equ_from_hrz(struct ln_hrz_posn *object, struct ln_lnlat_posn *observer, double JD, struct ln_equ_posn *position); 
 * \brief Calculate equatorial coordinates from horizontal coordinates  
@@ -87,8 +99,8 @@ void LIBNOVA_EXPORT ln_get_ecl_from_equ(struct ln_equ_posn *object, double JD,
 * \param position Pointer to store equatorial position
 */
 /* Pg 89 */
-void LIBNOVA_EXPORT ln_get_equ_from_hrz(struct ln_hrz_posn *object,
-	struct ln_lnlat_posn *observer, double JD, struct ln_equ_posn *position);
+void LIBNOVA_EXPORT ln_get_equ_from_hrz(struct ln_hrz_posn *object, struct ln_lnlat_posn *observer, double JD,
+										struct ln_equ_posn *position);
 
 /*! \fn void ln_get_rect_from_helio(struct ln_helio_posn *object, struct ln_rect_posn *position); 
 * \brief Calculate geocentric coordinates from heliocentric coordinates  
@@ -97,8 +109,7 @@ void LIBNOVA_EXPORT ln_get_equ_from_hrz(struct ln_hrz_posn *object,
 * \param position Pointer to store rectangular position
 */
 /* Pg ?? */
-void LIBNOVA_EXPORT ln_get_rect_from_helio(struct ln_helio_posn *object,
-	struct ln_rect_posn *position);
+void LIBNOVA_EXPORT ln_get_rect_from_helio(struct ln_helio_posn *object, struct ln_rect_posn *position);
 
 /*! \fn void ln_get_ecl_from_rect(struct ln_rect_posn *rect, struct ln_lnlat_posn *posn)
 * \ingroup transform
@@ -108,18 +119,18 @@ void LIBNOVA_EXPORT ln_get_rect_from_helio(struct ln_helio_posn *object,
 */
 /* Equ 33.2
 */
-void LIBNOVA_EXPORT ln_get_ecl_from_rect(struct ln_rect_posn *rect,
-	struct ln_lnlat_posn *posn);
+void LIBNOVA_EXPORT ln_get_ecl_from_rect(struct ln_rect_posn *rect, struct ln_lnlat_posn *posn);
 
 /*! \fn void ln_get_equ_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ)
 * \ingroup transform
 * \brief Transform an object galactic coordinates into equatorial coordinates.
 * \param gal Galactic position of object
 * \param equ Pointer to store equatorial position
+*
+* Conversion valid for B1950.0 epoch.
 */
 /* Pg 94 */
-void LIBNOVA_EXPORT ln_get_equ_from_gal(struct ln_gal_posn *gal,
-	struct ln_equ_posn *equ);
+void LIBNOVA_EXPORT ln_get_equ_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ);
 
 /*! \fn void ln_get_equ2000_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ)
 * \ingroup transform
@@ -127,18 +138,18 @@ void LIBNOVA_EXPORT ln_get_equ_from_gal(struct ln_gal_posn *gal,
 * \param gal Galactic position of object
 * \param equ Pointer to store J2000 equatorial position
 */
-void LIBNOVA_EXPORT ln_get_equ2000_from_gal(struct ln_gal_posn *gal,
-	struct ln_equ_posn *equ);
+void LIBNOVA_EXPORT ln_get_equ2000_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ);
 
 /*! \fn void ln_get_gal_from_equ(struct ln_equ_posn *equ, struct ln_gal_posn *gal)
 * \ingroup transform
 * \brief Transform an object equatorial coordinates into galactic coordinates.
 * \param equ Equatorial position of object
 * \param gal Pointer to store galactic position
+*
+* Conversion valid for B1950.0 epoch.
 */
 /* Pg 94 */
-void LIBNOVA_EXPORT ln_get_gal_from_equ(struct ln_equ_posn *equ,
-	struct ln_gal_posn *gal);
+void LIBNOVA_EXPORT ln_get_gal_from_equ(struct ln_equ_posn *equ, struct ln_gal_posn *gal);
 
 /*! \fn void ln_get_gal_from_equ2000(struct ln_equ_posn *equ, struct ln_gal_posn *gal)
 * \ingroup transform
@@ -146,8 +157,7 @@ void LIBNOVA_EXPORT ln_get_gal_from_equ(struct ln_equ_posn *equ,
 * \param equ J2000 equatorial position of object
 * \param gal Pointer to store galactic position
 */
-void LIBNOVA_EXPORT ln_get_gal_from_equ2000(struct ln_equ_posn *equ,
-	struct ln_gal_posn *gal);
+void LIBNOVA_EXPORT ln_get_gal_from_equ2000(struct ln_equ_posn *equ, struct ln_gal_posn *gal);
 
 #ifdef __cplusplus
 };

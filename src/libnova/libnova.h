@@ -28,27 +28,34 @@
 * The intended audience of libnova is C / C++ programmers, astronomers and anyone else interested in calculating positions of astronomical objects or celestial mechanics.
 * libnova is the calculation engine used by the <A href="http://nova.sf.net">Nova</A> project and most importantly, is free software.
 *
+* \section scientific Scientific Details
+* libnova implements algorithms from Jean Meeus's *Astronomical Algorithms* (2nd Edition), providing high-precision calculations for:
+* - **Planetary Positions**: Using the VSOP87 solution (Variations Séculaires des Orbites Planétaires) by Bretagnon and Francou, which provides high accuracy for Mercury through Neptune. Pluto's position is calculated using Meeus's truncation of the full VSOP87 theory.
+* - **Lunar Position**: Using the ELP 2000-82B theory (Ephemeride Lunaire Parisienne) by Chapront-Touze and Chapront.
+* - **Time Scales**: Support for Julian Day (JD), Modified Julian Day (MJD), and Conversions between UTC and Dynamical Time (TD).
+* - **Coordinate Systems**: Transformations between Equatorial, Ecliptic, Horizontal, and Galactic coordinates, including effects of Precession, Nutation, Aberration, and Refraction.
+*
 * \section features Features
 * The current version of libnova can calculate:
 *
-* - Aberration
-* - Nutation
+* - Aberration (Annual)
+* - Nutation (IAU 1980 Theory)
 * - Apparent Position
 * - Dynamical Time
 * - Julian Day
-* - Precession
+* - Precession (IAU 1976)
 * - Proper Motion
-* - Sidereal Time
-* - Solar Coordinates (using VSOP87)
+* - Sidereal Time (Mean and Apparent)
+* - Solar Coordinates (VSOP87)
 * - Coordinate Transformations
 * - Planetary Positions Mercury - Pluto (Mercury - Neptune using VSOP87)
 * - Planetary Magnitude, illuminated disk and phase angle.
-* - Lunar Position (using ELP82), phase angle.
+* - Lunar Position (ELP82), phase angle.
 * - Elliptic Motion of bodies (Asteroid + Comet positional and orbit data)
 * - Asteroid + Comet magnitudes
 * - Parabolic Motion of bodies (Comet positional data)
 * - Orbit velocities and lengths
-* - Atmospheric refraction
+* - Atmospheric refraction (Bennett/Saeemundsson)
 * - Rise, Set and Transit times.
 * - Semidiameters of the Sun, Moon, Planets and asteroids.
 * - Angular separation of bodies

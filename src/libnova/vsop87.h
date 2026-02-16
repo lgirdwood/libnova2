@@ -47,9 +47,9 @@ extern "C" {
 void LIBNOVA_EXPORT ln_vsop87_to_fk5(struct ln_helio_posn *position, double JD);
 
 struct ln_vsop {
-	double A;
-	double B;
-	double C;
+	double A; /*!< Amplitude */
+	double B; /*!< Phase */
+	double C; /*!< Frequency */
 };
 
 /*! \fn double ln_calc_series(const struct ln_vsop *data, int terms, double t)

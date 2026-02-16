@@ -65,14 +65,13 @@ double LIBNOVA_EXPORT ln_get_dec_location(char *s);
  */
 const char LIBNOVA_EXPORT *ln_get_humanr_location(double location);
 
-/*
- * \fn double ln_get_rect_distance(struct ln_rect_posn *a, struct ln_rect_posn
- * *b)
- * \ingroup misc
- * \param a Rectangular position a
- * \param b Rectangular position b
- * \return Distance between a and b
- */
+/*! \fn double ln_get_rect_distance(struct ln_rect_posn *a, struct ln_rect_posn *b)
+* \brief Calculate distance between two rectangular coordinates
+* \ingroup misc
+* \param a Rectangular position a
+* \param b Rectangular position b
+* \return Distance between a and b
+*/
 double LIBNOVA_EXPORT ln_get_rect_distance(struct ln_rect_posn *a, struct ln_rect_posn *b);
 
 /*! \defgroup conversion General Conversion Functions
@@ -259,6 +258,13 @@ double LIBNOVA_EXPORT ln_range_degrees(double angle);
  * \return Angle in range 0-2PI radians
  */
 double LIBNOVA_EXPORT ln_range_radians(double angle);
+
+/*! \fn double ln_range_radians2(double angle)
+* \brief puts a large angle in the correct range -PI - PI radians
+* \ingroup conversion
+* \param angle Angle in radians
+* \return Angle in range -PI - PI radians
+*/
 double LIBNOVA_EXPORT ln_range_radians2(double angle);
 
 /*! \fn void ln_range_hours(double angle)
@@ -269,13 +275,12 @@ double LIBNOVA_EXPORT ln_range_radians2(double angle);
  */
 double LIBNOVA_EXPORT ln_range_hours(double angle);
 
-/*
- * \fn double ln_get_light_time(double dist)
- * \brief Convert units of AU into light days.
- * \ingroup conversion
- * \param dist Distance in AU
- * \return Light time in days
- */
+/*! \fn double ln_get_light_time(double dist)
+* \brief Convert units of AU into light days.
+* \ingroup conversion
+* \param dist Distance in AU
+* \return Light time in days
+*/
 double LIBNOVA_EXPORT ln_get_light_time(double dist);
 
 /*! \fn double ln_interpolate3(double n, double y1, double y2, double y3)

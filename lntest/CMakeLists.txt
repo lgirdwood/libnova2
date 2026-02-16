@@ -42,23 +42,8 @@ if(UNIX)
     target_link_libraries(libnova_test_exec PRIVATE m)
 endif()
 
-add_executable(libnova_test_old test.c
-    test_helpers.c
-    test_mercury.c
-    test_venus.c
-    test_earth.c
-    test_mars.c
-    test_jupiter.c
-    test_saturn.c
-    test_uranus.c
-    test_neptune.c
-    test_pluto.c
-)
-target_link_libraries(libnova_test_old PRIVATE nova PRIVATE m)
-
 if(WIN32)
     set_property(TARGET libnova_test_exec PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
-    set_property(TARGET libnova_test_old PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
     if(MSVC)
         set_target_properties(libnova_test_exec PROPERTIES PREFIX "../")
     endif()

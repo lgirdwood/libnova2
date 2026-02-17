@@ -1392,16 +1392,6 @@ static const struct ln_vsop ALIGN32 earth_radius_r5[RADIUS_R5] = {
 	{ 0.00000000086, 1.21805304895, 6283.07584999140 },
 	{ 0.00000000012, 0.65572878044, 12566.15169998280 },
 };
-
-/**
- * *position)
- * \param JD Julian day
- * \param position Pointer to store heliocentric position
- *
- * Calculate Earths heliocentric (referred to the centre of the Sun) coordinates
- * for given julian day.
- * Longitude and Latitude are in radians, whilst radius vector is in AU.
- */
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87
  */
 void ln_get_earth_helio_coords(double JD, struct ln_helio_posn *position)
@@ -1466,14 +1456,6 @@ void ln_get_earth_helio_coords(double JD, struct ln_helio_posn *position)
 	cB = position->B;
 	cR = position->R;
 }
-
-/**
- * \param JD Julian day.
- * \return Distance in AU
- *
- * Calculates the distance in AU between the Sun and Earth for
- * the given julian day.
- */
 double ln_get_earth_solar_dist(double JD)
 {
 	struct ln_helio_posn h_earth;
@@ -1483,18 +1465,6 @@ double ln_get_earth_solar_dist(double JD)
 
 	return h_earth.R;
 }
-
-/**
- * *p_sin_o, double *p_cos_o);
- * \param height Height above sea level in metres.
- * \param latitude latitude in radians.
- * \param p_sin_o Pointer to hold p_sin_o
- * \param p_cos_o Pointer to hold p_cos_o
- *
- * Calculate the quantities "p sin o" and "p cos o" needed in calculations for
- * diurnal parallaxes, eclipses and occultations given the observers height
- * in metres above sea level and there latitude in radians.
- */
 
 void ln_get_earth_centre_dist(float height, double latitude, double *p_sin_o, double *p_cos_o)
 {
@@ -1509,14 +1479,6 @@ void ln_get_earth_centre_dist(float height, double latitude, double *p_sin_o, do
 	*p_sin_o = (b / a) * sin(u) + (height / 6378140.0) * sin(latitude);
 	*p_cos_o = cos(u) + (height / 6378140.0) * cos(latitude);
 }
-
-/**
- * \param JD Julian day.
- * \param position pointer to return position
- *
- * Calculate the Earths rectangular heliocentric coordinates for the
- * given Julian day. Coordinates are in AU.
- */
 void ln_get_earth_rect_helio(double JD, struct ln_rect_posn *position)
 {
 	struct ln_helio_posn earth;

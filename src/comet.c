@@ -20,16 +20,6 @@
 #include <libnova/comet.h>
 #include <libnova/elliptic_motion.h>
 #include <libnova/parabolic_motion.h>
-
-/*!
-* \param JD Julian day.
-* \param orbit Orbital parameters
-* \param g Absolute magnitude
-* \param k Comet constant
-* \return The visual magnitude. 
-*
-* Calculate the visual magnitude of a comet in an elliptical orbit.
-*/
 double ln_get_ell_comet_mag(double JD, struct ln_ell_orbit *orbit, double g,
 	double k)
 {
@@ -50,16 +40,6 @@ double ln_get_ell_comet_mag(double JD, struct ln_ell_orbit *orbit, double g,
 	
 	return g + 5.0 * log10(d) + k * log10(r);
 }
-
-/*!
-* \param JD Julian day.
-* \param orbit Orbital parameters
-* \param g Absolute magnitude
-* \param k Comet constant
-* \return The visual magnitude. 
-*
-* Calculate the visual magnitude of a comet in a parabolic orbit.
-*/
 double ln_get_par_comet_mag(double JD, struct ln_par_orbit *orbit, double g,
 	double k)
 {
@@ -75,7 +55,7 @@ double ln_get_par_comet_mag(double JD, struct ln_par_orbit *orbit, double g,
 	return g + 5.0 * log10(d) + k * log10(r);
 }
 
-/*! \example comet.c
+/** \example comet.c
  * 
  * Examples of how to use comet functions. 
  */

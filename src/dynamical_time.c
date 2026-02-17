@@ -137,14 +137,6 @@ static double get_dynamical_diff_other(double JD) {
 
   return TD;
 }
-
-/**
- * \param JD Julian Day
- * \return TD
- *
- * Calculates the dynamical time (TD) difference in seconds (delta T) from
- * universal time.
- */
 /* Equation 9.1 on pg 73.
  */
 double ln_get_dynamical_time_diff(double JD) {
@@ -170,13 +162,6 @@ double ln_get_dynamical_time_diff(double JD) {
 
   return TD;
 }
-
-/**
- * \param JD Julian Day
- * \return Julian Ephemeris day
- *
- * Calculates the Julian Ephemeris Day(JDE) from the given julian day
- */
 
 double ln_get_jde(double JD) {
   double JDE;

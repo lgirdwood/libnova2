@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup uranus Uranus
+/** \defgroup uranus Uranus
 *
 * Functions relating to the planet Uranus.
 *

@@ -35,7 +35,6 @@
 /*                                                                        */
 /*------------------------------------------------------------------------*/
 
-/**/
 #include <ctype.h>
 #include <libnova/libnova.h>
 #include <math.h>
@@ -70,13 +69,6 @@
 #define RADIAN (180.0 / M_PI)
 
 static const char ln_version[] = LIBNOVA_VERSION;
-
-/**
- * \return Null terminated version string.
- *
- * Return the libnova library version number string
- * e.g. "0.4.0"
- */
 const char *ln_get_version(void)
 {
 	return ln_version;
@@ -352,75 +344,39 @@ void ln_add_hms(struct ln_hms *source, struct ln_hms *dest)
 
 	dest->hours += source->hours;
 }
-
-/**
- * \brief human readable equatorial position to double equatorial position
- * \ingroup conversion
- */
 void ln_hequ_to_equ(struct lnh_equ_posn *hpos, struct ln_equ_posn *pos)
 {
 	pos->ra = ln_hms_to_rad(&hpos->ra);
 	pos->dec = ln_dms_to_rad(&hpos->dec);
 }
-
-/**
- * \brief human double equatorial position to human readable equatorial position
- * \ingroup conversion
- */
 void ln_equ_to_hequ(struct ln_equ_posn *pos, struct lnh_equ_posn *hpos)
 {
 	ln_rad_to_hms(pos->ra, &hpos->ra);
 	ln_rad_to_dms(pos->dec, &hpos->dec);
 }
-
-/**
- * \brief human readable horizontal position to double horizontal position
- * \ingroup conversion
- */
 void ln_hhrz_to_hrz(struct lnh_hrz_posn *hpos, struct ln_hrz_posn *pos)
 {
 	pos->alt = ln_dms_to_rad(&hpos->alt);
 	pos->az = ln_dms_to_rad(&hpos->az);
 }
-
-/**
- * \brief double horizontal position to human readable horizontal position
- * \ingroup conversion
- */
 void ln_hrz_to_hhrz(struct ln_hrz_posn *pos, struct lnh_hrz_posn *hpos)
 {
 	ln_rad_to_dms(pos->alt, &hpos->alt);
 	ln_rad_to_dms(pos->az, &hpos->az);
 }
-
-/**
- * \brief returns direction of given azimuth - like N,S,W,E,NSW,...
- * \ingroup conversion
- */
 const char *ln_hrz_to_nswe(struct ln_hrz_posn *pos)
 {
-	const char *directions[] = { "S", "SSW", "SW", "SWW", "W", "NWW", "NW", "NNW",
-								 "N", "NNE", "NE", "NEE", "E", "SEE", "SE", "SSE" };
+	const char *directions[] = { "S",  "SSW", "SW", "SWW", "W",	 "NWW",
+								 "NW", "NNW", "N",	"NNE", "NE", "NEE",
+								 "E",  "SEE", "SE", "SSE" };
 
 	return directions[(int)(LN_R2D(pos->az) / 22.5)];
 }
-
-/**
- * ln_lnlat_posn *pos)
- * \brief human readable long/lat position to double long/lat position
- * \ingroup conversion
- */
 void ln_hlnlat_to_lnlat(struct lnh_lnlat_posn *hpos, struct ln_lnlat_posn *pos)
 {
 	pos->lng = ln_dms_to_rad(&hpos->lng);
 	pos->lat = ln_dms_to_rad(&hpos->lat);
 }
-
-/**
- * *hpos)
- * \brief double long/lat position to human readable long/lat position
- * \ingroup conversion
- */
 void ln_lnlat_to_hlnlat(struct ln_lnlat_posn *pos, struct lnh_lnlat_posn *hpos)
 {
 	ln_rad_to_dms(pos->lng, &hpos->lng);
@@ -500,40 +456,6 @@ static void skipwhite(char **s)
 	while (iswhite(**s))
 		(*s)++;
 }
-
-/**
- * \param s Location string
- * \return angle in degrees
- *
- * Obtains Latitude, Longitude, RA or Declination from a string.
- *
- *  If the last char is N/S doesn't accept more than 90 degrees.
- *  If it is E/W doesn't accept more than 180 degrees.
- *  If they are hours don't accept more than 24:00
- *
- *  Any position can be expressed as follows:
- *  (please use a 8 bits charset if you want
- *  to view the degrees separator char '0xba')
- *
- *  42.30.35,53
- *  90º0'0,01 W
- *  42º30'35.53 N
- *  42º30'35.53S
- *  42º30'N
- *  - 42.30.35.53
- *   42:30:35.53 S
- *  + 42.30.35.53
- *  +42º30 35,53
- *   23h36'45,0
- *
- *
- *  42:30:35.53 S = -42º30'35.53"
- *  + 42 30.35.53 S the same previous position, the plus (+) sign is
- *  considered like an error, the last 'S' has precedence over the sign
- *
- *  90º0'0,01 N ERROR: +- 90º0'00.00" latitude limit
- *
- */
 double ln_get_dec_location(char *s)
 {
 	char *ptr, *dec, *hh, *ame, *tok_ptr;
@@ -608,14 +530,6 @@ double ln_get_dec_location(char *s)
 
 	return pos;
 }
-
-/**
- * \param location Location angle in degress
- * \return Angle string
- *
- * Obtains a human readable location in the form: ddºmm'ss.ss"
- * String must be freed after use.
- */
 const char *ln_get_humanr_location(double location)
 {
 	char buf[32];
@@ -627,17 +541,6 @@ const char *ln_get_humanr_location(double location)
 
 	return strdup(buf);
 }
-
-/**
- * \return interpolation value
- * \param n Interpolation factor
- * \param y1 Argument 1
- * \param y2 Argument 2
- * \param y3 Argument 3
- *
- * Calculate an intermediate value of the 3 arguments for the given
- * interpolation factor.
- */
 double ln_interpolate3(double n, double y1, double y2, double y3)
 {
 	double y, a, b, c;
@@ -652,21 +555,8 @@ double ln_interpolate3(double n, double y1, double y2, double y3)
 
 	return y;
 }
-
-/**
- * double y4, double y5)
- * \return interpolation value
- * \param n Interpolation factor
- * \param y1 Argument 1
- * \param y2 Argument 2
- * \param y3 Argument 3
- * \param y4 Argument 4
- * \param y5 Argument 5
- *
- * Calculate an intermediate value of the 5 arguments for the given
- * interpolation factor.
- */
-double ln_interpolate5(double n, double y1, double y2, double y3, double y4, double y5)
+double ln_interpolate5(double n, double y1, double y2, double y3, double y4,
+					   double y5)
 {
 	double y, A, B, C, D, E, F, G, H, J, K;
 	double n2, n3, n4;
@@ -696,18 +586,8 @@ double ln_interpolate5(double n, double y1, double y2, double y3, double y4, dou
 
 	return y;
 }
-
-/**
- * to, double *arg)
- * \param f Function to find zero (root place)
- * \param from Lower bound of search interval
- * \param to Upper bound of search interval
- * \param arg Pointer to the other parameters of the function f
- *
- * Find zero of function f() at given interval by Newton method.
- *
- */
-double ln_find_zero(double (*func)(double, double *), double from, double to, double *arg)
+double ln_find_zero(double (*func)(double, double *), double from, double to,
+					double *arg)
 {
 	double x, x1, x2, f;
 	int i = 0;
@@ -724,19 +604,8 @@ double ln_find_zero(double (*func)(double, double *), double from, double to, do
 
 	return x2;
 }
-
-/**
- * to, double *arg)
- * \param f Function to find maximum
- * \param from Lower bound of search interval
- * \param to Upper bound of search interval
- * \param arg Pointer to the other parameters of the function f
- *
- * Find local maximum of function f() at given interval by Golden Section
- * method.
- *
- */
-double ln_find_max(double (*func)(double, double *), double from, double to, double *arg)
+double ln_find_max(double (*func)(double, double *), double from, double to,
+				   double *arg)
 {
 	double a, b, xl, xu, eps;
 

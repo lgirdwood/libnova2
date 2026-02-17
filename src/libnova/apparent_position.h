@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup apparent Apparent position of a Star
+/** \defgroup apparent Apparent position of a Star
 *
 * The apparent position of a star is its position as seen from the center of the Earth.
 *

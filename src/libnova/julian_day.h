@@ -26,7 +26,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup calendar General Calendar Functions 
+/** \defgroup calendar General Calendar Functions 
 *
 * Functions for converting between various time systems and calendar formats.
 *

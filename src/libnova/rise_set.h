@@ -27,7 +27,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup rst Rise, Set, Transit
+/** \defgroup rst Rise, Set, Transit
 *
 * Functions relating to an object's rise, set and transit times.
 *

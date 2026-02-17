@@ -26,7 +26,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup airmass Airmass
+/** \defgroup airmass Airmass
 *
 * Airmass is a measure of the amount of atmosphere the light from a celestial object passes through.
 *

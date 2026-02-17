@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup pluto Pluto
+/** \defgroup pluto Pluto
 *
 * Functions relating to the planet Pluto.
 *

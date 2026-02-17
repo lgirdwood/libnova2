@@ -205,15 +205,6 @@ const static struct XYZ z_coefficients[TERMS] = {
 	{-2, 0, -2, 0},
 	{0, 0, -2, 0}
 };
-
-/**
-* \param mean_position Mean position of object
-* \param JD Julian Day
-* \param position Pointer to store new object position. 
-*
-* Calculate a stars equatorial coordinates from it's mean equatorial coordinates
-* with the effects of aberration for a given Julian Day.
-*/
 /* Equ 22.3, 22.4
 */
 void ln_get_equ_aber(struct ln_equ_posn *mean_position, double JD,
@@ -309,15 +300,6 @@ void ln_get_equ_aber(struct ln_equ_posn *mean_position, double JD,
 		position->dec = dec;
 	}
 }
-
-/**
-* \param mean_position Mean position of object
-* \param JD Julian Day
-* \param position Pointer to store new object position. 
-*
-* Calculate a stars ecliptical coordinates from it's mean ecliptical coordinates
-* with the effects of aberration for a given Julian Day.
-*/
 /* Equ 22.2 pg 139
 */
 void ln_get_ecl_aber(struct ln_lnlat_posn *mean_position, double JD,

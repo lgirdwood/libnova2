@@ -33,15 +33,6 @@
 
 #define GAUS_GRAV	0.01720209895	/* Gaussian gravitational constant k */
 #define PREC   1e-10
-
-/**
-* \param Q1 See 35.0
-* \param G See 35.0
-* \param t Time since perihelion in days
-* \return Solution of Barkers equation
-*
-* Solve Barkers equation. LIAM add more 
-*/
 /* Equ 34.3, Barkers Equation */
 double ln_solve_hyp_barker (double Q1, double G, double t)
 {
@@ -90,15 +81,6 @@ next_z:
 
 	return S;
 }
-
-/**
-* \param q Perihelion distance in AU
-* \param e Orbit eccentricity
-* \param t Time since perihelion
-* \return True anomaly (degrees)
-*
-* Calculate the true anomaly. 
-*/
 /* equ 30.1 */
 double ln_get_hyp_true_anomaly (double q, double e, double t)
 {
@@ -112,30 +94,12 @@ double ln_get_hyp_true_anomaly (double q, double e, double t)
 
 	return ln_range_radians(v);
 }
-
-/**
-* \param q Perihelion distance in AU
-* \param e Orbit eccentricity
-* \param t Time since perihelion in days
-* \return Radius vector AU
-*
-* Calculate the radius vector. 
-*/
 /* equ 30.2 */
 double ln_get_hyp_radius_vector (double q, double e, double t)
 {
 	return q * (1.0 + e) /
 		(1.0 + e * cos(ln_get_hyp_true_anomaly(q, e, t)));
 }
-
-/**
-* \param orbit Orbital parameters of object.
-* \param JD Julian day
-* \param posn Position pointer to store objects position
-*
-* Calculate the objects rectangular heliocentric position given it's orbital
-* elements for the given julian day. 
-*/
 void ln_get_hyp_helio_rect_posn(struct ln_hyp_orbit *orbit, double JD,
 	struct ln_rect_posn *posn)
 {
@@ -183,15 +147,6 @@ void ln_get_hyp_helio_rect_posn(struct ln_hyp_orbit *orbit, double JD,
 	posn->Y = r * b * sin(B + orbit->w + v);
 	posn->Z = r * c * sin(C + orbit->w + v);
 }
-
-/**
-* \param orbit Orbital parameters of object.
-* \param JD Julian day
-* \param posn Position pointer to store objects position
-*
-* Calculate the objects rectangular geocentric position given it's orbital
-* elements for the given julian day. 
-*/
 void ln_get_hyp_geo_rect_posn(struct ln_hyp_orbit *orbit, double JD,
 	struct ln_rect_posn *posn)
 {
@@ -209,14 +164,6 @@ void ln_get_hyp_geo_rect_posn(struct ln_hyp_orbit *orbit, double JD,
 	posn->Y = p_posn.Y - e_posn.Y;
 	posn->Z = p_posn.Z - e_posn.Z;
 }
-
-/*!
-* \param JD Julian Day.
-* \param orbit Orbital parameters.
-* \param posn Pointer to hold asteroid position.
-*
-* Calculate a bodies equatorial coordinates for the given julian day.
-*/
 void ln_get_hyp_body_equ_coords(double JD, struct ln_hyp_orbit *orbit,
 	struct ln_equ_posn *posn)
 {
@@ -243,15 +190,6 @@ void ln_get_hyp_body_equ_coords(double JD, struct ln_hyp_orbit *orbit,
 	posn->ra = ln_range_radians(atan2(y,x));
 	posn->dec = asin(z / sqrt(x * x + y * y + z * z));
 }
-
-/*!
-* \param JD Julian day.
-* \param orbit Orbital parameters
-* \returns Distance in AU
-*
-* Calculate the distance between a body and the Earth
-* for the given julian day.
-*/
 double ln_get_hyp_body_earth_dist(double JD, struct ln_hyp_orbit *orbit)
 {
 	struct ln_rect_posn body_rect_posn, earth_rect_posn;
@@ -265,14 +203,6 @@ double ln_get_hyp_body_earth_dist(double JD, struct ln_hyp_orbit *orbit)
 	/* calc distance */
 	return ln_get_rect_distance(&body_rect_posn, &earth_rect_posn);
 }
-
-/*!
-* \param JD Julian Day.
-* \param orbit Orbital parameters
-* \return The distance in AU between the Sun and the body. 
-*
-* Calculate the distance between a body and the Sun.
-*/
 double ln_get_hyp_body_solar_dist(double JD, struct ln_hyp_orbit *orbit)
 {
 	struct ln_rect_posn body_rect_posn, sol_rect_posn;
@@ -286,14 +216,6 @@ double ln_get_hyp_body_solar_dist(double JD, struct ln_hyp_orbit *orbit)
 	/* calc distance */
 	return ln_get_rect_distance(&body_rect_posn, &sol_rect_posn);
 }
-
-/**
-* \param JD Julian day
-* \param orbit Orbital parameters
-* \return Phase angle.
-*
-* Calculate the phase angle of the body. The angle Sun - body - Earth. 
-*/
 double ln_get_hyp_body_phase_angle(double JD, struct ln_hyp_orbit *orbit)
 {
 	double r, R, d;
@@ -313,14 +235,6 @@ double ln_get_hyp_body_phase_angle(double JD, struct ln_hyp_orbit *orbit)
 	phase = (r * r + d * d - R * R) / (2.0 * r * d);
 	return ln_range_radians(acos(phase));
 }
-
-/**
-* \param JD Julian day
-* \param orbit Orbital parameters
-* \return Elongation to the Sun.
-*
-* Calculate the bodies elongation to the Sun.. 
-*/
 double ln_get_hyp_body_elong(double JD, struct ln_hyp_orbit *orbit)
 {
 	double r, R, d;
@@ -340,41 +254,12 @@ double ln_get_hyp_body_elong(double JD, struct ln_hyp_orbit *orbit)
 	elong = (R * R + d * d - r * r) / ( 2.0 * R * d );
 	return ln_range_radians(acos(elong));
 }
-
-/**
-* \param JD Julian day
-* \param observer Observers position
-* \param orbit Orbital parameters
-* \param rst Pointer to store Rise, Set and Transit time in JD
-* \return 0 for success, else 1 for circumpolar.
-*
-* Calculate the time the rise, set and transit (crosses the local meridian at upper culmination)
-* time of a body with a parabolic orbit for the given Julian day.
-*
-* Note: this functions returns 1 if the body is circumpolar, that is it remains the whole
-* day above or below the horizon. Returns -1 when it remains whole day below the horizon.
-*/
 int ln_get_hyp_body_rst(double JD, struct ln_lnlat_posn *observer,
 	struct ln_hyp_orbit *orbit, struct ln_rst_time *rst)
 {
 	return ln_get_hyp_body_rst_horizon(JD, observer, orbit,
 		LN_STAR_STANDART_HORIZON, rst);
 }
-
-/**
-* \param JD Julian day
-* \param observer Observers position
-* \param orbit Orbital parameters
-* \param horizon Horizon height
-* \param rst Pointer to store Rise, Set and Transit time in JD
-* \return 0 for success, 1 for circumpolar (above the horizon), -1 for circumpolar (bellow the horizon)
-*
-* Calculate the time the rise, set and transit (crosses the local meridian at upper culmination)
-* time of a body with a parabolic orbit for the given Julian day.
-*
-* Note: this functions returns 1 if the body is circumpolar, that is it remains the whole
-* day above or below the horizon. Returns -1 when it remains whole day below the horizon.
-*/
 int ln_get_hyp_body_rst_horizon(double JD, struct ln_lnlat_posn *observer,
 	struct ln_hyp_orbit *orbit, double horizon, struct ln_rst_time *rst)
 {
@@ -382,45 +267,12 @@ int ln_get_hyp_body_rst_horizon(double JD, struct ln_lnlat_posn *observer,
 		(get_motion_body_coords_t) ln_get_hyp_body_equ_coords, orbit,
 		horizon, rst);
 }
-
-/**
-* \param JD Julian day
-* \param observer Observers position
-* \param orbit Orbital parameters
-* \param rst Pointer to store Rise, Set and Transit time in JD
-* \return 0 for success, else 1 for circumpolar (above the horizon), -1 for circumpolar (bellow the horizon)
-*
-* Calculate the time of next rise, set and transit (crosses the local meridian at upper culmination)
-* time of a body with an hyperbolic orbit for the given Julian day.
-*
-* This function guarantee, that rise, set and transit will be in <JD, JD+1> range.
-*
-* Note: this functions returns 1 if the body is circumpolar, that is it remains the whole
-* day above the horizon. Returns -1 when it remains the whole day below the horizon.
-*/
 int ln_get_hyp_body_next_rst(double JD, struct ln_lnlat_posn *observer,
 	struct ln_hyp_orbit *orbit, struct ln_rst_time *rst)
 {
 	return ln_get_hyp_body_next_rst_horizon(JD, observer, orbit,
 		LN_STAR_STANDART_HORIZON, rst);
 }
-
-/**
-* \param JD Julian day
-* \param observer Observers position
-* \param orbit Orbital parameters
-* \param horizon Horizon height
-* \param rst Pointer to store Rise, Set and Transit time in JD
-* \return 0 for success, else 1 for circumpolar (above the horizon), -1 for circumpolar (bellow the horizon)
-*
-* Calculate the time of next rise, set and transit (crosses the local meridian at upper culmination)
-* time of a body with an hyperbolic orbit for the given Julian day.
-*
-* This function guarantee, that rise, set and transit will be in <JD, JD+1> range.
-*
-* Note: this functions returns 1 if the body is circumpolar, that is it remains the whole
-* day above the horizon. Returns -1 when it remains the whole day below the horizon.
-*/
 int ln_get_hyp_body_next_rst_horizon(double JD, struct ln_lnlat_posn *observer,
 	struct ln_hyp_orbit *orbit, double horizon, struct ln_rst_time *rst)
 {
@@ -428,24 +280,6 @@ int ln_get_hyp_body_next_rst_horizon(double JD, struct ln_lnlat_posn *observer,
 		(get_motion_body_coords_t) ln_get_hyp_body_equ_coords, orbit,
 		horizon, rst);
 }
-
-/**
-* \param JD Julian day
-* \param observer Observers position
-* \param orbit Orbital parameters
-* \param horizon Horizon height
-* \param day_limit Maximal number of days that will be searched for next rise and set
-* \param rst Pointer to store Rise, Set and Transit time in JD
-* \return 0 for success, else 1 for circumpolar (above the horizon), -1 for circumpolar (bellow the horizon)
-*
-* Calculate the time of next rise, set and transit (crosses the local meridian at upper culmination)
-* time of a body with an hyperbolic orbit for the given Julian day.
-*
-* This function guarantee, that rise, set and transit will be in <JD, JD + day_limit> range.
-*
-* Note: this functions returns 1 if the body is circumpolar, that is it remains the whole
-* day above the horizon. Returns -1 when it remains the whole day below the horizon.
-*/
 int ln_get_hyp_body_next_rst_horizon_future(double JD,
 	struct ln_lnlat_posn *observer, struct ln_hyp_orbit *orbit,
 	double horizon, int day_limit, struct ln_rst_time *rst)

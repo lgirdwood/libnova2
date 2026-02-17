@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup motion Proper Motion
+/** \defgroup motion Proper Motion
 *
 * Proper motion is the apparent angular motion of a star across the sky relative to the background stars.
 *

@@ -18,17 +18,7 @@
  
 #include <math.h>
 #include <libnova/angular_separation.h>
-#include <libnova/utility.h>
-
-/**
-* \param posn1 Equatorial position of body 1
-* \param posn2 Equatorial position of body 2
-* \return Angular separation in degrees
-*
-* Calculates the angular separation of 2 bodies.
-* This method was devised by Mr Thierry Pauwels of the
-* Royal Observatory Belgium.
-*/	
+#include <libnova/utility.h>	
 /* Chap 17 page 115 */
 double ln_get_angular_separation(struct ln_equ_posn* posn1,
 	struct ln_equ_posn* posn2)
@@ -53,15 +43,7 @@ double ln_get_angular_separation(struct ln_equ_posn* posn1,
 	d = atan2(sqrt(x + y), z);
 	
 	return d;
-}
-
-/**
-* \param posn1 Equatorial position of body 1
-* \param posn2 Equatorial position of body 2
-* \return Position angle in degrees
-*
-* Calculates the position angle of a body with respect to another body.
-*/	
+}	
 /* Chapt 17, page 116 */
 double ln_get_rel_posn_angle(struct ln_equ_posn* posn1,
 	struct ln_equ_posn* posn2)

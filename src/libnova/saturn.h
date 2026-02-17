@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup saturn Saturn
+/** \defgroup saturn Saturn
 *
 * Functions relating to the planet Saturn.
 *

@@ -6484,21 +6484,7 @@ static const struct ln_vsop ALIGN32 saturn_radius_r5[RADIUS_R5] = {
     {     0.00000001054,  0.20778977120,      412.37109687440}, 
     {     0.00000000719,  5.20973072924,      216.48048917570}, 
     {     0.00000000706,  2.65805151133,      110.20632121940}, 
-};
-
-/**
-* \param JD julian Day
-* \param position Pointer to store position
-*
-* Calculates Saturn's equatorial position for given julian day.
-* This function includes calculations for planetary aberration and refers
-* to the FK5 reference frame.
-*
-* To get the complete equatorial coordinates, corrections for nutation
-* have to be applied.
-*
-* The position returned is accurate to within 0.1 arcsecs..
-*/ 
+}; 
 void ln_get_saturn_equ_coords(double JD, struct ln_equ_posn *position)
 {
 	struct ln_helio_posn h_sol, h_saturn;
@@ -6533,16 +6519,7 @@ void ln_get_saturn_equ_coords(double JD, struct ln_equ_posn *position)
 	/* output in radians */
 	position->ra = ln_range_radians(ra);
 	position->dec = dec;
-}
-	
-/**
-* \param JD Julian Day
-* \param position Pointer to store heliocentric position
-*
-* Calculate Saturns heliocentric (refered to the centre of the Sun) coordinates
-* in the FK5 reference frame for the given julian day.
-* Longitude and Latitude are in degrees, whilst radius vector is in AU.
-*/ 
+} 
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 
 */
 void ln_get_saturn_helio_coords(double JD, struct ln_helio_posn *position)
@@ -6608,15 +6585,6 @@ void ln_get_saturn_helio_coords(double JD, struct ln_helio_posn *position)
 	cB = position->B;
 	cR = position->R;
 }
-
-/**
-* \param JD Julian day
-* \brief Calculate the distance between Saturn and the Earth in AU
-* \return Distance in AU
-*
-* Calculates the distance in AU between the Earth and Saturn for 
-* the given julian day.
-*/
 double ln_get_saturn_earth_dist(double JD)
 {
 	struct ln_helio_posn h_saturn, h_earth;
@@ -6640,16 +6608,7 @@ double ln_get_saturn_earth_dist(double JD)
 	z = z * z;
 
 	return sqrt(x + y + z);
-}
-	
-/**
-* \param JD Julian day
-* \brief Calculate the distance between Saturn and the Sun in AU
-* \return Distance in AU
-*
-* Calculates the distance in AU between the Sun and Saturn for
-* the given julian day.
-*/ 
+} 
 double ln_get_saturn_solar_dist(double JD)
 {
 	struct ln_helio_posn h_saturn;
@@ -6657,17 +6616,7 @@ double ln_get_saturn_solar_dist(double JD)
 	/* get heliocentric position */
 	ln_get_saturn_helio_coords(JD, &h_saturn);
 	return h_saturn.R;
-}
-	
-/**
-* \param JD Julian day
-* \brief Calculate the visible magnitude of Saturn
-* \return Visisble magnitude of saturn
-* \todo Calculate rings brightness
-*
-* Calculate the visible magnitude of Saturn for the given
-* julian day.
-*/ 
+} 
 double ln_get_saturn_magnitude(double JD)
 {
 	double delta, r;
@@ -6678,16 +6627,7 @@ double ln_get_saturn_magnitude(double JD)
 
 	/* ???? + 0.044 * U - 2.6 * sin(B) + 1.25 * (sin(B) * sin(B)); */
 	return -8.88 + 5.0 * log10(r * delta);
-}
-
-/**
-* \param JD Julian day
-* \brief Calculate the illuminated fraction of Saturn's disk
-* \return Illuminated fraction of Saturns disk. (Value between 0..1)
-*
-* Calculate the illuminated fraction of Saturn's disk for the given Julian
-* day.
-*/ 
+} 
 /* Chapter 41 */
 double ln_get_saturn_disk(double JD)
 {
@@ -6700,15 +6640,7 @@ double ln_get_saturn_disk(double JD)
 	
 	/* calc fraction angle */
 	return (((r + delta) * (r + delta)) - R * R) / (4.0 * r * delta);
-}
-
-/**
-* \brief Calculate the phase angle of Saturn (Sun - Saturn - Earth)
-* \return Phase angle of Saturn (degrees)
-*
-* Calculates the phase angle of Saturn, that is, the angle Sun -
-* Saturn - Earth for the given Julian day.
-*/ 
+} 
 /* Chapter 41 */
 double ln_get_saturn_phase(double JD)
 {
@@ -6724,33 +6656,12 @@ double ln_get_saturn_phase(double JD)
 	i = acos(i);
 	return i;
 }
-
-/**
-* \param JD Julian day
-* \param observer Observers position
-* \param rst Pointer to store Rise, Set and Transit time in JD
-* \return 0 for success, else 1 for circumpolar.
-*
-* Calculate the time the rise, set and transit (crosses the local meridian at upper culmination)
-* time of Saturn for the given Julian day.
-*
-* Note: this functions returns 1 if Saturn is circumpolar, that is it remains the whole
-* day either above or below the horizon.
-*/
 int ln_get_saturn_rst(double JD, struct ln_lnlat_posn *observer,
 	struct ln_rst_time *rst)
 {
 	return ln_get_body_rst_horizon(JD, observer, ln_get_saturn_equ_coords,
 		LN_STAR_STANDART_HORIZON, rst);
 }
-
-/**
-* \param JD Julian day
-* \return Semidiameter in arc seconds
-*
-* Calculate the equatorial semidiameter of Saturn in arc seconds for the 
-* given julian day.
-*/
 double ln_get_saturn_equ_sdiam(double JD)
 {
 	double So = 82.73; /* at 1 AU */
@@ -6759,15 +6670,6 @@ double ln_get_saturn_equ_sdiam(double JD)
 	dist = ln_get_saturn_earth_dist(JD);
 	return LN_D2R(So / 3600.0) / dist;
 }
-
-/**
-* \param JD Julian day
-* \return Semidiameter in arc seconds
-* \todo Use Saturnicentric lat of Earth 
-*
-* Calculate the polar semidiameter of Saturn in arc seconds for the 
-* given julian day.
-*/
 double ln_get_saturn_pol_sdiam(double JD)
 {
 	double So = 73.82; /* at 1 AU */
@@ -6776,15 +6678,6 @@ double ln_get_saturn_pol_sdiam(double JD)
 	dist = ln_get_saturn_earth_dist(JD);
 	return LN_D2R(So / 3600.0) / dist;
 }
-
-
-/**
-* \param JD Julian day.
-* \param position pointer to return position
-*
-* Calculate Saturns rectangular heliocentric coordinates for the
-* given Julian day. Coordinates are in AU.
-*/
 void ln_get_saturn_rect_helio(double JD, struct ln_rect_posn *position)
 {
 	struct ln_helio_posn saturn;

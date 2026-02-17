@@ -20,16 +20,6 @@
 #include <libnova/asteroid.h>
 #include <libnova/elliptic_motion.h>
 #include <libnova/utility.h>
-
-/*!
-* \param JD Julian day.
-* \param orbit Orbital parameters
-* \param H Mean absolute visual magnitude
-* \param G Slope parameter
-* \return The visual magnitude. 
-*
-* Calculate the visual magnitude of an asteroid.
-*/
 double ln_get_asteroid_mag(double JD, struct ln_ell_orbit *orbit, double H,
 	double G)
 {
@@ -57,34 +47,10 @@ double ln_get_asteroid_mag(double JD, struct ln_ell_orbit *orbit, double H,
 	
 	return H + 5.0 * log10(r * d) - 2.5 * log10((1.0 - G) * t1 + G * t2);
 }
-
-/**
-* \param H Absolute magnitude of asteroid
-* \param A Albedo of asteroid
-* \return Semidiameter in km
-*
-* Calculate the semidiameter of an asteroid in km.
-*
-* Note: Many asteroids have an irregular shape and therefore this function returns
-* an approximate value of the diameter.
-*/
 double ln_get_asteroid_sdiam_km (double H, double A)
 {	
 	return pow(10, 3.13 - 0.2 * H - (0.5 * log10(A)));
 }
-
-/**
-* \param JD Julian day
-* \param orbit Orbital parameters
-* \param H Absolute magnitude of asteroid
-* \param A Albedo of asteroid
-* \return Semidiameter in seconds of arc
-*
-* Calculate the semidiameter of an asteroid in arc seconds.
-*
-* Note: Many asteroids have an irregular shape and therefore this function returns
-* an approximate value of the diameter.
-*/
 double ln_get_asteroid_sdiam_arc(double JD, struct ln_ell_orbit *orbit, double H, double A)
 {
 	double d, dist;
@@ -96,7 +62,7 @@ double ln_get_asteroid_sdiam_arc(double JD, struct ln_ell_orbit *orbit, double H
 	return d / (dist * 149597870.7);
 }
 
-/*! \example asteroid.c
+/** \example asteroid.c
  * 
  * Examples of how to use asteroid functions. 
  */

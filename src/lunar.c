@@ -1072,22 +1072,6 @@ static double _lunar_ecl_lat(double jd, double *arg)
 
 	return pos.lat;
 }
-
-/**
-* \param JD Julian day.
-* \param pos Pointer to a geocentric position structure to held result.
-* \param precision The truncation level of the series in radians for longitude
-* and latitude and in km for distance. (Valid range 0 - 0.01, 0 being highest accuracy)
-* \ingroup lunar
-*
-* Calculate the rectangular geocentric lunar coordinates to the inertial mean
-* ecliptic and equinox of J2000.
-* The geocentric coordinates returned are in units of km.
-*
-* This function is based upon the Lunar Solution ELP2000-82B by
-* Michelle Chapront-Touze and Jean Chapront of the Bureau des Longitudes,
-* Paris.
-*/
 /* ELP 2000-82B theory */
 void ln_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon, double precision)
 {
@@ -1181,17 +1165,6 @@ void ln_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon, double precisio
 	moon->Y = b;
 	moon->Z = c;
 }
-
-/**
-* \param JD Julian Day
-* \param position Pointer to a struct ln_lnlat_posn to store result.
-* \param precision The truncation level of the series in radians for longitude
-* and latitude and in km for distance. (Valid range 0 - 0.01, 0 being highest accuracy)
-* \ingroup lunar
-*
-* Calculate the lunar RA and DEC for Julian day JD.
-* Accuracy is better than 10 arcsecs in right ascension and 4 arcsecs in declination.
-*/
 void ln_get_lunar_equ_coords_prec(double JD, struct ln_equ_posn *position,
 	double precision)
 {
@@ -1200,30 +1173,10 @@ void ln_get_lunar_equ_coords_prec(double JD, struct ln_equ_posn *position,
 	ln_get_lunar_ecl_coords(JD, &ecl, precision);
 	ln_get_equ_from_ecl(&ecl, JD, position);
 }
-
-/**
-* \param JD Julian Day
-* \param position Pointer to a struct ln_lnlat_posn to store result.
-* \ingroup lunar
-*
-* Calculate the lunar RA and DEC for Julian day JD.
-* Accuracy is better than 10 arcsecs in right ascension and 4 arcsecs in declination.
-*/
 void ln_get_lunar_equ_coords(double JD, struct ln_equ_posn *position)
 {
 	ln_get_lunar_equ_coords_prec(JD, position, 0);
 }
-
-/**
-* \param JD Julian Day
-* \param position Pointer to a struct ln_lnlat_posn to store result.
-* \param precision The truncation level of the series in radians for longitude
-* and latitude and in km for distance. (Valid range 0 - 0.01, 0 being highest accuracy)
-* \ingroup lunar
-*
-* Calculate the lunar longitude and latitude for Julian day JD.
-* Accuracy is better than 10 arcsecs in longitude and 4 arcsecs in latitude.
-*/
 void ln_get_lunar_ecl_coords(double JD, struct ln_lnlat_posn *position,
 	double precision)
 {
@@ -1237,15 +1190,6 @@ void ln_get_lunar_ecl_coords(double JD, struct ln_lnlat_posn *position,
 	position->lat = atan2(moon.Z,
 		(sqrt((moon.X * moon.X) + (moon.Y * moon.Y))));
 }
-
-/**
-* \param JD Julian Day
-* \return The distance between the Earth and Moon in km.
-* \ingroup lunar
-*
-* Calculates the distance between the centre of the Earth and the
-* centre of the Moon in km.
-*/
 double ln_get_lunar_earth_dist(double JD)
 {
 	struct ln_rect_posn moon;
@@ -1253,15 +1197,6 @@ double ln_get_lunar_earth_dist(double JD)
 	ln_get_lunar_geo_posn(JD, &moon, 0.00001);
 	return sqrt((moon.X * moon.X) + (moon.Y * moon.Y) + (moon.Z * moon.Z));
 }
-
-
-/**
-* \param JD Julian Day
-* \return Phase angle. (Value between 0 and 180)
-* \ingroup lunar
-*
-* Calculates the angle Sun - Moon - Earth.
-*/
 double ln_get_lunar_phase(double JD)
 {
 	double phase = 0;
@@ -1284,15 +1219,6 @@ double ln_get_lunar_phase(double JD)
 	phase = atan2((R * sin(lunar_elong)), (delta - R * cos(lunar_elong)));
 	return phase;
 }
-
-/**
-* \param JD Julian Day
-* \return Illuminated fraction. (Value between 0 and 1)
-* \brief Calculate the illuminated fraction of the moons disk
-* \ingroup lunar
-*
-* Calculates the illuminated fraction of the Moon's disk.
-*/
 double ln_get_lunar_disk(double JD)
 {
 	double i;
@@ -1301,19 +1227,6 @@ double ln_get_lunar_disk(double JD)
 	i = ln_get_lunar_phase(JD);
 	return (1.0 + cos(i)) / 2.0;
 }
-
-/**
-* \param JD Julian Day
-* \return The position angle in degrees.
-* \brief Calculate the position angle of the Moon's bright limb.
-* \ingroup lunar
-*
-* Calculates the position angle of the midpoint of the illuminated limb of the
-* moon, reckoned eastward from the north point of the disk.
-*
-* The angle is near 270 deg for first quarter and near 90 deg after a full moon.
-* The position angle of the cusps are +90 deg and -90 deg.
-*/
 double ln_get_lunar_bright_limb(double JD)
 {
 	double angle;
@@ -1335,36 +1248,12 @@ double ln_get_lunar_bright_limb(double JD)
 	angle = ln_range_radians(angle);
 	return angle;
 }
-
-
-/**
-* \param JD Julian day
-* \param observer Observers position
-* \param rst Pointer to store Rise, Set and Transit time in JD
-* \return 0 for success, else 1 for circumpolar.
-* \todo Improve lunar standard altitude for rst
-*
-* Calculate the time the rise, set and transit (crosses the local meridian at upper culmination)
-* time of the Moon for the given Julian day.
-*
-* Note: this functions returns 1 if the Moon is circumpolar, that is it remains the whole
-* day either above or below the horizon.
-*/
 int ln_get_lunar_rst(double JD, struct ln_lnlat_posn *observer,
 	struct ln_rst_time *rst)
 {
 	return ln_get_body_rst_horizon(JD, observer, ln_get_lunar_equ_coords,
 		LN_LUNAR_STANDART_HORIZON, rst);
 }
-
-/**
-* \param JD Julian day
-* \return Semidiameter in arc seconds
-* \todo Use Topocentric distance.
-*
-* Calculate the semidiameter of the Moon in arc seconds for the
-* given julian day.
-*/
 double ln_get_lunar_sdiam(double JD)
 {
 	double So = 358473400;
@@ -1373,14 +1262,6 @@ double ln_get_lunar_sdiam(double JD)
 	dist = ln_get_lunar_earth_dist(JD);
 	return So / dist;
 }
-
-/**
-* \param JD Julian Day.
-* \return Longitude of ascending node in degrees.
-*
-* Calculate the mean longitude of the Moons ascening node
-* for the given Julian day.
-*/
 double ln_get_lunar_long_asc_node(double JD)
 {
 	/* calc julian centuries */
@@ -1395,14 +1276,6 @@ double ln_get_lunar_long_asc_node(double JD)
 		T4 / 60616000.0;
 	return LN_D2R(omega);
 }
-
-
-/**
-* \param JD Julian Day
-* \return Longitude of Moons mean perigee in degrees.
-*
-* Calculate the longitude of the Moon's mean perigee.
-*/
 double ln_get_lunar_long_perigee(double JD)
 {
 	/* calc julian centuries */
@@ -1417,13 +1290,6 @@ double ln_get_lunar_long_perigee(double JD)
 		T3 / 80053.0 + T4 / 18999000.0;
 	return LN_D2R(per);
 }
-
-/**
-* \param JD Julian Day
-* \return Moon's argument of latitude
-*
-* Calculate the Moon's argument of latitude (mean distance of the Moon from its ascending node)
-*/
 double ln_get_lunar_arg_latitude(double JD)
 {
 	/* calc julian centuries */
@@ -1462,28 +1328,12 @@ void ln_get_lunar_selenographic_coords(double JD, struct ln_lnlat_posn *moon,
 		asin(-sin(W) * cos(moon->lat) * sin(I) -
 		sin(moon->lat)*cos(I));
 }
-
-/**
-* \param JD Julian Day
-* \param position Pointer to a struct ln_lnlat_posn to store result.
-*
-* Calculate Lunar optical libration coordinates, also known as selenographic Earth coordinates.
-* This is a point on the surface of the Moon where the Earth is in the zenith.
-*/
 void ln_get_lunar_opt_libr_coords(double JD, struct ln_lnlat_posn *position)
 {
 	struct ln_lnlat_posn moon;
 	ln_get_lunar_ecl_coords(JD, &moon, 0);
 	ln_get_lunar_selenographic_coords(JD, &moon, position);
 }
-
-/**
-* \param JD Julian Day
-* \param position Pointer to a struct ln_lnlat_posn to store result.
-*
-* Calculate coordinates of the subsolar point, aslo known as selenographic coordinates of the Sun.
-* This is a point on the surface of the Moon where the Sun is in the zenith.
-*/
 void ln_get_lunar_subsolar_coords(double JD, struct ln_lnlat_posn *position)
 {
 	struct ln_lnlat_posn moon;
@@ -1514,14 +1364,6 @@ void ln_get_lunar_subsolar_coords(double JD, struct ln_lnlat_posn *position)
  * and then while loop increase this k until nd (JD of mean phase) is fisrt
  * one below or above given JD. This loop runs several times (1-3) only.
  */
-
-/**
-* \param jd Julian Day
-* \param phase 0 for new moon, 0.25 for first quarter, 0.5 for full moon, 0.75 for last quarter
-*
-* Find next moon phase relative to given time expressed as Julian Day.
-*
-*/
 double ln_lunar_next_phase(double jd, double phase)
 {
 	double ph, k, angle;
@@ -1539,14 +1381,6 @@ double ln_lunar_next_phase(double jd, double phase)
 
 	return ph;
 }
-
-/**
-* \param jd Julian Day
-* \param phase 0 for new moon, 0.25 for first quarter, 0.5 for full moon, 0.75 for last quarter
-*
-* Find previous moon phase relative to given time expressed as Julian Day.
-*
-*/
 double ln_lunar_previous_phase(double jd, double phase)
 {
 	double ph, k, angle;
@@ -1564,14 +1398,6 @@ double ln_lunar_previous_phase(double jd, double phase)
 
 	return ph;
 }
-
-/**
-* \param jd Julian Day
-* \param apogee 0 for perigee, 1 for apogee
-*
-* Find next moon apogee or perigee relative to given time expressed as Julian Day.
-*
-*/
 double ln_lunar_next_apsis(double jd, int apogee)
 {
 	double ap, k;
@@ -1592,14 +1418,6 @@ double ln_lunar_next_apsis(double jd, int apogee)
 
 	return ap;
 }
-
-/**
-* \param jd Julian Day
-* \param apogee 0 for perigee, 1 for apogee
-*
-* Find previous moon apogee or perigee relative to given time expressed as Julian Day.
-*
-*/
 double ln_lunar_previous_apsis(double jd, int apogee)
 {
 	double ap, k;
@@ -1620,14 +1438,6 @@ double ln_lunar_previous_apsis(double jd, int apogee)
 
 	return ap;
 }
-
-/**
-* \param jd Julian Day
-* \param mode 0 for ascending, 1 for descending
-*
-* Find next moon node relative to given time expressed as Julian Day.
-*
-*/
 double ln_lunar_next_node(double jd, int mode)
 {
 	double nd, k;
@@ -1643,14 +1453,6 @@ double ln_lunar_next_node(double jd, int mode)
 
 	return nd;
 }
-
-/**
-* \param jd Julian Day
-* \param mode 0 for ascending, 1 for descending
-*
-* Find previous lunar node relative to given time expressed as Julian Day.
-*
-*/
 double ln_lunar_previous_node(double jd, int mode)
 {
 	double nd, k;
@@ -1667,7 +1469,7 @@ double ln_lunar_previous_node(double jd, int mode)
 	return nd;
 }
 
-/*! \example lunar.c
+/** \example lunar.c
  *
  * Examples of how to use Lunar functions.
  */

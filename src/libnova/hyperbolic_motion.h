@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup hyperbolic  Hyperbolic Motion
+/** \defgroup hyperbolic  Hyperbolic Motion
 *
 * Functions relating to the Hyperbolic motion of bodies.
 *
@@ -85,7 +85,7 @@ void LIBNOVA_EXPORT ln_get_hyp_geo_rect_posn(struct ln_hyp_orbit *orbit, double 
 */
 void LIBNOVA_EXPORT ln_get_hyp_helio_rect_posn(struct ln_hyp_orbit *orbit, double JD, struct ln_rect_posn *posn);
 
-/*!
+/**
 * \ingroup hyperbolic
 * \brief Calculate a bodies equatorial coordinates.
 * \param JD Julian Day
@@ -94,7 +94,7 @@ void LIBNOVA_EXPORT ln_get_hyp_helio_rect_posn(struct ln_hyp_orbit *orbit, doubl
 */
 void LIBNOVA_EXPORT ln_get_hyp_body_equ_coords(double JD, struct ln_hyp_orbit *orbit, struct ln_equ_posn *posn);
 
-/*!
+/**
 * \ingroup hyperbolic
 * \brief Calculate the distance between a body and the Earth.
 * \param JD Julian Day
@@ -103,7 +103,7 @@ void LIBNOVA_EXPORT ln_get_hyp_body_equ_coords(double JD, struct ln_hyp_orbit *o
 */
 double LIBNOVA_EXPORT ln_get_hyp_body_earth_dist(double JD, struct ln_hyp_orbit *orbit);
 
-/*!
+/**
 * \ingroup hyperbolic
 * \brief Calculate the distance between a body and the Sun.
 * \param JD Julian Day

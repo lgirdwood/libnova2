@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup parabolic  Parabolic Motion
+/** \defgroup parabolic  Parabolic Motion
 *
 * Functions relating to the Parabolic motion of bodies.
 *
@@ -79,7 +79,7 @@ void LIBNOVA_EXPORT ln_get_par_geo_rect_posn(struct ln_par_orbit *orbit, double 
 */
 void LIBNOVA_EXPORT ln_get_par_helio_rect_posn(struct ln_par_orbit *orbit, double JD, struct ln_rect_posn *posn);
 
-/*!
+/**
 * \ingroup parabolic
 * \brief Calculate a bodies equatorial coordinates.
 * \param JD Julian Day
@@ -88,7 +88,7 @@ void LIBNOVA_EXPORT ln_get_par_helio_rect_posn(struct ln_par_orbit *orbit, doubl
 */
 void LIBNOVA_EXPORT ln_get_par_body_equ_coords(double JD, struct ln_par_orbit *orbit, struct ln_equ_posn *posn);
 
-/*!
+/**
 * \ingroup parabolic
 * \brief Calculate the distance between a body and the Earth.
 * \param JD Julian Day
@@ -97,7 +97,7 @@ void LIBNOVA_EXPORT ln_get_par_body_equ_coords(double JD, struct ln_par_orbit *o
 */
 double LIBNOVA_EXPORT ln_get_par_body_earth_dist(double JD, struct ln_par_orbit *orbit);
 
-/*!
+/**
 * \ingroup parabolic
 * \brief Calculate the distance between a body and the Sun.
 * \param JD Julian Day

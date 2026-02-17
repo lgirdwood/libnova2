@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup transform Transformation of Coordinates
+/** \defgroup transform Transformation of Coordinates
 *
 * Transformations from one coordinate system to another.
 *

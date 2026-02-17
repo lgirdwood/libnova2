@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup comet Comets
+/** \defgroup comet Comets
 *
 * Functions relating to Comets.
 *
@@ -38,7 +38,7 @@ extern "C" {
 * All angles are expressed in degrees. Algorithms based on Meeus Chapter 33.
 */
 
-/*!
+/**
 * \ingroup comet
 * \brief Calculate the visual magnitude of a comet in an elliptic orbit.
 * \param JD Julian Day
@@ -51,7 +51,7 @@ extern "C" {
 */
 double LIBNOVA_EXPORT ln_get_ell_comet_mag(double JD, struct ln_ell_orbit *orbit, double g, double k);
 
-/*!
+/**
 * \ingroup comet
 * \brief Calculate the visual magnitude of a comet in a parabolic orbit.
 * \param JD Julian Day

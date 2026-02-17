@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup neptune Neptune
+/** \defgroup neptune Neptune
 *
 * Functions relating to the planet Neptune.
 *

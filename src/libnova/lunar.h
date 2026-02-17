@@ -27,7 +27,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup lunar Lunar
+/** \defgroup lunar Lunar
 *
 * Functions relating to the Moon.
 *
@@ -54,7 +54,8 @@ double LIBNOVA_EXPORT ln_get_lunar_sdiam(double JD);
 * \return 0 for success, 1 for circumpolar, -1 for never rises
 */
 
-int LIBNOVA_EXPORT ln_get_lunar_rst(double JD, struct ln_lnlat_posn *observer, struct ln_rst_time *rst);
+int LIBNOVA_EXPORT ln_get_lunar_rst(double JD, struct ln_lnlat_posn *observer,
+									struct ln_rst_time *rst);
 
 /**
 * \brief Calculate the rectangular geocentric lunar cordinates.
@@ -64,7 +65,8 @@ int LIBNOVA_EXPORT ln_get_lunar_rst(double JD, struct ln_lnlat_posn *observer, s
 * \param precision Calculation precision
 */
 /* ELP 2000-82B theory */
-void LIBNOVA_EXPORT ln_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon, double precision);
+void LIBNOVA_EXPORT ln_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon,
+										  double precision);
 
 /**
 * \brief Calculate lunar equatorial coordinates.
@@ -73,7 +75,9 @@ void LIBNOVA_EXPORT ln_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon, 
 * \param position Pointer to store equatorial position
 * \param precision Calculation precision
 */
-void LIBNOVA_EXPORT ln_get_lunar_equ_coords_prec(double JD, struct ln_equ_posn *position, double precision);
+void LIBNOVA_EXPORT ln_get_lunar_equ_coords_prec(double JD,
+												 struct ln_equ_posn *position,
+												 double precision);
 
 /**
 * \brief Calculate lunar equatorial coordinates.
@@ -81,7 +85,8 @@ void LIBNOVA_EXPORT ln_get_lunar_equ_coords_prec(double JD, struct ln_equ_posn *
 * \param JD Julian Day
 * \param position Pointer to store equatorial position
 */
-void LIBNOVA_EXPORT ln_get_lunar_equ_coords(double JD, struct ln_equ_posn *position);
+void LIBNOVA_EXPORT ln_get_lunar_equ_coords(double JD,
+											struct ln_equ_posn *position);
 
 /**
 * \brief Calculate lunar ecliptical coordinates.
@@ -90,7 +95,9 @@ void LIBNOVA_EXPORT ln_get_lunar_equ_coords(double JD, struct ln_equ_posn *posit
 * \param position Pointer to store ecliptical position
 * \param precision Calculation precision
 */
-void LIBNOVA_EXPORT ln_get_lunar_ecl_coords(double JD, struct ln_lnlat_posn *position, double precision);
+void LIBNOVA_EXPORT ln_get_lunar_ecl_coords(double JD,
+											struct ln_lnlat_posn *position,
+											double precision);
 
 /**
 * \brief Calculate the phase angle of the Moon.
@@ -162,7 +169,8 @@ double LIBNOVA_EXPORT ln_get_lunar_arg_latitude(double JD);
 * \param JD Julian Day
 * \param position Pointer to store selenographic coordinates
 */
-void LIBNOVA_EXPORT ln_get_lunar_opt_libr_coords(double JD, struct ln_lnlat_posn *position);
+void LIBNOVA_EXPORT
+ln_get_lunar_opt_libr_coords(double JD, struct ln_lnlat_posn *position);
 
 /**
 * \brief Calculate selenographic subsolar point coordinates.
@@ -170,7 +178,8 @@ void LIBNOVA_EXPORT ln_get_lunar_opt_libr_coords(double JD, struct ln_lnlat_posn
 * \param JD Julian Day
 * \param position Pointer to store subsolar coordinates
 */
-void LIBNOVA_EXPORT ln_get_lunar_subsolar_coords(double JD, struct ln_lnlat_posn *position);
+void LIBNOVA_EXPORT
+ln_get_lunar_subsolar_coords(double JD, struct ln_lnlat_posn *position);
 
 /**
 * \brief Find next moon phase relative to given time expressed as Julian Day.
@@ -194,7 +203,7 @@ double LIBNOVA_EXPORT ln_lunar_previous_phase(double jd, double phase);
 * \brief Find next moon apogee or perigee relative to given time expressed as Julian Day.
 * \ingroup lunar
 * \param jd Julian Day
-* \param mode 1=Apogee, 0=Perigee
+* \param apogee 1=Apogee, 0=Perigee
 * \return Julian Day of next apsis
 */
 double LIBNOVA_EXPORT ln_lunar_next_apsis(double jd, int apogee);
@@ -203,7 +212,7 @@ double LIBNOVA_EXPORT ln_lunar_next_apsis(double jd, int apogee);
 * \brief Find previous moon apogee or perigee relative to given time expressed as Julian Day.
 * \ingroup lunar
 * \param jd Julian Day
-* \param mode 1=Apogee, 0=Perigee
+* \param apogee 1=Apogee, 0=Perigee
 * \return Julian Day of previous apsis
 */
 double LIBNOVA_EXPORT ln_lunar_previous_apsis(double jd, int apogee);

@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup elliptic  Elliptic Motion
+/** \defgroup elliptic  Elliptic Motion
 *
 * Functions relating to the elliptic motion of bodies.
 *
@@ -173,7 +173,7 @@ double LIBNOVA_EXPORT ln_get_ell_body_phase_angle(double JD, struct ln_ell_orbit
 */
 double LIBNOVA_EXPORT ln_get_ell_body_elong(double JD, struct ln_ell_orbit *orbit);
 
-/*!
+/**
 * \brief Calculate the distance between a body and the Sun
 * \ingroup elliptic
 * \param JD Julian Day
@@ -182,7 +182,7 @@ double LIBNOVA_EXPORT ln_get_ell_body_elong(double JD, struct ln_ell_orbit *orbi
 */
 double LIBNOVA_EXPORT ln_get_ell_body_solar_dist(double JD, struct ln_ell_orbit *orbit);
 
-/*!
+/**
 * \brief Calculate the distance between a body and the Earth
 * \ingroup elliptic
 * \param JD Julian Day
@@ -191,7 +191,7 @@ double LIBNOVA_EXPORT ln_get_ell_body_solar_dist(double JD, struct ln_ell_orbit 
 */
 double LIBNOVA_EXPORT ln_get_ell_body_earth_dist(double JD, struct ln_ell_orbit *orbit);
 
-/*!
+/**
 * \brief Calculate a bodies equatorial coords
 * \ingroup elliptic
 * \param JD Julian Day
@@ -266,7 +266,7 @@ int LIBNOVA_EXPORT ln_get_ell_body_next_rst_horizon_future(double JD, struct ln_
 														   struct ln_ell_orbit *orbit, double horizon, int day_limit,
 														   struct ln_rst_time *rst);
 
-/*!\fn double ln_get_ell_last_perihelion(double epoch_JD, double M, double n);
+/**\fn double ln_get_ell_last_perihelion(double epoch_JD, double M, double n);
 * \brief Calculate the julian day of the last perihelion.
 * \ingroup elliptic
 * \param epoch_JD Epoch Julian Day

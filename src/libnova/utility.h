@@ -31,7 +31,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup version libnova library version information
+/** \defgroup version libnova library version information
  */
 
 /**
@@ -41,7 +41,7 @@ extern "C" {
  */
 const char LIBNOVA_EXPORT *ln_get_version(void);
 
-/*! \defgroup misc Misc. Functions
+/** \defgroup misc Misc. Functions
 *
 * Miscellaneous functions.
 *
@@ -72,9 +72,10 @@ const char LIBNOVA_EXPORT *ln_get_humanr_location(double location);
 * \param b Rectangular position b
 * \return Distance between a and b
 */
-double LIBNOVA_EXPORT ln_get_rect_distance(struct ln_rect_posn *a, struct ln_rect_posn *b);
+double LIBNOVA_EXPORT ln_get_rect_distance(struct ln_rect_posn *a,
+										   struct ln_rect_posn *b);
 
-/*! \defgroup conversion General Conversion Functions
+/** \defgroup conversion General Conversion Functions
  *
  * Conversion from one libnova type to another.
  */
@@ -175,7 +176,8 @@ void LIBNOVA_EXPORT ln_rad_to_dms(double radians, struct ln_dms *dms);
  * \param hpos Human readable equatorial position
  * \param pos Pointer to store equatorial position
  */
-void LIBNOVA_EXPORT ln_hequ_to_equ(struct lnh_equ_posn *hpos, struct ln_equ_posn *pos);
+void LIBNOVA_EXPORT ln_hequ_to_equ(struct lnh_equ_posn *hpos,
+								   struct ln_equ_posn *pos);
 
 /**
  * \brief human double equatorial position to human readable equatorial position
@@ -183,7 +185,8 @@ void LIBNOVA_EXPORT ln_hequ_to_equ(struct lnh_equ_posn *hpos, struct ln_equ_posn
  * \param pos Equatorial position
  * \param hpos Pointer to store human readable equatorial position
  */
-void LIBNOVA_EXPORT ln_equ_to_hequ(struct ln_equ_posn *pos, struct lnh_equ_posn *hpos);
+void LIBNOVA_EXPORT ln_equ_to_hequ(struct ln_equ_posn *pos,
+								   struct lnh_equ_posn *hpos);
 
 /**
  * \brief human readable horizontal position to double horizontal position
@@ -191,7 +194,8 @@ void LIBNOVA_EXPORT ln_equ_to_hequ(struct ln_equ_posn *pos, struct lnh_equ_posn 
  * \param hpos Human readable horizontal position
  * \param pos Pointer to store horizontal position
  */
-void LIBNOVA_EXPORT ln_hhrz_to_hrz(struct lnh_hrz_posn *hpos, struct ln_hrz_posn *pos);
+void LIBNOVA_EXPORT ln_hhrz_to_hrz(struct lnh_hrz_posn *hpos,
+								   struct ln_hrz_posn *pos);
 
 /**
  * \brief double horizontal position to human readable horizontal position
@@ -199,7 +203,8 @@ void LIBNOVA_EXPORT ln_hhrz_to_hrz(struct lnh_hrz_posn *hpos, struct ln_hrz_posn
  * \param pos Horizontal position
  * \param hpos Pointer to store human readable horizontal position
  */
-void LIBNOVA_EXPORT ln_hrz_to_hhrz(struct ln_hrz_posn *pos, struct lnh_hrz_posn *hpos);
+void LIBNOVA_EXPORT ln_hrz_to_hhrz(struct ln_hrz_posn *pos,
+								   struct lnh_hrz_posn *hpos);
 
 /**
  * \brief returns direction of given azimuth - like N,S,W,E,NSW,...
@@ -216,7 +221,8 @@ const char LIBNOVA_EXPORT *ln_hrz_to_nswe(struct ln_hrz_posn *pos);
  * \param hpos Human readable long/lat position
  * \param pos Pointer to store long/lat position
  */
-void LIBNOVA_EXPORT ln_hlnlat_to_lnlat(struct lnh_lnlat_posn *hpos, struct ln_lnlat_posn *pos);
+void LIBNOVA_EXPORT ln_hlnlat_to_lnlat(struct lnh_lnlat_posn *hpos,
+									   struct ln_lnlat_posn *pos);
 
 /**
  * *hpos)
@@ -225,7 +231,8 @@ void LIBNOVA_EXPORT ln_hlnlat_to_lnlat(struct lnh_lnlat_posn *hpos, struct ln_ln
  * \param pos Long/lat position
  * \param hpos Pointer to store human readable long/lat position
  */
-void LIBNOVA_EXPORT ln_lnlat_to_hlnlat(struct ln_lnlat_posn *pos, struct lnh_lnlat_posn *hpos);
+void LIBNOVA_EXPORT ln_lnlat_to_hlnlat(struct ln_lnlat_posn *pos,
+									   struct lnh_lnlat_posn *hpos);
 
 /**
  * \brief add seconds to hms
@@ -292,7 +299,8 @@ double LIBNOVA_EXPORT ln_get_light_time(double dist);
  * \param y3 Value 3
  * \return Interpolated value
  */
-double LIBNOVA_EXPORT ln_interpolate3(double n, double y1, double y2, double y3);
+double LIBNOVA_EXPORT ln_interpolate3(double n, double y1, double y2,
+									  double y3);
 
 /**
  * y4, double y5)
@@ -306,32 +314,35 @@ double LIBNOVA_EXPORT ln_interpolate3(double n, double y1, double y2, double y3)
  * \param y5 Value 5
  * \return Interpolated value
  */
-double LIBNOVA_EXPORT ln_interpolate5(double n, double y1, double y2, double y3, double y4, double y5);
+double LIBNOVA_EXPORT ln_interpolate5(double n, double y1, double y2, double y3,
+									  double y4, double y5);
 
 /**
  * to, double *arg)
  * \brief Find local maximum of function f() at given interval by Golden Section
  * method.
  * \ingroup misc
- * \param f Function to find maximum of
+ * \param func Function to find maximum of
  * \param from Start of interval
  * \param to End of interval
  * \param arg Argument to pass to f
  * \return Value of x where f(x) is maximum
  */
-double LIBNOVA_EXPORT ln_find_max(double (*func)(double, double *), double from, double to, double *arg);
+double LIBNOVA_EXPORT ln_find_max(double (*func)(double, double *), double from,
+								  double to, double *arg);
 
 /**
  * to, double *arg)
  * \brief Find zero of function f() at given interval by Newton method.
  * \ingroup misc
- * \param f Function to find zero of
+ * \param func Function to find zero of
  * \param from Start of interval
  * \param to End of interval
  * \param arg Argument to pass to f
  * \return Value of x where f(x) is zero
  */
-double LIBNOVA_EXPORT ln_find_zero(double (*func)(double, double *), double from, double to, double *arg);
+double LIBNOVA_EXPORT ln_find_zero(double (*func)(double, double *),
+								   double from, double to, double *arg);
 
 #ifdef __WIN32__
 

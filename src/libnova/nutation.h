@@ -27,7 +27,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup nutation Nutation
+/** \defgroup nutation Nutation
 *
 * Nutation is a periodic oscillation of the Earth's rotational axis around its
 * mean position.

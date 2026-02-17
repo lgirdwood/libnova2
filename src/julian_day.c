@@ -30,14 +30,6 @@
 #if !defined(__WIN32__) || defined(__MINGW__)
 #include <sys/time.h>
 #endif
-
-/**
- * \param date Date required.
- * \return Julian day
- *
- * Calculate the julian day from a calendar day.
- * Valid for positive and negative years but not for negative JD.
- */
 /* Formula 7.1 on pg 61
  */
 double ln_get_julian_day(struct ln_date *date) {
@@ -80,14 +72,6 @@ double ln_get_julian_day(struct ln_date *date) {
 
   return JD;
 }
-
-/**
- * \param date Date required
- * \return Day of the week
- *
- * Calculate the day of the week.
- * Returns 0 = Sunday .. 6 = Saturday
- */
 unsigned int ln_get_day_of_week(struct ln_date *date) {
   unsigned int day;
   double JD;
@@ -99,13 +83,6 @@ unsigned int ln_get_day_of_week(struct ln_date *date) {
 
   return day;
 }
-
-/**
- * \param JD Julian day
- * \param date Pointer to new calendar date.
- *
- * Calculate the date from the Julian day
- */
 void ln_get_date(double JD, struct ln_date *date) {
   int A, a, B, C, D, E;
   double F, Z;
@@ -148,13 +125,6 @@ void ln_get_date(double JD, struct ln_date *date) {
   else
     date->years = C - 4715;
 }
-
-/**
- * \param t system time
- * \param date Pointer to new calendar date.
- *
- * Set date from system time
- */
 void ln_get_date_from_timet(time_t *t, struct ln_date *date) {
   struct tm gmt;
 
@@ -163,13 +133,6 @@ void ln_get_date_from_timet(time_t *t, struct ln_date *date) {
 
   ln_get_date_from_tm(&gmt, date);
 }
-
-/**
- * \param tm system tm structure
- * \param date Pointer to new calendar date.
- *
- * Set date from system tm structure
- */
 void ln_get_date_from_tm(struct tm *t, struct ln_date *date) {
   /* fill in date struct */
   date->seconds = t->tm_sec;
@@ -179,12 +142,6 @@ void ln_get_date_from_tm(struct tm *t, struct ln_date *date) {
   date->months = t->tm_mon + 1;
   date->years = t->tm_year + 1900;
 }
-
-/**
- * \param date Pointer to store date.
- *
- * Calculate local date from system date.
- */
 void ln_get_date_from_sys(struct ln_date *date) {
   struct tm *gmt;
   struct timeval tv;
@@ -204,33 +161,13 @@ void ln_get_date_from_sys(struct ln_date *date) {
   date->months = gmt->tm_mon + 1;
   date->years = gmt->tm_year + 1900;
 }
-
-/**
- * \param time The time_t.
- * \return Julian day.
- *
- * Calculate Julian day from time_t.
- */
 double ln_get_julian_from_timet(time_t *in_time) {
   /* 1.1.1970 = JD 2440587.5 */
   return (double)(2440587.5 + (double)(*in_time / (double)86400.0));
 }
-
-/**
- * \param JD Julian day
- * \param in_time Pointer to store time_t
- *
- * Calculate time_t from julian day
- */
 void ln_get_timet_from_julian(double JD, time_t *in_time) {
   *in_time = (time_t)round((JD - (double)2440587.5) * (double)86400.0);
 }
-
-/**
- * \return Julian day (UT)
- *
- * Calculate the julian day (UT) from the local system time
- */
 double ln_get_julian_from_sys() {
   double JD;
   struct ln_date date;
@@ -241,13 +178,6 @@ double ln_get_julian_from_sys() {
 
   return JD;
 }
-
-/**
- * \param zonedate Local date
- * \return Julian day (UT)
- *
- * Calculate Julian day (UT) from zone date
- */
 double ln_get_julian_local_date(struct ln_zonedate *zonedate) {
   struct ln_date date;
 
@@ -255,14 +185,6 @@ double ln_get_julian_local_date(struct ln_zonedate *zonedate) {
 
   return ln_get_julian_day(&date);
 }
-
-/**
- * \param JD Julian day
- * \param zonedate Pointer to new calendar date.
- *
- * Calculate the zone date from the Julian day (UT). Gets zone info from
- * system using either _timezone or tm_gmtoff fields.
- */
 void ln_get_local_date(double JD, struct ln_zonedate *zonedate) {
   struct ln_date date;
 #ifndef __WIN32__
@@ -286,15 +208,6 @@ void ln_get_local_date(double JD, struct ln_zonedate *zonedate) {
 #endif
   ln_date_to_zonedate(&date, zonedate, gmtoff);
 }
-
-/**
- * \param date Pointer to new calendar date.
- * \param mpc_date Pointer to string MPC date
- * \return 0 for valid date
- *
- * Calculate the local date from the a MPC packed date.
- * See http://cfa-www.harvard.edu/iau/info/PackedDates.html for info.
- */
 int ln_get_date_from_mpc(struct ln_date *date, char *mpc_date) {
   char year[3];
   char month[2];
@@ -340,14 +253,6 @@ int ln_get_date_from_mpc(struct ln_date *date, char *mpc_date) {
 
   return 0;
 }
-
-/**
- * \param mpc_date Pointer to string MPC date
- * \return Julian day.
- *
- * Calculate the julian day from the a MPC packed date.
- * See http://cfa-www.harvard.edu/iau/info/PackedDates.html for info.
- */
 double ln_get_julian_from_mpc(char *mpc_date) {
   struct ln_date date;
   double JD;
@@ -357,15 +262,6 @@ double ln_get_julian_from_mpc(char *mpc_date) {
 
   return JD;
 }
-
-/**
- * *zonedate, long gmtoff)
- * \param zonedate Ptr to zonedate
- * \param gmtoff Offset in seconds from UT
- * \param date Ptr to date
- *
- * Converts a ln_date (UT) to a ln_zonedate (local time).
- */
 void ln_date_to_zonedate(struct ln_date *date, struct ln_zonedate *zonedate,
                          long gmtoff) {
   double jd;
@@ -384,14 +280,6 @@ void ln_date_to_zonedate(struct ln_date *date, struct ln_zonedate *zonedate,
 
   zonedate->gmtoff = gmtoff;
 }
-
-/**
- * *date)
- * \param zonedate Ptr to zonedate
- * \param date Ptr to date
- *
- * Converts a ln_zonedate (local time) to a ln_date (UT).
- */
 void ln_zonedate_to_date(struct ln_zonedate *zonedate, struct ln_date *date) {
   double jd;
   struct ln_date dat;

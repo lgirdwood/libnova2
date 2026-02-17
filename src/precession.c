@@ -51,17 +51,6 @@
 /*
 ** Precession
 */
-
-/**
- * struct ln_equ_posn *position)
- * \param mean_position Mean object position
- * \param JD Julian day
- * \param position Pointer to store new object position.
- *
- * Calculate equatorial coordinates with the effects of precession for a given
- * Julian Day. Uses mean equatorial coordinates and is only for initial epoch
- * J2000.0
- */
 /* Equ 20.3, 20.4 pg 126
  */
 void ln_get_equ_prec(struct ln_equ_posn *mean_position, double JD,
@@ -108,19 +97,6 @@ void ln_get_equ_prec(struct ln_equ_posn *mean_position, double JD,
   position->ra = ln_range_radians(ra);
   position->dec = dec;
 }
-
-/**
- * double toJD, struct ln_equ_posn *position);
- *
- * \param mean_position Mean object position
- * \param fromJD Julian day (start)
- * \param toJD Julian day (end)
- * \param position Pointer to store new object position.
- *
- * Calculate the effects of precession on equatorial coordinates, between
- * arbitary Jxxxx epochs. Use fromJD and toJD parameters to specify required
- * Jxxxx epochs.
- */
 
 /* Equ 20.2, 20.4 pg 126 */
 void ln_get_equ_prec2(struct ln_equ_posn *mean_position, double fromJD,
@@ -174,18 +150,6 @@ void ln_get_equ_prec2(struct ln_equ_posn *mean_position, double fromJD,
   position->ra = ln_range_radians(ra);
   position->dec = dec;
 }
-
-/**
- * struct ln_lnlat_posn *position)
- * \param mean_position Mean object position
- * \param JD Julian day
- * \param position Pointer to store new object position.
- *
- * Calculate ecliptical coordinates with the effects of precession for a given
- * Julian Day. Uses mean ecliptical coordinates and is only for initial epoch
- * J2000.0
- * \todo To be implemented.
- */
 /* Equ 20.5, 20.6 pg 128
  */
 void ln_get_ecl_prec(struct ln_lnlat_posn *mean_position, double JD,

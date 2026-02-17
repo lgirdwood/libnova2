@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup asteroid Asteroids
+/** \defgroup asteroid Asteroids
 *
 * Functions relating to Asteroids.
 *
@@ -38,7 +38,7 @@ extern "C" {
 * All angles are expressed in degrees.
 */
 
-/*!
+/**
 * \brief Calculate the visual magnitude of an asteroid.
 * \ingroup asteroid
 * \param JD Julian Day

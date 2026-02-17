@@ -144,14 +144,6 @@ const static struct nutation_coefficients coefficients[TERMS] = {
 /* cache values */
 static long double c_JD = 0.0, c_longitude = 0.0, c_obliquity = 0.0,
                    c_ecliptic = 0.0;
-
-/**
- * \param JD Julian Day.
- * \param nutation Pointer to store nutation
- *
- * Calculate nutation of longitude and obliquity in degrees from Julian
- * Ephemeris Day
- */
 /* Chapter 21 pg 131-134 Using Table 21A
  */
 /* TODO: add argument to specify this */
@@ -218,16 +210,6 @@ void ln_get_nutation(double JD, struct ln_nutation *nutation) {
   nutation->obliquity = LN_D2R(c_obliquity);
   nutation->ecliptic = LN_D2R(c_ecliptic);
 }
-
-/**
- * ln_equ_posn *position)
- * \param mean_position Mean position of object
- * \param JD Julian Day.
- * \param position Pointer to store new object position.
- *
- * Calculate a stars equatorial coordinates from it's mean equatorial
- * coordinates with the effects of nutation for a given Julian Day.
- */
 /* Equ 22.1
  */
 void ln_get_equ_nut(struct ln_equ_posn *mean_position, double JD,

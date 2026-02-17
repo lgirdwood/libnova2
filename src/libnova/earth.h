@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup earth Earth
+/** \defgroup earth Earth
 *
 * Functions relating to the planet Earth.
 *

@@ -21,16 +21,6 @@
 #include <libnova/rise_set.h>
 #include <libnova/transform.h>
 #include <libnova/utility.h>
-
-/**
-* \param position Equitorial position
-*
-* \return Name of the the constellation at the given position, or "---" if constellation
-* cannot be found.
-*
-* Returns name of the constellation based on boundaries found at:
-* http://vizier.u-strasbg.fr/viz-bin/VizieR?-source=6042
-*/
 const char* ln_get_constellation(struct ln_equ_posn *position)
 {
 	static const float	ra_lower[357] =

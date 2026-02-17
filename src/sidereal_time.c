@@ -20,14 +20,6 @@
 #include <libnova/sidereal_time.h>
 #include <libnova/utility.h>
 #include <math.h>
-
-/**
- * \param JD Julian Day
- * \return Mean sidereal time in hours.
- *
- * Calculate the mean sidereal time in hours at the meridian of Greenwich of a
- * given date.
- */
 /* Formula 11.1, 11.4 pg 83
  */
 double ln_get_mean_sidereal_time(double JD)
@@ -46,14 +38,6 @@ double ln_get_mean_sidereal_time(double JD)
 
 	return sidereal;
 }
-
-/**
- * \param JD Julian Day
- * /return Apparent sidereal time (hours).
- *
- * Calculate the apparent sidereal time at the meridian of Greenwich of a given
- * date.
- */
 /* Formula 11.1, 11.4 pg 83
  */
 

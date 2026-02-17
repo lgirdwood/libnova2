@@ -30,7 +30,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup solar Solar
+/** \defgroup solar Solar
 *
 * Calculate solar ecliptical/equatorial coordinates for a given julian date.  
 * Accuracy 0.01 arc second error - uses **VSOP87 solution** (Variations Séculaires des Orbites Planétaires).

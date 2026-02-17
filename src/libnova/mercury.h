@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup mercury Mercury
+/** \defgroup mercury Mercury
 *
 * Functions relating to the planet Mercury.
 *

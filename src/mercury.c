@@ -7256,21 +7256,7 @@ static const struct ln_vsop ALIGN32 mercury_radius_r5[RADIUS_R5] = {
     {     0.00000000001,  4.24238056507,   182615.32199101939}, 
     {     0.00000000000,  0.95140152937,   208703.22513259358}, 
     {     0.00000000000,  4.00511196914,   234791.12827416777} 
-};
-
-/**
-* \param JD julian Day
-* \param position Pointer to store position 
-*
-* Calculates Mercury's equatorial position for given julian day.
-* This function includes calculations for planetary aberration and refers
-* to the FK5 reference frame.
-*
-* To get the complete equatorial coordinates, corrections for nutation
-* have to be applied.
-*
-* The position returned is accurate to within 0.1 arcsecs.
-*/ 
+}; 
 void ln_get_mercury_equ_coords(double JD, struct ln_equ_posn *position)
 {
 	struct ln_helio_posn h_sol, h_mercury;
@@ -7305,17 +7291,7 @@ void ln_get_mercury_equ_coords(double JD, struct ln_equ_posn *position)
 	/* output in radians */
 	position->ra = ln_range_radians(ra);
 	position->dec = dec;
-}
-	
-
-/**
-* \param JD Julian Day
-* \param position Pointer to store heliocentric position
-*
-* Calculate Mercury heliocentric (refered to the centre of the Sun) coordinates
-* in the FK5 reference frame for the given julian day.
-* Longitude and Latitude are in degrees, whilst radius vector is in AU.
-*/  
+}  
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 
 */
 void ln_get_mercury_helio_coords(double JD, struct ln_helio_posn *position)
@@ -7381,16 +7357,6 @@ void ln_get_mercury_helio_coords(double JD, struct ln_helio_posn *position)
 	cB = position->B;
 	cR = position->R;
 }
-
-
-/**
-* \brief Calculate the distance between Mercury and the Earth in AU
-* \param JD Julian day
-* \return Distance in AU
-*
-* Calculates the distance in AU between the Earth and Mercury for
-* the given julian day.
-*/
 double ln_get_mercury_earth_dist(double JD)
 {
 	struct ln_helio_posn h_mercury, h_earth;
@@ -7414,16 +7380,7 @@ double ln_get_mercury_earth_dist(double JD)
 	z = z * z;
 
 	return sqrt(x + y + z);
-}
-	
-/**
-* \brief Calculate the distance between Mercury and the Sun in AU
-* \param JD Julian day
-* \return Distance in AU
-*
-* Calculates the distance in AU between the Sun and Mercury for
-* the given julian day.
-*/ 
+} 
 double ln_get_mercury_solar_dist(double JD)
 {
 	struct ln_helio_posn h_mercury;
@@ -7432,16 +7389,7 @@ double ln_get_mercury_solar_dist(double JD)
 	ln_get_mercury_helio_coords(JD, &h_mercury);
 
 	return h_mercury.R;
-}
-	
-/**
-* \brief Calculate the visible magnitude of Mercury
-* \param JD Julian day
-* \return Visisble magnitude of mercury
-*
-* Calculate the visisble magnitude of Mercury for the given
-* julian day.
-*/ 
+} 
 double ln_get_mercury_magnitude(double JD)
 {
 	double delta, r, i, i2, i3;
@@ -7457,16 +7405,7 @@ double ln_get_mercury_magnitude(double JD)
 	
 	return -0.42 + 5.0 * log10(r * delta) + 0.0380 * i - 0.000273 * i2
 		+ 0.000002 * i3;
-}
-
-/**
-* \brief Calculate the illuminated fraction of Mercury's disk
-* \param JD Julian day
-* \return Illuminated fraction of Mercury's disk
-*
-* Calculate the illuminated fraction of Mercury's disk for the given Julian
-* day.
-*/ 
+} 
 /* Chapter 41 */
 double ln_get_mercury_disk(double JD)
 {
@@ -7479,16 +7418,7 @@ double ln_get_mercury_disk(double JD)
 	
 	/* calc fraction angle */
 	return (((r + delta) * (r + delta)) - R * R) / (4.0 * r * delta);
-}
-  
-/**
-* \brief Calculate the phase angle of Mercury (Sun - Mercury - Earth)
-* \param JD Julian day
-* \return Phase angle of Mercury (degrees)
-*
-* Calculates the phase angle of Mercury, that is, the angle Sun -
-* Mercury - Earth for the given Julian day.
-*/ 
+} 
 /* Chapter 41 */
 double ln_get_mercury_phase(double JD)
 {
@@ -7504,34 +7434,12 @@ double ln_get_mercury_phase(double JD)
 	i = acos(i);
 	return i;
 }
-
-
-/**
-* \param JD Julian day
-* \param observer Observers position
-* \param rst Pointer to store Rise, Set and Transit time in JD
-* \return 0 for success, else 1 for circumpolar.
-*
-* Calculate the time the rise, set and transit (crosses the local meridian at upper culmination)
-* time of Mercury for the given Julian day.
-*
-* Note: this functions returns 1 if Mercury is circumpolar, that is it remains the whole
-* day either above or below the horizon.
-*/
 int ln_get_mercury_rst(double JD, struct ln_lnlat_posn *observer,
 	struct ln_rst_time *rst)
 {
 	return ln_get_body_rst_horizon(JD, observer, ln_get_mercury_equ_coords,
 		LN_STAR_STANDART_HORIZON, rst);
 }
-
-/**
-* \param JD Julian day
-* \return Semidiameter in arc seconds
-*
-* Calculate the semidiameter of Mercury in arc seconds for the 
-* given julian day.
-*/
 double ln_get_mercury_sdiam(double JD)
 {
 	double So = 3.36; /* at 1 AU */
@@ -7540,14 +7448,6 @@ double ln_get_mercury_sdiam(double JD)
 	dist = ln_get_mercury_earth_dist(JD);
 	return LN_D2R(So / 3600.0) / dist;
 }
-	
-/**
-* \param JD Julian day.
-* \param position pointer to return position
-*
-* Calculate Mercurys rectangular heliocentric coordinates for the
-* given Julian day. Coordinates are in AU.
-*/
 void ln_get_mercury_rect_helio(double JD, struct ln_rect_posn *position)
 {
 	struct ln_helio_posn mercury;

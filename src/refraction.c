@@ -19,19 +19,6 @@
 #include <math.h>
 #include <libnova/refraction.h>
 #include <libnova/utility.h>
-
-/**
-* \param altitude The altitude of the object above the horizon in degrees
-* \param atm_pres Atmospheric pressure in milibars
-* \param temp Temperature in degrees C.
-* \return Adjustment in objects altitude in degrees.
-*
-* Calculate the adjustment in altitude of a body due to atmosphric 
-* refraction. This value varies over altitude, pressure and temperature.
-* 
-* Note: Default values for pressure and teperature are 1010 mBar and 10C 
-* respectively.
-*/
 double ln_get_refraction_adj(double altitude, double atm_pres, double temp)
 {
 	long double R;

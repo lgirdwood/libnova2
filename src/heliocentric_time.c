@@ -22,18 +22,6 @@
 #include <libnova/heliocentric_time.h>
 #include <libnova/nutation.h>
 #include <libnova/utility.h>
-
-/**
- * *object)
- * \param JD Julian day
- * \param object Pointer to object (RA, DEC) for which heliocentric correction
- * will be caculated
- *
- * \return Heliocentric correction in fraction of day
- *
- * Calculate heliocentric corection for object at given coordinates and on given
- * date.
- */
 double ln_get_heliocentric_time_diff(double JD, struct ln_equ_posn *object) {
   double theta, ra, dec, c_dec, obliq;
   struct ln_nutation nutation;

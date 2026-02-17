@@ -23,7 +23,7 @@
 extern "C" {
 #endif
 
-/*!
+/**
 * \defgroup constellations Celestial constellations
 *
 * Functions relating to the 88 modern constellations.

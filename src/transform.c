@@ -22,15 +22,6 @@
 #include <libnova/transform.h>
 #include <libnova/utility.h>
 #include <math.h>
-
-/**
- * ln_rect_posn *position);
- * \param object Object heliocentric coordinates
- * \param position Pointer to store new position
- *
- * Transform an objects heliocentric ecliptical coordinates
- * into heliocentric rectangular coordinates.
- */
 /* Equ 37.1 Pg 264
  */
 void ln_get_rect_from_helio(struct ln_helio_posn *object,
@@ -53,19 +44,6 @@ void ln_get_rect_from_helio(struct ln_helio_posn *object,
   position->Y = object->R * (sin_L * cos_B * cos_e - sin_B * sin_e);
   position->Z = object->R * (sin_L * cos_B * sin_e + sin_B * cos_e);
 }
-
-/**
- * ln_lnlat_posn *observer, double JD, struct ln_hrz_posn *position)
- * \param object Object coordinates.
- * \param observer Observer cordinates.
- * \param JD Julian day
- * \param position Pointer to store new position.
- *
- * Transform an objects equatorial coordinates into horizontal coordinates
- * for the given julian day and observers position.
- *
- * 0 deg azimuth = south, 90 deg = west.
- */
 /* Equ 12.1,12.2 pg 88
  *
  * TODO:
@@ -147,17 +125,6 @@ void ln_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object,
   /* output in radians */
   position->az = ln_range_radians(A);
 }
-
-/**
- * ln_lnlat_posn *observer, double JD, struct ln_equ_posn *position)
- * \param object Object coordinates.
- * \param observer Observer cordinates.
- * \param JD Julian day
- * \param position Pointer to store new position.
- *
- * Transform an objects horizontal coordinates into equatorial coordinates
- * for the given julian day and observers position.
- */
 void ln_get_equ_from_hrz(struct ln_hrz_posn *object,
                          struct ln_lnlat_posn *observer, double JD,
                          struct ln_equ_posn *position) {
@@ -185,16 +152,6 @@ void ln_get_equ_from_hrz(struct ln_hrz_posn *object,
   position->ra = ln_range_radians(sidereal - H + longitude);
   position->dec = declination;
 }
-
-/**
- * ln_equ_posn *position)
- * \param object Object coordinates.
- * \param JD Julian day
- * \param position Pointer to store new position.
- *
- * Transform an objects ecliptical coordinates into equatorial coordinates
- * for the given julian day.
- */
 /* Equ 12.3, 12.4 pg 89
  */
 void ln_get_equ_from_ecl(struct ln_lnlat_posn *object, double JD,
@@ -223,17 +180,6 @@ void ln_get_equ_from_ecl(struct ln_lnlat_posn *object, double JD,
   position->ra = ln_range_radians(ra);
   position->dec = declination;
 }
-
-/**
- * ln_lnlat_posn *position)
- * \param object Object coordinates in B1950. Use ln_get_equ_prec2 to transform
- * from J2000.
- * \param JD Julian day
- * \param position Pointer to store new position.
- *
- * Transform an objects equatorial cordinates into ecliptical coordinates
- * for the given julian day.
- */
 /* Equ 12.1, 12.2 Pg 88
  */
 void ln_get_ecl_from_equ(struct ln_equ_posn *object, double JD,
@@ -258,14 +204,6 @@ void ln_get_ecl_from_equ(struct ln_equ_posn *object, double JD,
   position->lat = latitude;
   position->lng = ln_range_radians(longitude);
 }
-
-/**
- * ln_lnlat_posn *posn)
- * \param rect Rectangular coordinates.
- * \param posn Pointer to store new position.
- *
- * Transform an objects rectangular coordinates into ecliptical coordinates.
- */
 /* Equ 33.2
  */
 void ln_get_ecl_from_rect(struct ln_rect_posn *rect,
@@ -276,15 +214,6 @@ void ln_get_ecl_from_rect(struct ln_rect_posn *rect,
   posn->lng = ln_range_radians(atan2(rect->X, rect->Y));
   posn->lat = atan2(t, rect->Z);
 }
-
-/**
- * *equ)
- * \param gal Galactic coordinates.
- * \param equ B1950 equatorial coordinates. Use ln_get_equ_prec2 to transform to
- * J2000.
- *
- * Transform an object galactic coordinates into B1950 equatorial coordinate.
- */
 /* Pg 94 */
 void ln_get_equ_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ) {
   double RAD_27_4, SIN_27_4, COS_27_4;
@@ -308,25 +237,10 @@ void ln_get_equ_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ) {
   equ->ra = ln_range_radians(y + LN_D2R(12.25));
   equ->dec = asin(sin_b * SIN_27_4 + cos_b * COS_27_4 * cos_l_123);
 }
-
-/**
- * *equ)
- * \param gal Galactic coordinates.
- * \param equ J2000 equatorial coordinates.
- *
- * Transform an object galactic coordinates into equatorial coordinate.
- */
 void ln_get_equ2000_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ) {
   ln_get_equ_from_gal(gal, equ);
   ln_get_equ_prec2(equ, B1950, JD2000, equ);
 }
-
-/**
- * \param equ B1950 equatorial coordinates.
- * \param gal Galactic coordinates.
- *
- * Transform an object B1950 equatorial coordinate into galactic coordinates.
- */
 /* Pg 94 */
 void ln_get_gal_from_equ(struct ln_equ_posn *equ, struct ln_gal_posn *gal) {
   double RAD_27_4, SIN_27_4, COS_27_4;
@@ -352,21 +266,13 @@ void ln_get_gal_from_equ(struct ln_equ_posn *equ, struct ln_gal_posn *gal) {
   gal->l = ln_range_radians(LN_D2R(303.0) - x);
   gal->b = asin(sin_dec * SIN_27_4 + cos_dec * COS_27_4 * cos_ra_192_25);
 }
-
-/**
- * *gal)
- * \param equ J2000 equatorial coordinates.
- * \param gal Galactic coordinates.
- *
- * Transform an object J2000 equatorial coordinate into galactic coordinates.
- */
 void ln_get_gal_from_equ2000(struct ln_equ_posn *equ, struct ln_gal_posn *gal) {
   struct ln_equ_posn equ_1950;
   ln_get_equ_prec2(equ, JD2000, B1950, &equ_1950);
   ln_get_gal_from_equ(&equ_1950, gal);
 }
 
-/*! \example transforms.c
+/** \example transforms.c
  *
  * Examples of how to use transformation functions.
  */

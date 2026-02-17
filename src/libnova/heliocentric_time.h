@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*!
+/**
 * \defgroup heliocentric Heliocentric time
 *
 * Functions relating to Heliocentric Time Correction.

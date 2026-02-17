@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*!
+/**
 * \defgroup dynamical Dynamical Time
 *
 * Functions relating to Dynamical Time (TD), which is the uniform time scale used in the ephemerides.

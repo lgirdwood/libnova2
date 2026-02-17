@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup VSOP87 VSOP87 Theory
+/** \defgroup VSOP87 VSOP87 Theory
 *
 * The VSOP87 (Variations Séculaires des Orbites Planétaires) theory.
 *
@@ -46,13 +46,13 @@ extern "C" {
 /* JD Julian Day */
 void LIBNOVA_EXPORT ln_vsop87_to_fk5(struct ln_helio_posn *position, double JD);
 
-/*! \struct ln_vsop
+/** \struct ln_vsop
 * \brief VSOP87 term data structure.
 */
 struct ln_vsop {
-	double A; /*!< Amplitude */
-	double B; /*!< Phase */
-	double C; /*!< Frequency */
+	double A; /**< Amplitude */
+	double B; /**< Phase */
+	double C; /**< Frequency */
 };
 
 /**

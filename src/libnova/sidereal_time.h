@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup sidereal Sidereal Time 
+/** \defgroup sidereal Sidereal Time 
 *
 * Sidereal time is the hour angle of the vernal equinox.
 *

@@ -18,7 +18,7 @@
 
 #define LIBNOVA_VERSION "0.15.0"
 
-/*! \mainpage libnova
+/** \mainpage libnova
 * \image html libnova-logo.jpg
 * Celestial Mechanics, Astrometry and Astrodynamics Library
 * 

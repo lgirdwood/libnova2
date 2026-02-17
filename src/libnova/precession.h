@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup precession Precession
+/** \defgroup precession Precession
 *
 * Precession is the changing direction of the Earth's rotational axis over time.
 *

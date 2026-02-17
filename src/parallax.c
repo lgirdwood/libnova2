@@ -22,20 +22,6 @@
 #include <libnova/utility.h>
 #include <math.h>
 #include <stdio.h>
-
-/**
- * struct ln_lnlat_posn *observer, double height, double JD, struct ln_equ_posn
- * *parallax);
- * \param object Object geocentric coordinates
- * \param au_distance Distance of object from Earth in AU
- * \param observer Geographics observer positions
- * \param height Observer height in m
- * \param JD  Julian day of observation
- * \param parallax RA and DEC parallax
- *
- * Calculate body parallax, which is need to calculate topocentric position of
- * the body.
- */
 /* Equ 39.1, 39.2, 39.3 Pg 263 and 264
  */
 void ln_get_parallax(struct ln_equ_posn *object, double au_distance, struct ln_lnlat_posn *observer, double height,
@@ -48,21 +34,6 @@ void ln_get_parallax(struct ln_equ_posn *object, double au_distance, struct ln_l
 	H = ln_range_hours(H);
 	ln_get_parallax_ha(object, au_distance, observer, height, H, parallax);
 }
-
-/**
- * struct ln_lnlat_posn *observer, double height, double H, struct ln_equ_posn
- * *parallax);
- * \param object Object geocentric coordinates
- * \param au_distance Distance of object from Earth in AU
- * \param observer Geographics observer positions
- * \param height Observer height in m
- * \param H Hour angle of object in hours
- * \param parallax RA and DEC parallax
- *
- * Calculate body parallax, which is need to calculate topocentric position of
- * the body. Uses hour angle as time reference (handy in case we already compute
- * it).
- */
 /* Equ 39.1, 39.2, 39.3 Pg 263 and 264
  */
 void ln_get_parallax_ha(struct ln_equ_posn *object, double au_distance, struct ln_lnlat_posn *observer, double height,

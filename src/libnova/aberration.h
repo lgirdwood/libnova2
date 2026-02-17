@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup aberration Aberration
+/** \defgroup aberration Aberration
 *
 * Aberration is the apparent displacement of a celestial body due to the finite speed of light
 * and the motion of the observer (Earth) relative to the object.

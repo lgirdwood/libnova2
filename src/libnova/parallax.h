@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup parallax Parallax
+/** \defgroup parallax Parallax
 *
 * Functions relating to Parallax.
 *

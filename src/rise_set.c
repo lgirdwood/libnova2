@@ -23,7 +23,7 @@
 #include <libnova/utility.h>
 #include <math.h>
 
-/** \brief helper function to check if object can be visible.
+/* \brief helper function to check if object can be visible.
  * \param observer Observers position
  * \param H1 cos(hour angle)
  * \param horizon Horizon height
@@ -54,46 +54,11 @@ static int check_coords(struct ln_lnlat_posn *observer, double H1, double horizo
 	}
 	return 0;
 }
-
-/**
- * ln_equ_posn *object, struct ln_rst_time *rst);
- * \param JD Julian day
- * \param observer Observers position
- * \param object Object position
- * \param rst Pointer to store Rise, Set and Transit time in JD
- * \return 0 for success, 1 for circumpolar (above the horizon), -1 for
- * circumpolar (bellow the horizon)
- *
- * Calculate the time the rise, set and transit (crosses the local meridian at
- * upper culmination) time of the object for the given Julian day.
- *
- * Note: this functions returns 1 if the object is circumpolar, that is it
- * remains the whole day above the horizon. Returns -1 when it remains the whole
- * day bellow the horizon.
- */
 int ln_get_object_rst(double JD, struct ln_lnlat_posn *observer, struct ln_equ_posn *object, struct ln_rst_time *rst)
 {
 	return ln_get_object_rst_horizon(JD, observer, object, LN_STAR_STANDART_HORIZON,
 									 rst); /* standard altitude of stars */
 }
-
-/**
- * struct ln_equ_posn *object, long double horizon, struct ln_rst_time *rst);
- * \param JD Julian day
- * \param observer Observers position
- * \param object Object position
- * \param horizon Horizon height
- * \param rst Pointer to store Rise, Set and Transit time in JD
- * \return 0 for success, 1 for circumpolar (above the horizon), -1 for
- * circumpolar (bellow the horizon)
- *
- * Calculate the time the rise, set and transit (crosses the local meridian at
- * upper culmination) time of the object for the given Julian day and horizon.
- *
- * Note: this functions returns 1 if the object is circumpolar, that is it
- * remains the whole day above the horizon. Returns -1 when it remains whole day
- * bellow the horizon.
- */
 int ln_get_object_rst_horizon(double JD, struct ln_lnlat_posn *observer, struct ln_equ_posn *object,
 							  long double horizon, struct ln_rst_time *rst)
 {
@@ -190,27 +155,6 @@ int ln_get_object_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer, 
 	/* not circumpolar */
 	return 0;
 }
-
-/**
- * struct ln_equ_posn *object, struct ln_rst_time *rst);
- * \param JD Julian day
- * \param observer Observers position
- * \param object Object position
- * \param rst Pointer to store Rise, Set and Transit time in JD
- * \return 0 for success, 1 for circumpolar (above the horizon), -1 for
- * circumpolar (bellow the horizon)
- *
- * Calculate the time of next rise, set and transit (crosses the local meridian
- * at upper culmination) time of the object for the given Julian day and
- * horizon.
- *
- * This function guarantee, that rise, set and transit will be in <JD, JD+1>
- * range.
- *
- * Note: this functions returns 1 if the object is circumpolar, that is it
- * remains the whole day above the horizon. Returns -1 when it remains whole day
- * bellow the horizon.
- */
 int ln_get_object_next_rst(double JD, struct ln_lnlat_posn *observer, struct ln_equ_posn *object,
 						   struct ln_rst_time *rst)
 {
@@ -238,29 +182,6 @@ static inline double find_next(double JD, double jd1, double jd2, double jd3)
 
 	return jd3;
 }
-
-/**
- * *observer, struct ln_equ_posn *object, double horizon, struct ln_rst_time
- * *rst);
- * \param JD Julian day
- * \param observer Observers position
- * \param object Object position
- * \param horizon Horizon height
- * \param rst Pointer to store Rise, Set and Transit time in JD
- * \return 0 for success, 1 for circumpolar (above the horizon), -1 for
- * circumpolar (bellow the horizon)
- *
- * Calculate the time of next rise, set and transit (crosses the local meridian
- * at upper culmination) time of the object for the given Julian day and
- * horizon.
- *
- * This function guarantee, that rise, set and transit will be in <JD, JD+1>
- * range.
- *
- * Note: this functions returns 1 if the object is circumpolar, that is it
- * remains the whole day above the horizon. Returns -1 when it remains whole day
- * bellow the horizon.
- */
 int ln_get_object_next_rst_horizon(double JD, struct ln_lnlat_posn *observer, struct ln_equ_posn *object,
 								   double horizon, struct ln_rst_time *rst)
 {
@@ -291,32 +212,6 @@ int ln_get_object_next_rst_horizon(double JD, struct ln_lnlat_posn *observer, st
 
 	return 0;
 }
-
-/**
- * void (*get_equ_body_coords) (double, struct ln_equ_posn *), double horizon,
- * struct ln_rst_time *rst);
- * \param JD Julian day
- * \param observer Observers position
- * \param get_equ_body_coords Pointer to get_equ_body_coords() function
- * \param horizon Horizon, see LN_XXX_HORIZON constants
- * \param rst Pointer to store Rise, Set and Transit time in JD
- * \return 0 for success, 1 for circumpolar (above the horizon), -1 for
- * circumpolar (bellow the horizon)
- *
- * Calculate the time the rise, set and transit (crosses the local meridian at
- * upper culmination) time of the body for the given Julian day and given
- * horizon.
- *
- *
- * Note 1: this functions returns 1 if the object is circumpolar, that is it
- * remains the whole day above the horizon. Returns -1 when it remains whole day
- * bellow the horizon.
- *
- * Note 2: this function will not work for body, which ra changes more
- * then 180 deg in one day (get_equ_body_coords changes so much). But
- * you should't use that function for any body which moves to fast..use
- * some special function for such things.
- */
 int ln_get_body_rst_horizon(double JD, struct ln_lnlat_posn *observer,
 							void (*get_equ_body_coords)(double, struct ln_equ_posn *), double horizon,
 							struct ln_rst_time *rst)
@@ -451,68 +346,12 @@ int ln_get_body_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer,
 	/* not circumpolar */
 	return 0;
 }
-
-/**
- * *observer, struct ln_equ_posn *object, double horizon, struct ln_rst_time
- * *rst);
- * \param JD Julian day
- * \param observer Observers position
- * \param get_equ_body_coords Pointer to get_equ_body_coords() function
- * \param horizon Horizon, see LN_XXX_HORIZON constants
- * \param rst Pointer to store Rise, Set and Transit time in JD
- * \return 0 for success, 1 for circumpolar (above the horizon), -1 for
- * circumpolar (bellow the horizon)
- *
- * Calculate the time of next rise, set and transit (crosses the local meridian
- * at upper culmination) time of the body for the given Julian day and given
- * horizon.
- *
- * This function guarantee, that rise, set and transit will be in <JD, JD+1>
- * range.
- *
- * Note 1: this functions returns 1 if the body is circumpolar, that is it
- * remains the whole day either above or below the horizon.
- *
- * Note 2: This function will not work for body, which ra changes more
- * then 180 deg in one day (get_equ_body_coords changes so much). But
- * you should't use that function for any body which moves to fast..use
- * some special function for such things.
- */
 int ln_get_body_next_rst_horizon(double JD, struct ln_lnlat_posn *observer,
 								 void (*get_equ_body_coords)(double, struct ln_equ_posn *), double horizon,
 								 struct ln_rst_time *rst)
 {
 	return ln_get_body_next_rst_horizon_future(JD, observer, get_equ_body_coords, horizon, 1, rst);
 }
-
-/**
- * *observer, void (*get_equ_body_coords) (double,struct ln_equ_posn *), double
- * horizon, int day_limit, struct ln_rst_time *rst);
- * \param JD Julian day
- * \param observer Observers position
- * \param get_equ_body_coords Pointer to get_equ_body_coords() function
- * \param horizon Horizon, see LN_XXX_HORIZON constants
- * \param day_limit Maximal number of days that will be searched for next rise
- * and set
- * \param rst Pointer to store Rise, Set and Transit time in JD
- * \return 0 for success, 1 for circumpolar (above the horizon), -1 for
- * circumpolar (bellow the horizon)
- *
- * Calculate the time of next rise, set and transit (crosses the local meridian
- * at upper culmination) time of the body for the given Julian day and given
- * horizon.
- *
- * This function guarantee, that rise, set and transit will be in <JD, JD +
- * day_limit> range.
- *
- * Note 1: this functions returns 1 if the body is circumpolar, that is it
- * remains the whole day either above or below the horizon.
- *
- * Note 2: This function will not work for body, which ra changes more
- * than 180 deg in one day (get_equ_body_coords changes so much). But
- * you should't use that function for any body which moves to fast..use
- * some special function for such things.
- */
 int ln_get_body_next_rst_horizon_future(double JD, struct ln_lnlat_posn *observer,
 										void (*get_equ_body_coords)(double, struct ln_equ_posn *), double horizon,
 										int day_limit, struct ln_rst_time *rst)
@@ -565,26 +404,6 @@ int ln_get_body_next_rst_horizon_future(double JD, struct ln_lnlat_posn *observe
 
 	return 0;
 }
-
-/**
- * void (*get_equ_body_coords) (double, struct ln_equ_posn *), double horizon,
- * struct ln_rst_time *rst);
- * \param JD Julian day
- * \param observer Observers position
- * \param get_motion_body_coords Pointer to ln_get_ell_body_equ_coords.
- * ln_get_para_body_equ_coords or ln_get_hyp_body_equ_coords function
- * \param horizon Horizon, see LN_XXX_HORIZON constants
- * \param rst Pointer to store Rise, Set and Transit time in JD
- * \return 0 for success, 1 for circumpolar (above the horizon), -1 for
- * circumpolar (bellow the horizon)
- *
- * Calculate the time the rise, set and transit (crosses the local meridian at
- * upper culmination) time of the body for the given Julian day and given
- * horizon.
- *
- * Note 1: this functions returns 1 if the body is circumpolar, that is it
- * remains the whole day either above or below the horizon.
- */
 int ln_get_motion_body_rst_horizon(double JD, struct ln_lnlat_posn *observer,
 								   get_motion_body_coords_t get_motion_body_coords, void *orbit, double horizon,
 								   struct ln_rst_time *rst)
@@ -714,60 +533,12 @@ int ln_get_motion_body_rst_horizon_offset(double JD, struct ln_lnlat_posn *obser
 	/* not circumpolar */
 	return 0;
 }
-
-/**
- * *observer, void (*get_equ_body_coords) (double, struct ln_equ_posn *), double
- * horizon, struct ln_rst_time *rst);
- * \param JD Julian day
- * \param observer Observers position
- * \param get_motion_body_coords Pointer to ln_get_ell_body_equ_coords.
- * ln_get_para_body_equ_coords or ln_get_hyp_body_equ_coords function
- * \param horizon Horizon, see LN_XXX_HORIZON constants
- * \param rst Pointer to store Rise, Set and Transit time in JD
- * \return 0 for success, 1 for circumpolar (above the horizon), -1 for
- * circumpolar (bellow the horizon)
- *
- * Calculate the time of next rise, set and transit (crosses the local meridian
- * at upper culmination) time of the body for the given Julian day and given
- * horizon.
- *
- * This function guarantee, that rise, set and transit will be in <JD, JD+1>
- * range.
- *
- * Note 1: this functions returns 1 if the body is circumpolar, that is it
- * remains the whole day either above or below the horizon.
- */
 int ln_get_motion_body_next_rst_horizon(double JD, struct ln_lnlat_posn *observer,
 										get_motion_body_coords_t get_motion_body_coords, void *orbit, double horizon,
 										struct ln_rst_time *rst)
 {
 	return ln_get_motion_body_next_rst_horizon_future(JD, observer, get_motion_body_coords, orbit, horizon, 1, rst);
 }
-
-/**
- * ln_lnlat_posn *observer, void (*get_equ_body_coords) (double, struct
- * ln_equ_posn *), double horizon, int day_limit, struct ln_rst_time *rst);
- * \param JD Julian day
- * \param observer Observers position
- * \param get_motion_body_coords Pointer to ln_get_ell_body_equ_coords.
- * ln_get_para_body_equ_coords or ln_get_hyp_body_equ_coords function
- * \param horizon Horizon, see LN_XXX_HORIZON constants
- * \param day_limit Maximal number of days that will be searched for next rise
- * and set
- * \param rst Pointer to store Rise, Set and Transit time in JD
- * \return 0 for success, 1 for circumpolar (above the horizon), -1 for
- * circumpolar (bellow the horizon)
- *
- * Calculate the time of next rise, set and transit (crosses the local meridian
- * at upper culmination) time of the body for the given Julian day and given
- * horizon.
- *
- * This function guarantee, that rise, set and transit will be in <JD, JD +
- * day_limit> range.
- *
- * Note 1: this functions returns 1 if the body is circumpolar, that is it
- * remains the whole day either above or below the horizon.
- */
 int ln_get_motion_body_next_rst_horizon_future(double JD, struct ln_lnlat_posn *observer,
 											   get_motion_body_coords_t get_motion_body_coords, void *orbit,
 											   double horizon, int day_limit, struct ln_rst_time *rst)

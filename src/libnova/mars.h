@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup mars Mars
+/** \defgroup mars Mars
 *
 * Functions relating to the planet Mars.
 *

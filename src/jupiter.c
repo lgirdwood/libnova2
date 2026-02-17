@@ -3744,21 +3744,7 @@ static const struct ln_vsop ALIGN32 jupiter_radius_r5[RADIUS_R5] = {
     {     0.00000001596,  4.11045079899,     1059.38193018920}, 
     {     0.00000001301,  3.72955393027,       14.22709400160}, 
     {     0.00000001033,  4.50671820436,      529.69096509460}, 
-};
-
-/**
-* \param JD julian Day
-* \param position Pointer to store position
-*
-* Calculates Jupiter's equatorial position for given julian day.
-* This function includes calculations for planetary aberration and refers
-* to the FK5 reference frame.
-*
-* To get the complete equatorial coordinates, corrections for nutation
-* have to be applied.
-*
-* The position returned is accurate to within 0.1 arcsecs.
-*/ 
+}; 
 void ln_get_jupiter_equ_coords(double JD, struct ln_equ_posn *position)
 {
 	struct ln_helio_posn h_sol, h_jupiter;
@@ -3794,15 +3780,6 @@ void ln_get_jupiter_equ_coords(double JD, struct ln_equ_posn *position)
 	position->ra = ln_range_radians(ra);
 	position->dec = dec;
 }
-	
-/**
-* \param JD Julian Day
-* \param position Pointer to store heliocentric position
-*
-* Calculate Jupiters heliocentric (refered to the centre of the Sun) coordinates
-* in the FK5 reference frame for the given julian day.
-* Longitude and Latitude are in degrees, whilst radius vector is in AU.
-*/
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 
 */
 void ln_get_jupiter_helio_coords(double JD, struct ln_helio_posn *position)
@@ -3868,14 +3845,6 @@ void ln_get_jupiter_helio_coords(double JD, struct ln_helio_posn *position)
 	cB = position->B;
 	cR = position->R;
 }
-
-/**
-* \param JD Julian day.
-* \brief Calculate the distance between Jupiter and the Earth in AU
-* \return Distance in AU.
-*
-* Calculates the distance in AU between the Earth and Jupiter for the given julian day.
-*/
 double ln_get_jupiter_earth_dist(double JD)
 {
 	struct ln_helio_posn h_jupiter, h_earth;
@@ -3899,15 +3868,7 @@ double ln_get_jupiter_earth_dist(double JD)
 	z = z * z;
 
 	return sqrt(x + y + z);
-}
-	
-/**
-* \param JD Julian day.
-* \brief Calculate the distance between Jupiter and the Sun in AU
-* \return Distance in AU.
-*
-* Calculates the distance in AU between the Sun and Jupiter for the given julian day.
-*/ 
+} 
 double ln_get_jupiter_solar_dist(double JD)
 {
 	struct ln_helio_posn h_jupiter;
@@ -3915,15 +3876,7 @@ double ln_get_jupiter_solar_dist(double JD)
 	/* get heliocentric position */
 	ln_get_jupiter_helio_coords(JD, &h_jupiter);
 	return h_jupiter.R;
-}
-	
-/**
-* \param JD Julian day
-* \brief Calculate the visible magnitude of Jupiter
-* \return Visible magnitude of Jupiter
-*
-* Calculate the visible magnitude of jupiter for the given julian day.
-*/ 
+} 
 double ln_get_jupiter_magnitude(double JD)
 {
 	double delta, r, i;
@@ -3936,16 +3889,7 @@ double ln_get_jupiter_magnitude(double JD)
 	i = ln_get_jupiter_phase(JD);
 
 	return -9.40 + 5.0 * log10(r * delta) + 0.005 * i;
-}
-
-/**
-* \param JD Julian day.
-* \brief Calculate the illuminated fraction of Jupiter's disk
-* \return Illuminated fraction of Jupiters disk (Value between 0 and 1)
-*
-* Calculate the illuminated fraction of Jupiter's disk for the given Julian
-* day.
-*/ 
+} 
 /* Chapter 41 */
 double ln_get_jupiter_disk(double JD)
 {
@@ -3958,15 +3902,7 @@ double ln_get_jupiter_disk(double JD)
 	
 	/* calc fraction angle */
 	return (((r + delta) * (r + delta)) - R * R) / (4 * r * delta);
-}
-
-/**
-* \param JD Julian Day
-* \return Phase angle of Jupiter (degrees)
-*
-* Calculates the phase angle of Jupiter, that is, the angle Sun -
-* Jupiter - Earth for the given Julian day.
-*/ 
+} 
 /* Chapter 41 */
 double ln_get_jupiter_phase(double JD)
 {
@@ -3982,35 +3918,12 @@ double ln_get_jupiter_phase(double JD)
 	i = acos(i);
 	return i;
 }
-
-
-/**
-* \param JD Julian day
-* \param observer Observers position
-* \param rst Pointer to store Rise, Set and Transit time in JD
-* \return 0 for success, else 1 for circumpolar.
-*
-* Calculate the time the rise, set and transit (crosses the local meridian at upper culmination)
-* time of Jupiter for the given Julian day.
-*
-* Note: this functions returns 1 if Jupiter is circumpolar, that is it remains the whole
-* day either above or below the horizon.
-*/
 int ln_get_jupiter_rst(double JD, struct ln_lnlat_posn *observer,
 	struct ln_rst_time *rst)
 {
 	return ln_get_body_rst_horizon(JD, observer, ln_get_jupiter_equ_coords,
 		LN_STAR_STANDART_HORIZON, rst);
 }
-
-
-/**
-* \param JD Julian day
-* \return Semidiameter in arc seconds
-*
-* Calculate the equatorial semidiameter of Jupiter in arc seconds for the 
-* given julian day.
-*/
 double ln_get_jupiter_equ_sdiam(double JD)
 {
 	double So = 98.44; /* at 1 AU */
@@ -4019,15 +3932,6 @@ double ln_get_jupiter_equ_sdiam(double JD)
 	dist = ln_get_jupiter_earth_dist(JD);
 	return LN_D2R(So / 3600.0) / dist;
 }
-
-/**
-* \param JD Julian day
-* \return Semidiameter in arc seconds
-* \todo Use Jupitercentric latitude of Earth Pg 390
-*
-* Calculate the polar semidiameter of Jupiter in arc seconds for the 
-* given julian day.
-*/
 double ln_get_jupiter_pol_sdiam(double JD)
 {
 	double So = 92.06; /* at 1 AU */
@@ -4036,14 +3940,6 @@ double ln_get_jupiter_pol_sdiam(double JD)
 	dist = ln_get_jupiter_earth_dist(JD);
 	return LN_D2R(So / 3600.0) / dist;
 }
-
-/**
-* \param JD Julian day.
-* \param position pointer to return position
-*
-* Calculate Jupiters rectangular heliocentric coordinates for the
-* given Julian day. Coordinates are in AU.
-*/
 void ln_get_jupiter_rect_helio(double JD, struct ln_rect_posn *position)
 {
 	struct ln_helio_posn jupiter;

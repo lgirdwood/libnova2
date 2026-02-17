@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup venus Venus
+/** \defgroup venus Venus
 *
 * Functions relating to the planet Venus.
 *

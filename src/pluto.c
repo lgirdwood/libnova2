@@ -230,15 +230,7 @@ static const struct pluto_radius radius[PLUTO_COEFFS] = {
 	{2, -10},
 	{19, 35},
 	{10, 2}
-};
-
-                
-/**
-* \param JD julian Day
-* \param position Pointer to store position
-*
-* Calculates Pluto's equatorial position for the given julian day.
-*/ 
+}; 
 void ln_get_pluto_equ_coords(double JD, struct ln_equ_posn *position)
 {
 	struct ln_helio_posn h_sol, h_pluto;
@@ -274,18 +266,6 @@ void ln_get_pluto_equ_coords(double JD, struct ln_equ_posn *position)
 	position->ra = ln_range_radians(ra);
 	position->dec = dec;
 }
-	
-	
-/**
-* \param JD Julian Day
-* \param position Pointer to store new heliocentric position
-*
-* Calculate Pluto's heliocentric coordinates for the given julian day. 
-* This function is accurate to within 0.07" in longitude, 0.02" in latitude 
-* and 0.000006 AU in radius vector.
-*
-* Note: This function is not valid outside the period of 1885-2099. 
-*/
 /* Chap 37. Equ 37.1
 */
 
@@ -340,14 +320,6 @@ void ln_get_pluto_helio_coords(double JD, struct ln_helio_posn *position)
 	cB = position->B;
 	cR = position->R;
 }
-
-/**
-* \param JD Julian day
-* \return Distance in AU
-*
-* Calculates the distance in AU between the Earth and Pluto for the
-* given julian day.
-*/
 double ln_get_pluto_earth_dist(double JD)
 {
 	struct ln_helio_posn h_pluto, h_earth;
@@ -371,15 +343,7 @@ double ln_get_pluto_earth_dist(double JD)
 	z = z * z;
 
 	return sqrt(x + y + z);
-}
-	
-/**
-* \param JD Julian day
-* \return Distance in AU
-*
-* Calculates the distance in AU between the Sun and Pluto for the
-* given julian day.
-*/ 
+} 
 double ln_get_pluto_solar_dist(double JD)
 {
 	struct ln_helio_posn h_pluto;
@@ -387,15 +351,7 @@ double ln_get_pluto_solar_dist(double JD)
 	/* get heliocentric position */
 	ln_get_pluto_helio_coords(JD, &h_pluto);
 	return h_pluto.R;
-}
-	
-/**
-* \param JD Julian day
-* \return Visible magnitude of Pluto
-*
-* Calculate the visible magnitude of Pluto for the given
-* julian day.
-*/ 
+} 
 double ln_get_pluto_magnitude(double JD)
 {
 	double delta, r;
@@ -405,15 +361,7 @@ double ln_get_pluto_magnitude(double JD)
 	delta = ln_get_pluto_earth_dist(JD);
 
 	return -1.0 + 5.0 * log10(r * delta);
-}
-
-/**
-* \param JD Julian day
-* \return Illuminated fraction of Plutos disk
-*
-* Calculate the illuminated fraction of Pluto's disk for
-* the given julian day.
-*/ 
+} 
 /* Chapter 41 */
 double ln_get_pluto_disk(double JD)
 {
@@ -426,15 +374,7 @@ double ln_get_pluto_disk(double JD)
 	
 	/* calc fraction angle */
 	return (((r + delta) * (r + delta)) - R * R) / (4.0 * r * delta);
-}
-
-/**
-* \param JD Julian day
-* \return Phase angle of Pluto (degrees)
-*
-* Calculate the phase angle of Pluto (Sun - Pluto - Earth)
-* for the given julian day.
-*/ 
+} 
 /* Chapter 41 */
 double ln_get_pluto_phase(double JD)
 {
@@ -450,35 +390,12 @@ double ln_get_pluto_phase(double JD)
 	i = acos(i);
 	return i;
 }
-
-
-/**
-* \param JD Julian day
-* \param observer Observers position
-* \param rst Pointer to store Rise, Set and Transit time in JD
-* \return 0 for success, else 1 for circumpolar.
-*
-* Calculate the time the rise, set and transit (crosses the local meridian at upper culmination)
-* time of Pluto for the given Julian day.
-*
-* Note: this functions returns 1 if Pluto is circumpolar, that is it remains the whole
-* day either above or below the horizon.
-*/
 int ln_get_pluto_rst(double JD, struct ln_lnlat_posn *observer,
 		struct ln_rst_time *rst)
 {
 	return ln_get_body_rst_horizon(JD, observer, ln_get_pluto_equ_coords,
 		LN_STAR_STANDART_HORIZON, rst);
 }
-
-
-/**
-* \param JD Julian day
-* \return Semidiameter in arc seconds
-*
-* Calculate the semidiameter of Pluto in arc seconds for the 
-* given julian day.
-*/
 double ln_get_pluto_sdiam(double JD)
 {
 	double So = 2.07; /* at 1 AU */
@@ -487,14 +404,6 @@ double ln_get_pluto_sdiam(double JD)
 	dist = ln_get_pluto_earth_dist(JD);
 	return LN_D2R(So / 3600.0) / dist;
 }
-	
-/**
-* \param JD Julian day.
-* \param position pointer to return position
-*
-* Calculate Plutos rectangular heliocentric coordinates for the
-* given Julian day. Coordinates are in AU.
-*/
 void ln_get_pluto_rect_helio(double JD, struct ln_rect_posn *position)
 {
 	struct ln_helio_posn pluto;

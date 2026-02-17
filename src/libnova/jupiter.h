@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup jupiter Jupiter
+/** \defgroup jupiter Jupiter
 *
 * Functions relating to the planet Jupiter.
 *

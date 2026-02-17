@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup angular Angular Separation
+/** \defgroup angular Angular Separation
 *
 * Functions relating to the angular separation and position angle between 2 bodies.
 *

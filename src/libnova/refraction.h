@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*! \defgroup refraction Atmospheric Refraction
+/** \defgroup refraction Atmospheric Refraction
 *
 * Functions relating to Atmospheric Refraction, which causes celestial bodies to appear higher than they actually are.
 *

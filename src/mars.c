@@ -6520,21 +6520,7 @@ static const struct ln_vsop ALIGN32 mars_radius_r5[RADIUS_R5] = {
     {     0.00000000004,  5.11981331029,     3097.88382272579}, 
     {     0.00000000004,  5.24603068590,     6923.95345737360}, 
     {     0.00000000002,  0.40954426011,     9866.41688066520}, 
-};
-
-/**
-* \param JD julian Day
-* \param position Pointer to store position
-*
-* Calculates Mars equatorial position for given julian day.
-* This function includes calculations for planetary aberration and refers
-* to the FK5 reference frame.
-*
-* To get the complete equatorial coordinates, corrections for nutation
-* have to be applied.
-*
-* The position returned is accurate to within 0.1 arcsecs.
-*/ 
+}; 
 void ln_get_mars_equ_coords(double JD, struct ln_equ_posn *position)
 {
 	struct ln_helio_posn h_sol, h_mars;
@@ -6570,16 +6556,6 @@ void ln_get_mars_equ_coords(double JD, struct ln_equ_posn *position)
 	position->ra = ln_range_radians(ra);
 	position->dec = dec;
 }
-	
-
-/**
-* \param JD Julian Day
-* \param position Pointer to store heliocentric position
-*
-* Calculate Mars heliocentric (refered to the centre of the Sun) coordinates
-* in the FK5 reference frame for the given julian day.
-* Longitude and Latitude are in degrees, whilst radius vector is in AU.
-*/
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 
 */
 void ln_get_mars_helio_coords(double JD, struct ln_helio_posn *position)
@@ -6645,15 +6621,6 @@ void ln_get_mars_helio_coords(double JD, struct ln_helio_posn *position)
 	cB = position->B;
 	cR = position->R;
 }
-
-/**
-* \brief Calculate the distance between Mars and the Earth in AU.
-* \param JD Julian Day
-* \return Distance in AU
-*
-* Calculates the distance in AU between the Earth and Mars for the given 
-* julian day.
-*/
 double ln_get_mars_earth_dist(double JD)
 {
 	struct ln_helio_posn h_mars, h_earth;
@@ -6677,16 +6644,7 @@ double ln_get_mars_earth_dist(double JD)
 	z = z * z;
 
 	return sqrt(x + y + z);
-}
-	
-/**
-* \brief Calculate the distance between Mars and the Sun in AU
-* \param JD Julian Day.
-* \return Distance in AU.
-*
-* Calculates the distance in AU between the Sun and Mars for the given 
-* julian day.
-*/ 
+} 
 double ln_get_mars_solar_dist(double JD)
 {
 	struct ln_helio_posn h_mars;
@@ -6695,15 +6653,7 @@ double ln_get_mars_solar_dist(double JD)
 	ln_get_mars_helio_coords(JD, &h_mars);
 	
 	return h_mars.R;
-}
-	
-/**
-* \brief Calculate the visible magnitude of Mars
-* \param JD Julian Day
-* \return Magnitude of Mars
-*
-* Calculate the visisble magnitude of Mars for given julian day.
-*/ 
+} 
 double ln_get_mars_magnitude(double JD)
 {
 	double delta, r, i;
@@ -6716,15 +6666,7 @@ double ln_get_mars_magnitude(double JD)
 	i = ln_get_mars_phase(JD);
 	
 	return -1.52 + 5.0 * log10(r * delta) + 0.016 * i;
-}
-
-/**
-* \brief Calculate the illuminated fraction of Mars disk
-* \param JD Julian Day.
-* \return Illuminated fraction of Mars disk (Value between 0 - 1)
-*
-* Calculates the illuminated fraction of Mars disk for given julian day.
-*/ 
+} 
 /* Chapter 41 */
 double ln_get_mars_disk(double JD)
 {
@@ -6738,15 +6680,7 @@ double ln_get_mars_disk(double JD)
 	/* calc fraction angle */
 	return (((r + delta) * (r + delta)) - R * R) / (4 * r * delta);
 	
-}
-
-/**
-* \brief Calculate the phase angle of Mars (Sun - Mars - Earth)
-* \param JD Julian Day
-* \return Phase angle of Mars (degrees)
-*
-* Calculates the phase angle of Mars for the given julian day.
-*/ 
+} 
 /* Chapter 41 */
 double ln_get_mars_phase(double JD)
 {
@@ -6762,35 +6696,12 @@ double ln_get_mars_phase(double JD)
 	i = acos(i);
 	return i;
 }
-
-
-/**
-* \param JD Julian day
-* \param observer Observers position
-* \param rst Pointer to store Rise, Set and Transit time in JD
-* \return 0 for success, else 1 for circumpolar.
-*
-* Calculate the time the rise, set and transit (crosses the local meridian at upper culmination)
-* time of Mars for the given Julian day.
-*
-* Note: this functions returns 1 if Mars is circumpolar, that is it remains the whole
-* day either above or below the horizon.
-*/
 int ln_get_mars_rst(double JD, struct ln_lnlat_posn *observer,
 	struct ln_rst_time *rst)
 {
 	return ln_get_body_rst_horizon(JD, observer, ln_get_mars_equ_coords,
 		LN_STAR_STANDART_HORIZON, rst);
 }
-
-
-/**
-* \param JD Julian day
-* \return Semidiameter in arc seconds
-*
-* Calculate the semidiameter of Mars in arc seconds for the 
-* given julian day.
-*/
 double ln_get_mars_sdiam(double JD)
 {
 	double So = 4.68; /* at 1 AU */
@@ -6799,14 +6710,6 @@ double ln_get_mars_sdiam(double JD)
 	dist = ln_get_mars_earth_dist(JD);
 	return LN_D2R(So / 3600.0) / dist;
 }
-	
-/**
-* \param JD Julian day.
-* \param position pointer to return position
-*
-* Calculate Mars rectangular heliocentric coordinates for the
-* given Julian day. Coordinates are in AU.
-*/
 void ln_get_mars_rect_helio(double JD, struct ln_rect_posn *position)
 {
 	struct ln_helio_posn mars;
@@ -6815,7 +6718,7 @@ void ln_get_mars_rect_helio(double JD, struct ln_rect_posn *position)
 	ln_get_rect_from_helio(&mars, position);
 }
 
-/*! \example mars.c
+/** \example mars.c
  * 
  * Examples of how to use planetary functions. 
  */

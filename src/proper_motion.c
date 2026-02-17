@@ -23,7 +23,7 @@
 ** Proper Motion.
 */
 
-/*! \fn void ln_get_equ_pm(struct ln_equ_posn *mean_position, struct ln_equ_posn
+/**
  * *proper_motion, double JD, struct ln_equ_posn *position)
  * \param mean_position Mean position of object.
  * \param proper_motion Annual Proper motion of object.
@@ -41,7 +41,7 @@ void ln_get_equ_pm(struct ln_equ_posn *mean_position,
   ln_get_equ_pm_epoch(mean_position, proper_motion, JD, JD2000, position);
 }
 
-/*! \fn void ln_get_equ_pm_epoch(struct ln_equ_posn *mean_position, struct
+/**
  * ln_equ_posn *proper_motion, double JD, double epoch_JD, struct ln_equ_posn
  * *position)
  * \param mean_position Mean position of object.

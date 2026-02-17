@@ -25,7 +25,7 @@
 #include <math.h>
 #include <stdio.h>
 
-/*! \fn void ln_get_solar_geom_coords(double JD, struct ln_helio_posn *position)
+/**
  * \param JD Julian day
  * \param position Pointer to store calculated solar position.
  *
@@ -45,7 +45,7 @@ void ln_get_solar_geom_coords(double JD, struct ln_helio_posn *position) {
   position->B *= -1.0;
 }
 
-/*! \fn void ln_get_solar_equ_coords(double JD, struct ln_equ_posn *position)
+/**
  * \param JD Julian day
  * \param position Pointer to store calculated solar position.
  *
@@ -75,7 +75,7 @@ void ln_get_solar_equ_coords(double JD, struct ln_equ_posn *position) {
   ln_get_equ_from_ecl(&LB, JD, position);
 }
 
-/*! \fn void ln_get_solar_ecl_coords(double JD, struct ln_lnlat_posn *position)
+/**
  * \param JD Julian day
  * \param position Pointer to store calculated solar position.
  *
@@ -102,7 +102,7 @@ void ln_get_solar_ecl_coords(double JD, struct ln_lnlat_posn *position) {
   position->lat = sol.B;
 }
 
-/*! \fn void ln_get_solar_geo_coords(double JD, struct ln_rect_posn *position)
+/**
  * \param JD Julian day
  * \param position Pointer to store calculated solar position.
  *
@@ -128,7 +128,7 @@ int ln_get_solar_rst_horizon(double JD, struct ln_lnlat_posn *observer,
                                  rst);
 }
 
-/*! \fn double ln_get_solar_rst(double JD, struct ln_lnlat_posn *observer,
+/**
  * struct ln_rst_time *rst); Calls get_solar_rst_horizon with horizon set to
  * LN_SOLAR_STANDART_HORIZON.
  */
@@ -138,7 +138,7 @@ int ln_get_solar_rst(double JD, struct ln_lnlat_posn *observer,
   return ln_get_solar_rst_horizon(JD, observer, LN_SOLAR_STANDART_HORIZON, rst);
 }
 
-/*! \fn double ln_get_solar_sdiam(double JD)
+/**
  * \param JD Julian day
  * \return Semidiameter in arc seconds
  *

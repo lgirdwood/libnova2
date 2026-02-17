@@ -21,7 +21,7 @@
 #include <libnova/utility.h>
 #include <math.h>
 
-/*! \fn double ln_get_mean_sidereal_time(double JD)
+/**
  * \param JD Julian Day
  * \return Mean sidereal time in hours.
  *
@@ -47,7 +47,7 @@ double ln_get_mean_sidereal_time(double JD)
 	return sidereal;
 }
 
-/*! \fn double ln_get_apparent_sidereal_time(double JD)
+/**
  * \param JD Julian Day
  * /return Apparent sidereal time (hours).
  *

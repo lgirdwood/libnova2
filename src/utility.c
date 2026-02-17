@@ -71,7 +71,7 @@
 
 static const char ln_version[] = LIBNOVA_VERSION;
 
-/*! \fn char * ln_get_version (void)
+/**
  * \return Null terminated version string.
  *
  * Return the libnova library version number string
@@ -353,7 +353,7 @@ void ln_add_hms(struct ln_hms *source, struct ln_hms *dest)
 	dest->hours += source->hours;
 }
 
-/*! \fn void ln_hequ_to_equ(struct lnh_equ_posn *hpos, struct ln_equ_posn *pos)
+/**
  * \brief human readable equatorial position to double equatorial position
  * \ingroup conversion
  */
@@ -363,7 +363,7 @@ void ln_hequ_to_equ(struct lnh_equ_posn *hpos, struct ln_equ_posn *pos)
 	pos->dec = ln_dms_to_rad(&hpos->dec);
 }
 
-/*! \fn void ln_equ_to_hequ(struct ln_equ_posn *pos, struct lnh_equ_posn *hpos)
+/**
  * \brief human double equatorial position to human readable equatorial position
  * \ingroup conversion
  */
@@ -373,7 +373,7 @@ void ln_equ_to_hequ(struct ln_equ_posn *pos, struct lnh_equ_posn *hpos)
 	ln_rad_to_dms(pos->dec, &hpos->dec);
 }
 
-/*! \fn void ln_hhrz_to_hrz(struct lnh_hrz_posn *hpos, struct ln_hrz_posn *pos)
+/**
  * \brief human readable horizontal position to double horizontal position
  * \ingroup conversion
  */
@@ -383,7 +383,7 @@ void ln_hhrz_to_hrz(struct lnh_hrz_posn *hpos, struct ln_hrz_posn *pos)
 	pos->az = ln_dms_to_rad(&hpos->az);
 }
 
-/*! \fn void ln_hrz_to_hhrz(struct ln_hrz_posn *pos, struct lnh_hrz_posn *hpos)
+/**
  * \brief double horizontal position to human readable horizontal position
  * \ingroup conversion
  */
@@ -393,7 +393,7 @@ void ln_hrz_to_hhrz(struct ln_hrz_posn *pos, struct lnh_hrz_posn *hpos)
 	ln_rad_to_dms(pos->az, &hpos->az);
 }
 
-/*! \fn const char * ln_hrz_to_nswe(struct ln_hrz_posn *pos);
+/**
  * \brief returns direction of given azimuth - like N,S,W,E,NSW,...
  * \ingroup conversion
  */
@@ -405,7 +405,7 @@ const char *ln_hrz_to_nswe(struct ln_hrz_posn *pos)
 	return directions[(int)(LN_R2D(pos->az) / 22.5)];
 }
 
-/*! \fn void ln_hlnlat_to_lnlat(struct lnh_lnlat_posn *hpos, struct
+/**
  * ln_lnlat_posn *pos)
  * \brief human readable long/lat position to double long/lat position
  * \ingroup conversion
@@ -416,7 +416,7 @@ void ln_hlnlat_to_lnlat(struct lnh_lnlat_posn *hpos, struct ln_lnlat_posn *pos)
 	pos->lat = ln_dms_to_rad(&hpos->lat);
 }
 
-/*! \fn void ln_lnlat_to_hlnlat(struct ln_lnlat_posn *pos, struct lnh_lnlat_posn
+/**
  * *hpos)
  * \brief double long/lat position to human readable long/lat position
  * \ingroup conversion
@@ -428,7 +428,6 @@ void ln_lnlat_to_hlnlat(struct ln_lnlat_posn *pos, struct lnh_lnlat_posn *hpos)
 }
 
 /*
- * \fn double ln_get_rect_distance(struct ln_rect_posn *a, struct ln_rect_posn
  * *b)
  * \param a First rectangular coordinate
  * \param b Second rectangular coordinate
@@ -452,7 +451,6 @@ double ln_get_rect_distance(struct ln_rect_posn *a, struct ln_rect_posn *b)
 }
 
 /*
- * \fn double ln_get_light_time (double dist)
  * \param dist Distance in AU
  * \return Distance in light days.
  *
@@ -503,7 +501,7 @@ static void skipwhite(char **s)
 		(*s)++;
 }
 
-/*! \fn double ln_get_dec_location(char * s)
+/**
  * \param s Location string
  * \return angle in degrees
  *
@@ -611,7 +609,7 @@ double ln_get_dec_location(char *s)
 	return pos;
 }
 
-/*! \fn const char * ln_get_humanr_location(double location)
+/**
  * \param location Location angle in degress
  * \return Angle string
  *
@@ -630,7 +628,7 @@ const char *ln_get_humanr_location(double location)
 	return strdup(buf);
 }
 
-/*! \fn double ln_interpolate3 (double n, double y1, double y2, double y3)
+/**
  * \return interpolation value
  * \param n Interpolation factor
  * \param y1 Argument 1
@@ -655,7 +653,7 @@ double ln_interpolate3(double n, double y1, double y2, double y3)
 	return y;
 }
 
-/*! \fn double ln_interpolate5 (double n, double y1, double y2, double y3,
+/**
  * double y4, double y5)
  * \return interpolation value
  * \param n Interpolation factor
@@ -699,7 +697,7 @@ double ln_interpolate5(double n, double y1, double y2, double y3, double y4, dou
 	return y;
 }
 
-/*! \fn double ln_find_zero(double (*f) (double, double *), double from, double
+/**
  * to, double *arg)
  * \param f Function to find zero (root place)
  * \param from Lower bound of search interval
@@ -727,7 +725,7 @@ double ln_find_zero(double (*func)(double, double *), double from, double to, do
 	return x2;
 }
 
-/*! \fn double ln_find_max(double (*f) (double, double *), double from, double
+/**
  * to, double *arg)
  * \param f Function to find maximum
  * \param from Lower bound of search interval

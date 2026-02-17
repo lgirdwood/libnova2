@@ -36,7 +36,7 @@ extern "C" {
 * Used for calculating heliocentric coordinates of planets.
 */
 
-/*! \fn void ln_vsop87_to_fk5(struct ln_helio_posn *position, double JD);
+/**
 * \ingroup VSOP87
 * \brief Transform from VSOP87 to FK5 reference system. 
 * \param position Heliocentric position
@@ -55,7 +55,7 @@ struct ln_vsop {
 	double C; /*!< Frequency */
 };
 
-/*! \fn double ln_calc_series(const struct ln_vsop *data, int terms, double t)
+/**
 * \ingroup VSOP87
 * \brief Calculate VSOP87 series.
 * \param data VSOP87 data

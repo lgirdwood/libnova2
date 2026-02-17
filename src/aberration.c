@@ -206,7 +206,7 @@ const static struct XYZ z_coefficients[TERMS] = {
 	{0, 0, -2, 0}
 };
 
-/*! \fn void ln_get_equ_aber(struct ln_equ_posn *mean_position, double JD, struct ln_equ_posn *position)
+/**
 * \param mean_position Mean position of object
 * \param JD Julian Day
 * \param position Pointer to store new object position. 
@@ -310,7 +310,7 @@ void ln_get_equ_aber(struct ln_equ_posn *mean_position, double JD,
 	}
 }
 
-/*! \fn void ln_get_ecl_aber(struct ln_lnlat_posn *mean_position, double JD, struct ln_lnlat_posn *position)
+/**
 * \param mean_position Mean position of object
 * \param JD Julian Day
 * \param position Pointer to store new object position. 

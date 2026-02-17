@@ -32,7 +32,7 @@ extern "C" {
 * - **Epoch**: Boundaries are defined for epoch B1875.0, so positions must be precessed to this epoch to determine the constellation correctly.
 */
 
-/*! \fn const char* ln_get_constellation(struct ln_equ_posn *position)
+/**
 * \ingroup constellations
 * \brief Returns name of the constellation at the given position
 * \param position Equatorial position (J2000.0)

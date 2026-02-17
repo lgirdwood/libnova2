@@ -20,7 +20,7 @@
 #include <libnova/angular_separation.h>
 #include <libnova/utility.h>
 
-/*! \fn double ln_get_angular_separation(struct ln_equ_posn* posn1, struct ln_equ_posn* posn2);
+/**
 * \param posn1 Equatorial position of body 1
 * \param posn2 Equatorial position of body 2
 * \return Angular separation in degrees
@@ -55,7 +55,7 @@ double ln_get_angular_separation(struct ln_equ_posn* posn1,
 	return d;
 }
 
-/*! \fn double ln_get_rel_posn_angle(struct ln_equ_posn* posn1, struct ln_equ_posn* posn2);
+/**
 * \param posn1 Equatorial position of body 1
 * \param posn2 Equatorial position of body 2
 * \return Position angle in degrees

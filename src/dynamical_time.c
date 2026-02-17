@@ -138,7 +138,7 @@ static double get_dynamical_diff_other(double JD) {
   return TD;
 }
 
-/*! \fn double ln_get_dynamical_time_diff(double JD)
+/**
  * \param JD Julian Day
  * \return TD
  *
@@ -171,7 +171,7 @@ double ln_get_dynamical_time_diff(double JD) {
   return TD;
 }
 
-/*! \fn double ln_get_jde(double JD)
+/**
  * \param JD Julian Day
  * \return Julian Ephemeris day
  *

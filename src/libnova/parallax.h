@@ -39,7 +39,7 @@ extern "C" {
 * All angles are expressed in degrees. Algorithms based on Meeus Chapter 40.
 */
 
-/*! \fn void ln_get_parallax(struct ln_equ_posn *object, double au_distance, struct ln_lnlat_posn *observer, double height, double JD, struct ln_equ_posn *parallax);
+/**
 * \ingroup parallax
 * \brief Calculate parallax in RA and DEC for given geographic location
 * \param object Geocentric equatorial position of object
@@ -54,7 +54,7 @@ extern "C" {
 void LIBNOVA_EXPORT ln_get_parallax(struct ln_equ_posn *object, double au_distance, struct ln_lnlat_posn *observer,
 									double height, double JD, struct ln_equ_posn *parallax);
 
-/*! \fn void ln_get_parallax_ha(struct ln_equ_posn *object, double au_distance, struct ln_lnlat_posn *observer, double height, double H, struct ln_equ_posn *parallax);
+/**
 * \ingroup parallax
 * \brief Calculate parallax in RA and DEC for given geographic location
 * \param object Equatorial position of object

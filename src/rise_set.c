@@ -55,7 +55,7 @@ static int check_coords(struct ln_lnlat_posn *observer, double H1, double horizo
 	return 0;
 }
 
-/*! \fn int ln_get_object_rst(double JD, struct ln_lnlat_posn *observer, struct
+/**
  * ln_equ_posn *object, struct ln_rst_time *rst);
  * \param JD Julian day
  * \param observer Observers position
@@ -77,7 +77,7 @@ int ln_get_object_rst(double JD, struct ln_lnlat_posn *observer, struct ln_equ_p
 									 rst); /* standard altitude of stars */
 }
 
-/*! \fn int ln_get_object_rst_horizon(double JD, struct ln_lnlat_posn *observer,
+/**
  * struct ln_equ_posn *object, long double horizon, struct ln_rst_time *rst);
  * \param JD Julian day
  * \param observer Observers position
@@ -191,7 +191,7 @@ int ln_get_object_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer, 
 	return 0;
 }
 
-/*! \fn int ln_get_object_next_rst(double JD, struct ln_lnlat_posn *observer,
+/**
  * struct ln_equ_posn *object, struct ln_rst_time *rst);
  * \param JD Julian day
  * \param observer Observers position
@@ -239,7 +239,7 @@ static inline double find_next(double JD, double jd1, double jd2, double jd3)
 	return jd3;
 }
 
-/*! \fn int ln_get_object_next_rst_horizon(double JD, struct ln_lnlat_posn
+/**
  * *observer, struct ln_equ_posn *object, double horizon, struct ln_rst_time
  * *rst);
  * \param JD Julian day
@@ -292,7 +292,7 @@ int ln_get_object_next_rst_horizon(double JD, struct ln_lnlat_posn *observer, st
 	return 0;
 }
 
-/*! \fn int ln_get_body_rst_horizon(double JD, struct ln_lnlat_posn *observer,
+/**
  * void (*get_equ_body_coords) (double, struct ln_equ_posn *), double horizon,
  * struct ln_rst_time *rst);
  * \param JD Julian day
@@ -452,7 +452,7 @@ int ln_get_body_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer,
 	return 0;
 }
 
-/*! \fn int ln_get_body_next_rst_horizon(double JD, struct ln_lnlat_posn
+/**
  * *observer, struct ln_equ_posn *object, double horizon, struct ln_rst_time
  * *rst);
  * \param JD Julian day
@@ -485,7 +485,7 @@ int ln_get_body_next_rst_horizon(double JD, struct ln_lnlat_posn *observer,
 	return ln_get_body_next_rst_horizon_future(JD, observer, get_equ_body_coords, horizon, 1, rst);
 }
 
-/*! \fn int ln_get_body_next_rst_horizon_future(double JD, struct ln_lnlat_posn
+/**
  * *observer, void (*get_equ_body_coords) (double,struct ln_equ_posn *), double
  * horizon, int day_limit, struct ln_rst_time *rst);
  * \param JD Julian day
@@ -566,7 +566,7 @@ int ln_get_body_next_rst_horizon_future(double JD, struct ln_lnlat_posn *observe
 	return 0;
 }
 
-/*! \fn int ln_get_body_rst_horizon(double JD, struct ln_lnlat_posn *observer,
+/**
  * void (*get_equ_body_coords) (double, struct ln_equ_posn *), double horizon,
  * struct ln_rst_time *rst);
  * \param JD Julian day
@@ -715,7 +715,7 @@ int ln_get_motion_body_rst_horizon_offset(double JD, struct ln_lnlat_posn *obser
 	return 0;
 }
 
-/*! \fn int ln_get_body_next_rst_horizon(double JD, struct ln_lnlat_posn
+/**
  * *observer, void (*get_equ_body_coords) (double, struct ln_equ_posn *), double
  * horizon, struct ln_rst_time *rst);
  * \param JD Julian day
@@ -744,7 +744,7 @@ int ln_get_motion_body_next_rst_horizon(double JD, struct ln_lnlat_posn *observe
 	return ln_get_motion_body_next_rst_horizon_future(JD, observer, get_motion_body_coords, orbit, horizon, 1, rst);
 }
 
-/*! \fn int ln_get_motion_body_next_rst_horizon_future(double JD, struct
+/**
  * ln_lnlat_posn *observer, void (*get_equ_body_coords) (double, struct
  * ln_equ_posn *), double horizon, int day_limit, struct ln_rst_time *rst);
  * \param JD Julian day

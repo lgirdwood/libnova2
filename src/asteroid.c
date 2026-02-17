@@ -22,7 +22,6 @@
 #include <libnova/utility.h>
 
 /*!
-* \fn double ln_get_asteroid_mag(double JD, struct ln_ell_orbit *orbit, double H, double G)
 * \param JD Julian day.
 * \param orbit Orbital parameters
 * \param H Mean absolute visual magnitude
@@ -59,7 +58,7 @@ double ln_get_asteroid_mag(double JD, struct ln_ell_orbit *orbit, double H,
 	return H + 5.0 * log10(r * d) - 2.5 * log10((1.0 - G) * t1 + G * t2);
 }
 
-/*! \fn double ln_get_asteroid_sdiam_km (double H, double A)
+/**
 * \param H Absolute magnitude of asteroid
 * \param A Albedo of asteroid
 * \return Semidiameter in km
@@ -74,7 +73,7 @@ double ln_get_asteroid_sdiam_km (double H, double A)
 	return pow(10, 3.13 - 0.2 * H - (0.5 * log10(A)));
 }
 
-/*! \fn double ln_get_asteroid_sdiam_arc(double JD, struct ln_ell_orbit *orbit, double H, double A)
+/**
 * \param JD Julian day
 * \param orbit Orbital parameters
 * \param H Absolute magnitude of asteroid

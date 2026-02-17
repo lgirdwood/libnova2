@@ -26,7 +26,7 @@
 ** Apparent place of an Object 
 */
 
-/*! \fn void ln_get_apparent_posn(struct ln_equ_posn *mean_position, struct ln_equ_posn *proper_motion, double JD, struct ln_equ_posn *position)
+/**
 * \param mean_position Mean position of object
 * \param proper_motion Proper motion of object
 * \param JD Julian Day

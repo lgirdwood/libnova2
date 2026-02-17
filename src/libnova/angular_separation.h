@@ -35,7 +35,7 @@ extern "C" {
 * All angles are expressed in degrees. Algorithms based on Meeus Chapter 17.
 */
 
-/*! \fn double ln_get_angular_separation(struct ln_equ_posn* posn1, struct ln_equ_posn* posn2);
+/**
 * \brief Calculate the angular separation between 2 bodies
 * \ingroup angular
 * \param posn1 Position of first body
@@ -46,7 +46,7 @@ extern "C" {
 */
 double LIBNOVA_EXPORT ln_get_angular_separation(struct ln_equ_posn *posn1, struct ln_equ_posn *posn2);
 
-/*! \fn double ln_get_rel_posn_angle(struct ln_equ_posn* posn1, struct ln_equ_posn* posn2);
+/**
 * \brief Calculate the relative position angle between 2 bodies
 * \ingroup angular
 * \param posn1 Position of first body

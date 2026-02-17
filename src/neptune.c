@@ -2121,7 +2121,7 @@ static const struct ln_vsop ALIGN32 neptune_radius_r4[RADIUS_R4] = {
 };
 
 
-/*! \fn void ln_get_neptune_equ_coords(double JD, struct ln_equ_posn *position);
+/**
 * \param JD julian Day
 * \param position Pointer to store position
 *
@@ -2171,7 +2171,7 @@ void ln_get_neptune_equ_coords(double JD, struct ln_equ_posn *position)
 }
 	
 
-/*! \fn void ln_get_neptune_helio_coords(double JD, struct ln_helio_posn *position)
+/**
 * \param JD Julian Day
 * \param position Pointer to store heliocentric position
 *
@@ -2241,7 +2241,7 @@ void ln_get_neptune_helio_coords(double JD, struct ln_helio_posn *position)
 
 
 
-/*! \fn double ln_get_neptune_earth_dist(double JD);
+/**
 * \brief Calculate the distance between Neptune and the Earth in AU
 * \param JD Julian day
 * \return Distance in AU
@@ -2274,7 +2274,7 @@ double ln_get_neptune_earth_dist(double JD)
 	return sqrt(x + y + z);
 }
 	
-/*! \fn double ln_get_neptune_solar_dist(double JD);
+/**
 * \brief Calculate the distance between Neptune and the Sun in AU
 * \param JD Julian day
 * \return distance in AU
@@ -2291,7 +2291,7 @@ double ln_get_neptune_solar_dist(double JD)
 	return h_neptune.R;
 }
 	
-/*! \fn double ln_get_neptune_magnitude(double JD);
+/**
 * \brief Calculate the visible magnitude of Neptune
 * \param JD Julian day
 * \return Visible magnitude of neptune
@@ -2309,7 +2309,7 @@ double ln_get_neptune_magnitude(double JD)
 	return -6.87 + 5.0 * log10(r * delta);
 }
 
-/*! \fn double ln_get_neptune_disk(double JD);
+/**
 * \brief Calculate the illuminated fraction of Neptune's disk
 * \param JD Julian day
 * \return Illuminated fraction of Neptune's disk
@@ -2331,7 +2331,7 @@ double ln_get_neptune_disk(double JD)
 	return (((r + delta) * (r + delta)) - R * R) / (4.0 * r * delta);
 }
 
-/*! \fn double ln_get_neptune_phase(double JD);
+/**
 * \param JD Julian day
 * \return Phase angle of Neptune (degrees)
 *
@@ -2355,7 +2355,7 @@ double ln_get_neptune_phase(double JD)
 }
 
 
-/*! \fn double ln_get_neptune_rst(double JD, struct ln_lnlat_posn *observer, struct ln_rst_time *rst);
+/**
 * \param JD Julian day
 * \param observer Observers position
 * \param rst Pointer to store Rise, Set and Transit time in JD
@@ -2374,7 +2374,7 @@ int ln_get_neptune_rst(double JD, struct ln_lnlat_posn *observer,
 		LN_STAR_STANDART_HORIZON, rst);
 }
 
-/*! \fn double ln_get_neptune_sdiam(double JD)
+/**
 * \param JD Julian day
 * \return Semidiameter in arc seconds
 *
@@ -2390,7 +2390,7 @@ double ln_get_neptune_sdiam(double JD)
 	return LN_D2R(So / 3600.0) / dist;
 }
 	
-/*! \fn void ln_get_neptune_rect_helio(double JD, struct ln_rect_posn *position)
+/**
 * \param JD Julian day.
 * \param position pointer to return position
 *

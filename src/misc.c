@@ -61,7 +61,7 @@ typedef int BOOL;
 
 #endif  /* !__WIN32__ */
 
-/*! \fn char *trim(char *x)
+/**
  * \param x Character which will be trimmed.
  * \return Trimmed character
  *
@@ -82,7 +82,7 @@ static inline char *trim(char *x)
 }
 
 
-/*! \fn void skipwhite(char **s)
+/**
  * \param s String in which whites will be skipped.
  *
  * Skip white spaces.
@@ -94,7 +94,7 @@ static inline void skipwhite(char **s)
 }
 
 
-/*! \fn double get_dec_location(char * s)
+/**
 * \param s Location string
 * \return angle in degrees
 *
@@ -209,7 +209,7 @@ double get_dec_location(char *s)
 }
 
 
-/*! \fn char * get_humanr_location(double location)    
+/**
 * \param location Location angle in degress
 * \return Angle string
 *
@@ -233,7 +233,7 @@ char *get_humanr_location(double location)
     return buf;
 }
 
-/*! \fn double interpolate3 (double n, double y1, double y2, double y3)
+/**
 * \return interpolation value
 * \param n Interpolation factor
 * \param y1 Argument 1
@@ -259,7 +259,7 @@ double interpolate3 (double n, double y1, double y2, double y3)
 }
 
 
-/*! \fn double interpolate5 (double n, double y1, double y2, double y3, double y4, double y5)
+/**
 * \return interpolation value
 * \param n Interpolation factor
 * \param y1 Argument 1

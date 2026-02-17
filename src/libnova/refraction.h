@@ -35,7 +35,7 @@ extern "C" {
 * All angles are expressed in degrees. Algorithms based on Meeus Chapter 16.
 */
 
-/*! \fn double ln_get_refraction_adj(double altitude, double atm_pres, double temp)
+/**
 * \brief Calculate the adjustment in altitude of a body due to atmospheric 
 * refraction.
 * \ingroup refraction

@@ -23,7 +23,7 @@
 #include <math.h>
 #include <stdio.h>
 
-/*! \fn void ln_get_parallax(struct ln_equ_posn *object, double au_distance,
+/**
  * struct ln_lnlat_posn *observer, double height, double JD, struct ln_equ_posn
  * *parallax);
  * \param object Object geocentric coordinates
@@ -49,7 +49,7 @@ void ln_get_parallax(struct ln_equ_posn *object, double au_distance, struct ln_l
 	ln_get_parallax_ha(object, au_distance, observer, height, H, parallax);
 }
 
-/*! \fn void ln_get_parallax_ha(struct ln_equ_posn *object, double au_distance,
+/**
  * struct ln_lnlat_posn *observer, double height, double H, struct ln_equ_posn
  * *parallax);
  * \param object Object geocentric coordinates

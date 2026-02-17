@@ -35,7 +35,7 @@ double ln_calc_series(const struct ln_vsop *data, int terms, double t) {
   return value;
 }
 
-/*! \fn void ln_vsop87_to_fk5(struct ln_helio_posn *position, double JD)
+/**
  * \param position Position to transform.
  * \param JD Julian day
  *

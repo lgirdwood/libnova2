@@ -1073,7 +1073,7 @@ static double _lunar_ecl_lat(double jd, double *arg)
 	return pos.lat;
 }
 
-/*! \fn void ln_get_lunar_geo_posn(double JD, struct ln_rect_posn *pos, double precision);
+/**
 * \param JD Julian day.
 * \param pos Pointer to a geocentric position structure to held result.
 * \param precision The truncation level of the series in radians for longitude
@@ -1182,7 +1182,7 @@ void ln_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon, double precisio
 	moon->Z = c;
 }
 
-/*! \fn void ln_get_lunar_equ_coords_prec(double JD, struct ln_equ_posn *position, double precision);
+/**
 * \param JD Julian Day
 * \param position Pointer to a struct ln_lnlat_posn to store result.
 * \param precision The truncation level of the series in radians for longitude
@@ -1201,7 +1201,7 @@ void ln_get_lunar_equ_coords_prec(double JD, struct ln_equ_posn *position,
 	ln_get_equ_from_ecl(&ecl, JD, position);
 }
 
-/*! \fn void ln_get_lunar_equ_coords(double JD, struct ln_equ_posn *position);
+/**
 * \param JD Julian Day
 * \param position Pointer to a struct ln_lnlat_posn to store result.
 * \ingroup lunar
@@ -1214,7 +1214,7 @@ void ln_get_lunar_equ_coords(double JD, struct ln_equ_posn *position)
 	ln_get_lunar_equ_coords_prec(JD, position, 0);
 }
 
-/*! \fn void ln_get_lunar_ecl_coords(double JD, struct ln_lnlat_posn *position, double precision);
+/**
 * \param JD Julian Day
 * \param position Pointer to a struct ln_lnlat_posn to store result.
 * \param precision The truncation level of the series in radians for longitude
@@ -1238,7 +1238,7 @@ void ln_get_lunar_ecl_coords(double JD, struct ln_lnlat_posn *position,
 		(sqrt((moon.X * moon.X) + (moon.Y * moon.Y))));
 }
 
-/*! \fn double ln_get_lunar_earth_dist(double JD);
+/**
 * \param JD Julian Day
 * \return The distance between the Earth and Moon in km.
 * \ingroup lunar
@@ -1255,7 +1255,7 @@ double ln_get_lunar_earth_dist(double JD)
 }
 
 
-/*! \fn double ln_get_lunar_phase(double JD);
+/**
 * \param JD Julian Day
 * \return Phase angle. (Value between 0 and 180)
 * \ingroup lunar
@@ -1285,7 +1285,7 @@ double ln_get_lunar_phase(double JD)
 	return phase;
 }
 
-/*! \fn double ln_get_lunar_disk(double JD);
+/**
 * \param JD Julian Day
 * \return Illuminated fraction. (Value between 0 and 1)
 * \brief Calculate the illuminated fraction of the moons disk
@@ -1302,7 +1302,7 @@ double ln_get_lunar_disk(double JD)
 	return (1.0 + cos(i)) / 2.0;
 }
 
-/*! \fn double ln_get_lunar_bright_limb(double JD);
+/**
 * \param JD Julian Day
 * \return The position angle in degrees.
 * \brief Calculate the position angle of the Moon's bright limb.
@@ -1337,7 +1337,7 @@ double ln_get_lunar_bright_limb(double JD)
 }
 
 
-/*! \fn double ln_get_lunar_rst(double JD, struct ln_lnlat_posn *observer, struct ln_rst_time *rst);
+/**
 * \param JD Julian day
 * \param observer Observers position
 * \param rst Pointer to store Rise, Set and Transit time in JD
@@ -1357,7 +1357,7 @@ int ln_get_lunar_rst(double JD, struct ln_lnlat_posn *observer,
 		LN_LUNAR_STANDART_HORIZON, rst);
 }
 
-/*! \fn double ln_get_lunar_sdiam(double JD)
+/**
 * \param JD Julian day
 * \return Semidiameter in arc seconds
 * \todo Use Topocentric distance.
@@ -1374,7 +1374,7 @@ double ln_get_lunar_sdiam(double JD)
 	return So / dist;
 }
 
-/*! \fn double ln_get_lunar_long_asc_node(double JD);
+/**
 * \param JD Julian Day.
 * \return Longitude of ascending node in degrees.
 *
@@ -1397,7 +1397,7 @@ double ln_get_lunar_long_asc_node(double JD)
 }
 
 
-/*! \fn double ln_get_lunar_long_perigee(double JD);
+/**
 * \param JD Julian Day
 * \return Longitude of Moons mean perigee in degrees.
 *
@@ -1418,7 +1418,7 @@ double ln_get_lunar_long_perigee(double JD)
 	return LN_D2R(per);
 }
 
-/*! \fn double ln_get_lunar_arg_latitude(double JD);
+/**
 * \param JD Julian Day
 * \return Moon's argument of latitude
 *
@@ -1463,7 +1463,7 @@ void ln_get_lunar_selenographic_coords(double JD, struct ln_lnlat_posn *moon,
 		sin(moon->lat)*cos(I));
 }
 
-/*! \fn void ln_get_lunar_opt_libr_coords(double JD, struct ln_lnlat_posn *position)
+/**
 * \param JD Julian Day
 * \param position Pointer to a struct ln_lnlat_posn to store result.
 *
@@ -1477,7 +1477,7 @@ void ln_get_lunar_opt_libr_coords(double JD, struct ln_lnlat_posn *position)
 	ln_get_lunar_selenographic_coords(JD, &moon, position);
 }
 
-/*! \fn void ln_get_lunar_subsolar_coords(double JD, struct ln_lnlat_posn *position)
+/**
 * \param JD Julian Day
 * \param position Pointer to a struct ln_lnlat_posn to store result.
 *
@@ -1515,7 +1515,7 @@ void ln_get_lunar_subsolar_coords(double JD, struct ln_lnlat_posn *position)
  * one below or above given JD. This loop runs several times (1-3) only.
  */
 
-/*! \fn double ln_lunar_next_phase(double jd, double phase)
+/**
 * \param jd Julian Day
 * \param phase 0 for new moon, 0.25 for first quarter, 0.5 for full moon, 0.75 for last quarter
 *
@@ -1540,7 +1540,7 @@ double ln_lunar_next_phase(double jd, double phase)
 	return ph;
 }
 
-/*! \fn double ln_lunar_previous_phase(double jd, double phase)
+/**
 * \param jd Julian Day
 * \param phase 0 for new moon, 0.25 for first quarter, 0.5 for full moon, 0.75 for last quarter
 *
@@ -1565,7 +1565,7 @@ double ln_lunar_previous_phase(double jd, double phase)
 	return ph;
 }
 
-/*! \fn double ln_lunar_next_apsis(double jd, int mode)
+/**
 * \param jd Julian Day
 * \param apogee 0 for perigee, 1 for apogee
 *
@@ -1593,7 +1593,7 @@ double ln_lunar_next_apsis(double jd, int apogee)
 	return ap;
 }
 
-/*! \fn double ln_lunar_previous_apsis(double jd, int mode)
+/**
 * \param jd Julian Day
 * \param apogee 0 for perigee, 1 for apogee
 *
@@ -1621,7 +1621,7 @@ double ln_lunar_previous_apsis(double jd, int apogee)
 	return ap;
 }
 
-/*! \fn double ln_lunar_next_node(double jd, int mode)
+/**
 * \param jd Julian Day
 * \param mode 0 for ascending, 1 for descending
 *
@@ -1644,7 +1644,7 @@ double ln_lunar_next_node(double jd, int mode)
 	return nd;
 }
 
-/*! \fn double ln_lunar_previous_node(double jd, int mode)
+/**
 * \param jd Julian Day
 * \param mode 0 for ascending, 1 for descending
 *

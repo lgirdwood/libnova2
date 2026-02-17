@@ -38,7 +38,7 @@ extern "C" {
 * All angles are expressed in radians. Algorithms based on Meeus Chapter 31 (Planets) and 40/41/45 (magnitude/disk/rings).
 */
 
-/*! \fn double ln_get_saturn_equ_sdiam(double JD)
+/**
 * \brief Calculate the equatorial semidiameter of Saturn in radians.
 * \ingroup saturn
 * \param JD Julian Day
@@ -46,7 +46,7 @@ extern "C" {
 */
 double LIBNOVA_EXPORT ln_get_saturn_equ_sdiam(double JD);
 
-/*! \fn double ln_get_saturn_pol_sdiam(double JD)
+/**
 * \brief Calculate the polar semidiameter of Saturn in radians.
 * \ingroup saturn
 * \param JD Julian Day
@@ -54,7 +54,7 @@ double LIBNOVA_EXPORT ln_get_saturn_equ_sdiam(double JD);
 */
 double LIBNOVA_EXPORT ln_get_saturn_pol_sdiam(double JD);
 
-/*! \fn double ln_get_saturn_rst(double JD, struct ln_lnlat_posn *observer, struct ln_rst_time *rst);
+/**
 * \brief Calculate the time of rise, set and transit for Saturn.
 * \ingroup saturn
 * \param JD Julian Day
@@ -64,7 +64,7 @@ double LIBNOVA_EXPORT ln_get_saturn_pol_sdiam(double JD);
 */
 int LIBNOVA_EXPORT ln_get_saturn_rst(double JD, struct ln_lnlat_posn *observer, struct ln_rst_time *rst);
 
-/*! \fn void ln_get_saturn_helio_coords(double JD, struct ln_helio_posn *position);
+/**
 * \brief Calculate Saturn's heliocentric coordinates.
 * \ingroup saturn
 * \param JD Julian Day
@@ -73,7 +73,7 @@ int LIBNOVA_EXPORT ln_get_saturn_rst(double JD, struct ln_lnlat_posn *observer, 
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 */
 void LIBNOVA_EXPORT ln_get_saturn_helio_coords(double JD, struct ln_helio_posn *position);
 
-/*! \fn void ln_get_saturn_equ_coords(double JD, struct ln_equ_posn *position);
+/**
 * \brief Calculate Saturn's equatorial coordinates.
 * \ingroup saturn
 * \param JD Julian Day
@@ -82,7 +82,7 @@ void LIBNOVA_EXPORT ln_get_saturn_helio_coords(double JD, struct ln_helio_posn *
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 */
 void LIBNOVA_EXPORT ln_get_saturn_equ_coords(double JD, struct ln_equ_posn *position);
 
-/*! \fn double ln_get_saturn_earth_dist(double JD);
+/**
 * \brief Calculate the distance between Saturn and the Earth.
 * \ingroup saturn
 * \param JD Julian Day
@@ -91,7 +91,7 @@ void LIBNOVA_EXPORT ln_get_saturn_equ_coords(double JD, struct ln_equ_posn *posi
 /* Chapter ?? */
 double LIBNOVA_EXPORT ln_get_saturn_earth_dist(double JD);
 
-/*! \fn double ln_get_saturn_solar_dist(double JD);
+/**
 * \brief Calculate the distance between Saturn and the Sun.
 * \ingroup saturn
 * \param JD Julian Day
@@ -100,7 +100,7 @@ double LIBNOVA_EXPORT ln_get_saturn_earth_dist(double JD);
 /* Chapter ?? */
 double LIBNOVA_EXPORT ln_get_saturn_solar_dist(double JD);
 
-/*! \fn double ln_get_saturn_magnitude(double JD);
+/**
 * \brief Calculate the visible magnitude of Saturn
 * \ingroup saturn
 * \param JD Julian Day
@@ -109,7 +109,7 @@ double LIBNOVA_EXPORT ln_get_saturn_solar_dist(double JD);
 /* Chapter ?? */
 double LIBNOVA_EXPORT ln_get_saturn_magnitude(double JD);
 
-/*! \fn double ln_get_saturn_disk(double JD);
+/**
 * \brief Calculate the illuminated fraction of Saturn's disk
 * \ingroup saturn
 * \param JD Julian Day
@@ -118,7 +118,7 @@ double LIBNOVA_EXPORT ln_get_saturn_magnitude(double JD);
 /* Chapter 41 */
 double LIBNOVA_EXPORT ln_get_saturn_disk(double JD);
 
-/*! \fn double ln_get_saturn_phase(double JD);
+/**
 * \brief Calculate the phase angle of Saturn.
 * \ingroup saturn
 * \param JD Julian Day
@@ -127,7 +127,7 @@ double LIBNOVA_EXPORT ln_get_saturn_disk(double JD);
 /* Chapter 41 */
 double LIBNOVA_EXPORT ln_get_saturn_phase(double JD);
 
-/*! \fn void ln_get_saturn_rect_helio(double JD, struct ln_rect_posn *position)
+/**
 * \ingroup saturns
 * \brief Calculate Saturns rectangular heliocentric coordinates.
 * \param JD Julian Day

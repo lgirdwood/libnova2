@@ -3746,7 +3746,7 @@ static const struct ln_vsop ALIGN32 jupiter_radius_r5[RADIUS_R5] = {
     {     0.00000001033,  4.50671820436,      529.69096509460}, 
 };
 
-/*! \fn void ln_get_jupiter_equ_coords(double JD, struct ln_equ_posn *position);
+/**
 * \param JD julian Day
 * \param position Pointer to store position
 *
@@ -3795,7 +3795,7 @@ void ln_get_jupiter_equ_coords(double JD, struct ln_equ_posn *position)
 	position->dec = dec;
 }
 	
-/*! \fn void ln_get_jupiter_helio_coords(double JD, struct ln_helio_posn *position)
+/**
 * \param JD Julian Day
 * \param position Pointer to store heliocentric position
 *
@@ -3869,7 +3869,7 @@ void ln_get_jupiter_helio_coords(double JD, struct ln_helio_posn *position)
 	cR = position->R;
 }
 
-/*! \fn double ln_get_jupiter_earth_dist(double JD);
+/**
 * \param JD Julian day.
 * \brief Calculate the distance between Jupiter and the Earth in AU
 * \return Distance in AU.
@@ -3901,7 +3901,7 @@ double ln_get_jupiter_earth_dist(double JD)
 	return sqrt(x + y + z);
 }
 	
-/*! \fn double ln_get_jupiter_solar_dist(double JD);
+/**
 * \param JD Julian day.
 * \brief Calculate the distance between Jupiter and the Sun in AU
 * \return Distance in AU.
@@ -3917,7 +3917,7 @@ double ln_get_jupiter_solar_dist(double JD)
 	return h_jupiter.R;
 }
 	
-/*! \fn double ln_get_jupiter_magnitude(double JD);
+/**
 * \param JD Julian day
 * \brief Calculate the visible magnitude of Jupiter
 * \return Visible magnitude of Jupiter
@@ -3938,7 +3938,7 @@ double ln_get_jupiter_magnitude(double JD)
 	return -9.40 + 5.0 * log10(r * delta) + 0.005 * i;
 }
 
-/*! \fn double ln_get_jupiter_disk(double JD);
+/**
 * \param JD Julian day.
 * \brief Calculate the illuminated fraction of Jupiter's disk
 * \return Illuminated fraction of Jupiters disk (Value between 0 and 1)
@@ -3960,7 +3960,7 @@ double ln_get_jupiter_disk(double JD)
 	return (((r + delta) * (r + delta)) - R * R) / (4 * r * delta);
 }
 
-/*! \fn double ln_get_jupiter_phase(double JD);
+/**
 * \param JD Julian Day
 * \return Phase angle of Jupiter (degrees)
 *
@@ -3984,7 +3984,7 @@ double ln_get_jupiter_phase(double JD)
 }
 
 
-/*! \fn double ln_get_jupiter_rst(double JD, struct ln_lnlat_posn *observer, struct ln_rst_time *rst);
+/**
 * \param JD Julian day
 * \param observer Observers position
 * \param rst Pointer to store Rise, Set and Transit time in JD
@@ -4004,7 +4004,7 @@ int ln_get_jupiter_rst(double JD, struct ln_lnlat_posn *observer,
 }
 
 
-/*! \fn double ln_get_jupiter_equ_sdiam(double JD)
+/**
 * \param JD Julian day
 * \return Semidiameter in arc seconds
 *
@@ -4020,7 +4020,7 @@ double ln_get_jupiter_equ_sdiam(double JD)
 	return LN_D2R(So / 3600.0) / dist;
 }
 
-/*! \fn double ln_get_jupiter_pol_sdiam(double JD)
+/**
 * \param JD Julian day
 * \return Semidiameter in arc seconds
 * \todo Use Jupitercentric latitude of Earth Pg 390
@@ -4037,7 +4037,7 @@ double ln_get_jupiter_pol_sdiam(double JD)
 	return LN_D2R(So / 3600.0) / dist;
 }
 
-/*! \fn void ln_get_jupiter_rect_helio(double JD, struct ln_rect_posn *position)
+/**
 * \param JD Julian day.
 * \param position pointer to return position
 *

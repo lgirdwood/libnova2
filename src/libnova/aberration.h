@@ -36,7 +36,7 @@ extern "C" {
 * All angles are expressed in degrees. Algorithms based on Meeus Chapter 23.
 */
 
-/*! \fn void ln_get_equ_aber(struct ln_equ_posn *mean_position, double JD, struct ln_equ_posn *position);
+/**
 * \brief Calculate equatorial coordinates with the effects of aberration.
 * \ingroup aberration
 * \param mean_position Mean position (J2000.0)
@@ -49,7 +49,7 @@ extern "C" {
 /* Equ 22.3, 22.4 and Ron-Vondrak expression */
 void LIBNOVA_EXPORT ln_get_equ_aber(struct ln_equ_posn *mean_position, double JD, struct ln_equ_posn *position);
 
-/*! \fn void ln_get_ecl_aber(struct ln_lnlat_posn *mean_position, double JD, struct ln_lnlat_posn *position);
+/**
 * \brief Calculate ecliptical coordinates with the effects of aberration.
 * \ingroup aberration
 * \param mean_position Mean position (J2000.0)

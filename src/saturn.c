@@ -6486,7 +6486,7 @@ static const struct ln_vsop ALIGN32 saturn_radius_r5[RADIUS_R5] = {
     {     0.00000000706,  2.65805151133,      110.20632121940}, 
 };
 
-/*! \fn void ln_get_saturn_equ_coords(double JD, struct ln_equ_posn *position);
+/**
 * \param JD julian Day
 * \param position Pointer to store position
 *
@@ -6535,7 +6535,7 @@ void ln_get_saturn_equ_coords(double JD, struct ln_equ_posn *position)
 	position->dec = dec;
 }
 	
-/*! \fn void ln_get_saturn_helio_coords(double JD, struct ln_helio_posn *position)
+/**
 * \param JD Julian Day
 * \param position Pointer to store heliocentric position
 *
@@ -6609,7 +6609,7 @@ void ln_get_saturn_helio_coords(double JD, struct ln_helio_posn *position)
 	cR = position->R;
 }
 
-/*! \fn double ln_get_saturn_earth_dist(double JD);
+/**
 * \param JD Julian day
 * \brief Calculate the distance between Saturn and the Earth in AU
 * \return Distance in AU
@@ -6642,7 +6642,7 @@ double ln_get_saturn_earth_dist(double JD)
 	return sqrt(x + y + z);
 }
 	
-/*! \fn double ln_get_saturn_solar_dist(double JD);
+/**
 * \param JD Julian day
 * \brief Calculate the distance between Saturn and the Sun in AU
 * \return Distance in AU
@@ -6659,7 +6659,7 @@ double ln_get_saturn_solar_dist(double JD)
 	return h_saturn.R;
 }
 	
-/*! \fn double ln_get_saturn_magnitude(double JD);
+/**
 * \param JD Julian day
 * \brief Calculate the visible magnitude of Saturn
 * \return Visisble magnitude of saturn
@@ -6680,7 +6680,7 @@ double ln_get_saturn_magnitude(double JD)
 	return -8.88 + 5.0 * log10(r * delta);
 }
 
-/*! \fn double ln_get_saturn_disk(double JD);
+/**
 * \param JD Julian day
 * \brief Calculate the illuminated fraction of Saturn's disk
 * \return Illuminated fraction of Saturns disk. (Value between 0..1)
@@ -6702,7 +6702,7 @@ double ln_get_saturn_disk(double JD)
 	return (((r + delta) * (r + delta)) - R * R) / (4.0 * r * delta);
 }
 
-/*! \fn double ln_get_saturn_phase(double JD);
+/**
 * \brief Calculate the phase angle of Saturn (Sun - Saturn - Earth)
 * \return Phase angle of Saturn (degrees)
 *
@@ -6725,7 +6725,7 @@ double ln_get_saturn_phase(double JD)
 	return i;
 }
 
-/*! \fn double ln_get_saturn_rst(double JD, struct ln_lnlat_posn *observer, struct ln_rst_time *rst);
+/**
 * \param JD Julian day
 * \param observer Observers position
 * \param rst Pointer to store Rise, Set and Transit time in JD
@@ -6744,7 +6744,7 @@ int ln_get_saturn_rst(double JD, struct ln_lnlat_posn *observer,
 		LN_STAR_STANDART_HORIZON, rst);
 }
 
-/*! \fn double ln_get_saturn_equ_sdiam(double JD)
+/**
 * \param JD Julian day
 * \return Semidiameter in arc seconds
 *
@@ -6760,7 +6760,7 @@ double ln_get_saturn_equ_sdiam(double JD)
 	return LN_D2R(So / 3600.0) / dist;
 }
 
-/*! \fn double ln_get_saturn_pol_sdiam(double JD)
+/**
 * \param JD Julian day
 * \return Semidiameter in arc seconds
 * \todo Use Saturnicentric lat of Earth 
@@ -6778,7 +6778,7 @@ double ln_get_saturn_pol_sdiam(double JD)
 }
 
 
-/*! \fn void ln_get_saturn_rect_helio(double JD, struct ln_rect_posn *position)
+/**
 * \param JD Julian day.
 * \param position pointer to return position
 *

@@ -145,7 +145,7 @@ const static struct nutation_coefficients coefficients[TERMS] = {
 static long double c_JD = 0.0, c_longitude = 0.0, c_obliquity = 0.0,
                    c_ecliptic = 0.0;
 
-/*! \fn void ln_get_nutation(double JD, struct ln_nutation *nutation)
+/**
  * \param JD Julian Day.
  * \param nutation Pointer to store nutation
  *
@@ -219,7 +219,7 @@ void ln_get_nutation(double JD, struct ln_nutation *nutation) {
   nutation->ecliptic = LN_D2R(c_ecliptic);
 }
 
-/*! \fn void ln_get_equ_nut(struct ln_equ_posn *mean_position, double JD, struct
+/**
  * ln_equ_posn *position)
  * \param mean_position Mean position of object
  * \param JD Julian Day.

@@ -22,7 +22,7 @@
 #include <libnova/transform.h>
 #include <libnova/utility.h>
 
-/*! \fn const char* ln_get_constellation(struct ln_equ_posn *position)
+/**
 * \param position Equitorial position
 *
 * \return Name of the the constellation at the given position, or "---" if constellation

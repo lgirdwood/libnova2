@@ -52,7 +52,7 @@
 ** Precession
 */
 
-/*! \fn void ln_get_equ_prec(struct ln_equ_posn *mean_position, double JD,
+/**
  * struct ln_equ_posn *position)
  * \param mean_position Mean object position
  * \param JD Julian day
@@ -109,7 +109,7 @@ void ln_get_equ_prec(struct ln_equ_posn *mean_position, double JD,
   position->dec = dec;
 }
 
-/*! \fn void ln_get_equ_prec2(struct ln_equ_posn *mean_position, double fromJD,
+/**
  * double toJD, struct ln_equ_posn *position);
  *
  * \param mean_position Mean object position
@@ -175,7 +175,7 @@ void ln_get_equ_prec2(struct ln_equ_posn *mean_position, double fromJD,
   position->dec = dec;
 }
 
-/*! \fn void ln_get_ecl_prec(struct ln_lnlat_posn *mean_position, double JD,
+/**
  * struct ln_lnlat_posn *position)
  * \param mean_position Mean object position
  * \param JD Julian day

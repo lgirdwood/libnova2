@@ -37,7 +37,7 @@ extern "C" {
 * All angles are expressed in degrees. Algorithms based on Meeus Chapter 10.
 */
 
-/*! \fn double ln_get_dynamical_time_diff(double JD)
+/**
 * \ingroup dynamical
 * \brief Calculate approximate dynamical time difference from Julian day in seconds
 * \param JD Julian Day (UT)
@@ -47,7 +47,7 @@ extern "C" {
 */
 double LIBNOVA_EXPORT ln_get_dynamical_time_diff(double JD);
 
-/*! \fn double ln_get_jde(double JD)
+/**
 * \brief Calculate Julian Ephemeris Day (JDE)
 * \ingroup dynamical 
 * \param JD Julian Day (UT)

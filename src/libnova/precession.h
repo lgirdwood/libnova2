@@ -36,7 +36,7 @@ extern "C" {
 * All angles are expressed in radians. Algorithms based on Meeus Chapter 22.
 */
 
-/*! \fn void ln_get_equ_prec(struct ln_equ_posn *mean_position, double JD, struct ln_equ_posn *position);
+/**
 * \brief Calculate the effects of precession on equatorial coordinates, convert current to J2000.
 * \ingroup precession
 * \param mean_position Mean equatorial position
@@ -47,7 +47,7 @@ extern "C" {
 /* Equ 20.2, 20.3, 20.4 pg 126 */
 void LIBNOVA_EXPORT ln_get_equ_prec(struct ln_equ_posn *mean_position, double JD, struct ln_equ_posn *position);
 
-/*! \fn void ln_get_equ_prec2(struct ln_equ_posn *mean_position, double fromJD, double toJD, struct ln_equ_posn *position);
+/**
 * \brief Calculate the effects of precession on equatorial coordinates, between arbitary Jxxxx epochs.
 * \ingroup precession
 * \param mean_position Mean equatorial position
@@ -60,7 +60,7 @@ void LIBNOVA_EXPORT ln_get_equ_prec(struct ln_equ_posn *mean_position, double JD
 void LIBNOVA_EXPORT ln_get_equ_prec2(struct ln_equ_posn *mean_position, double fromJD, double toJD,
 									 struct ln_equ_posn *position);
 
-/*! \fn void ln_get_ecl_prec(struct ln_lnlat_posn *mean_position, double JD, struct ln_lnlat_posn *position); 
+/**
 * \brief Calculate the effects of precession on ecliptical coordinates.
 * \ingroup precession
 * \param mean_position Mean ecliptical position

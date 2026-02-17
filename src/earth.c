@@ -1393,7 +1393,7 @@ static const struct ln_vsop ALIGN32 earth_radius_r5[RADIUS_R5] = {
 	{ 0.00000000012, 0.65572878044, 12566.15169998280 },
 };
 
-/*! \fn void ln_get_earth_helio_coords(double JD, struct ln_helio_posn
+/**
  * *position)
  * \param JD Julian day
  * \param position Pointer to store heliocentric position
@@ -1467,7 +1467,7 @@ void ln_get_earth_helio_coords(double JD, struct ln_helio_posn *position)
 	cR = position->R;
 }
 
-/*! \fn double ln_get_earth_solar_dist(double JD);
+/**
  * \param JD Julian day.
  * \return Distance in AU
  *
@@ -1484,7 +1484,7 @@ double ln_get_earth_solar_dist(double JD)
 	return h_earth.R;
 }
 
-/*! \fn void ln_get_earth_centre_dist (float height, double latitude, double
+/**
  * *p_sin_o, double *p_cos_o);
  * \param height Height above sea level in metres.
  * \param latitude latitude in radians.
@@ -1510,7 +1510,7 @@ void ln_get_earth_centre_dist(float height, double latitude, double *p_sin_o, do
 	*p_cos_o = cos(u) + (height / 6378140.0) * cos(latitude);
 }
 
-/*! \fn void ln_get_earth_rect_helio(double JD, struct ln_rect_posn *position)
+/**
  * \param JD Julian day.
  * \param position pointer to return position
  *

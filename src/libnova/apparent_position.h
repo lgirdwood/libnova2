@@ -40,7 +40,7 @@ extern "C" {
 * All angles are expressed in degrees. Algorithms based on Meeus Chapter 23.
 */
 
-/*! \fn void ln_get_apparent_posn(struct ln_equ_posn *mean_position, struct ln_equ_posn *proper_motion, double JD, struct ln_equ_posn *position);
+/**
 * \brief Calculate the apparent position of a star.  
 * \ingroup apparent
 * \param mean_position Mean position of the star (at J2000.0 or other standard epoch)

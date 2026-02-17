@@ -41,7 +41,7 @@ extern "C" {
 * All angles are expressed in radians. Algorithms based on Meeus Chapter 22.
 */
 
-/*! \fn void ln_get_nutation(double JD, struct ln_nutation *nutation);
+/**
 * \ingroup nutation
 * \brief Calculate nutation. 
 * \param JD Julian Day
@@ -52,7 +52,7 @@ extern "C" {
 */
 void LIBNOVA_EXPORT ln_get_nutation(double JD, struct ln_nutation *nutation);
 
-/*! \fn void ln_get_equ_nut(struct ln_equ_posn *mean_position, double JD, struct ln_equ_posn *position);
+/**
 * \brief Calculate equatorial coordinates with the effects of nutation.
 * \ingroup nutation
 * \param mean_position Mean equatorial position (J2000.0)

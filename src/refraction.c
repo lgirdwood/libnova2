@@ -20,7 +20,7 @@
 #include <libnova/refraction.h>
 #include <libnova/utility.h>
 
-/*! \fn double ln_get_refraction_adj (double altitude, double atm_pres, double temp)
+/**
 * \param altitude The altitude of the object above the horizon in degrees
 * \param atm_pres Atmospheric pressure in milibars
 * \param temp Temperature in degrees C.

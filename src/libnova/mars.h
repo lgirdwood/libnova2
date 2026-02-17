@@ -38,7 +38,7 @@ extern "C" {
 * All angles are expressed in radians. Algorithms based on Meeus Chapter 31 (Planets) and 40/41 (magnitude/disk).
 */
 
-/*! \fn double ln_get_mars_sdiam(double JD)
+/**
 * \brief Calculate the semidiameter of Mars in radians.
 * \ingroup mars
 * \param JD Julian Day
@@ -46,7 +46,7 @@ extern "C" {
 */
 double LIBNOVA_EXPORT ln_get_mars_sdiam(double JD);
 
-/*! \fn double ln_get_mars_rst(double JD, struct ln_lnlat_posn *observer, struct ln_rst_time *rst);
+/**
 * \brief Calculate the time of rise, set and transit for Mars.
 * \ingroup mars
 * \param JD Julian Day
@@ -56,7 +56,7 @@ double LIBNOVA_EXPORT ln_get_mars_sdiam(double JD);
 */
 int LIBNOVA_EXPORT ln_get_mars_rst(double JD, struct ln_lnlat_posn *observer, struct ln_rst_time *rst);
 
-/*! \fn void ln_get_mars_helio_coords(double JD, struct ln_helio_posn *position);
+/**
 * \brief Calculate Mars heliocentric coordinates
 * \ingroup mars
 * \param JD Julian Day
@@ -65,7 +65,7 @@ int LIBNOVA_EXPORT ln_get_mars_rst(double JD, struct ln_lnlat_posn *observer, st
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 */
 void LIBNOVA_EXPORT ln_get_mars_helio_coords(double JD, struct ln_helio_posn *position);
 
-/*! \fn void ln_get_mars_equ_coords(double JD, struct ln_equ_posn *position);
+/**
 * \brief Calculate Mars equatorial coordinates
 * \ingroup mars
 * \param JD Julian Day
@@ -74,7 +74,7 @@ void LIBNOVA_EXPORT ln_get_mars_helio_coords(double JD, struct ln_helio_posn *po
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 */
 void LIBNOVA_EXPORT ln_get_mars_equ_coords(double JD, struct ln_equ_posn *position);
 
-/*! \fn double ln_get_mars_earth_dist(double JD);
+/**
 * \brief Calculate the distance between Mars and the Earth.
 * \ingroup mars
 * \param JD Julian Day
@@ -83,7 +83,7 @@ void LIBNOVA_EXPORT ln_get_mars_equ_coords(double JD, struct ln_equ_posn *positi
 /* Chapter ?? */
 double LIBNOVA_EXPORT ln_get_mars_earth_dist(double JD);
 
-/*! \fn double ln_get_mars_solar_dist(double JD);
+/**
 * \brief Calculate the distance between Mars and the Sun.
 * \ingroup mars
 * \param JD Julian Day
@@ -92,7 +92,7 @@ double LIBNOVA_EXPORT ln_get_mars_earth_dist(double JD);
 /* Chapter ?? */
 double LIBNOVA_EXPORT ln_get_mars_solar_dist(double JD);
 
-/*! \fn double ln_get_mars_magnitude(double JD);
+/**
 * \brief Calculate the visible magnitude of Mars
 * \ingroup mars
 * \param JD Julian Day
@@ -101,7 +101,7 @@ double LIBNOVA_EXPORT ln_get_mars_solar_dist(double JD);
 /* Chapter ?? */
 double LIBNOVA_EXPORT ln_get_mars_magnitude(double JD);
 
-/*! \fn double ln_get_mars_disk(double JD);
+/**
 * \brief Calculate the illuminated fraction of Mars disk
 * \ingroup mars
 * \param JD Julian Day
@@ -110,7 +110,7 @@ double LIBNOVA_EXPORT ln_get_mars_magnitude(double JD);
 /* Chapter 41 */
 double LIBNOVA_EXPORT ln_get_mars_disk(double JD);
 
-/*! \fn double ln_get_mars_phase(double JD);
+/**
 * \brief Calculate the phase angle of Mars.
 * \ingroup mars
 * \param JD Julian Day
@@ -119,7 +119,7 @@ double LIBNOVA_EXPORT ln_get_mars_disk(double JD);
 /* Chapter 41 */
 double LIBNOVA_EXPORT ln_get_mars_phase(double JD);
 
-/*! \fn void ln_get_mars_rect_helio(double JD, struct ln_rect_posn *position)
+/**
 * \ingroup mars
 * \brief Calculate Mars rectangular heliocentric coordinates.
 * \param JD Julian Day

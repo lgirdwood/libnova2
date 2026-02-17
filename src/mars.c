@@ -6522,7 +6522,7 @@ static const struct ln_vsop ALIGN32 mars_radius_r5[RADIUS_R5] = {
     {     0.00000000002,  0.40954426011,     9866.41688066520}, 
 };
 
-/*! \fn void ln_get_mars_equ_coords(double JD, struct ln_equ_posn *position);
+/**
 * \param JD julian Day
 * \param position Pointer to store position
 *
@@ -6572,7 +6572,7 @@ void ln_get_mars_equ_coords(double JD, struct ln_equ_posn *position)
 }
 	
 
-/*! \fn void ln_get_mars_helio_coords(double JD, struct ln_helio_posn *position)
+/**
 * \param JD Julian Day
 * \param position Pointer to store heliocentric position
 *
@@ -6646,7 +6646,7 @@ void ln_get_mars_helio_coords(double JD, struct ln_helio_posn *position)
 	cR = position->R;
 }
 
-/*! \fn double ln_get_mars_earth_dist(double JD);
+/**
 * \brief Calculate the distance between Mars and the Earth in AU.
 * \param JD Julian Day
 * \return Distance in AU
@@ -6679,7 +6679,7 @@ double ln_get_mars_earth_dist(double JD)
 	return sqrt(x + y + z);
 }
 	
-/*! \fn double ln_get_mars_solar_dist(double JD);
+/**
 * \brief Calculate the distance between Mars and the Sun in AU
 * \param JD Julian Day.
 * \return Distance in AU.
@@ -6697,7 +6697,7 @@ double ln_get_mars_solar_dist(double JD)
 	return h_mars.R;
 }
 	
-/*! \fn double ln_get_mars_magnitude(double JD);
+/**
 * \brief Calculate the visible magnitude of Mars
 * \param JD Julian Day
 * \return Magnitude of Mars
@@ -6718,7 +6718,7 @@ double ln_get_mars_magnitude(double JD)
 	return -1.52 + 5.0 * log10(r * delta) + 0.016 * i;
 }
 
-/*! \fn double ln_get_mars_disk(double JD);
+/**
 * \brief Calculate the illuminated fraction of Mars disk
 * \param JD Julian Day.
 * \return Illuminated fraction of Mars disk (Value between 0 - 1)
@@ -6740,7 +6740,7 @@ double ln_get_mars_disk(double JD)
 	
 }
 
-/*! \fn double ln_get_mars_phase(double JD);
+/**
 * \brief Calculate the phase angle of Mars (Sun - Mars - Earth)
 * \param JD Julian Day
 * \return Phase angle of Mars (degrees)
@@ -6764,7 +6764,7 @@ double ln_get_mars_phase(double JD)
 }
 
 
-/*! \fn double ln_get_mars_rst(double JD, struct ln_lnlat_posn *observer, struct ln_rst_time *rst);
+/**
 * \param JD Julian day
 * \param observer Observers position
 * \param rst Pointer to store Rise, Set and Transit time in JD
@@ -6784,7 +6784,7 @@ int ln_get_mars_rst(double JD, struct ln_lnlat_posn *observer,
 }
 
 
-/*! \fn double ln_get_mars_sdiam(double JD)
+/**
 * \param JD Julian day
 * \return Semidiameter in arc seconds
 *
@@ -6800,7 +6800,7 @@ double ln_get_mars_sdiam(double JD)
 	return LN_D2R(So / 3600.0) / dist;
 }
 	
-/*! \fn void ln_get_mars_rect_helio(double JD, struct ln_rect_posn *position)
+/**
 * \param JD Julian day.
 * \param position pointer to return position
 *

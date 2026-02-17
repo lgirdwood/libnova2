@@ -22,7 +22,6 @@
 #include <libnova/parabolic_motion.h>
 
 /*!
-* \fn double ln_get_ell_comet_mag(double JD, struct ln_ell_orbit *orbit, double g, double k)
 * \param JD Julian day.
 * \param orbit Orbital parameters
 * \param g Absolute magnitude
@@ -53,7 +52,6 @@ double ln_get_ell_comet_mag(double JD, struct ln_ell_orbit *orbit, double g,
 }
 
 /*!
-* \fn double ln_get_par_comet_mag(double JD, struct ln_par_orbit *orbit, double g, double k)
 * \param JD Julian day.
 * \param orbit Orbital parameters
 * \param g Absolute magnitude

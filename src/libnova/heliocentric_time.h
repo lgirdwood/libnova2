@@ -36,7 +36,7 @@ extern "C" {
 * All angles are expressed in degrees.
 */
 
-/*! \fn double ln_get_heliocentric_time_diff(double JD, struct ln_equ_posn *object)
+/**
 * \ingroup heliocentric
 * \brief Calculate approximate heliocentric (barycentric) time correction for given date and object
 * \param JD Julian Day

@@ -23,7 +23,7 @@
 #include <libnova/nutation.h>
 #include <libnova/utility.h>
 
-/*! \fn double ln_get_heliocentric_time_diff(double JD, struct ln_equ_posn
+/**
  * *object)
  * \param JD Julian day
  * \param object Pointer to object (RA, DEC) for which heliocentric correction

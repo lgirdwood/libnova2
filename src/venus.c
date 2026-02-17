@@ -1831,7 +1831,7 @@ static const struct ln_vsop ALIGN32 venus_radius_r5[RADIUS_R5] = {
     {     0.00000000002,  5.33215705373,    20426.57109242200}, 
 };
 
-/*! \fn void ln_get_venus_equ_coords(double JD, struct ln_equ_posn *position);
+/**
 * \param JD Julian Day
 * \param position Pointer to store position
 *
@@ -1880,7 +1880,7 @@ void ln_get_venus_equ_coords(double JD, struct ln_equ_posn *position)
 	position->dec = dec;
 }
 	
-/*! \fn void ln_get_venus_helio_coords(double JD, struct ln_helio_posn *position)
+/**
 * \param JD Julian Day
 * \param position Pointer to store new heliocentric position
 *
@@ -1954,7 +1954,7 @@ void ln_get_venus_helio_coords(double JD, struct ln_helio_posn *position)
 	cR = position->R;
 }
 
-/*! \fn double ln_get_venus_earth_dist(double JD);
+/**
 * \param JD Julian day
 * \brief Calculate the distance between Venus and the Earth in AU
 * \return Distance in AU
@@ -1987,7 +1987,7 @@ double ln_get_venus_earth_dist(double JD)
 	return sqrt(x + y + z);
 }
 
-/*! \fn double ln_get_venus_solar_dist(double JD);
+/**
 * \param JD Julian day
 * \brief Calculate the distance between Venus and the Sun in AU
 * \return Distance in AU
@@ -2005,7 +2005,7 @@ double ln_get_venus_solar_dist(double JD)
 	return h_venus.R;
 }
 	
-/*! \fn double ln_get_venus_magnitude(double JD);
+/**
 * \param JD Julian day
 * \brief Calculate the visible magnitude of Venus
 * \return Visible magnitude of venus
@@ -2030,7 +2030,7 @@ double ln_get_venus_magnitude(double JD)
 		0.000239 * i2 - 0.00000065 * i3;
 }
 
-/*! \fn double ln_get_venus_disk(double JD);
+/**
 * \param JD Julian day
 * \brief Calculate the illuminated fraction of Venus disk
 * \return Illuminated fraction of venus disk
@@ -2052,7 +2052,7 @@ double ln_get_venus_disk(double JD)
 	return (((r + delta) * (r + delta)) - R * R) / (4.0 * r * delta);
 }
 
-/*! \fn double ln_get_venus_phase(double JD);
+/**
 * \param JD Julian day
 * \brief Calculate the phase angle of Venus (Sun - Venus - Earth)
 * \return Phase angle of Venus (degrees)
@@ -2078,7 +2078,7 @@ double ln_get_venus_phase(double JD)
 }
 
 
-/*! \fn double ln_get_venus_rst(double JD, struct ln_lnlat_posn *observer, struct ln_rst_time *rst);
+/**
 * \param JD Julian day
 * \param observer Observers position
 * \param rst Pointer to store Rise, Set and Transit time in JD
@@ -2098,7 +2098,7 @@ int ln_get_venus_rst(double JD, struct ln_lnlat_posn *observer,
 }
 
 
-/*! \fn double ln_get_venus_sdiam(double JD)
+/**
 * \param JD Julian day
 * \return Semidiameter in arc seconds
 *
@@ -2114,7 +2114,7 @@ double ln_get_venus_sdiam(double JD)
 	return LN_D2R(So / 3600.0) / dist;
 }
 	
-/*! \fn void ln_get_venus_rect_helio(double JD, struct ln_rect_posn *position)
+/**
 * \param JD Julian day.
 * \param position pointer to return position
 *

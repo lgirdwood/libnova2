@@ -39,7 +39,6 @@ extern "C" {
 */
 
 /*!
-* \fn double ln_get_asteroid_mag(double JD, struct ln_ell_orbit *orbit, double H, double G)
 * \brief Calculate the visual magnitude of an asteroid.
 * \ingroup asteroid
 * \param JD Julian Day
@@ -52,7 +51,7 @@ extern "C" {
 */
 double LIBNOVA_EXPORT ln_get_asteroid_mag(double JD, struct ln_ell_orbit *orbit, double H, double G);
 
-/*! \fn double ln_get_asteroid_sdiam_km(double H, double A)
+/**
 * \brief Calculate the semi-diameter of an asteroid in km.
 * \ingroup asteroid
 * \param H Absolute magnitude
@@ -63,7 +62,7 @@ double LIBNOVA_EXPORT ln_get_asteroid_mag(double JD, struct ln_ell_orbit *orbit,
 */
 double LIBNOVA_EXPORT ln_get_asteroid_sdiam_km(double H, double A);
 
-/*! \fn double ln_get_asteroid_sdiam_arc(double JD, struct ln_ell_orbit *orbit, double H, double A)
+/**
 * \brief Calculate the semi-diameter of an asteroid in arc seconds.
 * \ingroup asteroid
 * \param JD Julian Day

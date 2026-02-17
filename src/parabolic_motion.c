@@ -26,7 +26,7 @@
 #include <libnova/sidereal_time.h>
 #include <libnova/utility.h>
 
-/*! \fn double ln_solve_barker (double q, double t);
+/**
 * \param q Perihelion distance in AU
 * \param t Time since perihelion in days
 * \return Solution of Barkers equation
@@ -47,7 +47,7 @@ double ln_solve_barker(double q, double t)
 	return Y - 1.0 / Y;
 }
 
-/*! \fn double ln_get_par_true_anomaly (double q, double t);
+/**
 * \param q Perihelion distance in AU
 * \param t Time since perihelion
 * \return True anomaly (degrees)
@@ -65,7 +65,7 @@ double ln_get_par_true_anomaly(double q, double t)
 	return ln_range_radians(v);
 }
 
-/*! \fn double ln_get_par_radius_vector (double q, double t);
+/**
 * \param q Perihelion distance in AU
 * \param t Time since perihelion in days
 * \return Radius vector AU
@@ -82,7 +82,7 @@ double ln_get_par_radius_vector(double q, double t)
 }
 
 
-/*! \fn void ln_get_par_helio_rect_posn(struct ln_par_orbit *orbit, double JD, struct ln_rect_posn *posn);
+/**
 * \param orbit Orbital parameters of object.
 * \param JD Julian day
 * \param posn Position pointer to store objects position
@@ -140,7 +140,7 @@ void ln_get_par_helio_rect_posn(struct ln_par_orbit *orbit, double JD,
 }
 
 
-/*! \fn void ln_get_par_geo_rect_posn(struct ln_par_orbit *orbit, double JD, struct ln_rect_posn *posn);
+/**
 * \param orbit Orbital parameters of object.
 * \param JD Julian day
 * \param posn Position pointer to store objects position
@@ -168,7 +168,6 @@ void ln_get_par_geo_rect_posn(struct ln_par_orbit *orbit, double JD,
 
 
 /*!
-* \fn void ln_get_par_body_equ_coords(double JD, struct ln_par_orbit *orbit, struct ln_equ_posn *posn)
 * \param JD Julian Day.
 * \param orbit Orbital parameters.
 * \param posn Pointer to hold asteroid position.
@@ -205,7 +204,6 @@ void ln_get_par_body_equ_coords(double JD, struct ln_par_orbit *orbit,
 
 
 /*!
-* \fn double ln_get_par_body_earth_dist(double JD, struct ln_par_orbit *orbit)
 * \param JD Julian day.
 * \param orbit Orbital parameters
 * \returns Distance in AU
@@ -228,7 +226,6 @@ double ln_get_par_body_earth_dist(double JD, struct ln_par_orbit *orbit)
 }
 
 /*!
-* \fn double ln_get_par_body_solar_dist(double JD, struct ln_par_orbit *orbit)
 * \param JD Julian Day.
 * \param orbit Orbital parameters
 * \return The distance in AU between the Sun and the body. 
@@ -249,7 +246,7 @@ double ln_get_par_body_solar_dist(double JD, struct ln_par_orbit *orbit)
 	return ln_get_rect_distance(&body_rect_posn, &sol_rect_posn);
 }
 
-/*! \fn double ln_get_par_body_phase_angle(double JD, struct ln_par_orbit *orbit);
+/**
 * \param JD Julian day
 * \param orbit Orbital parameters
 * \return Phase angle.
@@ -276,7 +273,7 @@ double ln_get_par_body_phase_angle(double JD, struct ln_par_orbit *orbit)
 	return ln_range_radians(acos(phase));
 }
 
-/*! \fn double ln_get_par_body_elong(double JD, struct ln_par_orbit *orbit);
+/**
 * \param JD Julian day
 * \param orbit Orbital parameters
 * \return Elongation to the Sun.
@@ -303,7 +300,7 @@ double ln_get_par_body_elong(double JD, struct ln_par_orbit *orbit)
 	return ln_range_radians(acos(elong));
 }
 
-/*! \fn double ln_get_par_body_rst(double JD, struct ln_lnlat_posn *observer, struct ln_par_orbit *orbit, struct ln_rst_time *rst);
+/**
 * \param JD Julian day
 * \param observer Observers position
 * \param orbit Orbital parameters
@@ -323,7 +320,7 @@ int ln_get_par_body_rst(double JD, struct ln_lnlat_posn *observer,
 		LN_STAR_STANDART_HORIZON, rst);
 }
 
-/*! \fn double ln_get_par_body_rst_horizon(double JD, struct ln_lnlat_posn *observer, struct ln_par_orbit *orbit, double horizon, struct ln_rst_time *rst);
+/**
 * \param JD Julian day
 * \param observer Observers position
 * \param orbit Orbital parameters
@@ -345,7 +342,7 @@ int ln_get_par_body_rst_horizon(double JD, struct ln_lnlat_posn *observer,
 		horizon, rst);
 }
 
-/*! \fn double ln_get_par_body_next_rst(double JD, struct ln_lnlat_posn *observer, struct ln_par_orbit *orbit, struct ln_rst_time *rst);
+/**
 * \param JD Julian day
 * \param observer Observers position
 * \param orbit Orbital parameters
@@ -367,7 +364,7 @@ int ln_get_par_body_next_rst(double JD, struct ln_lnlat_posn *observer,
 		LN_STAR_STANDART_HORIZON, rst);
 }
 
-/*! \fn double ln_get_par_body_next_rst_horizon(double JD, struct ln_lnlat_posn *observer, struct ln_par_orbit *orbit, double horizon, struct ln_rst_time *rst);
+/**
 * \param JD Julian day
 * \param observer Observers position
 * \param orbit Orbital parameters
@@ -391,7 +388,7 @@ int ln_get_par_body_next_rst_horizon(double JD, struct ln_lnlat_posn *observer,
 		horizon, rst);
 }
 
-/*! \fn double ln_get_par_body_next_rst_horizon_future(double JD, struct ln_lnlat_posn *observer, struct ln_par_orbit *orbit, double horizon, int day_limit, struct ln_rst_time *rst);
+/**
 * \param JD Julian day
 * \param observer Observers position
 * \param orbit Orbital parameters

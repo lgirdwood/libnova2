@@ -25,7 +25,7 @@
 ** Airmass
 */
 
-/*! \fn double ln_get_airmass (double alt, double airmass_scale)
+/**
 * \param alt            Altitude in degrees
 * \param airmass_scale  Airmass scale - usually 750.
 * \return  Airmass for give altitude.
@@ -38,7 +38,7 @@ double ln_get_airmass(double alt, double airmass_scale)
 	return sqrt(a * a + 2.0 * airmass_scale + 1.0) - a;
 }
 
-/*! \fn double ln_get_alt_from_airmass (double X, double airmass_scale)
+/**
  * \param X              Airmass
  * \param airmass_scale  Airmass scale - usually 750.
  * \return  Altitude for give airmass.

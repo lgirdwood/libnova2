@@ -30,11 +30,14 @@ double ln_get_mean_sidereal_time(double JD)
 	T = (JD - 2451545.0) / 36525.0;
 
 	/* calc mean angle in degrees */
-	sidereal = 280.46061837 + (360.98564736629 * (JD - 2451545.0)) + (0.000387933 * T * T) - (T * T * T / 38710000.0);
+	sidereal = 280.46061837 + (360.98564736629 * (JD - 2451545.0)) +
+			   (0.000387933 * T * T) - (T * T * T / 38710000.0);
+
 	/* add a convenient multiple of 360 degrees */
 	sidereal = ln_range_degrees(sidereal);
-	/* change to hours */
-	sidereal = sidereal / 360.0 * 24.0;
+
+	/* change to radians */
+	sidereal = LN_D2R(sidereal);
 
 	return sidereal;
 }
@@ -55,9 +58,6 @@ double ln_get_apparent_sidereal_time(double JD)
 
 	/* nutation is in radians */
 	correction = (nutation.longitude * cos(nutation.obliquity));
-
-	/* convert radians to hours */
-	correction = LN_R2D(correction) / 15.0;
 
 	sidereal += correction;
 

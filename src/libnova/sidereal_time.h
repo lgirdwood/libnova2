@@ -32,15 +32,15 @@ extern "C" {
 * - **Mean Sidereal Time**: Considers only the mean position of the equinox (date).
 * - **Apparent Sidereal Time**: Considers the true position of the equinox (date + nutation).
 *
-* All angles are expressed in hours (previously radians, changed in v0.13+). 
-* *Note*: Function return types are double (hours).
+* All angles are expressed in radians. 
+* *Note*: Function return types are double (radians).
 */
 
 /**
 * \brief Calculate mean sidereal time at Greenwich from Julian day. 
 * \ingroup sidereal
 * \param JD Julian Day
-* \return Mean sidereal time in hours
+* \return Mean sidereal time in radians
 *
 * Formula based on Meeus Chapter 12.
 */

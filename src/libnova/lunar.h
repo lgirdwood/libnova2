@@ -164,7 +164,7 @@ double LIBNOVA_EXPORT ln_get_lunar_arg_latitude(double JD);
 */
 void LIBNOVA_EXPORT ln_get_lunar_opt_libr_coords(double JD, struct ln_lnlat_posn *position);
 
-/*! \fn void ln_get_lunar_subsolar(double JD, struct ln_lnlat_posn *position);
+/*! \fn void ln_get_lunar_subsolar_coords(double JD, struct ln_lnlat_posn *position);
 * \brief Calculate selenographic subsolar point coordinates.
 * \ingroup lunar
 * \param JD Julian Day

@@ -965,6 +965,7 @@ static double sum_series_elp34(double *t)
 	}
 	return result;
 }
+
 /* sum lunar elp35 series */
 static double sum_series_elp35(double *t)
 {
@@ -1046,6 +1047,7 @@ static double _lunar_ecl_lat(double jd, double *arg)
 
 	return pos.lat;
 }
+
 /* ELP 2000-82B theory */
 void ln_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon,
 						   double precision)
@@ -1137,6 +1139,7 @@ void ln_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon,
 	moon->Y = b;
 	moon->Z = c;
 }
+
 void ln_get_lunar_equ_coords_prec(double JD, struct ln_equ_posn *position,
 								  double precision)
 {
@@ -1145,10 +1148,12 @@ void ln_get_lunar_equ_coords_prec(double JD, struct ln_equ_posn *position,
 	ln_get_lunar_ecl_coords(JD, &ecl, precision);
 	ln_get_equ_from_ecl(&ecl, JD, position);
 }
+
 void ln_get_lunar_equ_coords(double JD, struct ln_equ_posn *position)
 {
 	ln_get_lunar_equ_coords_prec(JD, position, 0);
 }
+
 void ln_get_lunar_ecl_coords(double JD, struct ln_lnlat_posn *position,
 							 double precision)
 {
@@ -1162,6 +1167,7 @@ void ln_get_lunar_ecl_coords(double JD, struct ln_lnlat_posn *position,
 	position->lat =
 		atan2(moon.Z, (sqrt((moon.X * moon.X) + (moon.Y * moon.Y))));
 }
+
 double ln_get_lunar_earth_dist(double JD)
 {
 	struct ln_rect_posn moon;
@@ -1169,6 +1175,7 @@ double ln_get_lunar_earth_dist(double JD)
 	ln_get_lunar_geo_posn(JD, &moon, 0.00001);
 	return sqrt((moon.X * moon.X) + (moon.Y * moon.Y) + (moon.Z * moon.Z));
 }
+
 double ln_get_lunar_phase(double JD)
 {
 	double phase = 0;
@@ -1190,6 +1197,7 @@ double ln_get_lunar_phase(double JD)
 	phase = atan2((R * sin(lunar_elong)), (delta - R * cos(lunar_elong)));
 	return phase;
 }
+
 double ln_get_lunar_disk(double JD)
 {
 	double i;
@@ -1198,6 +1206,7 @@ double ln_get_lunar_disk(double JD)
 	i = ln_get_lunar_phase(JD);
 	return (1.0 + cos(i)) / 2.0;
 }
+
 double ln_get_lunar_bright_limb(double JD)
 {
 	double angle;
@@ -1218,12 +1227,14 @@ double ln_get_lunar_bright_limb(double JD)
 	angle = ln_range_radians(angle);
 	return angle;
 }
+
 int ln_get_lunar_rst(double JD, struct ln_lnlat_posn *observer,
 					 struct ln_rst_time *rst)
 {
 	return ln_get_body_rst_horizon(JD, observer, ln_get_lunar_equ_coords,
 								   LN_D2R(LN_LUNAR_STANDART_HORIZON), rst);
 }
+
 double ln_get_lunar_sdiam(double JD)
 {
 	double So = 358473400;
@@ -1232,6 +1243,7 @@ double ln_get_lunar_sdiam(double JD)
 	dist = ln_get_lunar_earth_dist(JD);
 	return So / dist;
 }
+
 double ln_get_lunar_long_asc_node(double JD)
 {
 	/* calc julian centuries */
@@ -1246,6 +1258,7 @@ double ln_get_lunar_long_asc_node(double JD)
 		1934.1362891 * T + 0.0020754 * T2 + T3 / 467441.0 - T4 / 60616000.0;
 	return LN_D2R(omega);
 }
+
 double ln_get_lunar_long_perigee(double JD)
 {
 	/* calc julian centuries */
@@ -1259,6 +1272,7 @@ double ln_get_lunar_long_perigee(double JD)
 	per += 4069.0137287 * T - 0.0103200 * T2 - T3 / 80053.0 + T4 / 18999000.0;
 	return LN_D2R(per);
 }
+
 double ln_get_lunar_arg_latitude(double JD)
 {
 	/* calc julian centuries */
@@ -1294,12 +1308,14 @@ void ln_get_lunar_selenographic_coords(double JD, struct ln_lnlat_posn *moon,
 	position->lat =
 		asin(-sin(W) * cos(moon->lat) * sin(I) - sin(moon->lat) * cos(I));
 }
+
 void ln_get_lunar_opt_libr_coords(double JD, struct ln_lnlat_posn *position)
 {
 	struct ln_lnlat_posn moon;
 	ln_get_lunar_ecl_coords(JD, &moon, 0);
 	ln_get_lunar_selenographic_coords(JD, &moon, position);
 }
+
 void ln_get_lunar_subsolar_coords(double JD, struct ln_lnlat_posn *position)
 {
 	struct ln_lnlat_posn moon;
@@ -1347,6 +1363,7 @@ double ln_lunar_next_phase(double jd, double phase)
 
 	return ph;
 }
+
 double ln_lunar_previous_phase(double jd, double phase)
 {
 	double ph, k, angle;
@@ -1364,6 +1381,7 @@ double ln_lunar_previous_phase(double jd, double phase)
 
 	return ph;
 }
+
 double ln_lunar_next_apsis(double jd, int apogee)
 {
 	double ap, k;
@@ -1386,6 +1404,7 @@ double ln_lunar_next_apsis(double jd, int apogee)
 
 	return ap;
 }
+
 double ln_lunar_previous_apsis(double jd, int apogee)
 {
 	double ap, k;
@@ -1408,6 +1427,7 @@ double ln_lunar_previous_apsis(double jd, int apogee)
 
 	return ap;
 }
+
 double ln_lunar_next_node(double jd, int mode)
 {
 	double nd, k;
@@ -1422,6 +1442,7 @@ double ln_lunar_next_node(double jd, int mode)
 
 	return nd;
 }
+
 double ln_lunar_previous_node(double jd, int mode)
 {
 	double nd, k;

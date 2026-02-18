@@ -34,6 +34,7 @@ void ln_get_solar_geom_coords(double JD, struct ln_helio_posn *position)
 	position->L = ln_range_radians(position->L);
 	position->B *= -1.0;
 }
+
 void ln_get_solar_equ_coords(double JD, struct ln_equ_posn *position)
 {
 	struct ln_helio_posn sol;
@@ -57,6 +58,7 @@ void ln_get_solar_equ_coords(double JD, struct ln_equ_posn *position)
 	LB.lng = sol.L;
 	ln_get_equ_from_ecl(&LB, JD, position);
 }
+
 void ln_get_solar_ecl_coords(double JD, struct ln_lnlat_posn *position)
 {
 	struct ln_helio_posn sol;
@@ -77,6 +79,7 @@ void ln_get_solar_ecl_coords(double JD, struct ln_lnlat_posn *position)
 	position->lng = sol.L;
 	position->lat = sol.B;
 }
+
 void ln_get_solar_geo_coords(double JD, struct ln_rect_posn *position)
 {
 	/* get earths's heliocentric position */
@@ -103,6 +106,7 @@ int ln_get_solar_rst(double JD, struct ln_lnlat_posn *observer,
 	return ln_get_solar_rst_horizon(JD, observer, LN_SOLAR_STANDART_HORIZON,
 									rst);
 }
+
 double ln_get_solar_sdiam(double JD)
 {
 	double So = 959.63; /* at 1 AU */

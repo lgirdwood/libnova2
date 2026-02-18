@@ -8,11 +8,11 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-Name: @PROJECT_NAME@
+Name: libnova2
 Description: @PROJECT_DESCRIPTION@
 #Version: @PROJECT_VERSION@
 Version: 0.17
 
 Requires:
-Libs: -L${libdir} -lnova -lm
+Libs: -L${libdir} -lnova2 -lm
 Cflags: -I${includedir}

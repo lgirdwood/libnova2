@@ -93,30 +93,30 @@ add_module_source(LIBNOVA_AIRMASS airmass.c)
 add_module_source(LIBNOVA_HELIOCENTRIC_TIME heliocentric_time.c)
 add_module_source(LIBNOVA_CONSTELLATION constellation.c)
 
-add_library(nova ${NOVA_SOURCES})
+add_library(nova2 ${NOVA_SOURCES})
 
 # ELP (Lunar Theory)
 if(LIBNOVA_MOON OR DEFAULT_ENABLE)
     add_subdirectory(elp)
 endif()
 
-target_include_directories(nova PUBLIC 
+target_include_directories(nova2 PUBLIC 
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
-set_target_properties(nova PROPERTIES
+set_target_properties(nova2 PROPERTIES
     VERSION ${PROJECT_VERSION}
     SOVERSION 1
     PUBLIC_HEADER "${LIBRARY_PUBLIC_HEADERS}")
 
-install(TARGETS nova
+install(TARGETS nova2
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/libnova)
 
 if(HAVE_LIBM)
-    target_link_libraries(nova PRIVATE m)
+    target_link_libraries(nova2 PRIVATE m)
 endif()

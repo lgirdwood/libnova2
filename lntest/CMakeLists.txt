@@ -37,7 +37,7 @@ add_executable(libnova_test_exec
     test_constellation.c
     test_aberration.c
 )
-target_link_libraries(libnova_test_exec PRIVATE nova)
+target_link_libraries(libnova_test_exec PRIVATE nova2)
 if(HAVE_LIBM)
     target_link_libraries(libnova_test_exec PRIVATE m)
 endif()

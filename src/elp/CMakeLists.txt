@@ -1,4 +1,4 @@
-target_sources(nova PRIVATE
+target_sources(nova2 PRIVATE
 	elp1.c
 	elp2.c
 	elp3.c

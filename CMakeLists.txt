@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 
-project(libnova VERSION 2.0.0 DESCRIPTION "Astrometry Library" LANGUAGES C)
+project(libnova2 VERSION 2.0.0 DESCRIPTION "Astrometry Library" LANGUAGES C)
 
 include(GNUInstallDirs)
 include(CheckIncludeFile)
@@ -74,7 +74,7 @@ configure_file(config.h.in config.h)
 # Helper function for examples
 function(libnova_add_example EXECUTABLE_NAME)
     add_executable(${EXECUTABLE_NAME} ${EXECUTABLE_NAME}.c)
-    target_link_libraries(${EXECUTABLE_NAME} PRIVATE nova)
+    target_link_libraries(${EXECUTABLE_NAME} PRIVATE nova2)
     if(HAVE_LIBM)
         target_link_libraries(${EXECUTABLE_NAME} PRIVATE m)
     endif()
@@ -99,9 +99,9 @@ set(exec_prefix ${CMAKE_INSTALL_PREFIX})
 set(libdir ${CMAKE_INSTALL_FULL_LIBDIR})
 set(includedir ${CMAKE_INSTALL_FULL_INCLUDEDIR})
 
-configure_file(libnova.pc.in libnova.pc @ONLY)
+configure_file(libnova2.pc.in libnova2.pc @ONLY)
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libnova.pc
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libnova2.pc
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
 
 # Doxygen Documentation

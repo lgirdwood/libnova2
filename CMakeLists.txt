@@ -75,7 +75,7 @@ configure_file(config.h.in config.h)
 function(libnova_add_example EXECUTABLE_NAME)
     add_executable(${EXECUTABLE_NAME} ${EXECUTABLE_NAME}.c)
     target_link_libraries(${EXECUTABLE_NAME} PRIVATE nova)
-    if(UNIX)
+    if(HAVE_LIBM)
         target_link_libraries(${EXECUTABLE_NAME} PRIVATE m)
     endif()
     
@@ -93,12 +93,6 @@ endfunction()
 add_subdirectory(src)
 
 # Testing
-enable_testing()
-add_subdirectory(lntest)
-add_test(NAME libnova_test COMMAND $<TARGET_FILE:libnova_test_exec>)
-
-add_subdirectory(examples)
-
 # pkg-config generation
 set(prefix ${CMAKE_INSTALL_PREFIX})
 set(exec_prefix ${CMAKE_INSTALL_PREFIX})
@@ -117,10 +111,24 @@ if(DOXYGEN_FOUND)
     set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
     
     configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
-    
+
     add_custom_target(doc
         COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
         COMMENT "Generating API documentation with Doxygen"
         VERBATIM)
+endif()
+
+# Build Options
+option(BUILD_EXAMPLES "Build examples" ON)
+option(BUILD_TESTING "Build tests" ON)
+
+if(BUILD_TESTING)
+    enable_testing()
+    add_subdirectory(lntest)
+    add_test(NAME libnova_test COMMAND $<TARGET_FILE:libnova_test_exec>)
+endif()
+
+if(BUILD_EXAMPLES)
+    add_subdirectory(examples)
 endif()

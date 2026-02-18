@@ -117,6 +117,6 @@ install(TARGETS nova
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/libnova)
 
-if(UNIX)
+if(HAVE_LIBM)
     target_link_libraries(nova PRIVATE m)
 endif()

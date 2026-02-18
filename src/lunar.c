@@ -35,157 +35,139 @@
 #endif
 
 /* AU in KM */
-#define AU			149597870
+#define AU 149597870
 
 /* sequence sizes */
-#define ELP1_SIZE	1023		/* Main problem. Longitude periodic terms (sine) */
-#define ELP2_SIZE	918		/* Main problem. Latitude (sine) */
-#define ELP3_SIZE	704		/* Main problem. Distance (cosine) */
-#define ELP4_SIZE	347		/* Earth figure perturbations. Longitude */
-#define ELP5_SIZE	316		/* Earth figure perturbations. Latitude */
-#define ELP6_SIZE	237		/* Earth figure perturbations. Distance */
-#define ELP7_SIZE	14		/* Earth figure perturbations. Longitude/t */
-#define ELP8_SIZE	11		/* Earth figure perturbations. Latitude/t */
-#define ELP9_SIZE	8		/* Earth figure perturbations. Distance/t */
-#define ELP10_SIZE	14328		/* Planetary perturbations. Table 1 Longitude */
-#define ELP11_SIZE	5233		/* Planetary perturbations. Table 1 Latitude */
-#define ELP12_SIZE	6631		/* Planetary perturbations. Table 1 Distance */
-#define ELP13_SIZE	4384		/* Planetary perturbations. Table 1 Longitude/t */
-#define ELP14_SIZE	833		/* Planetary perturbations. Table 1 Latitude/t */
-#define ELP15_SIZE	1715		/* Planetary perturbations. Table 1 Distance/t */
-#define ELP16_SIZE	170		/* Planetary perturbations. Table 2 Longitude */
-#define ELP17_SIZE	150		/* Planetary perturbations. Table 2 Latitude */
-#define ELP18_SIZE	114		/* Planetary perturbations. Table 2 Distance */
-#define ELP19_SIZE	226		/* Planetary perturbations. Table 2 Longitude/t */
-#define ELP20_SIZE	188		/* Planetary perturbations. Table 2 Latitude/t */
-#define ELP21_SIZE	169		/* Planetary perturbations. Table 2 Distance/t */
-#define ELP22_SIZE	3		/* Tidal effects. Longitude */
-#define ELP23_SIZE	2		/* Tidal effects. Latitude */
-#define ELP24_SIZE	2		/* Tidal effects. Distance */
-#define ELP25_SIZE	6		/* Tidal effects. Longitude/t */
-#define ELP26_SIZE	4		/* Tidal effects. Latitude/t */
-#define ELP27_SIZE	5		/* Tidal effects. Distance/t */
-#define ELP28_SIZE	20		/* Moon figure perturbations. Longitude */
-#define ELP29_SIZE	12		/* Moon figure perturbations. Latitude */
-#define ELP30_SIZE	14		/* Moon figure perturbations. Distance */
-#define ELP31_SIZE	11		/* Relativistic perturbations. Longitude */
-#define ELP32_SIZE	4		/* Relativistic perturbations. Latitude */
-#define ELP33_SIZE	10		/* Relativistic perturbations. Distance */
-#define ELP34_SIZE	28		/* Planetary perturbations - solar eccentricity. Longitude/t2 */
-#define ELP35_SIZE	13		/* Planetary perturbations - solar eccentricity. Latitude/t2 */
-#define ELP36_SIZE	19		/* Planetary perturbations - solar eccentricity. Distance/t2 */
-
+#define ELP1_SIZE 1023 /* Main problem. Longitude periodic terms (sine) */
+#define ELP2_SIZE 918 /* Main problem. Latitude (sine) */
+#define ELP3_SIZE 704 /* Main problem. Distance (cosine) */
+#define ELP4_SIZE 347 /* Earth figure perturbations. Longitude */
+#define ELP5_SIZE 316 /* Earth figure perturbations. Latitude */
+#define ELP6_SIZE 237 /* Earth figure perturbations. Distance */
+#define ELP7_SIZE 14 /* Earth figure perturbations. Longitude/t */
+#define ELP8_SIZE 11 /* Earth figure perturbations. Latitude/t */
+#define ELP9_SIZE 8 /* Earth figure perturbations. Distance/t */
+#define ELP10_SIZE 14328 /* Planetary perturbations. Table 1 Longitude */
+#define ELP11_SIZE 5233 /* Planetary perturbations. Table 1 Latitude */
+#define ELP12_SIZE 6631 /* Planetary perturbations. Table 1 Distance */
+#define ELP13_SIZE 4384 /* Planetary perturbations. Table 1 Longitude/t */
+#define ELP14_SIZE 833 /* Planetary perturbations. Table 1 Latitude/t */
+#define ELP15_SIZE 1715 /* Planetary perturbations. Table 1 Distance/t */
+#define ELP16_SIZE 170 /* Planetary perturbations. Table 2 Longitude */
+#define ELP17_SIZE 150 /* Planetary perturbations. Table 2 Latitude */
+#define ELP18_SIZE 114 /* Planetary perturbations. Table 2 Distance */
+#define ELP19_SIZE 226 /* Planetary perturbations. Table 2 Longitude/t */
+#define ELP20_SIZE 188 /* Planetary perturbations. Table 2 Latitude/t */
+#define ELP21_SIZE 169 /* Planetary perturbations. Table 2 Distance/t */
+#define ELP22_SIZE 3 /* Tidal effects. Longitude */
+#define ELP23_SIZE 2 /* Tidal effects. Latitude */
+#define ELP24_SIZE 2 /* Tidal effects. Distance */
+#define ELP25_SIZE 6 /* Tidal effects. Longitude/t */
+#define ELP26_SIZE 4 /* Tidal effects. Latitude/t */
+#define ELP27_SIZE 5 /* Tidal effects. Distance/t */
+#define ELP28_SIZE 20 /* Moon figure perturbations. Longitude */
+#define ELP29_SIZE 12 /* Moon figure perturbations. Latitude */
+#define ELP30_SIZE 14 /* Moon figure perturbations. Distance */
+#define ELP31_SIZE 11 /* Relativistic perturbations. Longitude */
+#define ELP32_SIZE 4 /* Relativistic perturbations. Latitude */
+#define ELP33_SIZE 10 /* Relativistic perturbations. Distance */
+#define ELP34_SIZE \
+	28 /* Planetary perturbations - solar eccentricity. Longitude/t2 */
+#define ELP35_SIZE \
+	13 /* Planetary perturbations - solar eccentricity. Latitude/t2 */
+#define ELP36_SIZE \
+	19 /* Planetary perturbations - solar eccentricity. Distance/t2 */
 
 /* Chapront theory lunar constants */
-#define		RAD		(648000.0 / M_PI)
-#define		DEG		(M_PI / 180.0)
-#define		M_PI2	(2.0 * M_PI)
-#define		PIS2	(M_PI / 2.0)
-#define		ATH		384747.9806743165
-#define		A0		384747.9806448954
-#define		AM		0.074801329518
-#define		ALPHA	0.002571881335
-#define		DTASM	(2.0 * ALPHA / (3.0 * AM))
-#define		W12		(1732559343.73604 / RAD)
-#define		PRECES	(5029.0966 / RAD)
-#define		C1		60.0
-#define		C2		3600.0
+#define RAD (648000.0 / M_PI)
+#define DEG (M_PI / 180.0)
+#define M_PI2 (2.0 * M_PI)
+#define PIS2 (M_PI / 2.0)
+#define ATH 384747.9806743165
+#define A0 384747.9806448954
+#define AM 0.074801329518
+#define ALPHA 0.002571881335
+#define DTASM (2.0 * ALPHA / (3.0 * AM))
+#define W12 (1732559343.73604 / RAD)
+#define PRECES (5029.0966 / RAD)
+#define C1 60.0
+#define C2 3600.0
 
 /* Corrections of the constants for DE200/LE200 */
-#define		DELNU	((0.55604 / RAD) / W12)
-#define		DELE	(0.01789 / RAD)
-#define		DELG	(-0.08066 / RAD)
-#define		DELNP	((-0.06424 / RAD) / W12)
-#define		DELEP	(-0.12879 / RAD)
+#define DELNU ((0.55604 / RAD) / W12)
+#define DELE (0.01789 / RAD)
+#define DELG (-0.08066 / RAD)
+#define DELNP ((-0.06424 / RAD) / W12)
+#define DELEP (-0.12879 / RAD)
 
 /*     Precession matrix */
-#define		P1		0.10180391e-4
-#define		P2		0.47020439e-6
-#define		P3		-0.5417367e-9
-#define		P4		-0.2507948e-11
-#define		P5		0.463486e-14
-#define		Q1		-0.113469002e-3
-#define		Q2		0.12372674e-6
-#define		Q3		0.1265417e-8
-#define		Q4		-0.1371808e-11
-#define		Q5		-0.320334e-14
+#define P1 0.10180391e-4
+#define P2 0.47020439e-6
+#define P3 -0.5417367e-9
+#define P4 -0.2507948e-11
+#define P5 0.463486e-14
+#define Q1 -0.113469002e-3
+#define Q2 0.12372674e-6
+#define Q3 0.1265417e-8
+#define Q4 -0.1371808e-11
+#define Q5 -0.320334e-14
 
 /* initialise lunar constants */
-void init_lunar_constants ();
+void init_lunar_constants();
 
 /* constants with corrections for DE200 / LE200 */
-static const double W1[5] =
-{
-	((218.0 + (18.0 / 60.0) + (59.95571 / 3600.0))) * DEG,
-	1732559343.73604 / RAD,
-	-5.8883 / RAD,
-	0.006604 / RAD,
-	-0.00003169 / RAD
-};
+static const double W1[5] = { ((218.0 + (18.0 / 60.0) + (59.95571 / 3600.0))) *
+								  DEG,
+							  1732559343.73604 / RAD, -5.8883 / RAD,
+							  0.006604 / RAD, -0.00003169 / RAD };
 
-static const double W2[5] =
-{
-	((83.0 + (21.0 / 60.0) + (11.67475 / 3600.0))) * DEG,
-	14643420.2632 / RAD,
-	-38.2776 /  RAD,
-	-0.045047 / RAD,
-	0.00021301 / RAD
-};
+static const double W2[5] = { ((83.0 + (21.0 / 60.0) + (11.67475 / 3600.0))) *
+								  DEG,
+							  14643420.2632 / RAD, -38.2776 / RAD,
+							  -0.045047 / RAD, 0.00021301 / RAD };
 
-static const double W3[5] =
-{
-	(125.0 + (2.0 / 60.0) + (40.39816 / 3600.0)) * DEG,
-	-6967919.3622 / RAD,
-	6.3622 / RAD,
-	0.007625 / RAD,
-	-0.00003586 / RAD
-};
+static const double W3[5] = { (125.0 + (2.0 / 60.0) + (40.39816 / 3600.0)) *
+								  DEG,
+							  -6967919.3622 / RAD, 6.3622 / RAD, 0.007625 / RAD,
+							  -0.00003586 / RAD };
 
-static const double earth[5] =
-{
-	(100.0 + (27.0 / 60.0) + (59.22059 / 3600.0)) * DEG,
-	129597742.2758 / RAD,
-	-0.0202 / RAD,
-	0.000009 / RAD,
-	0.00000015 / RAD
-};
+static const double earth[5] = { (100.0 + (27.0 / 60.0) + (59.22059 / 3600.0)) *
+									 DEG,
+								 129597742.2758 / RAD, -0.0202 / RAD,
+								 0.000009 / RAD, 0.00000015 / RAD };
 
-static const double peri[5] =
-{
-	(102.0 + (56.0 / 60.0) + (14.42753 / 3600.0)) * DEG,
-	1161.2283 / RAD,
-	0.5327 / RAD,
-	-0.000138 / RAD,
-	0.0
-};
+static const double peri[5] = { (102.0 + (56.0 / 60.0) + (14.42753 / 3600.0)) *
+									DEG,
+								1161.2283 / RAD, 0.5327 / RAD, -0.000138 / RAD,
+								0.0 };
 
 /* Delaunay's arguments.*/
 static const double del[4][5] = {
-	{ 5.198466741027443, 7771.377146811758394, -0.000028449351621, 0.000000031973462, -0.000000000154365 },
-	{ -0.043125180208125, 628.301955168488007, -0.000002680534843, 0.000000000712676, 0.000000000000727 },
-	{ 2.355555898265799, 8328.691426955554562, 0.000157027757616, 0.000000250411114, -0.000000001186339 },
-	{ 1.627905233371468, 8433.466158130539043, -0.000059392100004, -0.000000004949948, 0.000000000020217 }
+	{ 5.198466741027443, 7771.377146811758394, -0.000028449351621,
+	  0.000000031973462, -0.000000000154365 },
+	{ -0.043125180208125, 628.301955168488007, -0.000002680534843,
+	  0.000000000712676, 0.000000000000727 },
+	{ 2.355555898265799, 8328.691426955554562, 0.000157027757616,
+	  0.000000250411114, -0.000000001186339 },
+	{ 1.627905233371468, 8433.466158130539043, -0.000059392100004,
+	  -0.000000004949948, 0.000000000020217 }
 };
 
-
-static const double zeta[2] =
-{
-	(218.0 + (18.0 / 60.0) + (59.95571 / 3600.0)) * DEG,
-	((1732559343.73604 / RAD) + PRECES)
-};
-
+static const double zeta[2] = { (218.0 + (18.0 / 60.0) + (59.95571 / 3600.0)) *
+									DEG,
+								((1732559343.73604 / RAD) + PRECES) };
 
 /* Planetary arguments */
-static const double p[8][2] =
-{
-	{(252.0 + 15.0 / C1 + 3.25986 / C2 ) * DEG, 538101628.68898 / RAD },
-	{(181.0 + 58.0 / C1 + 47.28305 / C2) * DEG, 210664136.43355 / RAD },
-	{(100.0 + (27.0 / 60.0) + (59.22059 / 3600.0)) * DEG, 129597742.2758 / RAD},
-	{(355.0 + 25.0 / C1 + 59.78866 / C2) * DEG, 68905077.59284 / RAD },
-	{(34.0 + 21.0 / C1 + 5.34212 / C2) * DEG, 10925660.42861 / RAD },
-	{(50.0 + 4.0 / C1 + 38.89694 / C2) * DEG, 4399609.65932 / RAD },
-	{(314.0 + 3.0 / C1 + 18.01841 / C2) * DEG, 1542481.19393 / RAD },
-	{(304.0 + 20.0 / C1 + 55.19575 / C2) * DEG, 786550.32074 / RAD }
+static const double p[8][2] = {
+	{ (252.0 + 15.0 / C1 + 3.25986 / C2) * DEG, 538101628.68898 / RAD },
+	{ (181.0 + 58.0 / C1 + 47.28305 / C2) * DEG, 210664136.43355 / RAD },
+	{ (100.0 + (27.0 / 60.0) + (59.22059 / 3600.0)) * DEG,
+	  129597742.2758 / RAD },
+	{ (355.0 + 25.0 / C1 + 59.78866 / C2) * DEG, 68905077.59284 / RAD },
+	{ (34.0 + 21.0 / C1 + 5.34212 / C2) * DEG, 10925660.42861 / RAD },
+	{ (50.0 + 4.0 / C1 + 38.89694 / C2) * DEG, 4399609.65932 / RAD },
+	{ (314.0 + 3.0 / C1 + 18.01841 / C2) * DEG, 1542481.19393 / RAD },
+	{ (304.0 + 20.0 / C1 + 55.19575 / C2) * DEG, 786550.32074 / RAD }
 };
 
 extern const struct main_problem elp1[];
@@ -226,19 +208,18 @@ extern const struct earth_pert elp35[];
 extern const struct earth_pert elp36[];
 
 /* sum lunar elp1 series */
-static double sum_series_elp1 (double* t)
+static double sum_series_elp1(double *t)
 {
 	double result = 0;
-	double x,y;
+	double x, y;
 	double tgv;
-	int i,j,k;
+	int i, j, k;
 
 	for (j = 0; j < ELP1_SIZE; j++) {
 		/* derivatives of A */
 		tgv = elp1[j].B[0] + DTASM * elp1[j].B[4];
-		x = elp1[j].A + tgv * (DELNP - AM * DELNU) +
-			elp1[j].B[1] * DELG + elp1[j].B[2] *
-			DELE + elp1[j].B[3] * DELEP;
+		x = elp1[j].A + tgv * (DELNP - AM * DELNU) + elp1[j].B[1] * DELG +
+			elp1[j].B[2] * DELE + elp1[j].B[3] * DELEP;
 
 		y = 0;
 		for (k = 0; k < 5; k++) {
@@ -254,19 +235,18 @@ static double sum_series_elp1 (double* t)
 }
 
 /* sum lunar elp2 series */
-static double sum_series_elp2 (double* t)
+static double sum_series_elp2(double *t)
 {
 	double result = 0;
-	double x,y;
+	double x, y;
 	double tgv;
-	int i,j,k;
+	int i, j, k;
 
 	for (j = 0; j < ELP2_SIZE; j++) {
 		/* derivatives of A */
 		tgv = elp2[j].B[0] + DTASM * elp2[j].B[4];
-		x = elp2[j].A + tgv * (DELNP - AM * DELNU) +
-			elp2[j].B[1] * DELG + elp2[j].B[2] *
-			DELE + elp2[j].B[3] * DELEP;
+		x = elp2[j].A + tgv * (DELNP - AM * DELNU) + elp2[j].B[1] * DELG +
+			elp2[j].B[2] * DELE + elp2[j].B[3] * DELEP;
 
 		y = 0;
 		for (k = 0; k < 5; k++) {
@@ -281,19 +261,18 @@ static double sum_series_elp2 (double* t)
 }
 
 /* sum lunar elp3 series */
-static double sum_series_elp3 (double* t)
+static double sum_series_elp3(double *t)
 {
 	double result = 0;
-	double x,y;
+	double x, y;
 	double tgv;
-	int i,j,k;
+	int i, j, k;
 
 	for (j = 0; j < ELP3_SIZE; j++) {
 		/* derivatives of A */
 		tgv = elp3[j].B[0] + DTASM * elp3[j].B[4];
-		x = elp3[j].A + tgv * (DELNP - AM * DELNU) +
-			elp3[j].B[1] * DELG + elp3[j].B[2] *
-			DELE + elp3[j].B[3] * DELEP;
+		x = elp3[j].A + tgv * (DELNP - AM * DELNU) + elp3[j].B[1] * DELG +
+			elp3[j].B[2] * DELE + elp3[j].B[3] * DELEP;
 
 		y = 0;
 		for (k = 0; k < 5; k++) {
@@ -308,17 +287,16 @@ static double sum_series_elp3 (double* t)
 	return result;
 }
 
-
 /* sum lunar elp4 series */
 static double sum_series_elp4(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y;
 
 	for (j = 0; j < ELP4_SIZE; j++) {
 		y = elp4[j].O * DEG;
-		for (k = 0; k < 2; k++)  {
+		for (k = 0; k < 2; k++) {
 			y += elp4[j].iz * zeta[k] * t[k];
 			for (i = 0; i < 4; i++)
 				y += elp4[j].ilu[i] * del[i][k] * t[k];
@@ -334,7 +312,7 @@ static double sum_series_elp4(double *t)
 static double sum_series_elp5(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y;
 
 	for (j = 0; j < ELP5_SIZE; j++) {
@@ -351,12 +329,11 @@ static double sum_series_elp5(double *t)
 	return result;
 }
 
-
 /* sum lunar elp6 series */
 static double sum_series_elp6(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y;
 
 	for (j = 0; j < ELP6_SIZE; j++) {
@@ -377,7 +354,7 @@ static double sum_series_elp6(double *t)
 static double sum_series_elp7(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y, A;
 
 	for (j = 0; j < ELP7_SIZE; j++) {
@@ -399,7 +376,7 @@ static double sum_series_elp7(double *t)
 static double sum_series_elp8(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y, A;
 
 	for (j = 0; j < ELP8_SIZE; j++) {
@@ -421,7 +398,7 @@ static double sum_series_elp8(double *t)
 static double sum_series_elp9(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y, A;
 
 	for (j = 0; j < ELP9_SIZE; j++) {
@@ -443,16 +420,16 @@ static double sum_series_elp9(double *t)
 static double sum_series_elp10(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y;
 
 	for (j = 0; j < ELP10_SIZE; j++) {
 		y = elp10[j].theta * DEG;
 
 		for (k = 0; k < 2; k++) {
-			y += (elp10[j].ipla[8] * del[0][k]
-			+ elp10[j].ipla[9] * del[2][k]
-			+ elp10[j].ipla[10] * del [3][k]) * t[k];
+			y += (elp10[j].ipla[8] * del[0][k] + elp10[j].ipla[9] * del[2][k] +
+				  elp10[j].ipla[10] * del[3][k]) *
+				 t[k];
 			for (i = 0; i < 8; i++)
 				y += elp10[j].ipla[i] * p[i][k] * t[k];
 		}
@@ -468,15 +445,15 @@ static double sum_series_elp10(double *t)
 static double sum_series_elp11(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y;
 
 	for (j = 0; j < ELP11_SIZE; j++) {
 		y = elp11[j].theta * DEG;
-		for (k = 0; k < 2; k++)  {
-			y += (elp11[j].ipla[8] * del[0][k]
-			+ elp11[j].ipla[9] * del[2][k]
-			+ elp11[j].ipla[10] * del [3][k]) * t[k];
+		for (k = 0; k < 2; k++) {
+			y += (elp11[j].ipla[8] * del[0][k] + elp11[j].ipla[9] * del[2][k] +
+				  elp11[j].ipla[10] * del[3][k]) *
+				 t[k];
 			for (i = 0; i < 8; i++)
 				y += elp11[j].ipla[i] * p[i][k] * t[k];
 		}
@@ -491,15 +468,15 @@ static double sum_series_elp11(double *t)
 static double sum_series_elp12(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y;
 
 	for (j = 0; j < ELP12_SIZE; j++) {
 		y = elp12[j].theta * DEG;
 		for (k = 0; k < 2; k++) {
-			y += (elp12[j].ipla[8] * del[0][k]
-			+ elp12[j].ipla[9] * del[2][k]
-			+ elp12[j].ipla[10] * del [3][k]) * t[k];
+			y += (elp12[j].ipla[8] * del[0][k] + elp12[j].ipla[9] * del[2][k] +
+				  elp12[j].ipla[10] * del[3][k]) *
+				 t[k];
 			for (i = 0; i < 8; i++)
 				y += elp12[j].ipla[i] * p[i][k] * t[k];
 		}
@@ -514,15 +491,15 @@ static double sum_series_elp12(double *t)
 static double sum_series_elp13(double *t)
 {
 	double result = 0;
-	int i,j,k;
-	double y,x;
+	int i, j, k;
+	double y, x;
 
 	for (j = 0; j < ELP13_SIZE; j++) {
 		y = elp13[j].theta * DEG;
 		for (k = 0; k < 2; k++) {
-			y += (elp13[j].ipla[8] * del[0][k]
-			+ elp13[j].ipla[9] * del[2][k]
-			+ elp13[j].ipla[10] * del [3][k]) * t[k];
+			y += (elp13[j].ipla[8] * del[0][k] + elp13[j].ipla[9] * del[2][k] +
+				  elp13[j].ipla[10] * del[3][k]) *
+				 t[k];
 			for (i = 0; i < 8; i++)
 				y += elp13[j].ipla[i] * p[i][k] * t[k];
 		}
@@ -538,15 +515,15 @@ static double sum_series_elp13(double *t)
 static double sum_series_elp14(double *t)
 {
 	double result = 0;
-	int i,j,k;
-	double y,x;
+	int i, j, k;
+	double y, x;
 
 	for (j = 0; j < ELP14_SIZE; j++) {
 		y = elp14[j].theta * DEG;
-		for (k = 0; k < 2; k++)  {
-			y += (elp14[j].ipla[8] * del[0][k]
-			+ elp14[j].ipla[9] * del[2][k]
-			+ elp14[j].ipla[10] * del [3][k]) * t[k];
+		for (k = 0; k < 2; k++) {
+			y += (elp14[j].ipla[8] * del[0][k] + elp14[j].ipla[9] * del[2][k] +
+				  elp14[j].ipla[10] * del[3][k]) *
+				 t[k];
 			for (i = 0; i < 8; i++)
 				y += elp14[j].ipla[i] * p[i][k] * t[k];
 		}
@@ -558,20 +535,19 @@ static double sum_series_elp14(double *t)
 	return result;
 }
 
-
 /* sum lunar elp15 series */
 static double sum_series_elp15(double *t)
 {
 	double result = 0;
-	int i,j,k;
-	double y,x;
+	int i, j, k;
+	double y, x;
 
 	for (j = 0; j < ELP15_SIZE; j++) {
 		y = elp15[j].theta * DEG;
 		for (k = 0; k < 2; k++) {
-			y += (elp15[j].ipla[8] * del[0][k]
-			+ elp15[j].ipla[9] * del[2][k]
-			+ elp15[j].ipla[10] * del [3][k]) * t[k];
+			y += (elp15[j].ipla[8] * del[0][k] + elp15[j].ipla[9] * del[2][k] +
+				  elp15[j].ipla[10] * del[3][k]) *
+				 t[k];
 			for (i = 0; i < 8; i++)
 				y += elp15[j].ipla[i] * p[i][k] * t[k];
 		}
@@ -587,7 +563,7 @@ static double sum_series_elp15(double *t)
 static double sum_series_elp16(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y;
 
 	for (j = 0; j < ELP16_SIZE; j++) {
@@ -608,7 +584,7 @@ static double sum_series_elp16(double *t)
 static double sum_series_elp17(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y;
 
 	for (j = 0; j < ELP17_SIZE; j++) {
@@ -629,7 +605,7 @@ static double sum_series_elp17(double *t)
 static double sum_series_elp18(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y;
 
 	for (j = 0; j < ELP18_SIZE; j++) {
@@ -650,8 +626,8 @@ static double sum_series_elp18(double *t)
 static double sum_series_elp19(double *t)
 {
 	double result = 0;
-	int i,j,k;
-	double y,x;
+	int i, j, k;
+	double y, x;
 
 	for (j = 0; j < ELP19_SIZE; j++) {
 		y = elp19[j].theta * DEG;
@@ -672,8 +648,8 @@ static double sum_series_elp19(double *t)
 static double sum_series_elp20(double *t)
 {
 	double result = 0;
-	int i,j,k;
-	double y,x;
+	int i, j, k;
+	double y, x;
 
 	for (j = 0; j < ELP20_SIZE; j++) {
 		y = elp20[j].theta * DEG;
@@ -694,8 +670,8 @@ static double sum_series_elp20(double *t)
 static double sum_series_elp21(double *t)
 {
 	double result = 0;
-	int i,j,k;
-	double y,x;
+	int i, j, k;
+	double y, x;
 
 	for (j = 0; j < ELP21_SIZE; j++) {
 		y = elp21[j].theta * DEG;
@@ -717,7 +693,7 @@ static double sum_series_elp21(double *t)
 static double sum_series_elp22(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y;
 
 	for (j = 0; j < ELP22_SIZE; j++) {
@@ -738,7 +714,7 @@ static double sum_series_elp22(double *t)
 static double sum_series_elp23(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y;
 
 	for (j = 0; j < ELP23_SIZE; j++) {
@@ -759,7 +735,7 @@ static double sum_series_elp23(double *t)
 static double sum_series_elp24(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y;
 
 	for (j = 0; j < ELP24_SIZE; j++) {
@@ -780,7 +756,7 @@ static double sum_series_elp24(double *t)
 static double sum_series_elp25(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y, A;
 
 	for (j = 0; j < ELP25_SIZE; j++) {
@@ -802,7 +778,7 @@ static double sum_series_elp25(double *t)
 static double sum_series_elp26(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y, A;
 
 	for (j = 0; j < ELP26_SIZE; j++) {
@@ -824,7 +800,7 @@ static double sum_series_elp26(double *t)
 static double sum_series_elp27(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y, A;
 
 	for (j = 0; j < ELP27_SIZE; j++) {
@@ -846,7 +822,7 @@ static double sum_series_elp27(double *t)
 static double sum_series_elp28(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y;
 
 	for (j = 0; j < ELP28_SIZE; j++) {
@@ -867,7 +843,7 @@ static double sum_series_elp28(double *t)
 static double sum_series_elp29(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y;
 
 	for (j = 0; j < ELP29_SIZE; j++) {
@@ -884,12 +860,11 @@ static double sum_series_elp29(double *t)
 	return result;
 }
 
-
 /* sum lunar elp30 series */
 static double sum_series_elp30(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y;
 
 	for (j = 0; j < ELP30_SIZE; j++) {
@@ -906,12 +881,11 @@ static double sum_series_elp30(double *t)
 	return result;
 }
 
-
 /* sum lunar elp31 series */
 static double sum_series_elp31(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y;
 
 	for (j = 0; j < ELP31_SIZE; j++) {
@@ -932,7 +906,7 @@ static double sum_series_elp31(double *t)
 static double sum_series_elp32(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y;
 
 	for (j = 0; j < ELP32_SIZE; j++) {
@@ -953,7 +927,7 @@ static double sum_series_elp32(double *t)
 static double sum_series_elp33(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y;
 
 	for (j = 0; j < ELP33_SIZE; j++) {
@@ -974,7 +948,7 @@ static double sum_series_elp33(double *t)
 static double sum_series_elp34(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y, A;
 
 	for (j = 0; j < ELP34_SIZE; j++) {
@@ -995,7 +969,7 @@ static double sum_series_elp34(double *t)
 static double sum_series_elp35(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y, A;
 
 	for (j = 0; j < ELP35_SIZE; j++) {
@@ -1017,7 +991,7 @@ static double sum_series_elp35(double *t)
 static double sum_series_elp36(double *t)
 {
 	double result = 0;
-	int i,j,k;
+	int i, j, k;
 	double y, A;
 
 	for (j = 0; j < ELP36_SIZE; j++) {
@@ -1045,8 +1019,8 @@ static double lunar_phase(double jd, double *arg)
 	ln_get_lunar_ecl_coords(jd, &moon, 0);
 	ln_get_solar_geom_coords(jd, &sol);
 
-	phase = fmod((LN_R2D(moon.lng - sol.L))
-		+ 3.0 * M_PI - arg[0], 2.0 * M_PI) - M_PI;
+	phase = fmod((LN_R2D(moon.lng - sol.L)) + 3.0 * M_PI - arg[0], 2.0 * M_PI) -
+			M_PI;
 
 	return phase;
 }
@@ -1073,17 +1047,18 @@ static double _lunar_ecl_lat(double jd, double *arg)
 	return pos.lat;
 }
 /* ELP 2000-82B theory */
-void ln_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon, double precision)
+void ln_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon,
+						   double precision)
 {
 	double t[5];
 	double elp[36];
-	double a,b,c;
-	double x,y,z;
-	double pw,qw, pwqw, pw2, qw2, ra;
+	double a, b, c;
+	double x, y, z;
+	double pw, qw, pwqw, pw2, qw2, ra;
 
 	/* calc julian centuries */
 	t[0] = 1.0;
-	t[1] =(JD - 2451545.0) / 36525.0;
+	t[1] = (JD - 2451545.0) / 36525.0;
 	t[2] = t[1] * t[1];
 	t[3] = t[2] * t[1];
 	t[4] = t[3] * t[1];
@@ -1126,19 +1101,16 @@ void ln_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon, double precisio
 	elp[34] = sum_series_elp35(t);
 	elp[35] = sum_series_elp36(t);
 
-	a = elp[0] + elp[3] + elp[6] + elp[9] + elp[12] +
-		elp[15] + elp[18] + elp[21] + elp[24] +
-		elp[27] + elp[30] + elp[33];
-	b = elp[1] + elp[4] + elp[7] + elp[10] + elp[13] +
-		elp[16] + elp[19] + elp[22] + elp[25] +
-		elp[28] + elp[31] + elp[34];
-	c = elp[2] + elp[5] + elp[8] + elp[11] + elp[14] +
-		elp[17] + elp[20] + elp[23] + elp[26] +
-		elp[29] + elp[32] + elp[35];
+	a = elp[0] + elp[3] + elp[6] + elp[9] + elp[12] + elp[15] + elp[18] +
+		elp[21] + elp[24] + elp[27] + elp[30] + elp[33];
+	b = elp[1] + elp[4] + elp[7] + elp[10] + elp[13] + elp[16] + elp[19] +
+		elp[22] + elp[25] + elp[28] + elp[31] + elp[34];
+	c = elp[2] + elp[5] + elp[8] + elp[11] + elp[14] + elp[17] + elp[20] +
+		elp[23] + elp[26] + elp[29] + elp[32] + elp[35];
 
 	/* calculate geocentric coords */
-	a = a / RAD + W1[0] + W1[1] * t[1] + W1[2] * t[2] + W1[3] * t[3]
-	    + W1[4] * t[4];
+	a = a / RAD + W1[0] + W1[1] * t[1] + W1[2] * t[2] + W1[3] * t[3] +
+		W1[4] * t[4];
 	b = b / RAD;
 	c = c * A0 / ATH;
 
@@ -1166,7 +1138,7 @@ void ln_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon, double precisio
 	moon->Z = c;
 }
 void ln_get_lunar_equ_coords_prec(double JD, struct ln_equ_posn *position,
-	double precision)
+								  double precision)
 {
 	struct ln_lnlat_posn ecl;
 
@@ -1178,7 +1150,7 @@ void ln_get_lunar_equ_coords(double JD, struct ln_equ_posn *position)
 	ln_get_lunar_equ_coords_prec(JD, position, 0);
 }
 void ln_get_lunar_ecl_coords(double JD, struct ln_lnlat_posn *position,
-	double precision)
+							 double precision)
 {
 	struct ln_rect_posn moon;
 
@@ -1187,8 +1159,8 @@ void ln_get_lunar_ecl_coords(double JD, struct ln_lnlat_posn *position,
 
 	/* convert to long and lat */
 	position->lng = atan2(moon.Y, moon.X);
-	position->lat = atan2(moon.Z,
-		(sqrt((moon.X * moon.X) + (moon.Y * moon.Y))));
+	position->lat =
+		atan2(moon.Z, (sqrt((moon.X * moon.X) + (moon.Y * moon.Y))));
 }
 double ln_get_lunar_earth_dist(double JD)
 {
@@ -1209,8 +1181,7 @@ double ln_get_lunar_phase(double JD)
 	ln_get_solar_ecl_coords(JD, &sunlp);
 
 	/* calc lunar geocentric elongation equ 48.2 */
-	lunar_elong = acos(cos(moon.lat) *
-		cos(sunlp.lng - moon.lng));
+	lunar_elong = acos(cos(moon.lat) * cos(sunlp.lng - moon.lng));
 
 	/* now calc phase Equ 48.2 */
 	R = ln_get_earth_solar_dist(JD);
@@ -1230,7 +1201,7 @@ double ln_get_lunar_disk(double JD)
 double ln_get_lunar_bright_limb(double JD)
 {
 	double angle;
-	double x,y;
+	double x, y;
 
 	struct ln_equ_posn moon, sunlp;
 
@@ -1240,19 +1211,18 @@ double ln_get_lunar_bright_limb(double JD)
 
 	/* Equ 48.5 */
 	x = cos(sunlp.dec) * sin(sunlp.ra - moon.ra);
-	y = sin(sunlp.dec) * cos(moon.dec)
-		- (cos(sunlp.dec) * sin(moon.dec)
-		* cos(sunlp.ra - moon.ra));
-	angle = atan2(x,y);
+	y = sin(sunlp.dec) * cos(moon.dec) -
+		(cos(sunlp.dec) * sin(moon.dec) * cos(sunlp.ra - moon.ra));
+	angle = atan2(x, y);
 
 	angle = ln_range_radians(angle);
 	return angle;
 }
 int ln_get_lunar_rst(double JD, struct ln_lnlat_posn *observer,
-	struct ln_rst_time *rst)
+					 struct ln_rst_time *rst)
 {
 	return ln_get_body_rst_horizon(JD, observer, ln_get_lunar_equ_coords,
-		LN_LUNAR_STANDART_HORIZON, rst);
+								   LN_D2R(LN_LUNAR_STANDART_HORIZON), rst);
 }
 double ln_get_lunar_sdiam(double JD)
 {
@@ -1265,49 +1235,48 @@ double ln_get_lunar_sdiam(double JD)
 double ln_get_lunar_long_asc_node(double JD)
 {
 	/* calc julian centuries */
-	double T =(JD - 2451545.0) / 36525.0;
+	double T = (JD - 2451545.0) / 36525.0;
 	double omega = 125.0445479;
 	double T2 = T * T;
 	double T3 = T2 * T;
 	double T4 = T3 * T;
 
 	/* equ 47.7 */
-	omega -= 1934.1362891 * T + 0.0020754 * T2 + T3 / 467441.0 -
-		T4 / 60616000.0;
+	omega -=
+		1934.1362891 * T + 0.0020754 * T2 + T3 / 467441.0 - T4 / 60616000.0;
 	return LN_D2R(omega);
 }
 double ln_get_lunar_long_perigee(double JD)
 {
 	/* calc julian centuries */
-	double T =(JD - 2451545.0) / 36525.0;
+	double T = (JD - 2451545.0) / 36525.0;
 	double per = 83.3532465;
 	double T2 = T * T;
 	double T3 = T2 * T;
 	double T4 = T3 * T;
 
 	/* equ 47.7 */
-	per += 4069.0137287 * T - 0.0103200 * T2 -
-		T3 / 80053.0 + T4 / 18999000.0;
+	per += 4069.0137287 * T - 0.0103200 * T2 - T3 / 80053.0 + T4 / 18999000.0;
 	return LN_D2R(per);
 }
 double ln_get_lunar_arg_latitude(double JD)
 {
 	/* calc julian centuries */
-	double T =(JD - 2451545.0) / 36525.0;
+	double T = (JD - 2451545.0) / 36525.0;
 	double arg = 93.2720993;
 	double T2 = T * T;
 	double T3 = T2 * T;
 	double T4 = T3 * T;
 
 	/* equ 45.5 */
-	arg += 483202.0175273 * T - 0.0034029 * T2 -
-		T3 / 3526000.0 + T4 / 863310000.0;
+	arg +=
+		483202.0175273 * T - 0.0034029 * T2 - T3 / 3526000.0 + T4 / 863310000.0;
 
 	return LN_D2R(arg);
 }
 
 void ln_get_lunar_selenographic_coords(double JD, struct ln_lnlat_posn *moon,
-	struct ln_lnlat_posn *position)
+									   struct ln_lnlat_posn *position)
 {
 	/* equ 51.1 */
 	static const double I = 0.02692030744861093755; // 1.54242 deg in radians
@@ -1315,18 +1284,15 @@ void ln_get_lunar_selenographic_coords(double JD, struct ln_lnlat_posn *moon,
 	double W = moon->lng - Omega;
 	double F = ln_get_lunar_arg_latitude(JD);
 
-	double tan_Ay = sin(W) * cos(moon->lat) * cos(I) -
-		sin(moon->lat) * sin(I);
+	double tan_Ay = sin(W) * cos(moon->lat) * cos(I) - sin(moon->lat) * sin(I);
 	double tan_Ax = cos(W) * cos(moon->lat);
 
-	position->lng =
-		ln_range_radians(atan2(tan_Ay, tan_Ax) - F);
+	position->lng = ln_range_radians(atan2(tan_Ay, tan_Ax) - F);
 	/* Remove deg conversion for output */
 	position->lng =
 		(position->lng > M_PI ? position->lng - 2.0 * M_PI : position->lng);
 	position->lat =
-		asin(-sin(W) * cos(moon->lat) * sin(I) -
-		sin(moon->lat)*cos(I));
+		asin(-sin(W) * cos(moon->lat) * sin(I) - sin(moon->lat) * cos(I));
 }
 void ln_get_lunar_opt_libr_coords(double JD, struct ln_lnlat_posn *position)
 {
@@ -1345,9 +1311,9 @@ void ln_get_lunar_subsolar_coords(double JD, struct ln_lnlat_posn *position)
 	ln_get_solar_ecl_coords(JD, &sun);
 	ln_get_lunar_ecl_coords(JD, &moon, 0);
 
-	moon.lng = sun.lng + 180.0 + 57.296 * dist_ratio *
-		cos(LN_D2R(moon.lat)) *
-		sin(LN_D2R(sun.lng - moon.lng));
+	moon.lng = sun.lng + 180.0 +
+			   57.296 * dist_ratio * cos(LN_D2R(moon.lat)) *
+				   sin(LN_D2R(sun.lng - moon.lng));
 	moon.lat = dist_ratio * moon.lat;
 
 	ln_get_lunar_selenographic_coords(JD, &moon, position);
@@ -1370,9 +1336,9 @@ double ln_lunar_next_phase(double jd, double phase)
 
 	k = floor((jd - 2451550.09766) / 29.530588861) + phase - 2.0;
 
-	while ((ph = 2451550.09766 + 29.530588861 * k + 0.00015437 *
-		(k / 1236.85) * (k / 1236.85)) < jd)
-			k += 1.0;
+	while ((ph = 2451550.09766 + 29.530588861 * k +
+				 0.00015437 * (k / 1236.85) * (k / 1236.85)) < jd)
+		k += 1.0;
 
 	angle = 2.0 * M_PI * phase;
 
@@ -1387,9 +1353,9 @@ double ln_lunar_previous_phase(double jd, double phase)
 
 	k = floor((jd - 2451550.09766) / 29.530588861) + phase + 2.0;
 
-	while ((ph = 2451550.09766 + 29.530588861 * k + 0.00015437 *
-		(k / 1236.85) * (k / 1236.85)) > jd)
-			k -= 1.0;
+	while ((ph = 2451550.09766 + 29.530588861 * k +
+				 0.00015437 * (k / 1236.85) * (k / 1236.85)) > jd)
+		k -= 1.0;
 
 	angle = 2.0 * M_PI * phase;
 
@@ -1404,15 +1370,17 @@ double ln_lunar_next_apsis(double jd, int apogee)
 
 	k = floor((jd - 2451534.6698) / 27.55454989) + (0.5 * apogee) - 2.0;
 
-	while ((ap = 2451534.6698 + 27.55454989 * k + 0.0006691 *
-		(k / 1325.55) * (k / 1325.55)) < jd)
-			k += 1.0;
+	while ((ap = 2451534.6698 + 27.55454989 * k +
+				 0.0006691 * (k / 1325.55) * (k / 1325.55)) < jd)
+		k += 1.0;
 
 	if (apogee) {
-		while ((ap = ln_find_max(lunar_distance, ap - 3.0, ap + 3.0, NULL)) < jd)
+		while ((ap = ln_find_max(lunar_distance, ap - 3.0, ap + 3.0, NULL)) <
+			   jd)
 			ap += 27.55454989;
 	} else {
-		while ((ap = ln_find_max(lunar_neg_distance, ap - 3.0, ap + 3.0, NULL)) < jd)
+		while ((ap = ln_find_max(lunar_neg_distance, ap - 3.0, ap + 3.0,
+								 NULL)) < jd)
 			ap += 27.55454989;
 	}
 
@@ -1424,15 +1392,17 @@ double ln_lunar_previous_apsis(double jd, int apogee)
 
 	k = floor((jd - 2451534.6698) / 27.55454989) + (0.5 * apogee) + 2.0;
 
-	while ((ap = 2451534.6698 + 27.55454989 * k + 0.0006691 *
-		(k / 1325.55) * (k / 1325.55)) > jd)
+	while ((ap = 2451534.6698 + 27.55454989 * k +
+				 0.0006691 * (k / 1325.55) * (k / 1325.55)) > jd)
 		k -= 1.0;
 
 	if (apogee) {
-		while ((ap = ln_find_max(lunar_distance, ap - 3.0, ap + 3.0, NULL)) > jd)
+		while ((ap = ln_find_max(lunar_distance, ap - 3.0, ap + 3.0, NULL)) >
+			   jd)
 			ap -= 27.55454989;
 	} else {
-		while ((ap = ln_find_max(lunar_neg_distance, ap - 3.0, ap + 3.0, NULL)) > jd)
+		while ((ap = ln_find_max(lunar_neg_distance, ap - 3.0, ap + 3.0,
+								 NULL)) > jd)
 			ap -= 27.55454989;
 	}
 
@@ -1447,9 +1417,8 @@ double ln_lunar_next_node(double jd, int mode)
 	while ((nd = 2451565.1619 + 27.212220817 * k) < jd)
 		k += 1.0;
 
-	while ((nd = ln_find_zero(_lunar_ecl_lat, nd - 3.0,
-		nd + 3.0, NULL)) < jd)
-			nd += 27.212220817;
+	while ((nd = ln_find_zero(_lunar_ecl_lat, nd - 3.0, nd + 3.0, NULL)) < jd)
+		nd += 27.212220817;
 
 	return nd;
 }
@@ -1462,9 +1431,8 @@ double ln_lunar_previous_node(double jd, int mode)
 	while ((nd = 2451565.1619 + 27.212220817 * k) > jd)
 		k -= 1.0;
 
-	while ((nd = ln_find_zero(_lunar_ecl_lat, nd - 3.0,
-		nd + 3.0, NULL)) > jd)
-			nd -= 27.212220817 ;
+	while ((nd = ln_find_zero(_lunar_ecl_lat, nd - 3.0, nd + 3.0, NULL)) > jd)
+		nd -= 27.212220817;
 
 	return nd;
 }

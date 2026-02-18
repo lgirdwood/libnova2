@@ -55,7 +55,9 @@ extern "C" {
 * \param rst Pointer to store rise, set and transit times
 * \return 0 for success, 1 for circumpolar, -1 for never rises
 */
-int LIBNOVA_EXPORT ln_get_solar_rst_horizon(double JD, struct ln_lnlat_posn *observer, double horizon,
+int LIBNOVA_EXPORT ln_get_solar_rst_horizon(double JD,
+											struct ln_lnlat_posn *observer,
+											double horizon,
 											struct ln_rst_time *rst);
 
 /**
@@ -66,7 +68,8 @@ int LIBNOVA_EXPORT ln_get_solar_rst_horizon(double JD, struct ln_lnlat_posn *obs
 * \param rst Pointer to store rise, set and transit times
 * \return 0 for success, 1 for circumpolar, -1 for never rises
 */
-int LIBNOVA_EXPORT ln_get_solar_rst(double JD, struct ln_lnlat_posn *observer, struct ln_rst_time *rst);
+int LIBNOVA_EXPORT ln_get_solar_rst(double JD, struct ln_lnlat_posn *observer,
+									struct ln_rst_time *rst);
 
 /**
 * \brief Calculate solar geometric coordinates. 
@@ -74,7 +77,8 @@ int LIBNOVA_EXPORT ln_get_solar_rst(double JD, struct ln_lnlat_posn *observer, s
 * \param JD Julian Day
 * \param position Pointer to store geometric position
 */
-void LIBNOVA_EXPORT ln_get_solar_geom_coords(double JD, struct ln_helio_posn *position);
+void LIBNOVA_EXPORT ln_get_solar_geom_coords(double JD,
+											 struct ln_helio_posn *position);
 
 /**
 * \brief Calculate apparent equatorial coordinates.
@@ -82,7 +86,8 @@ void LIBNOVA_EXPORT ln_get_solar_geom_coords(double JD, struct ln_helio_posn *po
 * \param JD Julian Day
 * \param position Pointer to store equatorial position
 */
-void LIBNOVA_EXPORT ln_get_solar_equ_coords(double JD, struct ln_equ_posn *position);
+void LIBNOVA_EXPORT ln_get_solar_equ_coords(double JD,
+											struct ln_equ_posn *position);
 
 /**
 * \brief Calculate apparent ecliptical coordinates.
@@ -90,7 +95,8 @@ void LIBNOVA_EXPORT ln_get_solar_equ_coords(double JD, struct ln_equ_posn *posit
 * \param JD Julian Day
 * \param position Pointer to store ecliptical position
 */
-void LIBNOVA_EXPORT ln_get_solar_ecl_coords(double JD, struct ln_lnlat_posn *position);
+void LIBNOVA_EXPORT ln_get_solar_ecl_coords(double JD,
+											struct ln_lnlat_posn *position);
 
 /**
 * \brief Calculate geocentric coordinates (rectangular)
@@ -98,13 +104,14 @@ void LIBNOVA_EXPORT ln_get_solar_ecl_coords(double JD, struct ln_lnlat_posn *pos
 * \param JD Julian Day
 * \param position Pointer to store rectangular position
 */
-void LIBNOVA_EXPORT ln_get_solar_geo_coords(double JD, struct ln_rect_posn *position);
+void LIBNOVA_EXPORT ln_get_solar_geo_coords(double JD,
+											struct ln_rect_posn *position);
 
 /**
 * \param JD Julian day
-* \return Semidiameter in radians
+* \return Semidiameter in arc seconds
 *
-* Calculate the semidiameter of the Sun in radians for the 
+* Calculate the semidiameter of the Sun in arc seconds for the 
 * given julian day.
 */
 double LIBNOVA_EXPORT ln_get_solar_sdiam(double JD);

@@ -44,7 +44,7 @@ extern "C" {
 * \param JD Julian Day
 * \return Semidiameter in radians
 */
-double LIBNOVA_EXPORT ln_get_pluto_sdiam(double JD);
+double LIBNOVA_EXPORT ln2_get_pluto_sdiam(double JD);
 
 /**
 * \brief Calculate the time of rise, set and transit for Pluto.
@@ -54,7 +54,7 @@ double LIBNOVA_EXPORT ln_get_pluto_sdiam(double JD);
 * \param rst Pointer to store rise, set and transit times
 * \return 0 for success, 1 for circumpolar, -1 for never rises
 */
-int LIBNOVA_EXPORT ln_get_pluto_rst(double JD, struct ln_lnlat_posn *observer, struct ln_rst_time *rst);
+int LIBNOVA_EXPORT ln2_get_pluto_rst(double JD, struct ln_lnlat_posn *observer, struct ln_rst_time *rst);
 
 /**
 * \brief Calculate Pluto's heliocentric coordinates.
@@ -63,7 +63,7 @@ int LIBNOVA_EXPORT ln_get_pluto_rst(double JD, struct ln_lnlat_posn *observer, s
 * \param position Pointer to store heliocentric position
 */
 /* Chapter 37 Pg 263  */
-void LIBNOVA_EXPORT ln_get_pluto_helio_coords(double JD, struct ln_helio_posn *position);
+void LIBNOVA_EXPORT ln2_get_pluto_helio_coords(double JD, struct ln_helio_posn *position);
 
 /**
 * \brief Calculate Pluto's equatorial coordinates.
@@ -72,7 +72,7 @@ void LIBNOVA_EXPORT ln_get_pluto_helio_coords(double JD, struct ln_helio_posn *p
 * \param position Pointer to store equatorial position
 */
 /* Chapter 37 */
-void LIBNOVA_EXPORT ln_get_pluto_equ_coords(double JD, struct ln_equ_posn *position);
+void LIBNOVA_EXPORT ln2_get_pluto_equ_coords(double JD, struct ln_equ_posn *position);
 
 /**
 * \brief Calculate the distance between Pluto and the Earth.
@@ -81,7 +81,7 @@ void LIBNOVA_EXPORT ln_get_pluto_equ_coords(double JD, struct ln_equ_posn *posit
 * \return distance in AU
 */
 /* Chapter 37 */
-double LIBNOVA_EXPORT ln_get_pluto_earth_dist(double JD);
+double LIBNOVA_EXPORT ln2_get_pluto_earth_dist(double JD);
 
 /**
 * \brief Calculate the distance between Pluto and the Sun.
@@ -90,7 +90,7 @@ double LIBNOVA_EXPORT ln_get_pluto_earth_dist(double JD);
 * \return Distance in AU
 */
 /* Chapter 37 */
-double LIBNOVA_EXPORT ln_get_pluto_solar_dist(double JD);
+double LIBNOVA_EXPORT ln2_get_pluto_solar_dist(double JD);
 
 /**
 * \brief Calculate the visible magnitude of Pluto
@@ -99,7 +99,7 @@ double LIBNOVA_EXPORT ln_get_pluto_solar_dist(double JD);
 * \return Visible magnitude of Pluto.
 */
 /* Chapter 41 */
-double LIBNOVA_EXPORT ln_get_pluto_magnitude(double JD);
+double LIBNOVA_EXPORT ln2_get_pluto_magnitude(double JD);
 
 /**
 * \brief Calculate the illuminated fraction of Pluto's disk
@@ -108,7 +108,7 @@ double LIBNOVA_EXPORT ln_get_pluto_magnitude(double JD);
 * \return Illuminated fraction of Pluto's disk
 */
 /* Chapter 41 */
-double LIBNOVA_EXPORT ln_get_pluto_disk(double JD);
+double LIBNOVA_EXPORT ln2_get_pluto_disk(double JD);
 
 /**
 * \brief Calculate the phase angle of Pluto. 
@@ -117,7 +117,7 @@ double LIBNOVA_EXPORT ln_get_pluto_disk(double JD);
 * \return Phase angle of Pluto (radians).
 */
 /* Chapter 41 */
-double LIBNOVA_EXPORT ln_get_pluto_phase(double JD);
+double LIBNOVA_EXPORT ln2_get_pluto_phase(double JD);
 
 /**
 * \ingroup pluto
@@ -125,7 +125,7 @@ double LIBNOVA_EXPORT ln_get_pluto_phase(double JD);
 * \param JD Julian Day
 * \param position Pointer to store rectangular position
 */
-void LIBNOVA_EXPORT ln_get_pluto_rect_helio(double JD, struct ln_rect_posn *position);
+void LIBNOVA_EXPORT ln2_get_pluto_rect_helio(double JD, struct ln_rect_posn *position);
 
 #ifdef __cplusplus
 };

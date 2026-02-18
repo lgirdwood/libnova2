@@ -55,7 +55,7 @@ const char LIBNOVA_EXPORT *ln_get_version(void);
  * \param s String containing location
  * \return Location in degrees
  */
-double LIBNOVA_EXPORT ln_get_dec_location(char *s);
+double LIBNOVA_EXPORT ln2_get_dec_location(char *s);
 
 /**
  *  \ingroup misc
@@ -72,7 +72,7 @@ const char LIBNOVA_EXPORT *ln_get_humanr_location(double location);
 * \param b Rectangular position b
 * \return Distance between a and b
 */
-double LIBNOVA_EXPORT ln_get_rect_distance(struct ln_rect_posn *a,
+double LIBNOVA_EXPORT ln2_get_rect_distance(struct ln_rect_posn *a,
 										   struct ln_rect_posn *b);
 
 /** \defgroup conversion General Conversion Functions
@@ -86,7 +86,7 @@ double LIBNOVA_EXPORT ln_get_rect_distance(struct ln_rect_posn *a,
  * \param radians Angle in radians
  * \return Angle in degrees
  */
-double LIBNOVA_EXPORT ln_rad_to_deg(double radians);
+double LIBNOVA_EXPORT ln2_rad_to_deg(double radians);
 
 /**
  * \brief degrees to radians
@@ -94,7 +94,7 @@ double LIBNOVA_EXPORT ln_rad_to_deg(double radians);
  * \param degrees Angle in degrees
  * \return Angle in radians
  */
-double LIBNOVA_EXPORT ln_deg_to_rad(double degrees);
+double LIBNOVA_EXPORT ln2_deg_to_rad(double degrees);
 
 /**
  * \brief hours to degrees
@@ -102,7 +102,7 @@ double LIBNOVA_EXPORT ln_deg_to_rad(double degrees);
  * \param hms Angle in HMS format
  * \return Angle in degrees
  */
-double LIBNOVA_EXPORT ln_hms_to_deg(struct ln_hms *hms);
+double LIBNOVA_EXPORT ln2_hms_to_deg(struct ln_hms *hms);
 
 /**
  * \brief degrees to hours
@@ -110,7 +110,7 @@ double LIBNOVA_EXPORT ln_hms_to_deg(struct ln_hms *hms);
  * \param degrees Angle in degrees
  * \param hms Pointer to store HMS structure
  */
-void LIBNOVA_EXPORT ln_deg_to_hms(double degrees, struct ln_hms *hms);
+void LIBNOVA_EXPORT ln2_deg_to_hms(double degrees, struct ln_hms *hms);
 
 /**
  * \brief hours to radians.
@@ -118,7 +118,7 @@ void LIBNOVA_EXPORT ln_deg_to_hms(double degrees, struct ln_hms *hms);
  * \param hms Angle in HMS format
  * \return Angle in radians
  */
-double LIBNOVA_EXPORT ln_hms_to_rad(struct ln_hms *hms);
+double LIBNOVA_EXPORT ln2_hms_to_rad(struct ln_hms *hms);
 
 /**
  * \brief radians to hours
@@ -126,7 +126,7 @@ double LIBNOVA_EXPORT ln_hms_to_rad(struct ln_hms *hms);
  * \param radians Angle in radians
  * \param hms Pointer to store HMS structure
  */
-void LIBNOVA_EXPORT ln_rad_to_hms(double radians, struct ln_hms *hms);
+void LIBNOVA_EXPORT ln2_rad_to_hms(double radians, struct ln_hms *hms);
 
 /**
  * \brief dms to degrees
@@ -134,7 +134,7 @@ void LIBNOVA_EXPORT ln_rad_to_hms(double radians, struct ln_hms *hms);
  * \param dms Angle in DMS format
  * \return Angle in degrees
  */
-double LIBNOVA_EXPORT ln_dms_to_deg(struct ln_dms *dms);
+double LIBNOVA_EXPORT ln2_dms_to_deg(struct ln_dms *dms);
 
 /**
  * \brief degrees to dms
@@ -142,7 +142,7 @@ double LIBNOVA_EXPORT ln_dms_to_deg(struct ln_dms *dms);
  * \param degrees Angle in degrees
  * \param dms Pointer to store DMS structure
  */
-void LIBNOVA_EXPORT ln_deg_to_dms(double degrees, struct ln_dms *dms);
+void LIBNOVA_EXPORT ln2_deg_to_dms(double degrees, struct ln_dms *dms);
 
 /**
  * \brief dms to radians
@@ -150,7 +150,7 @@ void LIBNOVA_EXPORT ln_deg_to_dms(double degrees, struct ln_dms *dms);
  * \param dms Angle in DMS format
  * \return Angle in radians
  */
-double LIBNOVA_EXPORT ln_dms_to_rad(struct ln_dms *dms);
+double LIBNOVA_EXPORT ln2_dms_to_rad(struct ln_dms *dms);
 
 /**
  * \brief dms to radians
@@ -160,7 +160,7 @@ double LIBNOVA_EXPORT ln_dms_to_rad(struct ln_dms *dms);
  * \param seconds Seconds
  * \return Angle in radians
  */
-double LIBNOVA_EXPORT ln_dms2_to_rad(int degrees, int minutes, double seconds);
+double LIBNOVA_EXPORT ln2_dms2_to_rad(int degrees, int minutes, double seconds);
 
 /**
  * \brief radians to dms
@@ -168,7 +168,7 @@ double LIBNOVA_EXPORT ln_dms2_to_rad(int degrees, int minutes, double seconds);
  * \param radians Angle in radians
  * \param dms Pointer to store DMS structure
  */
-void LIBNOVA_EXPORT ln_rad_to_dms(double radians, struct ln_dms *dms);
+void LIBNOVA_EXPORT ln2_rad_to_dms(double radians, struct ln_dms *dms);
 
 /**
  * \brief human readable equatorial position to double equatorial position
@@ -176,7 +176,7 @@ void LIBNOVA_EXPORT ln_rad_to_dms(double radians, struct ln_dms *dms);
  * \param hpos Human readable equatorial position
  * \param pos Pointer to store equatorial position
  */
-void LIBNOVA_EXPORT ln_hequ_to_equ(struct lnh_equ_posn *hpos,
+void LIBNOVA_EXPORT ln2_hequ_to_equ(struct lnh_equ_posn *hpos,
 								   struct ln_equ_posn *pos);
 
 /**
@@ -185,7 +185,7 @@ void LIBNOVA_EXPORT ln_hequ_to_equ(struct lnh_equ_posn *hpos,
  * \param pos Equatorial position
  * \param hpos Pointer to store human readable equatorial position
  */
-void LIBNOVA_EXPORT ln_equ_to_hequ(struct ln_equ_posn *pos,
+void LIBNOVA_EXPORT ln2_equ_to_hequ(struct ln_equ_posn *pos,
 								   struct lnh_equ_posn *hpos);
 
 /**
@@ -194,7 +194,7 @@ void LIBNOVA_EXPORT ln_equ_to_hequ(struct ln_equ_posn *pos,
  * \param hpos Human readable horizontal position
  * \param pos Pointer to store horizontal position
  */
-void LIBNOVA_EXPORT ln_hhrz_to_hrz(struct lnh_hrz_posn *hpos,
+void LIBNOVA_EXPORT ln2_hhrz_to_hrz(struct lnh_hrz_posn *hpos,
 								   struct ln_hrz_posn *pos);
 
 /**
@@ -203,7 +203,7 @@ void LIBNOVA_EXPORT ln_hhrz_to_hrz(struct lnh_hrz_posn *hpos,
  * \param pos Horizontal position
  * \param hpos Pointer to store human readable horizontal position
  */
-void LIBNOVA_EXPORT ln_hrz_to_hhrz(struct ln_hrz_posn *pos,
+void LIBNOVA_EXPORT ln2_hrz_to_hhrz(struct ln_hrz_posn *pos,
 								   struct lnh_hrz_posn *hpos);
 
 /**
@@ -221,7 +221,7 @@ const char LIBNOVA_EXPORT *ln_hrz_to_nswe(struct ln_hrz_posn *pos);
  * \param hpos Human readable long/lat position
  * \param pos Pointer to store long/lat position
  */
-void LIBNOVA_EXPORT ln_hlnlat_to_lnlat(struct lnh_lnlat_posn *hpos,
+void LIBNOVA_EXPORT ln2_hlnlat_to_lnlat(struct lnh_lnlat_posn *hpos,
 									   struct ln_lnlat_posn *pos);
 
 /**
@@ -231,7 +231,7 @@ void LIBNOVA_EXPORT ln_hlnlat_to_lnlat(struct lnh_lnlat_posn *hpos,
  * \param pos Long/lat position
  * \param hpos Pointer to store human readable long/lat position
  */
-void LIBNOVA_EXPORT ln_lnlat_to_hlnlat(struct ln_lnlat_posn *pos,
+void LIBNOVA_EXPORT ln2_lnlat_to_hlnlat(struct ln_lnlat_posn *pos,
 									   struct lnh_lnlat_posn *hpos);
 
 /**
@@ -240,7 +240,7 @@ void LIBNOVA_EXPORT ln_lnlat_to_hlnlat(struct ln_lnlat_posn *pos,
  * \param hms HMS structure
  * \param seconds Seconds to add
  */
-void LIBNOVA_EXPORT ln_add_secs_hms(struct ln_hms *hms, double seconds);
+void LIBNOVA_EXPORT ln2_add_secs_hms(struct ln_hms *hms, double seconds);
 
 /**
  * \brief add hms to hms
@@ -248,7 +248,7 @@ void LIBNOVA_EXPORT ln_add_secs_hms(struct ln_hms *hms, double seconds);
  * \param source Source HMS
  * \param dest Destination HMS (source + dest)
  */
-void LIBNOVA_EXPORT ln_add_hms(struct ln_hms *source, struct ln_hms *dest);
+void LIBNOVA_EXPORT ln2_add_hms(struct ln_hms *source, struct ln_hms *dest);
 
 /**
  * \brief puts a large angle in the correct range 0 - 360 degrees
@@ -256,7 +256,7 @@ void LIBNOVA_EXPORT ln_add_hms(struct ln_hms *source, struct ln_hms *dest);
  * \param angle Angle in degrees
  * \return Angle in range 0-360 degrees
  */
-double LIBNOVA_EXPORT ln_range_degrees(double angle);
+double LIBNOVA_EXPORT ln2_range_degrees(double angle);
 
 /**
  * \brief puts a large angle in the correct range 0 - 2PI radians
@@ -264,7 +264,7 @@ double LIBNOVA_EXPORT ln_range_degrees(double angle);
  * \param angle Angle in radians
  * \return Angle in range 0-2PI radians
  */
-double LIBNOVA_EXPORT ln_range_radians(double angle);
+double LIBNOVA_EXPORT ln2_range_radians(double angle);
 
 /**
 * \brief puts a large angle in the correct range -PI - PI radians
@@ -272,7 +272,7 @@ double LIBNOVA_EXPORT ln_range_radians(double angle);
 * \param angle Angle in radians
 * \return Angle in range -PI - PI radians
 */
-double LIBNOVA_EXPORT ln_range_radians2(double angle);
+double LIBNOVA_EXPORT ln2_range_radians2(double angle);
 
 /**
  * \brief puts a large angle in the correct range 0 - 24 hours
@@ -280,7 +280,7 @@ double LIBNOVA_EXPORT ln_range_radians2(double angle);
  * \param angle Angle in hours
  * \return Angle in range 0-24 hours
  */
-double LIBNOVA_EXPORT ln_range_hours(double angle);
+double LIBNOVA_EXPORT ln2_range_hours(double angle);
 
 /**
 * \brief Convert units of AU into light days.
@@ -288,7 +288,7 @@ double LIBNOVA_EXPORT ln_range_hours(double angle);
 * \param dist Distance in AU
 * \return Light time in days
 */
-double LIBNOVA_EXPORT ln_get_light_time(double dist);
+double LIBNOVA_EXPORT ln2_get_light_time(double dist);
 
 /**
  * \ingroup misc
@@ -299,7 +299,7 @@ double LIBNOVA_EXPORT ln_get_light_time(double dist);
  * \param y3 Value 3
  * \return Interpolated value
  */
-double LIBNOVA_EXPORT ln_interpolate3(double n, double y1, double y2,
+double LIBNOVA_EXPORT ln2_interpolate3(double n, double y1, double y2,
 									  double y3);
 
 /**
@@ -314,7 +314,7 @@ double LIBNOVA_EXPORT ln_interpolate3(double n, double y1, double y2,
  * \param y5 Value 5
  * \return Interpolated value
  */
-double LIBNOVA_EXPORT ln_interpolate5(double n, double y1, double y2, double y3,
+double LIBNOVA_EXPORT ln2_interpolate5(double n, double y1, double y2, double y3,
 									  double y4, double y5);
 
 /**
@@ -328,7 +328,7 @@ double LIBNOVA_EXPORT ln_interpolate5(double n, double y1, double y2, double y3,
  * \param arg Argument to pass to f
  * \return Value of x where f(x) is maximum
  */
-double LIBNOVA_EXPORT ln_find_max(double (*func)(double, double *), double from,
+double LIBNOVA_EXPORT ln2_find_max(double (*func)(double, double *), double from,
 								  double to, double *arg);
 
 /**
@@ -341,7 +341,7 @@ double LIBNOVA_EXPORT ln_find_max(double (*func)(double, double *), double from,
  * \param arg Argument to pass to f
  * \return Value of x where f(x) is zero
  */
-double LIBNOVA_EXPORT ln_find_zero(double (*func)(double, double *),
+double LIBNOVA_EXPORT ln2_find_zero(double (*func)(double, double *),
 								   double from, double to, double *arg);
 
 #ifdef __WIN32__

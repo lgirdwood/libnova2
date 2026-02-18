@@ -228,7 +228,7 @@ static double sum_series_elp1(double *t)
 		}
 
 		/* y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += x * sin(y);
 	}
 	return result;
@@ -254,7 +254,7 @@ static double sum_series_elp2(double *t)
 				y += elp2[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += x * sin(y);
 	}
 	return result;
@@ -281,7 +281,7 @@ static double sum_series_elp3(double *t)
 		}
 		y += (M_PI_2);
 		/* y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += x * sin(y);
 	}
 	return result;
@@ -302,7 +302,7 @@ static double sum_series_elp4(double *t)
 				y += elp4[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += elp4[j].A * sin(y);
 	}
 	return result;
@@ -323,7 +323,7 @@ static double sum_series_elp5(double *t)
 				y += elp5[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += elp5[j].A * sin(y);
 	}
 	return result;
@@ -344,7 +344,7 @@ static double sum_series_elp6(double *t)
 				y += elp6[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += elp6[j].A * sin(y);
 	}
 	return result;
@@ -366,7 +366,7 @@ static double sum_series_elp7(double *t)
 				y += elp7[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += A * sin(y);
 	}
 	return result;
@@ -388,7 +388,7 @@ static double sum_series_elp8(double *t)
 				y += elp8[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += A * sin(y);
 	}
 	return result;
@@ -410,7 +410,7 @@ static double sum_series_elp9(double *t)
 				y += elp9[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += A * sin(y);
 	}
 	return result;
@@ -435,7 +435,7 @@ static double sum_series_elp10(double *t)
 		}
 
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += elp10[j].O * sin(y);
 	}
 	return result;
@@ -458,7 +458,7 @@ static double sum_series_elp11(double *t)
 				y += elp11[j].ipla[i] * p[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += elp11[j].O * sin(y);
 	}
 	return result;
@@ -481,7 +481,7 @@ static double sum_series_elp12(double *t)
 				y += elp12[j].ipla[i] * p[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += elp12[j].O * sin(y);
 	}
 	return result;
@@ -504,7 +504,7 @@ static double sum_series_elp13(double *t)
 				y += elp13[j].ipla[i] * p[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		x = elp13[j].O * t[1];
 		result += x * sin(y);
 	}
@@ -528,7 +528,7 @@ static double sum_series_elp14(double *t)
 				y += elp14[j].ipla[i] * p[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		x = elp14[j].O * t[1];
 		result += x * sin(y);
 	}
@@ -552,7 +552,7 @@ static double sum_series_elp15(double *t)
 				y += elp15[j].ipla[i] * p[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		x = elp15[j].O * t[1];
 		result += x * sin(y);
 	}
@@ -575,7 +575,7 @@ static double sum_series_elp16(double *t)
 				y += elp16[j].ipla[i] * p[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += elp16[j].O * sin(y);
 	}
 	return result;
@@ -596,7 +596,7 @@ static double sum_series_elp17(double *t)
 				y += elp17[j].ipla[i] * p[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += elp17[j].O * sin(y);
 	}
 	return result;
@@ -617,7 +617,7 @@ static double sum_series_elp18(double *t)
 				y += elp18[j].ipla[i] * p[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += elp18[j].O * sin(y);
 	}
 	return result;
@@ -638,7 +638,7 @@ static double sum_series_elp19(double *t)
 				y += elp19[j].ipla[i] * p[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		x = elp19[j].O * t[1];
 		result += x * sin(y);
 	}
@@ -660,7 +660,7 @@ static double sum_series_elp20(double *t)
 				y += elp20[j].ipla[i] * p[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		x = elp20[j].O * t[1];
 		result += x * sin(y);
 	}
@@ -682,7 +682,7 @@ static double sum_series_elp21(double *t)
 				y += elp21[j].ipla[i] * p[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		x = elp21[j].O * t[1];
 		result += x * sin(y);
 	}
@@ -704,7 +704,7 @@ static double sum_series_elp22(double *t)
 				y += elp22[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += elp22[j].A * sin(y);
 	}
 	return result;
@@ -725,7 +725,7 @@ static double sum_series_elp23(double *t)
 				y += elp23[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += elp23[j].A * sin(y);
 	}
 	return result;
@@ -746,7 +746,7 @@ static double sum_series_elp24(double *t)
 				y += elp24[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += elp24[j].A * sin(y);
 	}
 	return result;
@@ -768,7 +768,7 @@ static double sum_series_elp25(double *t)
 				y += elp25[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += A * sin(y);
 	}
 	return result;
@@ -790,7 +790,7 @@ static double sum_series_elp26(double *t)
 				y += elp26[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += A * sin(y);
 	}
 	return result;
@@ -812,7 +812,7 @@ static double sum_series_elp27(double *t)
 				y += elp27[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += A * sin(y);
 	}
 	return result;
@@ -833,7 +833,7 @@ static double sum_series_elp28(double *t)
 				y += elp28[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += elp28[j].A * sin(y);
 	}
 	return result;
@@ -854,7 +854,7 @@ static double sum_series_elp29(double *t)
 				y += elp29[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += elp29[j].A * sin(y);
 	}
 	return result;
@@ -875,7 +875,7 @@ static double sum_series_elp30(double *t)
 				y += elp30[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += elp30[j].A * sin(y);
 	}
 	return result;
@@ -896,7 +896,7 @@ static double sum_series_elp31(double *t)
 				y += elp31[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += elp31[j].A * sin(y);
 	}
 	return result;
@@ -917,7 +917,7 @@ static double sum_series_elp32(double *t)
 				y += elp32[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += elp32[j].A * sin(y);
 	}
 	return result;
@@ -938,7 +938,7 @@ static double sum_series_elp33(double *t)
 				y += elp33[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += elp33[j].A * sin(y);
 	}
 	return result;
@@ -960,7 +960,7 @@ static double sum_series_elp34(double *t)
 				y += elp34[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += A * sin(y);
 	}
 	return result;
@@ -982,7 +982,7 @@ static double sum_series_elp35(double *t)
 				y += elp35[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += A * sin(y);
 	}
 	return result;
@@ -1004,7 +1004,7 @@ static double sum_series_elp36(double *t)
 				y += elp36[j].ilu[i] * del[i][k] * t[k];
 		}
 		/* put y in correct quad */
-		y = ln_range_radians2(y);
+		y = ln2_range_radians2(y);
 		result += A * sin(y);
 	}
 	return result;
@@ -1017,8 +1017,8 @@ static double lunar_phase(double jd, double *arg)
 	struct ln_helio_posn sol;
 	double phase;
 
-	ln_get_lunar_ecl_coords(jd, &moon, 0);
-	ln_get_solar_geom_coords(jd, &sol);
+	ln2_get_lunar_ecl_coords(jd, &moon, 0);
+	ln2_get_solar_geom_coords(jd, &sol);
 
 	phase = fmod((LN_R2D(moon.lng - sol.L)) + 3.0 * M_PI - arg[0], 2.0 * M_PI) -
 			M_PI;
@@ -1029,13 +1029,13 @@ static double lunar_phase(double jd, double *arg)
 /* internal function used for find_max/find zero lunar phase calculations */
 static double lunar_distance(double jd, double *arg)
 {
-	return ln_get_lunar_earth_dist(jd);
+	return ln2_get_lunar_earth_dist(jd);
 }
 
 /* internal function used for find_max/find zero lunar phase calculations */
 static double lunar_neg_distance(double jd, double *arg)
 {
-	return -ln_get_lunar_earth_dist(jd);
+	return -ln2_get_lunar_earth_dist(jd);
 }
 
 /* internal function used for find_max/find zero lunar phase calculations */
@@ -1043,13 +1043,13 @@ static double _lunar_ecl_lat(double jd, double *arg)
 {
 	struct ln_lnlat_posn pos;
 
-	ln_get_lunar_ecl_coords(jd, &pos, 0);
+	ln2_get_lunar_ecl_coords(jd, &pos, 0);
 
 	return pos.lat;
 }
 
 /* ELP 2000-82B theory */
-void ln_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon,
+void ln2_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon,
 						   double precision)
 {
 	double t[5];
@@ -1140,27 +1140,27 @@ void ln_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon,
 	moon->Z = c;
 }
 
-void ln_get_lunar_equ_coords_prec(double JD, struct ln_equ_posn *position,
+void ln2_get_lunar_equ_coords_prec(double JD, struct ln_equ_posn *position,
 								  double precision)
 {
 	struct ln_lnlat_posn ecl;
 
-	ln_get_lunar_ecl_coords(JD, &ecl, precision);
-	ln_get_equ_from_ecl(&ecl, JD, position);
+	ln2_get_lunar_ecl_coords(JD, &ecl, precision);
+	ln2_get_equ_from_ecl(&ecl, JD, position);
 }
 
-void ln_get_lunar_equ_coords(double JD, struct ln_equ_posn *position)
+void ln2_get_lunar_equ_coords(double JD, struct ln_equ_posn *position)
 {
-	ln_get_lunar_equ_coords_prec(JD, position, 0);
+	ln2_get_lunar_equ_coords_prec(JD, position, 0);
 }
 
-void ln_get_lunar_ecl_coords(double JD, struct ln_lnlat_posn *position,
+void ln2_get_lunar_ecl_coords(double JD, struct ln_lnlat_posn *position,
 							 double precision)
 {
 	struct ln_rect_posn moon;
 
 	/* get lunar geocentric position */
-	ln_get_lunar_geo_posn(JD, &moon, precision);
+	ln2_get_lunar_geo_posn(JD, &moon, precision);
 
 	/* convert to long and lat */
 	position->lng = atan2(moon.Y, moon.X);
@@ -1168,15 +1168,15 @@ void ln_get_lunar_ecl_coords(double JD, struct ln_lnlat_posn *position,
 		atan2(moon.Z, (sqrt((moon.X * moon.X) + (moon.Y * moon.Y))));
 }
 
-double ln_get_lunar_earth_dist(double JD)
+double ln2_get_lunar_earth_dist(double JD)
 {
 	struct ln_rect_posn moon;
 
-	ln_get_lunar_geo_posn(JD, &moon, 0.00001);
+	ln2_get_lunar_geo_posn(JD, &moon, 0.00001);
 	return sqrt((moon.X * moon.X) + (moon.Y * moon.Y) + (moon.Z * moon.Z));
 }
 
-double ln_get_lunar_phase(double JD)
+double ln2_get_lunar_phase(double JD)
 {
 	double phase = 0;
 	struct ln_lnlat_posn moon, sunlp;
@@ -1184,30 +1184,30 @@ double ln_get_lunar_phase(double JD)
 	double R, delta;
 
 	/* get lunar and solar long + lat */
-	ln_get_lunar_ecl_coords(JD, &moon, 0.0001);
-	ln_get_solar_ecl_coords(JD, &sunlp);
+	ln2_get_lunar_ecl_coords(JD, &moon, 0.0001);
+	ln2_get_solar_ecl_coords(JD, &sunlp);
 
 	/* calc lunar geocentric elongation equ 48.2 */
 	lunar_elong = acos(cos(moon.lat) * cos(sunlp.lng - moon.lng));
 
 	/* now calc phase Equ 48.2 */
-	R = ln_get_earth_solar_dist(JD);
-	delta = ln_get_lunar_earth_dist(JD);
+	R = ln2_get_earth_solar_dist(JD);
+	delta = ln2_get_lunar_earth_dist(JD);
 	R = R * AU; /* convert R to km */
 	phase = atan2((R * sin(lunar_elong)), (delta - R * cos(lunar_elong)));
 	return phase;
 }
 
-double ln_get_lunar_disk(double JD)
+double ln2_get_lunar_disk(double JD)
 {
 	double i;
 
 	/* Equ 48.1 */
-	i = ln_get_lunar_phase(JD);
+	i = ln2_get_lunar_phase(JD);
 	return (1.0 + cos(i)) / 2.0;
 }
 
-double ln_get_lunar_bright_limb(double JD)
+double ln2_get_lunar_bright_limb(double JD)
 {
 	double angle;
 	double x, y;
@@ -1215,8 +1215,8 @@ double ln_get_lunar_bright_limb(double JD)
 	struct ln_equ_posn moon, sunlp;
 
 	/* get lunar and solar long + lat */
-	ln_get_lunar_equ_coords(JD, &moon);
-	ln_get_solar_equ_coords(JD, &sunlp);
+	ln2_get_lunar_equ_coords(JD, &moon);
+	ln2_get_solar_equ_coords(JD, &sunlp);
 
 	/* Equ 48.5 */
 	x = cos(sunlp.dec) * sin(sunlp.ra - moon.ra);
@@ -1224,27 +1224,27 @@ double ln_get_lunar_bright_limb(double JD)
 		(cos(sunlp.dec) * sin(moon.dec) * cos(sunlp.ra - moon.ra));
 	angle = atan2(x, y);
 
-	angle = ln_range_radians(angle);
+	angle = ln2_range_radians(angle);
 	return angle;
 }
 
-int ln_get_lunar_rst(double JD, struct ln_lnlat_posn *observer,
+int ln2_get_lunar_rst(double JD, struct ln_lnlat_posn *observer,
 					 struct ln_rst_time *rst)
 {
-	return ln_get_body_rst_horizon(JD, observer, ln_get_lunar_equ_coords,
+	return ln2_get_body_rst_horizon(JD, observer, ln2_get_lunar_equ_coords,
 								   LN_D2R(LN_LUNAR_STANDART_HORIZON), rst);
 }
 
-double ln_get_lunar_sdiam(double JD)
+double ln2_get_lunar_sdiam(double JD)
 {
 	double So = 358473400;
 	double dist;
 
-	dist = ln_get_lunar_earth_dist(JD);
+	dist = ln2_get_lunar_earth_dist(JD);
 	return So / dist;
 }
 
-double ln_get_lunar_long_asc_node(double JD)
+double ln2_get_lunar_long_asc_node(double JD)
 {
 	/* calc julian centuries */
 	double T = (JD - 2451545.0) / 36525.0;
@@ -1259,7 +1259,7 @@ double ln_get_lunar_long_asc_node(double JD)
 	return LN_D2R(omega);
 }
 
-double ln_get_lunar_long_perigee(double JD)
+double ln2_get_lunar_long_perigee(double JD)
 {
 	/* calc julian centuries */
 	double T = (JD - 2451545.0) / 36525.0;
@@ -1273,7 +1273,7 @@ double ln_get_lunar_long_perigee(double JD)
 	return LN_D2R(per);
 }
 
-double ln_get_lunar_arg_latitude(double JD)
+double ln2_get_lunar_arg_latitude(double JD)
 {
 	/* calc julian centuries */
 	double T = (JD - 2451545.0) / 36525.0;
@@ -1294,14 +1294,14 @@ void ln_get_lunar_selenographic_coords(double JD, struct ln_lnlat_posn *moon,
 {
 	/* equ 51.1 */
 	static const double I = 0.02692030744861093755; // 1.54242 deg in radians
-	double Omega = ln_get_lunar_long_asc_node(JD);
+	double Omega = ln2_get_lunar_long_asc_node(JD);
 	double W = moon->lng - Omega;
-	double F = ln_get_lunar_arg_latitude(JD);
+	double F = ln2_get_lunar_arg_latitude(JD);
 
 	double tan_Ay = sin(W) * cos(moon->lat) * cos(I) - sin(moon->lat) * sin(I);
 	double tan_Ax = cos(W) * cos(moon->lat);
 
-	position->lng = ln_range_radians(atan2(tan_Ay, tan_Ax) - F);
+	position->lng = ln2_range_radians(atan2(tan_Ay, tan_Ax) - F);
 	/* Remove deg conversion for output */
 	position->lng =
 		(position->lng > M_PI ? position->lng - 2.0 * M_PI : position->lng);
@@ -1312,7 +1312,7 @@ void ln_get_lunar_selenographic_coords(double JD, struct ln_lnlat_posn *moon,
 void ln_get_lunar_opt_libr_coords(double JD, struct ln_lnlat_posn *position)
 {
 	struct ln_lnlat_posn moon;
-	ln_get_lunar_ecl_coords(JD, &moon, 0);
+	ln2_get_lunar_ecl_coords(JD, &moon, 0);
 	ln_get_lunar_selenographic_coords(JD, &moon, position);
 }
 
@@ -1320,12 +1320,12 @@ void ln_get_lunar_subsolar_coords(double JD, struct ln_lnlat_posn *position)
 {
 	struct ln_lnlat_posn moon;
 	struct ln_lnlat_posn sun;
-	double EM_dist = ln_get_lunar_earth_dist(JD);
-	double ES_dist = ln_get_earth_solar_dist(JD) * AU;
+	double EM_dist = ln2_get_lunar_earth_dist(JD);
+	double ES_dist = ln2_get_earth_solar_dist(JD) * AU;
 	double dist_ratio = EM_dist / ES_dist;
 
-	ln_get_solar_ecl_coords(JD, &sun);
-	ln_get_lunar_ecl_coords(JD, &moon, 0);
+	ln2_get_solar_ecl_coords(JD, &sun);
+	ln2_get_lunar_ecl_coords(JD, &moon, 0);
 
 	moon.lng = sun.lng + 180.0 +
 			   57.296 * dist_ratio * cos(LN_D2R(moon.lat)) *
@@ -1346,7 +1346,7 @@ void ln_get_lunar_subsolar_coords(double JD, struct ln_lnlat_posn *position)
  * and then while loop increase this k until nd (JD of mean phase) is fisrt
  * one below or above given JD. This loop runs several times (1-3) only.
  */
-double ln_lunar_next_phase(double jd, double phase)
+double ln2_lunar_next_phase(double jd, double phase)
 {
 	double ph, k, angle;
 
@@ -1358,13 +1358,13 @@ double ln_lunar_next_phase(double jd, double phase)
 
 	angle = 2.0 * M_PI * phase;
 
-	while ((ph = ln_find_zero(lunar_phase, ph, ph + 0.01, &angle)) < jd)
+	while ((ph = ln2_find_zero(lunar_phase, ph, ph + 0.01, &angle)) < jd)
 		ph += 29.530588861;
 
 	return ph;
 }
 
-double ln_lunar_previous_phase(double jd, double phase)
+double ln2_lunar_previous_phase(double jd, double phase)
 {
 	double ph, k, angle;
 
@@ -1376,13 +1376,13 @@ double ln_lunar_previous_phase(double jd, double phase)
 
 	angle = 2.0 * M_PI * phase;
 
-	while ((ph = ln_find_zero(lunar_phase, ph, ph + 0.01, &angle)) > jd)
+	while ((ph = ln2_find_zero(lunar_phase, ph, ph + 0.01, &angle)) > jd)
 		ph -= 29.530588861;
 
 	return ph;
 }
 
-double ln_lunar_next_apsis(double jd, int apogee)
+double ln2_lunar_next_apsis(double jd, int apogee)
 {
 	double ap, k;
 
@@ -1393,11 +1393,11 @@ double ln_lunar_next_apsis(double jd, int apogee)
 		k += 1.0;
 
 	if (apogee) {
-		while ((ap = ln_find_max(lunar_distance, ap - 3.0, ap + 3.0, NULL)) <
+		while ((ap = ln2_find_max(lunar_distance, ap - 3.0, ap + 3.0, NULL)) <
 			   jd)
 			ap += 27.55454989;
 	} else {
-		while ((ap = ln_find_max(lunar_neg_distance, ap - 3.0, ap + 3.0,
+		while ((ap = ln2_find_max(lunar_neg_distance, ap - 3.0, ap + 3.0,
 								 NULL)) < jd)
 			ap += 27.55454989;
 	}
@@ -1405,7 +1405,7 @@ double ln_lunar_next_apsis(double jd, int apogee)
 	return ap;
 }
 
-double ln_lunar_previous_apsis(double jd, int apogee)
+double ln2_lunar_previous_apsis(double jd, int apogee)
 {
 	double ap, k;
 
@@ -1416,11 +1416,11 @@ double ln_lunar_previous_apsis(double jd, int apogee)
 		k -= 1.0;
 
 	if (apogee) {
-		while ((ap = ln_find_max(lunar_distance, ap - 3.0, ap + 3.0, NULL)) >
+		while ((ap = ln2_find_max(lunar_distance, ap - 3.0, ap + 3.0, NULL)) >
 			   jd)
 			ap -= 27.55454989;
 	} else {
-		while ((ap = ln_find_max(lunar_neg_distance, ap - 3.0, ap + 3.0,
+		while ((ap = ln2_find_max(lunar_neg_distance, ap - 3.0, ap + 3.0,
 								 NULL)) > jd)
 			ap -= 27.55454989;
 	}
@@ -1428,7 +1428,7 @@ double ln_lunar_previous_apsis(double jd, int apogee)
 	return ap;
 }
 
-double ln_lunar_next_node(double jd, int mode)
+double ln2_lunar_next_node(double jd, int mode)
 {
 	double nd, k;
 
@@ -1437,13 +1437,13 @@ double ln_lunar_next_node(double jd, int mode)
 	while ((nd = 2451565.1619 + 27.212220817 * k) < jd)
 		k += 1.0;
 
-	while ((nd = ln_find_zero(_lunar_ecl_lat, nd - 3.0, nd + 3.0, NULL)) < jd)
+	while ((nd = ln2_find_zero(_lunar_ecl_lat, nd - 3.0, nd + 3.0, NULL)) < jd)
 		nd += 27.212220817;
 
 	return nd;
 }
 
-double ln_lunar_previous_node(double jd, int mode)
+double ln2_lunar_previous_node(double jd, int mode)
 {
 	double nd, k;
 
@@ -1452,7 +1452,7 @@ double ln_lunar_previous_node(double jd, int mode)
 	while ((nd = 2451565.1619 + 27.212220817 * k) > jd)
 		k -= 1.0;
 
-	while ((nd = ln_find_zero(_lunar_ecl_lat, nd - 3.0, nd + 3.0, NULL)) > jd)
+	while ((nd = ln2_find_zero(_lunar_ecl_lat, nd - 3.0, nd + 3.0, NULL)) > jd)
 		nd -= 27.212220817;
 
 	return nd;

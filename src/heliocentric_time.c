@@ -22,13 +22,13 @@
 #include <libnova/heliocentric_time.h>
 #include <libnova/nutation.h>
 #include <libnova/utility.h>
-double ln_get_heliocentric_time_diff(double JD, struct ln_equ_posn *object) {
+double ln2_get_heliocentric_time_diff(double JD, struct ln_equ_posn *object) {
   double theta, ra, dec, c_dec, obliq;
   struct ln_nutation nutation;
   struct ln_helio_posn earth;
 
-  ln_get_nutation(JD, &nutation);
-  ln_get_earth_helio_coords(JD, &earth);
+  ln2_get_nutation(JD, &nutation);
+  ln2_get_earth_helio_coords(JD, &earth);
 
   /* add 180 degrees to the longitude in radians */
   theta = earth.L + M_PI;

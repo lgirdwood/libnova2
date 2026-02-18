@@ -24,14 +24,14 @@
 /*
 ** Airmass
 */
-double ln_get_airmass(double alt, double airmass_scale)
+double ln2_get_airmass(double alt, double airmass_scale)
 {
 	double a;
 
 	a = airmass_scale * sin(alt);
 	return sqrt(a * a + 2.0 * airmass_scale + 1.0) - a;
 }
-double ln_get_alt_from_airmass(double X, double airmass_scale)
+double ln2_get_alt_from_airmass(double X, double airmass_scale)
 {
 	return asin((2.0 * airmass_scale + 1.0 - X * X) /
 		(2.0 * X * airmass_scale));

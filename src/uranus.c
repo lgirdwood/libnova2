@@ -5369,7 +5369,7 @@ static const struct ln_vsop ALIGN32 uranus_radius_r4[RADIUS_R4] = {
     {     0.00000002472,  3.28269448244,       18.15924726470}, 
     {     0.00000002837,  3.14159265359,        0.00000000000}, 
 }; 
-void ln_get_uranus_equ_coords(double JD, struct ln_equ_posn *position)
+void ln2_get_uranus_equ_coords(double JD, struct ln_equ_posn *position)
 {
 	struct ln_helio_posn h_sol, h_uranus;
 	struct ln_rect_posn g_sol, g_uranus;
@@ -5377,13 +5377,13 @@ void ln_get_uranus_equ_coords(double JD, struct ln_equ_posn *position)
 	double ra, dec, delta, diff, last, t = 0;
 	
 	/* need typdef for solar heliocentric coords */
-	ln_get_solar_geom_coords(JD, &h_sol);
-	ln_get_rect_from_helio(&h_sol,  &g_sol);
+	ln2_get_solar_geom_coords(JD, &h_sol);
+	ln2_get_rect_from_helio(&h_sol,  &g_sol);
 	
 	do {
 		last = t;
-		ln_get_uranus_helio_coords(JD - t, &h_uranus);
-		ln_get_rect_from_helio(&h_uranus, &g_uranus);
+		ln2_get_uranus_helio_coords(JD - t, &h_uranus);
+		ln2_get_rect_from_helio(&h_uranus, &g_uranus);
 
 		/* equ 33.10 pg 229 */
 		a = g_sol.X + g_uranus.X;
@@ -5401,12 +5401,12 @@ void ln_get_uranus_equ_coords(double JD, struct ln_equ_posn *position)
 	dec = asin(dec);
 
 	/* output in radians */
-	position->ra = ln_range_radians(ra);
+	position->ra = ln2_range_radians(ra);
 	position->dec = dec;
 } 
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 
 */
-void ln_get_uranus_helio_coords(double JD, struct ln_helio_posn *position)
+void ln2_get_uranus_helio_coords(double JD, struct ln_helio_posn *position)
 {
 	double t, t2, t3, t4;
 
@@ -5430,34 +5430,34 @@ void ln_get_uranus_helio_coords(double JD, struct ln_helio_posn *position)
 	t4 = t3 * t;
 	
 	/* calc L series */
-	L0 = ln_calc_series(uranus_longitude_l0, LONG_L0, t);
-	L1 = ln_calc_series(uranus_longitude_l1, LONG_L1, t);
-	L2 = ln_calc_series(uranus_longitude_l2, LONG_L2, t);
-	L3 = ln_calc_series(uranus_longitude_l3, LONG_L3, t);
-	L4 = ln_calc_series(uranus_longitude_l4, LONG_L4, t);
+	L0 = ln2_calc_series(uranus_longitude_l0, LONG_L0, t);
+	L1 = ln2_calc_series(uranus_longitude_l1, LONG_L1, t);
+	L2 = ln2_calc_series(uranus_longitude_l2, LONG_L2, t);
+	L3 = ln2_calc_series(uranus_longitude_l3, LONG_L3, t);
+	L4 = ln2_calc_series(uranus_longitude_l4, LONG_L4, t);
 	position->L = (L0 + L1 * t + L2 * t2 + L3 * t3 + L4 * t4);
 
 	/* calc B series */
-	B0 = ln_calc_series(uranus_latitude_b0, LAT_B0, t);
-	B1 = ln_calc_series(uranus_latitude_b1, LAT_B1, t);
-	B2 = ln_calc_series(uranus_latitude_b2, LAT_B2, t);
-	B3 = ln_calc_series(uranus_latitude_b3, LAT_B3, t);
+	B0 = ln2_calc_series(uranus_latitude_b0, LAT_B0, t);
+	B1 = ln2_calc_series(uranus_latitude_b1, LAT_B1, t);
+	B2 = ln2_calc_series(uranus_latitude_b2, LAT_B2, t);
+	B3 = ln2_calc_series(uranus_latitude_b3, LAT_B3, t);
 	position->B = (B0 + B1 * t + B2 * t2 + B3 * t3);
 
 
 	/* calc R series */
-	R0 = ln_calc_series(uranus_radius_r0, RADIUS_R0, t);
-	R1 = ln_calc_series(uranus_radius_r1, RADIUS_R1, t);
-	R2 = ln_calc_series(uranus_radius_r2, RADIUS_R2, t);
-	R3 = ln_calc_series(uranus_radius_r3, RADIUS_R3, t);
-	R4 = ln_calc_series(uranus_radius_r4, RADIUS_R4, t);
+	R0 = ln2_calc_series(uranus_radius_r0, RADIUS_R0, t);
+	R1 = ln2_calc_series(uranus_radius_r1, RADIUS_R1, t);
+	R2 = ln2_calc_series(uranus_radius_r2, RADIUS_R2, t);
+	R3 = ln2_calc_series(uranus_radius_r3, RADIUS_R3, t);
+	R4 = ln2_calc_series(uranus_radius_r4, RADIUS_R4, t);
 	position->R = (R0 + R1 * t + R2 * t2 + R3 * t3 + R4 * t4);
 	
 	/* change to radians in correct quadrant */
-	position->L = ln_range_radians(position->L);
+	position->L = ln2_range_radians(position->L);
 	
 	/* change to fk5 reference frame */
-	ln_vsop87_to_fk5(position, JD);
+	ln2_vsop87_to_fk5(position, JD);
 	
 	/* save cache */
 	cJD = JD;
@@ -5465,19 +5465,19 @@ void ln_get_uranus_helio_coords(double JD, struct ln_helio_posn *position)
 	cB = position->B;
 	cR = position->R;
 }
-double ln_get_uranus_earth_dist(double JD)
+double ln2_get_uranus_earth_dist(double JD)
 {
 	struct ln_helio_posn h_uranus, h_earth;
 	struct ln_rect_posn g_uranus, g_earth;
 	double x, y, z;
 	
 	/* get heliocentric positions */
-	ln_get_uranus_helio_coords(JD, &h_uranus);
-	ln_get_earth_helio_coords(JD, &h_earth);
+	ln2_get_uranus_helio_coords(JD, &h_uranus);
+	ln2_get_earth_helio_coords(JD, &h_earth);
 	
 	/* get geocentric coords */
-	ln_get_rect_from_helio(&h_uranus, &g_uranus);
-	ln_get_rect_from_helio(&h_earth, &g_earth);
+	ln2_get_rect_from_helio(&h_uranus, &g_uranus);
+	ln2_get_rect_from_helio(&h_earth, &g_earth);
 	
 	/* use pythag */
 	x = g_uranus.X - g_earth.X;
@@ -5489,70 +5489,70 @@ double ln_get_uranus_earth_dist(double JD)
 
 	return sqrt(x + y + z);
 } 
-double ln_get_uranus_solar_dist(double JD)
+double ln2_get_uranus_solar_dist(double JD)
 {
 	struct ln_helio_posn h_uranus;
 		
 	/* get heliocentric position */
-	ln_get_uranus_helio_coords(JD, &h_uranus);
+	ln2_get_uranus_helio_coords(JD, &h_uranus);
 	return h_uranus.R;
 } 
-double ln_get_uranus_magnitude(double JD)
+double ln2_get_uranus_magnitude(double JD)
 {
 	double delta, r;
 	
 	/* get distances */
-	r = ln_get_uranus_solar_dist(JD);
-	delta = ln_get_uranus_earth_dist(JD);
+	r = ln2_get_uranus_solar_dist(JD);
+	delta = ln2_get_uranus_earth_dist(JD);
 
 	return -7.19 + 5.0 * log10(r * delta);
 } 
 /* Chapter 41 */
-double ln_get_uranus_disk(double JD)
+double ln2_get_uranus_disk(double JD)
 {
 	double r, delta, R;
 	
 	/* get distances */
-	R = ln_get_earth_solar_dist(JD);
-	r = ln_get_uranus_solar_dist(JD);
-	delta = ln_get_uranus_earth_dist(JD);
+	R = ln2_get_earth_solar_dist(JD);
+	r = ln2_get_uranus_solar_dist(JD);
+	delta = ln2_get_uranus_earth_dist(JD);
 	
 	/* calc fraction angle */
 	return (((r + delta) * (r + delta)) - R * R) / (4.0 * r * delta);
 } 
 /* Chapter 41 */
-double ln_get_uranus_phase(double JD)
+double ln2_get_uranus_phase(double JD)
 {
 	double i, r, delta, R;
 	
 	/* get distances */
-	R = ln_get_earth_solar_dist(JD);
-	r = ln_get_uranus_solar_dist(JD);
-	delta = ln_get_uranus_earth_dist(JD);
+	R = ln2_get_earth_solar_dist(JD);
+	r = ln2_get_uranus_solar_dist(JD);
+	delta = ln2_get_uranus_earth_dist(JD);
 
 	/* calc phase */
 	i = (r * r + delta * delta - R * R) / (2.0 * r * delta);
 	i = acos(i);
 	return i;
 }
-int ln_get_uranus_rst(double JD, struct ln_lnlat_posn *observer,
+int ln2_get_uranus_rst(double JD, struct ln_lnlat_posn *observer,
 	struct ln_rst_time *rst)
 {
-	return ln_get_body_rst_horizon(JD, observer, ln_get_uranus_equ_coords,
+	return ln2_get_body_rst_horizon(JD, observer, ln2_get_uranus_equ_coords,
 		LN_STAR_STANDART_HORIZON, rst);
 }
-double ln_get_uranus_sdiam(double JD)
+double ln2_get_uranus_sdiam(double JD)
 {
 	double So = 35.02; /* at 1 AU */
 	double dist;
 	
-	dist = ln_get_uranus_earth_dist(JD);
+	dist = ln2_get_uranus_earth_dist(JD);
 	return LN_D2R(So / 3600.0) / dist;
 }
-void ln_get_uranus_rect_helio(double JD, struct ln_rect_posn *position)
+void ln2_get_uranus_rect_helio(double JD, struct ln_rect_posn *position)
 {
 	struct ln_helio_posn uranus;
 		
-	ln_get_uranus_helio_coords(JD, &uranus);
-	ln_get_rect_from_helio(&uranus, position);
+	ln2_get_uranus_helio_coords(JD, &uranus);
+	ln2_get_rect_from_helio(&uranus, position);
 }

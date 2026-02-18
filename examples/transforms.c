@@ -61,24 +61,24 @@ int main(int argc, const char *argv[]) {
   /* UT date and time */
   date = LN_DATE(2004, 4, 25, 12, 18, 49.0);
 
-  JD = ln_get_julian_day(&date);
-  ln_hequ_to_equ(&hobject, &object);
-  ln_hlnlat_to_lnlat(&hobserver, &observer);
+  JD = ln2_get_julian_day(&date);
+  ln2_hequ_to_equ(&hobject, &object);
+  ln2_hlnlat_to_lnlat(&hobserver, &observer);
 
-  ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
+  ln2_get_hrz_from_equ(&object, &observer, JD, &hrz);
   fprintf(stdout, "(Alnilam) Equ to Horiz ALT %f\n", LN_R2D(hrz.alt));
   fprintf(stdout, "(Alnilam) Equ to Horiz AZ %f\n", LN_R2D(hrz.az));
 
-  ln_hrz_to_hhrz(&hrz, &hhrz);
+  ln2_hrz_to_hhrz(&hrz, &hhrz);
   fprintf(stdout, "ALT %d:%d:%f  AZ %d:%d:%f\n", hhrz.alt.degrees,
           hhrz.alt.minutes, hhrz.alt.seconds, hhrz.az.degrees, hhrz.az.minutes,
           hhrz.az.seconds);
 
-  ln_get_equ_from_hrz(&hrz, &observer, JD, &equ);
+  ln2_get_equ_from_hrz(&hrz, &observer, JD, &equ);
   fprintf(stdout, "(Alnilam) Horiz to Equ RA %f\n", equ.ra);
   fprintf(stdout, "(Alnilam) Horiz to Equ DEC %f\n", equ.dec);
 
-  ln_equ_to_hequ(&equ, &hequ);
+  ln2_equ_to_hequ(&equ, &hequ);
   fprintf(stdout, "RA %d:%d:%f  DEC %d:%d:%f\n", hequ.ra.hours, hequ.ra.minutes,
           hequ.ra.seconds, hequ.dec.degrees, hequ.dec.minutes,
           hequ.dec.seconds);

@@ -24,26 +24,26 @@
 
 /* Equ 39.1, 39.2, 39.3 Pg 263 and 264
  */
-void ln_get_parallax(struct ln_equ_posn *object, double au_distance,
+void ln2_get_parallax(struct ln_equ_posn *object, double au_distance,
 					 struct ln_lnlat_posn *observer, double height, double JD,
 					 struct ln_equ_posn *parallax)
 {
 	double H;
 
 	/* use radians for H */
-	H = ln_get_apparent_sidereal_time(JD) - (observer->lng - object->ra);
-	H = ln_range_radians(H);
-	ln_get_parallax_ha(object, au_distance, observer, height, H, parallax);
+	H = ln2_get_apparent_sidereal_time(JD) - (observer->lng - object->ra);
+	H = ln2_range_radians(H);
+	ln2_get_parallax_ha(object, au_distance, observer, height, H, parallax);
 }
 /* Equ 39.1, 39.2, 39.3 Pg 263 and 264
  */
-void ln_get_parallax_ha(struct ln_equ_posn *object, double au_distance,
+void ln2_get_parallax_ha(struct ln_equ_posn *object, double au_distance,
 						struct ln_lnlat_posn *observer, double height, double H,
 						struct ln_equ_posn *parallax)
 {
 	double sin_pi, ro_sin, ro_cos, sin_H, cos_H, cos_dec;
 
-	ln_get_earth_centre_dist(height, observer->lat, &ro_sin, &ro_cos);
+	ln2_get_earth_centre_dist(height, observer->lat, &ro_sin, &ro_cos);
 	sin_pi = sin(LN_D2R((8.794 / au_distance) / 3600.0)); // (39.1)
 
 	/* hour angle is in radians */
@@ -53,7 +53,7 @@ void ln_get_parallax_ha(struct ln_equ_posn *object, double au_distance,
 	cos_dec = cos(object->dec);
 	parallax->ra = atan2(-ro_cos * sin_pi * sin_H,
 						 cos_dec - ro_cos * sin_pi * cos_H); // (39.2)
-	parallax->ra = ln_range_radians(parallax->ra);
+	parallax->ra = ln2_range_radians(parallax->ra);
 
 	/* we use the rigorous method 39.3 but its calculation object + parallax
    * in one step for declination and we need the delta parallax only so need

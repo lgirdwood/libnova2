@@ -46,7 +46,7 @@ extern "C" {
  *
  * Uses a plane-parallel atmosphere approximation with curvature correction.
  */
-double LIBNOVA_EXPORT ln_get_airmass(double alt, double airmass_scale);
+double LIBNOVA_EXPORT ln2_get_airmass(double alt, double airmass_scale);
 
 /**
  * \brief Calculate altitude for given air mass.
@@ -57,7 +57,7 @@ double LIBNOVA_EXPORT ln_get_airmass(double alt, double airmass_scale);
  *
  * Inverse calculation.
  */
-double LIBNOVA_EXPORT ln_get_alt_from_airmass(double X, double airmass_scale);
+double LIBNOVA_EXPORT ln2_get_alt_from_airmass(double X, double airmass_scale);
 
 #ifdef __cplusplus
 };

@@ -23,7 +23,7 @@ int parallax_test(void)
 	object.ra = LN_D2R(339.530208);
 	object.dec = LN_D2R(-15.773611);
 
-	ln_get_parallax(&object, AU, &observer, 1706.0, JD, &parallax);
+	ln2_get_parallax(&object, AU, &observer, 1706.0, JD, &parallax);
 
 	failed += test_result_dms("Mars RA parallax for Palomar observatory at 2003/08/28 3:17 UT ", LN_R2D(parallax.ra),
 							  0.0053917, 0.001);

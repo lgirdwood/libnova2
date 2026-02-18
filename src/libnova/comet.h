@@ -49,7 +49,7 @@ extern "C" {
 *
 * Based on Meeus Formula 33.1.
 */
-double LIBNOVA_EXPORT ln_get_ell_comet_mag(double JD, struct ln_ell_orbit *orbit, double g, double k);
+double LIBNOVA_EXPORT ln2_get_ell_comet_mag(double JD, struct ln_ell_orbit *orbit, double g, double k);
 
 /**
 * \ingroup comet
@@ -62,7 +62,7 @@ double LIBNOVA_EXPORT ln_get_ell_comet_mag(double JD, struct ln_ell_orbit *orbit
 *
 * Based on Meeus Formula 33.1.
 */
-double LIBNOVA_EXPORT ln_get_par_comet_mag(double JD, struct ln_par_orbit *orbit, double g, double k);
+double LIBNOVA_EXPORT ln2_get_par_comet_mag(double JD, struct ln_par_orbit *orbit, double g, double k);
 
 #ifdef __cplusplus
 };

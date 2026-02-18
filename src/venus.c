@@ -1830,7 +1830,7 @@ static const struct ln_vsop ALIGN32 venus_radius_r5[RADIUS_R5] = {
     {     0.00000000045,  0.30037014808,    10213.28554621100}, 
     {     0.00000000002,  5.33215705373,    20426.57109242200}, 
 }; 
-void ln_get_venus_equ_coords(double JD, struct ln_equ_posn *position)
+void ln2_get_venus_equ_coords(double JD, struct ln_equ_posn *position)
 {
 	struct ln_helio_posn h_sol, h_venus;
 	struct ln_rect_posn g_sol, g_venus;
@@ -1838,13 +1838,13 @@ void ln_get_venus_equ_coords(double JD, struct ln_equ_posn *position)
 	double ra, dec, delta, diff, last, t = 0;
 	
 	/* need typdef for solar heliocentric coords */
-	ln_get_solar_geom_coords(JD, &h_sol);
-	ln_get_rect_from_helio(&h_sol,  &g_sol);
+	ln2_get_solar_geom_coords(JD, &h_sol);
+	ln2_get_rect_from_helio(&h_sol,  &g_sol);
 	
 	do {
 		last = t;
-		ln_get_venus_helio_coords(JD - t, &h_venus);
-		ln_get_rect_from_helio(&h_venus, &g_venus);
+		ln2_get_venus_helio_coords(JD - t, &h_venus);
+		ln2_get_rect_from_helio(&h_venus, &g_venus);
 
 		/* equ 33.10 pg 229 */
 		a = g_sol.X + g_venus.X;
@@ -1862,12 +1862,12 @@ void ln_get_venus_equ_coords(double JD, struct ln_equ_posn *position)
 	dec = asin(dec);
 
 	/* output in radians */
-	position->ra = ln_range_radians(ra);
+	position->ra = ln2_range_radians(ra);
 	position->dec = dec;
 } 
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 
 */
-void ln_get_venus_helio_coords(double JD, struct ln_helio_posn *position)
+void ln2_get_venus_helio_coords(double JD, struct ln_helio_posn *position)
 {
 	double t, t2, t3, t4, t5;
 	double L0, L1, L2, L3, L4, L5;
@@ -1891,38 +1891,38 @@ void ln_get_venus_helio_coords(double JD, struct ln_helio_posn *position)
 	t5 = t4 * t;
 	
 	/* calc L series */
-	L0 = ln_calc_series(venus_longitude_l0, LONG_L0, t);
-	L1 = ln_calc_series(venus_longitude_l1, LONG_L1, t);
-	L2 = ln_calc_series(venus_longitude_l2, LONG_L2, t);
-	L3 = ln_calc_series(venus_longitude_l3, LONG_L3, t);
-	L4 = ln_calc_series(venus_longitude_l4, LONG_L4, t);
-	L5 = ln_calc_series(venus_longitude_l5, LONG_L5, t);
+	L0 = ln2_calc_series(venus_longitude_l0, LONG_L0, t);
+	L1 = ln2_calc_series(venus_longitude_l1, LONG_L1, t);
+	L2 = ln2_calc_series(venus_longitude_l2, LONG_L2, t);
+	L3 = ln2_calc_series(venus_longitude_l3, LONG_L3, t);
+	L4 = ln2_calc_series(venus_longitude_l4, LONG_L4, t);
+	L5 = ln2_calc_series(venus_longitude_l5, LONG_L5, t);
 	position->L = (L0 + L1 * t + L2 * t2 + L3 * t3 + L4 * t4 + L5 * t5);
 
 	/* calc B series */
-	B0 = ln_calc_series(venus_latitude_b0, LAT_B0, t);
-	B1 = ln_calc_series(venus_latitude_b1, LAT_B1, t);
-	B2 = ln_calc_series(venus_latitude_b2, LAT_B2, t);
-	B3 = ln_calc_series(venus_latitude_b3, LAT_B3, t);
-	B4 = ln_calc_series(venus_latitude_b4, LAT_B4, t);
-	B5 = ln_calc_series(venus_latitude_b5, LAT_B5, t);
+	B0 = ln2_calc_series(venus_latitude_b0, LAT_B0, t);
+	B1 = ln2_calc_series(venus_latitude_b1, LAT_B1, t);
+	B2 = ln2_calc_series(venus_latitude_b2, LAT_B2, t);
+	B3 = ln2_calc_series(venus_latitude_b3, LAT_B3, t);
+	B4 = ln2_calc_series(venus_latitude_b4, LAT_B4, t);
+	B5 = ln2_calc_series(venus_latitude_b5, LAT_B5, t);
 	position->B = (B0 + B1 * t + B2 * t2 + B3 * t3 + B4 * t4 + B5 * t5);
 
 
 	/* calc R series */
-	R0 = ln_calc_series(venus_radius_r0, RADIUS_R0, t);
-	R1 = ln_calc_series(venus_radius_r1, RADIUS_R1, t);
-	R2 = ln_calc_series(venus_radius_r2, RADIUS_R2, t);
-	R3 = ln_calc_series(venus_radius_r3, RADIUS_R3, t);
-	R4 = ln_calc_series(venus_radius_r4, RADIUS_R4, t);
-	R5 = ln_calc_series(venus_radius_r5, RADIUS_R5, t);
+	R0 = ln2_calc_series(venus_radius_r0, RADIUS_R0, t);
+	R1 = ln2_calc_series(venus_radius_r1, RADIUS_R1, t);
+	R2 = ln2_calc_series(venus_radius_r2, RADIUS_R2, t);
+	R3 = ln2_calc_series(venus_radius_r3, RADIUS_R3, t);
+	R4 = ln2_calc_series(venus_radius_r4, RADIUS_R4, t);
+	R5 = ln2_calc_series(venus_radius_r5, RADIUS_R5, t);
 	position->R = (R0 + R1 * t + R2 * t2 + R3 * t3 + R4 * t4 + R5 * t5);
 	
 	/* change to radians in correct quadrant */
-	position->L = ln_range_radians(position->L);
+	position->L = ln2_range_radians(position->L);
 	
 	/* change to fk5 reference frame */
-	ln_vsop87_to_fk5(position, JD);
+	ln2_vsop87_to_fk5(position, JD);
 	
 	/* save cache */
 	cJD = JD;
@@ -1930,19 +1930,19 @@ void ln_get_venus_helio_coords(double JD, struct ln_helio_posn *position)
 	cB = position->B;
 	cR = position->R;
 }
-double ln_get_venus_earth_dist(double JD)
+double ln2_get_venus_earth_dist(double JD)
 {
 	struct ln_helio_posn h_venus, h_earth;
 	struct ln_rect_posn g_venus, g_earth;
 	double x, y, z;
 	
 	/* get heliocentric positions */
-	ln_get_venus_helio_coords(JD, &h_venus);
-	ln_get_earth_helio_coords(JD, &h_earth);
+	ln2_get_venus_helio_coords(JD, &h_venus);
+	ln2_get_earth_helio_coords(JD, &h_earth);
 	
 	/* get geocentric coords */
-	ln_get_rect_from_helio(&h_venus, &g_venus);
-	ln_get_rect_from_helio(&h_earth, &g_earth);
+	ln2_get_rect_from_helio(&h_venus, &g_venus);
+	ln2_get_rect_from_helio(&h_earth, &g_earth);
 	
 	/* use pythag */
 	x = g_venus.X - g_earth.X;
@@ -1954,25 +1954,25 @@ double ln_get_venus_earth_dist(double JD)
 	z = z * z;
 	return sqrt(x + y + z);
 } 
-double ln_get_venus_solar_dist(double JD)
+double ln2_get_venus_solar_dist(double JD)
 {
 	struct ln_helio_posn h_venus;
 
 	/* get heliocentric position */
-	ln_get_venus_helio_coords(JD, &h_venus);
+	ln2_get_venus_helio_coords(JD, &h_venus);
 
 	return h_venus.R;
 } 
-double ln_get_venus_magnitude(double JD)
+double ln2_get_venus_magnitude(double JD)
 {
 	double delta, r, i, i2, i3;
 	
 	/* get distances */
-	r = ln_get_venus_solar_dist(JD);
-	delta = ln_get_venus_earth_dist(JD);
+	r = ln2_get_venus_solar_dist(JD);
+	delta = ln2_get_venus_earth_dist(JD);
 	
 	/* get phase */
-	i = ln_get_venus_phase(JD);
+	i = ln2_get_venus_phase(JD);
 	i2 = i * i;
 	i3 = i2 * i;
 	
@@ -1980,27 +1980,27 @@ double ln_get_venus_magnitude(double JD)
 		0.000239 * i2 - 0.00000065 * i3;
 } 
 /* Chapter 41 */
-double ln_get_venus_disk(double JD)
+double ln2_get_venus_disk(double JD)
 {
 	double r, delta, R;
 	
 	/* get distances */
-	R = ln_get_earth_solar_dist(JD);
-	r = ln_get_venus_solar_dist(JD);
-	delta = ln_get_venus_earth_dist(JD);
+	R = ln2_get_earth_solar_dist(JD);
+	r = ln2_get_venus_solar_dist(JD);
+	delta = ln2_get_venus_earth_dist(JD);
 	
 	/* calc fraction angle */
 	return (((r + delta) * (r + delta)) - R * R) / (4.0 * r * delta);
 } 
 /* Chapter 41 */
-double ln_get_venus_phase(double JD)
+double ln2_get_venus_phase(double JD)
 {
 	double i, r, delta, R;
 	
 	/* get distances */
-	R = ln_get_earth_solar_dist(JD);
-	r = ln_get_venus_solar_dist(JD);
-	delta = ln_get_venus_earth_dist(JD);
+	R = ln2_get_earth_solar_dist(JD);
+	r = ln2_get_venus_solar_dist(JD);
+	delta = ln2_get_venus_earth_dist(JD);
 
 	/* calc phase */
 	i = (r * r + delta * delta - R * R) / (2.0 * r * delta);
@@ -2008,24 +2008,24 @@ double ln_get_venus_phase(double JD)
 
 	return i;
 }
-int ln_get_venus_rst(double JD, struct ln_lnlat_posn *observer,
+int ln2_get_venus_rst(double JD, struct ln_lnlat_posn *observer,
 	struct ln_rst_time *rst)
 {
-	return ln_get_body_rst_horizon(JD, observer, ln_get_venus_equ_coords,
+	return ln2_get_body_rst_horizon(JD, observer, ln2_get_venus_equ_coords,
 		LN_STAR_STANDART_HORIZON, rst);
 }
-double ln_get_venus_sdiam(double JD)
+double ln2_get_venus_sdiam(double JD)
 {
 	double So = 8.41; /* at 1 AU, using atmosphere value, not crust (8.34) */
 	double dist;
 	
-	dist = ln_get_venus_earth_dist(JD);
+	dist = ln2_get_venus_earth_dist(JD);
 	return LN_D2R(So / 3600.0) / dist;
 }
-void ln_get_venus_rect_helio(double JD, struct ln_rect_posn *position)
+void ln2_get_venus_rect_helio(double JD, struct ln_rect_posn *position)
 {
 	struct ln_helio_posn venus;
 	
-	ln_get_venus_helio_coords(JD, &venus);
-	ln_get_rect_from_helio(&venus, position);
+	ln2_get_venus_helio_coords(JD, &venus);
+	ln2_get_rect_from_helio(&venus, position);
 }

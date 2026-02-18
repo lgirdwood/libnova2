@@ -50,7 +50,7 @@ extern "C" {
 * Calculates the nutation in longitude and obliquity using the IAU 1980 theory (Meeus Table 22.A).
 * Also calculates the mean obliquity of the ecliptic (Meeus Formula 22.2) and the true obliquity.
 */
-void LIBNOVA_EXPORT ln_get_nutation(double JD, struct ln_nutation *nutation);
+void LIBNOVA_EXPORT ln2_get_nutation(double JD, struct ln_nutation *nutation);
 
 /**
 * \brief Calculate equatorial coordinates with the effects of nutation.
@@ -61,7 +61,7 @@ void LIBNOVA_EXPORT ln_get_nutation(double JD, struct ln_nutation *nutation);
 *
 * Meeus Formula 22.1. Applies the correction to Right Ascension and Declination due to nutation.
 */
-void LIBNOVA_EXPORT ln_get_equ_nut(struct ln_equ_posn *mean_position, double JD, struct ln_equ_posn *position);
+void LIBNOVA_EXPORT ln2_get_equ_nut(struct ln_equ_posn *mean_position, double JD, struct ln_equ_posn *position);
 
 #ifdef __cplusplus
 };

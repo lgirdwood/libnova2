@@ -231,7 +231,7 @@ static const struct pluto_radius radius[PLUTO_COEFFS] = {
 	{19, 35},
 	{10, 2}
 }; 
-void ln_get_pluto_equ_coords(double JD, struct ln_equ_posn *position)
+void ln2_get_pluto_equ_coords(double JD, struct ln_equ_posn *position)
 {
 	struct ln_helio_posn h_sol, h_pluto;
 	struct ln_rect_posn g_sol, g_pluto;
@@ -239,13 +239,13 @@ void ln_get_pluto_equ_coords(double JD, struct ln_equ_posn *position)
 	double ra, dec, delta, diff, last, t = 0;
 	
 	/* need typdef for solar heliocentric coords */
-	ln_get_solar_geom_coords(JD, &h_sol);
-	ln_get_rect_from_helio(&h_sol,  &g_sol);
+	ln2_get_solar_geom_coords(JD, &h_sol);
+	ln2_get_rect_from_helio(&h_sol,  &g_sol);
 	
 	do {
 		last = t;
-		ln_get_pluto_helio_coords(JD - t, &h_pluto);
-		ln_get_rect_from_helio(&h_pluto, &g_pluto);
+		ln2_get_pluto_helio_coords(JD - t, &h_pluto);
+		ln2_get_rect_from_helio(&h_pluto, &g_pluto);
 
 		/* equ 33.10 pg 229 */
 		a = g_sol.X + g_pluto.X;
@@ -263,13 +263,13 @@ void ln_get_pluto_equ_coords(double JD, struct ln_equ_posn *position)
 	dec = asin(dec);
 
 	/* output in radians */
-	position->ra = ln_range_radians(ra);
+	position->ra = ln2_range_radians(ra);
 	position->dec = dec;
 }
 /* Chap 37. Equ 37.1
 */
 
-void ln_get_pluto_helio_coords(double JD, struct ln_helio_posn *position)
+void ln2_get_pluto_helio_coords(double JD, struct ln_helio_posn *position)
 {
 	double sum_longitude = 0, sum_latitude = 0, sum_radius = 0;
 	double J, S, P;
@@ -310,7 +310,7 @@ void ln_get_pluto_helio_coords(double JD, struct ln_helio_posn *position)
 	}
 	
 	/* calc L, B, R, return in radians */
-	position->L = ln_range_radians(LN_D2R(238.958116 + 144.96 * t + sum_longitude * 0.000001));
+	position->L = ln2_range_radians(LN_D2R(238.958116 + 144.96 * t + sum_longitude * 0.000001));
 	position->B = LN_D2R(-3.908239 + sum_latitude * 0.000001);
 	position->R = 40.7241346 + sum_radius * 0.0000001; 
 	
@@ -320,19 +320,19 @@ void ln_get_pluto_helio_coords(double JD, struct ln_helio_posn *position)
 	cB = position->B;
 	cR = position->R;
 }
-double ln_get_pluto_earth_dist(double JD)
+double ln2_get_pluto_earth_dist(double JD)
 {
 	struct ln_helio_posn h_pluto, h_earth;
 	struct ln_rect_posn g_pluto, g_earth;
 	double x, y, z;
 	
 	/* get heliocentric positions */
-	ln_get_pluto_helio_coords(JD, &h_pluto);
-	ln_get_earth_helio_coords(JD, &h_earth);
+	ln2_get_pluto_helio_coords(JD, &h_pluto);
+	ln2_get_earth_helio_coords(JD, &h_earth);
 	
 	/* get geocentric coords */
-	ln_get_rect_from_helio(&h_pluto, &g_pluto);
-	ln_get_rect_from_helio(&h_earth, &g_earth);
+	ln2_get_rect_from_helio(&h_pluto, &g_pluto);
+	ln2_get_rect_from_helio(&h_earth, &g_earth);
 	
 	/* use pythag */
 	x = g_pluto.X - g_earth.X;
@@ -344,70 +344,70 @@ double ln_get_pluto_earth_dist(double JD)
 
 	return sqrt(x + y + z);
 } 
-double ln_get_pluto_solar_dist(double JD)
+double ln2_get_pluto_solar_dist(double JD)
 {
 	struct ln_helio_posn h_pluto;
 
 	/* get heliocentric position */
-	ln_get_pluto_helio_coords(JD, &h_pluto);
+	ln2_get_pluto_helio_coords(JD, &h_pluto);
 	return h_pluto.R;
 } 
-double ln_get_pluto_magnitude(double JD)
+double ln2_get_pluto_magnitude(double JD)
 {
 	double delta, r;
 	
 	/* get distances */
-	r = ln_get_pluto_solar_dist(JD);
-	delta = ln_get_pluto_earth_dist(JD);
+	r = ln2_get_pluto_solar_dist(JD);
+	delta = ln2_get_pluto_earth_dist(JD);
 
 	return -1.0 + 5.0 * log10(r * delta);
 } 
 /* Chapter 41 */
-double ln_get_pluto_disk(double JD)
+double ln2_get_pluto_disk(double JD)
 {
 	double r,delta,R;	
 	
 	/* get distances */
-	R = ln_get_earth_solar_dist(JD);
-	r = ln_get_pluto_solar_dist(JD);
-	delta = ln_get_pluto_earth_dist(JD);
+	R = ln2_get_earth_solar_dist(JD);
+	r = ln2_get_pluto_solar_dist(JD);
+	delta = ln2_get_pluto_earth_dist(JD);
 	
 	/* calc fraction angle */
 	return (((r + delta) * (r + delta)) - R * R) / (4.0 * r * delta);
 } 
 /* Chapter 41 */
-double ln_get_pluto_phase(double JD)
+double ln2_get_pluto_phase(double JD)
 {
 	double i,r,delta,R;	
 	
 	/* get distances */
-	R = ln_get_earth_solar_dist(JD);
-	r = ln_get_pluto_solar_dist(JD);
-	delta = ln_get_pluto_earth_dist(JD);
+	R = ln2_get_earth_solar_dist(JD);
+	r = ln2_get_pluto_solar_dist(JD);
+	delta = ln2_get_pluto_earth_dist(JD);
 
 	/* calc phase */
 	i = (r * r + delta * delta - R * R) / (2.0 * r * delta);
 	i = acos(i);
 	return i;
 }
-int ln_get_pluto_rst(double JD, struct ln_lnlat_posn *observer,
+int ln2_get_pluto_rst(double JD, struct ln_lnlat_posn *observer,
 		struct ln_rst_time *rst)
 {
-	return ln_get_body_rst_horizon(JD, observer, ln_get_pluto_equ_coords,
+	return ln2_get_body_rst_horizon(JD, observer, ln2_get_pluto_equ_coords,
 		LN_STAR_STANDART_HORIZON, rst);
 }
-double ln_get_pluto_sdiam(double JD)
+double ln2_get_pluto_sdiam(double JD)
 {
 	double So = 2.07; /* at 1 AU */
 	double dist;
 	
-	dist = ln_get_pluto_earth_dist(JD);
+	dist = ln2_get_pluto_earth_dist(JD);
 	return LN_D2R(So / 3600.0) / dist;
 }
-void ln_get_pluto_rect_helio(double JD, struct ln_rect_posn *position)
+void ln2_get_pluto_rect_helio(double JD, struct ln_rect_posn *position)
 {
 	struct ln_helio_posn pluto;
 		
-	ln_get_pluto_helio_coords(JD, &pluto);
-	ln_get_rect_from_helio(&pluto, position);
+	ln2_get_pluto_helio_coords(JD, &pluto);
+	ln2_get_rect_from_helio(&pluto, position);
 }

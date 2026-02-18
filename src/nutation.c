@@ -148,7 +148,7 @@ static long double c_JD = 0.0, c_longitude = 0.0, c_obliquity = 0.0,
  */
 /* TODO: add argument to specify this */
 /* TODO: use JD or JDE. confirm */
-void ln_get_nutation(double JD, struct ln_nutation *nutation) {
+void ln2_get_nutation(double JD, struct ln_nutation *nutation) {
 
   long double D, M, MM, F, O, T, T2, T3, JDE;
   long double coeff_sine, coeff_cos;
@@ -163,7 +163,7 @@ void ln_get_nutation(double JD, struct ln_nutation *nutation) {
     c_obliquity = 0;
 
     /* get julian ephemeris day */
-    JDE = (long double)ln_get_jde(JD);
+    JDE = (long double)ln2_get_jde(JD);
 
     /* calc T */
     T = (JDE - 2451545.0) / 36525.0;
@@ -212,10 +212,10 @@ void ln_get_nutation(double JD, struct ln_nutation *nutation) {
 }
 /* Equ 22.1
  */
-void ln_get_equ_nut(struct ln_equ_posn *mean_position, double JD,
+void ln2_get_equ_nut(struct ln_equ_posn *mean_position, double JD,
                     struct ln_equ_posn *position) {
   struct ln_nutation nut;
-  ln_get_nutation(JD, &nut);
+  ln2_get_nutation(JD, &nut);
 
   long double mean_ra, mean_dec, delta_ra, delta_dec;
 

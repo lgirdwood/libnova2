@@ -91,9 +91,9 @@ int test_result_dms(char *test, double calc, double expect, double tolerance)
 
 	diff = compare_results(calc, expect, tolerance);
 	if (diff != 0.0) {
-		ln_deg_to_dms(calc, &dms_calc);
-		ln_deg_to_dms(expect, &dms_expect);
-		ln_deg_to_dms(diff, &dms_diff);
+		ln2_deg_to_dms(calc, &dms_calc);
+		ln2_deg_to_dms(expect, &dms_expect);
+		ln2_deg_to_dms(diff, &dms_diff);
 
 		fprintf(stdout, "[FAILED]\n");
 		fprintf(stdout,
@@ -103,7 +103,7 @@ int test_result_dms(char *test, double calc, double expect, double tolerance)
 				dms_diff.degrees, dms_diff.minutes, dms_diff.seconds);
 		return 1;
 	} else {
-		ln_deg_to_dms(calc, &dms_calc);
+		ln2_deg_to_dms(calc, &dms_calc);
 		fprintf(stdout, "[PASSED]\n");
 		fprintf(stdout, "\tExpected and calculated %s%d\xc2\xb0%d\'%f\".\n\n", dms_calc.neg ? "-" : "",
 				dms_calc.degrees, dms_calc.minutes, dms_calc.seconds);
@@ -122,9 +122,9 @@ int test_result_hms(char *test, double calc, double expect, double tolerance)
 
 	diff = compare_results(calc, expect, tolerance);
 	if (diff != 0.0) {
-		ln_deg_to_hms(calc * 15.0, &hms_calc);
-		ln_deg_to_hms(expect * 15.0, &hms_expect);
-		ln_deg_to_hms(diff * 15.0, &hms_diff);
+		ln2_deg_to_hms(calc * 15.0, &hms_calc);
+		ln2_deg_to_hms(expect * 15.0, &hms_expect);
+		ln2_deg_to_hms(diff * 15.0, &hms_diff);
 
 		fprintf(stdout, "[FAILED]\n");
 		fprintf(stdout, "	Expected %dh %dm %fs but calculated %dh %dm %fs. Error %dh %dm %fs\n\n", hms_expect.hours,
@@ -132,7 +132,7 @@ int test_result_hms(char *test, double calc, double expect, double tolerance)
 				hms_diff.hours, hms_diff.minutes, hms_diff.seconds);
 		return 1;
 	} else {
-		ln_deg_to_hms(calc * 15.0, &hms_calc);
+		ln2_deg_to_hms(calc * 15.0, &hms_calc);
 		fprintf(stdout, "[PASSED]\n");
 		fprintf(stdout, "\tExpected and calculated %dh %dm %fs.\n\n", hms_calc.hours, hms_calc.minutes,
 				hms_calc.seconds);

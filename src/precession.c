@@ -53,7 +53,7 @@
 */
 /* Equ 20.3, 20.4 pg 126
  */
-void ln_get_equ_prec(struct ln_equ_posn *mean_position, double JD,
+void ln2_get_equ_prec(struct ln_equ_posn *mean_position, double JD,
                      struct ln_equ_posn *position) {
   long double t, t2, t3, A, B, C, zeta, eta, theta, ra, dec, mean_ra, mean_dec;
 
@@ -94,12 +94,12 @@ void ln_get_equ_prec(struct ln_equ_posn *mean_position, double JD,
   }
 
   /* output in radians */
-  position->ra = ln_range_radians(ra);
+  position->ra = ln2_range_radians(ra);
   position->dec = dec;
 }
 
 /* Equ 20.2, 20.4 pg 126 */
-void ln_get_equ_prec2(struct ln_equ_posn *mean_position, double fromJD,
+void ln2_get_equ_prec2(struct ln_equ_posn *mean_position, double fromJD,
                       double toJD, struct ln_equ_posn *position) {
   long double t, t2, t3, A, B, C, zeta, eta, theta, ra, dec, mean_ra, mean_dec,
       T, T2;
@@ -147,10 +147,10 @@ void ln_get_equ_prec2(struct ln_equ_posn *mean_position, double fromJD,
   }
 
   /* output in radians */
-  position->ra = ln_range_radians(ra);
+  position->ra = ln2_range_radians(ra);
   position->dec = dec;
 }
 /* Equ 20.5, 20.6 pg 128
  */
-void ln_get_ecl_prec(struct ln_lnlat_posn *mean_position, double JD,
+void ln2_get_ecl_prec(struct ln_lnlat_posn *mean_position, double JD,
                      struct ln_lnlat_posn *position) {}

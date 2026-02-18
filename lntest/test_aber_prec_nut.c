@@ -16,7 +16,7 @@ int aber_prec_nut_test(void) {
 
   date = LN_DATE(2028, 11, 13, 4, 33, 36);
 
-  JD = ln_get_julian_day(&date);
+  JD = ln2_get_julian_day(&date);
 
   hmean_position.ra.hours = 2;
   hmean_position.ra.minutes = 44;
@@ -27,14 +27,14 @@ int aber_prec_nut_test(void) {
   hmean_position.dec.minutes = 13;
   hmean_position.dec.seconds = 39.896;
 
-  ln_hequ_to_equ(&hmean_position, &mean_position);
+  ln2_hequ_to_equ(&hmean_position, &mean_position);
 
   failed += test_result("(Nutation) Theta Persei RA",
                         LN_R2D(mean_position.ra), 41.0540613, 0.00001);
   failed += test_result("(Nutation) Theta Persei DEC",
                         LN_R2D(mean_position.dec), 49.2277489, 0.00001);
 
-  ln_get_equ_aber(&mean_position, JD, &aberated);
+  ln2_get_equ_aber(&mean_position, JD, &aberated);
 
   failed +=
       test_result("(Aberation) Theta Persei position on 13th November 2028 RA",
@@ -43,7 +43,7 @@ int aber_prec_nut_test(void) {
       test_result("(Aberation) Theta Persei position on 13th November 2028 DEC",
                   LN_R2D(aberated.dec), 49.2296238, 0.00001);
 
-  ln_get_equ_prec(&aberated, JD, &precessed);
+  ln2_get_equ_prec(&aberated, JD, &precessed);
 
   failed += test_result(
       "(Aberation + Precession) Theta Persei position on 13th November 2028 RA",
@@ -52,7 +52,7 @@ int aber_prec_nut_test(void) {
                         "13th November 2028 DEC",
                         LN_R2D(precessed.dec), 49.3503415, 0.00001);
 
-  ln_get_equ_nut(&precessed, JD, &nutated);
+  ln2_get_equ_nut(&precessed, JD, &nutated);
 
   failed += test_result("(Aberation + Precession + Nutation) Theta Persei "
                         "position on 13th November 2028 RA",

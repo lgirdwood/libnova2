@@ -23,7 +23,7 @@
 #include <libnova/vsop87.h>
 #include <math.h>
 
-double ln_calc_series(const struct ln_vsop *data, int terms, double t) {
+double ln2_calc_series(const struct ln_vsop *data, int terms, double t) {
   double value = 0.0;
   int i;
 
@@ -36,7 +36,7 @@ double ln_calc_series(const struct ln_vsop *data, int terms, double t) {
 }
 /* Equation 31.3 Pg 207.
  */
-void ln_vsop87_to_fk5(struct ln_helio_posn *position, double JD) {
+void ln2_vsop87_to_fk5(struct ln_helio_posn *position, double JD) {
   double LL, cos_LL, sin_LL, T, delta_L, delta_B, B;
 
   /* get julian centuries from 2000 */

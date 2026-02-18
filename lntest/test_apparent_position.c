@@ -32,9 +32,9 @@ int apparent_position_test(void) {
   hpm.dec.seconds = 0.0895;
 
   JD = 2462088.69;
-  ln_hequ_to_equ(&hobject, &object);
-  ln_hequ_to_equ(&hpm, &pm);
-  ln_get_apparent_posn(&object, &pm, JD, &pos);
+  ln2_hequ_to_equ(&hobject, &object);
+  ln2_hequ_to_equ(&hpm, &pm);
+  ln2_get_apparent_posn(&object, &pm, JD, &pos);
 
   failed += test_result("(Apparent Position) RA on JD 2462088.69  ",
                         LN_R2D(pos.ra), 41.56039870, 0.00001);

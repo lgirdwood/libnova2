@@ -17,7 +17,7 @@ int nutation_test(void)
 	/* 1987 April 10th at 0h TDT */
 	JD = 2446895.5;
 
-	ln_get_nutation(JD, &nutation);
+	ln2_get_nutation(JD, &nutation);
 	failed += test_result_dms("(Nutation) longitude (deg) for JD 2446895.5", LN_R2D(nutation.longitude),
 							  -3.788 / (60.0 * 360.0), LN_R2D(0.0000001));
 
@@ -29,9 +29,9 @@ int nutation_test(void)
 
 	date = LN_DATE(2028, 11, 13, 4, 33, 36);
 
-	JD = ln_get_julian_day(&date);
+	JD = ln2_get_julian_day(&date);
 
-	ln_get_nutation(JD, &nutation);
+	ln2_get_nutation(JD, &nutation);
 
 	failed += test_result_dms("(Nutation) longitude (deg) for JD 2462088.69", LN_R2D(nutation.longitude),
 							  14.861 / (60.0 * 360.0), LN_R2D(0.0000001));

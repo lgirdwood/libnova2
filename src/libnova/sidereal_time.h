@@ -44,7 +44,7 @@ extern "C" {
 *
 * Formula based on Meeus Chapter 12.
 */
-double LIBNOVA_EXPORT ln_get_mean_sidereal_time(double JD);
+double LIBNOVA_EXPORT ln2_get_mean_sidereal_time(double JD);
 
 /**
 * \brief Calculate apparent sidereal time from date.
@@ -53,7 +53,7 @@ double LIBNOVA_EXPORT ln_get_mean_sidereal_time(double JD);
 * \return Apparent sidereal time in radians
 */
 
-double LIBNOVA_EXPORT ln_get_apparent_sidereal_time(double JD);
+double LIBNOVA_EXPORT ln2_get_apparent_sidereal_time(double JD);
 
 #ifdef __cplusplus
 };

@@ -139,7 +139,7 @@ static double get_dynamical_diff_other(double JD) {
 }
 /* Equation 9.1 on pg 73.
  */
-double ln_get_dynamical_time_diff(double JD) {
+double ln2_get_dynamical_time_diff(double JD) {
   double TD;
 
   /* check when JD is, and use corresponding formula */
@@ -163,11 +163,11 @@ double ln_get_dynamical_time_diff(double JD) {
   return TD;
 }
 
-double ln_get_jde(double JD) {
+double ln2_get_jde(double JD) {
   double JDE;
   double secs_in_day = 24.0 * 60.0 * 60.0;
 
-  JDE = JD + ln_get_dynamical_time_diff(JD) / secs_in_day;
+  JDE = JD + ln2_get_dynamical_time_diff(JD) / secs_in_day;
 
   return JDE;
 }

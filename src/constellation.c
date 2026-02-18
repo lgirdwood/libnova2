@@ -21,7 +21,7 @@
 #include <libnova/rise_set.h>
 #include <libnova/transform.h>
 #include <libnova/utility.h>
-const char* ln_get_constellation(struct ln_equ_posn *position)
+const char* ln2_get_constellation(struct ln_equ_posn *position)
 {
 	static const float	ra_lower[357] =
 	{

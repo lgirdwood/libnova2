@@ -1394,7 +1394,7 @@ static const struct ln_vsop ALIGN32 earth_radius_r5[RADIUS_R5] = {
 };
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87
  */
-void ln_get_earth_helio_coords(double JD, struct ln_helio_posn *position)
+void ln2_get_earth_helio_coords(double JD, struct ln_helio_posn *position)
 {
 	double t, t2, t3, t4, t5;
 	double L0, L1, L2, L3, L4, L5;
@@ -1418,37 +1418,37 @@ void ln_get_earth_helio_coords(double JD, struct ln_helio_posn *position)
 	t5 = t4 * t;
 
 	/* calc L series */
-	L0 = ln_calc_series(earth_longitude_l0, LONG_L0, t);
-	L1 = ln_calc_series(earth_longitude_l1, LONG_L1, t);
-	L2 = ln_calc_series(earth_longitude_l2, LONG_L2, t);
-	L3 = ln_calc_series(earth_longitude_l3, LONG_L3, t);
-	L4 = ln_calc_series(earth_longitude_l4, LONG_L4, t);
-	L5 = ln_calc_series(earth_longitude_l5, LONG_L5, t);
+	L0 = ln2_calc_series(earth_longitude_l0, LONG_L0, t);
+	L1 = ln2_calc_series(earth_longitude_l1, LONG_L1, t);
+	L2 = ln2_calc_series(earth_longitude_l2, LONG_L2, t);
+	L3 = ln2_calc_series(earth_longitude_l3, LONG_L3, t);
+	L4 = ln2_calc_series(earth_longitude_l4, LONG_L4, t);
+	L5 = ln2_calc_series(earth_longitude_l5, LONG_L5, t);
 	position->L = (L0 + L1 * t + L2 * t2 + L3 * t3 + L4 * t4 + L5 * t5);
 
 	/* calc B series */
-	B0 = ln_calc_series(earth_latitude_b0, LAT_B0, t);
-	B1 = ln_calc_series(earth_latitude_b1, LAT_B1, t);
-	B2 = ln_calc_series(earth_latitude_b2, LAT_B2, t);
-	B3 = ln_calc_series(earth_latitude_b3, LAT_B3, t);
-	B4 = ln_calc_series(earth_latitude_b4, LAT_B4, t);
-	B5 = ln_calc_series(earth_latitude_b5, LAT_B5, t);
+	B0 = ln2_calc_series(earth_latitude_b0, LAT_B0, t);
+	B1 = ln2_calc_series(earth_latitude_b1, LAT_B1, t);
+	B2 = ln2_calc_series(earth_latitude_b2, LAT_B2, t);
+	B3 = ln2_calc_series(earth_latitude_b3, LAT_B3, t);
+	B4 = ln2_calc_series(earth_latitude_b4, LAT_B4, t);
+	B5 = ln2_calc_series(earth_latitude_b5, LAT_B5, t);
 	position->B = (B0 + B1 * t + B2 * t2 + B3 * t3 + B4 * t4 + B5 * t5);
 
 	/* calc R series */
-	R0 = ln_calc_series(earth_radius_r0, RADIUS_R0, t);
-	R1 = ln_calc_series(earth_radius_r1, RADIUS_R1, t);
-	R2 = ln_calc_series(earth_radius_r2, RADIUS_R2, t);
-	R3 = ln_calc_series(earth_radius_r3, RADIUS_R3, t);
-	R4 = ln_calc_series(earth_radius_r4, RADIUS_R4, t);
-	R5 = ln_calc_series(earth_radius_r5, RADIUS_R5, t);
+	R0 = ln2_calc_series(earth_radius_r0, RADIUS_R0, t);
+	R1 = ln2_calc_series(earth_radius_r1, RADIUS_R1, t);
+	R2 = ln2_calc_series(earth_radius_r2, RADIUS_R2, t);
+	R3 = ln2_calc_series(earth_radius_r3, RADIUS_R3, t);
+	R4 = ln2_calc_series(earth_radius_r4, RADIUS_R4, t);
+	R5 = ln2_calc_series(earth_radius_r5, RADIUS_R5, t);
 	position->R = (R0 + R1 * t + R2 * t2 + R3 * t3 + R4 * t4 + R5 * t5);
 
 	/* change to radians in correct quadrant */
-	position->L = ln_range_radians(position->L);
+	position->L = ln2_range_radians(position->L);
 
 	/* change to fk5 reference frame */
-	ln_vsop87_to_fk5(position, JD);
+	ln2_vsop87_to_fk5(position, JD);
 
 	/* save cache */
 	cJD = JD;
@@ -1456,17 +1456,17 @@ void ln_get_earth_helio_coords(double JD, struct ln_helio_posn *position)
 	cB = position->B;
 	cR = position->R;
 }
-double ln_get_earth_solar_dist(double JD)
+double ln2_get_earth_solar_dist(double JD)
 {
 	struct ln_helio_posn h_earth;
 
 	/* get heliocentric position */
-	ln_get_earth_helio_coords(JD, &h_earth);
+	ln2_get_earth_helio_coords(JD, &h_earth);
 
 	return h_earth.R;
 }
 
-void ln_get_earth_centre_dist(float height, double latitude, double *p_sin_o, double *p_cos_o)
+void ln2_get_earth_centre_dist(float height, double latitude, double *p_sin_o, double *p_cos_o)
 {
 	double a, b, f, u;
 
@@ -1479,10 +1479,10 @@ void ln_get_earth_centre_dist(float height, double latitude, double *p_sin_o, do
 	*p_sin_o = (b / a) * sin(u) + (height / 6378140.0) * sin(latitude);
 	*p_cos_o = cos(u) + (height / 6378140.0) * cos(latitude);
 }
-void ln_get_earth_rect_helio(double JD, struct ln_rect_posn *position)
+void ln2_get_earth_rect_helio(double JD, struct ln_rect_posn *position)
 {
 	struct ln_helio_posn earth;
 
-	ln_get_earth_helio_coords(JD, &earth);
-	ln_get_rect_from_helio(&earth, position);
+	ln2_get_earth_helio_coords(JD, &earth);
+	ln2_get_rect_from_helio(&earth, position);
 }

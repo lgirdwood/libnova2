@@ -53,28 +53,28 @@ int main(int argc, const char *argv[])
 	observer.lng = LN_D2R(-3.18); /* 3.18 W */
 	
 	/* get the julian day from the local system time */
-	JD = ln_get_julian_from_sys();
+	JD = ln2_get_julian_from_sys();
 	fprintf(stdout, "JD %f\n",JD);
 	
 	/* get the lunar geopcentric position in km, earth is at 0,0,0 */
-	ln_get_lunar_geo_posn(JD, &moon, 0);
+	ln2_get_lunar_geo_posn(JD, &moon, 0);
 	fprintf(stdout, "lunar x %f  y %f  z %f\n", moon.X, moon.Y, moon.Z);
 	
 	/* Long Lat */
-	ln_get_lunar_ecl_coords(JD, &ecl, 0);
+	ln2_get_lunar_ecl_coords(JD, &ecl, 0);
 	fprintf(stdout, "lunar long %f  lat %f\n", ecl.lng, ecl.lat);
 	
 	/* RA, DEC */
-	ln_get_lunar_equ_coords(JD, &equ);
+	ln2_get_lunar_equ_coords(JD, &equ);
 	fprintf(stdout, "lunar RA %f  Dec %f\n", equ.ra, equ.dec);
 	
 	/* moon earth distance */
-	fprintf(stdout, "lunar distance km %f\n", ln_get_lunar_earth_dist(JD));
+	fprintf(stdout, "lunar distance km %f\n", ln2_get_lunar_earth_dist(JD));
 	
 	/* lunar disk, phase and bright limb */
-	fprintf(stdout, "lunar disk %f\n", ln_get_lunar_disk(JD));
-	fprintf(stdout, "lunar phase %f\n", ln_get_lunar_phase(JD));
-	fprintf(stdout, "lunar bright limb %f\n", ln_get_lunar_bright_limb(JD));
+	fprintf(stdout, "lunar disk %f\n", ln2_get_lunar_disk(JD));
+	fprintf(stdout, "lunar phase %f\n", ln2_get_lunar_phase(JD));
+	fprintf(stdout, "lunar bright limb %f\n", ln2_get_lunar_bright_limb(JD));
 
 	ln_get_lunar_opt_libr_coords(JD, &ecl);
 	fprintf(stdout, "lunar libration point long %f  lat %f\n", ecl.lng, ecl.lat);
@@ -83,36 +83,36 @@ int main(int argc, const char *argv[])
 	fprintf(stdout, "lunar subsolar point long %f  lat %f\n", ecl.lng, ecl.lat);
 	
 	/* rise, set and transit time */
-	if (ln_get_lunar_rst(JD, &observer, &rst) != 0)
+	if (ln2_get_lunar_rst(JD, &observer, &rst) != 0)
 		fprintf(stdout, "Moon is circumpolar\n");
 	else {
-		ln_get_local_date(rst.rise, &rise);
-		ln_get_local_date(rst.transit, &transit);
-		ln_get_local_date(rst.set, &set);
+		ln2_get_local_date(rst.rise, &rise);
+		ln2_get_local_date(rst.transit, &transit);
+		ln2_get_local_date(rst.set, &set);
 		print_date("Rise", &rise);
 		print_date("Transit", &transit);
 		print_date("Set", &set);
 	}
 	
 	/* rise, set and transit time */
-	if (ln_get_lunar_rst(JD - 24, &observer, &rst) != 0)
+	if (ln2_get_lunar_rst(JD - 24, &observer, &rst) != 0)
 		fprintf(stdout, "Moon is circumpolar\n");
 	else {
-		ln_get_local_date(rst.rise, &rise);
-		ln_get_local_date(rst.transit, &transit);
-		ln_get_local_date(rst.set, &set);
+		ln2_get_local_date(rst.rise, &rise);
+		ln2_get_local_date(rst.transit, &transit);
+		ln2_get_local_date(rst.set, &set);
 		print_date("Rise", &rise);
 		print_date("Transit", &transit);
 		print_date("Set", &set);
 	}
 	
 	/* rise, set and transit time */
-	if (ln_get_lunar_rst(JD - 25, &observer, &rst) != 0)
+	if (ln2_get_lunar_rst(JD - 25, &observer, &rst) != 0)
 		fprintf(stdout, "Moon is circumpolar\n");
 	else {
-		ln_get_local_date(rst.rise, &rise);
-		ln_get_local_date(rst.transit, &transit);
-		ln_get_local_date(rst.set, &set);
+		ln2_get_local_date(rst.rise, &rise);
+		ln2_get_local_date(rst.transit, &transit);
+		ln2_get_local_date(rst.set, &set);
 		print_date("Rise", &rise);
 		print_date("Transit", &transit);
 		print_date("Set", &set);

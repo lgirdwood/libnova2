@@ -26,7 +26,7 @@
 #include <libnova/sidereal_time.h>
 #include <libnova/utility.h>
 /* Equ 34.3, Barkers Equation */
-double ln_solve_barker(double q, double t)
+double ln2_solve_barker(double q, double t)
 {
 	double G, Y, W;
 	
@@ -39,24 +39,24 @@ double ln_solve_barker(double q, double t)
 	return Y - 1.0 / Y;
 }
 /* equ 30.1 */
-double ln_get_par_true_anomaly(double q, double t)
+double ln2_get_par_true_anomaly(double q, double t)
 {
 	double v, s;
 	
-	s = ln_solve_barker(q, t);
+	s = ln2_solve_barker(q, t);
 	v = 2.0 * atan(s);
 	
-	return ln_range_radians(v);
+	return ln2_range_radians(v);
 }
 /* equ 30.2 */
-double ln_get_par_radius_vector(double q, double t)
+double ln2_get_par_radius_vector(double q, double t)
 {
 	double s;
 	
-	s = ln_solve_barker(q, t);
+	s = ln2_solve_barker(q, t);
 	return q * (1.0 + s * s);
 }
-void ln_get_par_helio_rect_posn(struct ln_par_orbit *orbit, double JD,
+void ln2_get_par_helio_rect_posn(struct ln_par_orbit *orbit, double JD,
 	struct ln_rect_posn *posn)
 {
 	double A, B, C, F, G, H, P, Q, R;
@@ -93,10 +93,10 @@ void ln_get_par_helio_rect_posn(struct ln_par_orbit *orbit, double JD,
 	c = sqrt(H * H + R * R);
 	
 	/* get true anomaly */
-	v = ln_get_par_true_anomaly(orbit->q, t);
+	v = ln2_get_par_true_anomaly(orbit->q, t);
 	
 	/* get radius vector */
-	r = ln_get_par_radius_vector(orbit->q, t);
+	r = ln2_get_par_radius_vector(orbit->q, t);
 
 	/* equ 33.9 */
 	/* equ 33.9 */
@@ -104,24 +104,24 @@ void ln_get_par_helio_rect_posn(struct ln_par_orbit *orbit, double JD,
 	posn->Y = r * b * sin(B + orbit->w + v);
 	posn->Z = r * c * sin(C + orbit->w + v);
 }
-void ln_get_par_geo_rect_posn(struct ln_par_orbit *orbit, double JD,
+void ln2_get_par_geo_rect_posn(struct ln_par_orbit *orbit, double JD,
 	struct ln_rect_posn *posn)
 {
 	struct ln_rect_posn p_posn, e_posn;
 	struct ln_helio_posn earth;
 	
 	/* parabolic helio rect coords */
-	ln_get_par_helio_rect_posn(orbit, JD, &p_posn);
+	ln2_get_par_helio_rect_posn(orbit, JD, &p_posn);
 	
 	/* earth rect coords */
-	ln_get_earth_helio_coords(JD, &earth);
+	ln2_get_earth_helio_coords(JD, &earth);
 	
-	ln_get_rect_from_helio(&earth, &e_posn);
+	ln2_get_rect_from_helio(&earth, &e_posn);
 	posn->X = p_posn.X - e_posn.X;
 	posn->Y = p_posn.Y - e_posn.Y;
 	posn->Z = p_posn.Z - e_posn.Z;
 }
-void ln_get_par_body_equ_coords(double JD, struct ln_par_orbit *orbit,
+void ln2_get_par_body_equ_coords(double JD, struct ln_par_orbit *orbit,
 	struct ln_equ_posn *posn)
 {
 	struct ln_rect_posn body_rect_posn, sol_rect_posn;
@@ -129,15 +129,15 @@ void ln_get_par_body_equ_coords(double JD, struct ln_par_orbit *orbit,
 	double x,y,z;
 	
 	/* get solar and body rect coords */
-	ln_get_par_helio_rect_posn (orbit, JD, &body_rect_posn);
-	ln_get_solar_geo_coords(JD, &sol_rect_posn);
+	ln2_get_par_helio_rect_posn (orbit, JD, &body_rect_posn);
+	ln2_get_solar_geo_coords(JD, &sol_rect_posn);
 
 	/* calc distance and light time */
-	dist = ln_get_rect_distance (&body_rect_posn, &sol_rect_posn);
-	t = ln_get_light_time (dist);
+	dist = ln2_get_rect_distance (&body_rect_posn, &sol_rect_posn);
+	t = ln2_get_light_time (dist);
 	
 	/* repeat calculation with new time (i.e. JD - t) */
-	ln_get_par_helio_rect_posn (orbit, JD - t, &body_rect_posn);
+	ln2_get_par_helio_rect_posn (orbit, JD - t, &body_rect_posn);
 	
 	/* calc equ coords equ 33.10 */
 	x = sol_rect_posn.X + body_rect_posn.X;
@@ -145,36 +145,36 @@ void ln_get_par_body_equ_coords(double JD, struct ln_par_orbit *orbit,
 	z = sol_rect_posn.Z + body_rect_posn.Z;
 
 	/* output in radians */
-	posn->ra = ln_range_radians(atan2(y,x));
+	posn->ra = ln2_range_radians(atan2(y,x));
 	posn->dec = asin(z / sqrt(x * x + y * y + z * z));
 }
-double ln_get_par_body_earth_dist(double JD, struct ln_par_orbit *orbit)
+double ln2_get_par_body_earth_dist(double JD, struct ln_par_orbit *orbit)
 {
 	struct ln_rect_posn body_rect_posn, earth_rect_posn;
 			
 	/* get solar and body rect coords */
-	ln_get_par_geo_rect_posn(orbit, JD, &body_rect_posn);
+	ln2_get_par_geo_rect_posn(orbit, JD, &body_rect_posn);
 	earth_rect_posn.X = 0;
 	earth_rect_posn.Y = 0;
 	earth_rect_posn.Z = 0;
 	
 	/* calc distance */
-	return ln_get_rect_distance(&body_rect_posn, &earth_rect_posn);
+	return ln2_get_rect_distance(&body_rect_posn, &earth_rect_posn);
 }
-double ln_get_par_body_solar_dist(double JD, struct ln_par_orbit *orbit)
+double ln2_get_par_body_solar_dist(double JD, struct ln_par_orbit *orbit)
 {
 	struct ln_rect_posn body_rect_posn, sol_rect_posn;
 	
 	/* get solar and body rect coords */
-	ln_get_par_helio_rect_posn(orbit, JD, &body_rect_posn);
+	ln2_get_par_helio_rect_posn(orbit, JD, &body_rect_posn);
 	sol_rect_posn.X = 0;
 	sol_rect_posn.Y = 0;
 	sol_rect_posn.Z = 0;
 	
 	/* calc distance */
-	return ln_get_rect_distance(&body_rect_posn, &sol_rect_posn);
+	return ln2_get_rect_distance(&body_rect_posn, &sol_rect_posn);
 }
-double ln_get_par_body_phase_angle(double JD, struct ln_par_orbit *orbit)
+double ln2_get_par_body_phase_angle(double JD, struct ln_par_orbit *orbit)
 {
 	double r,R,d;
 	double t;
@@ -184,16 +184,16 @@ double ln_get_par_body_phase_angle(double JD, struct ln_par_orbit *orbit)
 	t = JD - orbit->JD;
 	
 	/* get radius vector */
-	r = ln_get_par_radius_vector(orbit->q, t);
+	r = ln2_get_par_radius_vector(orbit->q, t);
 	
 	/* get solar and Earth-Sun distances */
-	R = ln_get_earth_solar_dist(JD);
-	d = ln_get_par_body_solar_dist(JD, orbit);
+	R = ln2_get_earth_solar_dist(JD);
+	d = ln2_get_par_body_solar_dist(JD, orbit);
 
 	phase = (r * r + d * d - R * R) / (2.0 * r * d );
-	return ln_range_radians(acos(phase));
+	return ln2_range_radians(acos(phase));
 }
-double ln_get_par_body_elong(double JD, struct ln_par_orbit *orbit)
+double ln2_get_par_body_elong(double JD, struct ln_par_orbit *orbit)
 {
 	double r,R,d;
 	double t;
@@ -203,46 +203,46 @@ double ln_get_par_body_elong(double JD, struct ln_par_orbit *orbit)
 	t = JD - orbit->JD;
 	
 	/* get radius vector */
-	r = ln_get_par_radius_vector (orbit->q, t);
+	r = ln2_get_par_radius_vector (orbit->q, t);
 	
 	/* get solar and Earth-Sun distances */
-	R = ln_get_earth_solar_dist(JD);
-	d = ln_get_par_body_solar_dist(JD, orbit);
+	R = ln2_get_earth_solar_dist(JD);
+	d = ln2_get_par_body_solar_dist(JD, orbit);
 
 	elong = (R * R + d * d - r * r) / ( 2.0 * R * d );
-	return ln_range_radians(acos(elong));
+	return ln2_range_radians(acos(elong));
 }
-int ln_get_par_body_rst(double JD, struct ln_lnlat_posn *observer,
+int ln2_get_par_body_rst(double JD, struct ln_lnlat_posn *observer,
 	struct ln_par_orbit *orbit, struct ln_rst_time *rst)
 {
-	return ln_get_par_body_rst_horizon(JD, observer, orbit,
+	return ln2_get_par_body_rst_horizon(JD, observer, orbit,
 		LN_STAR_STANDART_HORIZON, rst);
 }
-int ln_get_par_body_rst_horizon(double JD, struct ln_lnlat_posn *observer,
+int ln2_get_par_body_rst_horizon(double JD, struct ln_lnlat_posn *observer,
 	struct ln_par_orbit *orbit, double horizon, struct ln_rst_time *rst)
 {
-	return ln_get_motion_body_rst_horizon(JD, observer,
-		(get_motion_body_coords_t) ln_get_par_body_equ_coords, orbit,
+	return ln2_get_motion_body_rst_horizon(JD, observer,
+		(get_motion_body_coords_t) ln2_get_par_body_equ_coords, orbit,
 		horizon, rst);
 }
-int ln_get_par_body_next_rst(double JD, struct ln_lnlat_posn *observer,
+int ln2_get_par_body_next_rst(double JD, struct ln_lnlat_posn *observer,
 		struct ln_par_orbit *orbit, struct ln_rst_time *rst)
 {
-	return ln_get_par_body_next_rst_horizon(JD, observer, orbit,
+	return ln2_get_par_body_next_rst_horizon(JD, observer, orbit,
 		LN_STAR_STANDART_HORIZON, rst);
 }
-int ln_get_par_body_next_rst_horizon(double JD, struct ln_lnlat_posn *observer,
+int ln2_get_par_body_next_rst_horizon(double JD, struct ln_lnlat_posn *observer,
 	struct ln_par_orbit *orbit, double horizon, struct ln_rst_time *rst)
 {
-	return ln_get_motion_body_next_rst_horizon(JD, observer,
-		(get_motion_body_coords_t) ln_get_par_body_equ_coords, orbit,
+	return ln2_get_motion_body_next_rst_horizon(JD, observer,
+		(get_motion_body_coords_t) ln2_get_par_body_equ_coords, orbit,
 		horizon, rst);
 }
-int ln_get_par_body_next_rst_horizon_future(double JD,
+int ln2_get_par_body_next_rst_horizon_future(double JD,
 		struct ln_lnlat_posn *observer, struct ln_par_orbit *orbit,
 		double horizon, int day_limit, struct ln_rst_time *rst)
 {
-	return ln_get_motion_body_next_rst_horizon_future(JD, observer,
-		(get_motion_body_coords_t) ln_get_par_body_equ_coords, orbit,
+	return ln2_get_motion_body_next_rst_horizon_future(JD, observer,
+		(get_motion_body_coords_t) ln2_get_par_body_equ_coords, orbit,
 		horizon, day_limit, rst);
 }

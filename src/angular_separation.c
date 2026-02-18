@@ -20,7 +20,7 @@
 #include <libnova/angular_separation.h>
 #include <libnova/utility.h>	
 /* Chap 17 page 115 */
-double ln_get_angular_separation(struct ln_equ_posn* posn1,
+double ln2_get_angular_separation(struct ln_equ_posn* posn1,
 	struct ln_equ_posn* posn2)
 {
 	double d;
@@ -45,7 +45,7 @@ double ln_get_angular_separation(struct ln_equ_posn* posn1,
 	return d;
 }	
 /* Chapt 17, page 116 */
-double ln_get_rel_posn_angle(struct ln_equ_posn* posn1,
+double ln2_get_rel_posn_angle(struct ln_equ_posn* posn1,
 	struct ln_equ_posn* posn2)
 {
 	double P;

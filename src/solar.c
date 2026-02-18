@@ -25,17 +25,17 @@
 #include <math.h>
 #include <stdio.h>
 
-void ln_get_solar_geom_coords(double JD, struct ln_helio_posn *position)
+void ln2_get_solar_geom_coords(double JD, struct ln_helio_posn *position)
 {
 	/* get earths heliocentric position */
-	ln_get_earth_helio_coords(JD, position);
+	ln2_get_earth_helio_coords(JD, position);
 
 	position->L += M_PI;
-	position->L = ln_range_radians(position->L);
+	position->L = ln2_range_radians(position->L);
 	position->B *= -1.0;
 }
 
-void ln_get_solar_equ_coords(double JD, struct ln_equ_posn *position)
+void ln2_get_solar_equ_coords(double JD, struct ln_equ_posn *position)
 {
 	struct ln_helio_posn sol;
 	struct ln_lnlat_posn LB;
@@ -43,10 +43,10 @@ void ln_get_solar_equ_coords(double JD, struct ln_equ_posn *position)
 	double aberration;
 
 	/* get geometric coords */
-	ln_get_solar_geom_coords(JD, &sol);
+	ln2_get_solar_geom_coords(JD, &sol);
 
 	/* add nutation */
-	ln_get_nutation(JD, &nutation);
+	ln2_get_nutation(JD, &nutation);
 	sol.L += nutation.longitude;
 
 	/* aberration */
@@ -56,20 +56,20 @@ void ln_get_solar_equ_coords(double JD, struct ln_equ_posn *position)
 	/* transform to equatorial */
 	LB.lat = sol.B;
 	LB.lng = sol.L;
-	ln_get_equ_from_ecl(&LB, JD, position);
+	ln2_get_equ_from_ecl(&LB, JD, position);
 }
 
-void ln_get_solar_ecl_coords(double JD, struct ln_lnlat_posn *position)
+void ln2_get_solar_ecl_coords(double JD, struct ln_lnlat_posn *position)
 {
 	struct ln_helio_posn sol;
 	struct ln_nutation nutation;
 	double aberration;
 
 	/* get geometric coords */
-	ln_get_solar_geom_coords(JD, &sol);
+	ln2_get_solar_geom_coords(JD, &sol);
 
 	/* add nutation */
-	ln_get_nutation(JD, &nutation);
+	ln2_get_nutation(JD, &nutation);
 	sol.L += nutation.longitude;
 
 	/* aberration */
@@ -80,39 +80,39 @@ void ln_get_solar_ecl_coords(double JD, struct ln_lnlat_posn *position)
 	position->lat = sol.B;
 }
 
-void ln_get_solar_geo_coords(double JD, struct ln_rect_posn *position)
+void ln2_get_solar_geo_coords(double JD, struct ln_rect_posn *position)
 {
 	/* get earths's heliocentric position */
 	struct ln_helio_posn sol;
-	ln_get_earth_helio_coords(JD, &sol);
+	ln2_get_earth_helio_coords(JD, &sol);
 
 	/* now get rectangular coords */
-	ln_get_rect_from_helio(&sol, position);
+	ln2_get_rect_from_helio(&sol, position);
 	position->X *= -1.0;
 	position->Y *= -1.0;
 	position->Z *= -1.0;
 }
 
-int ln_get_solar_rst_horizon(double JD, struct ln_lnlat_posn *observer,
+int ln2_get_solar_rst_horizon(double JD, struct ln_lnlat_posn *observer,
 							 double horizon, struct ln_rst_time *rst)
 {
-	return ln_get_body_rst_horizon(JD, observer, ln_get_solar_equ_coords,
+	return ln2_get_body_rst_horizon(JD, observer, ln2_get_solar_equ_coords,
 								   LN_D2R(horizon), rst);
 }
 
-int ln_get_solar_rst(double JD, struct ln_lnlat_posn *observer,
+int ln2_get_solar_rst(double JD, struct ln_lnlat_posn *observer,
 					 struct ln_rst_time *rst)
 {
-	return ln_get_solar_rst_horizon(JD, observer, LN_SOLAR_STANDART_HORIZON,
+	return ln2_get_solar_rst_horizon(JD, observer, LN_SOLAR_STANDART_HORIZON,
 									rst);
 }
 
-double ln_get_solar_sdiam(double JD)
+double ln2_get_solar_sdiam(double JD)
 {
 	double So = 959.63; /* at 1 AU */
 	double dist;
 
-	dist = ln_get_earth_solar_dist(JD);
+	dist = ln2_get_earth_solar_dist(JD);
 	return So / dist;
 }
 

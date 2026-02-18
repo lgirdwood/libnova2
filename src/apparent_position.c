@@ -25,15 +25,15 @@
 /*
 ** Apparent place of an Object 
 */
-void ln_get_apparent_posn(struct ln_equ_posn *mean_position,
+void ln2_get_apparent_posn(struct ln_equ_posn *mean_position,
 	struct ln_equ_posn *proper_motion, double JD, struct ln_equ_posn *position)
 {
 	struct ln_equ_posn proper_position;
 	struct ln_equ_posn aberration_position;
 	struct ln_equ_posn precession_position;
 	
-	ln_get_equ_pm(mean_position, proper_motion, JD, &proper_position);
-	ln_get_equ_aber(&proper_position, JD, &aberration_position);
-	ln_get_equ_prec(&aberration_position, JD, &precession_position);
-	ln_get_equ_nut(&precession_position, JD, position);
+	ln2_get_equ_pm(mean_position, proper_motion, JD, &proper_position);
+	ln2_get_equ_aber(&proper_position, JD, &aberration_position);
+	ln2_get_equ_prec(&aberration_position, JD, &precession_position);
+	ln2_get_equ_nut(&precession_position, JD, position);
 }

@@ -24,7 +24,7 @@
 #include <math.h>
 /* Equ 37.1 Pg 264
  */
-void ln_get_rect_from_helio(struct ln_helio_posn *object,
+void ln2_get_rect_from_helio(struct ln_helio_posn *object,
 							struct ln_rect_posn *position)
 {
 	double sin_e, cos_e;
@@ -51,18 +51,18 @@ void ln_get_rect_from_helio(struct ln_helio_posn *object,
  * Transform horizontal coordinates to galactic coordinates.
  */
 
-void ln_get_hrz_from_equ(struct ln_equ_posn *object,
+void ln2_get_hrz_from_equ(struct ln_equ_posn *object,
 						 struct ln_lnlat_posn *observer, double JD,
 						 struct ln_hrz_posn *position)
 {
 	double sidereal;
 
 	/* get mean sidereal time in hours*/
-	sidereal = ln_get_mean_sidereal_time(JD);
-	ln_get_hrz_from_equ_sidereal_time(object, observer, sidereal, position);
+	sidereal = ln2_get_mean_sidereal_time(JD);
+	ln2_get_hrz_from_equ_sidereal_time(object, observer, sidereal, position);
 }
 
-void ln_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object,
+void ln2_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object,
 									   struct ln_lnlat_posn *observer,
 									   double sidereal,
 									   struct ln_hrz_posn *position)
@@ -125,9 +125,9 @@ void ln_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object,
 	A = atan2(As, Ac);
 
 	/* output in radians */
-	position->az = ln_range_radians(A);
+	position->az = ln2_range_radians(A);
 }
-void ln_get_equ_from_hrz(struct ln_hrz_posn *object,
+void ln2_get_equ_from_hrz(struct ln_hrz_posn *object,
 						 struct ln_lnlat_posn *observer, double JD,
 						 struct ln_equ_posn *position)
 {
@@ -149,21 +149,21 @@ void ln_get_equ_from_hrz(struct ln_hrz_posn *object,
 	declination = asin(declination);
 
 	/* get ra = sidereal - longitude + H */
-	sidereal = ln_get_apparent_sidereal_time(JD);
+	sidereal = ln2_get_apparent_sidereal_time(JD);
 
-	position->ra = ln_range_radians(sidereal - H + longitude);
+	position->ra = ln2_range_radians(sidereal - H + longitude);
 	position->dec = declination;
 }
 /* Equ 12.3, 12.4 pg 89
  */
-void ln_get_equ_from_ecl(struct ln_lnlat_posn *object, double JD,
+void ln2_get_equ_from_ecl(struct ln_lnlat_posn *object, double JD,
 						 struct ln_equ_posn *position)
 {
 	double ra, declination, longitude, latitude;
 	struct ln_nutation nutation;
 
 	/* get obliquity of ecliptic */
-	ln_get_nutation(JD, &nutation);
+	ln2_get_nutation(JD, &nutation);
 
 	/* change object's position into radians */
 
@@ -180,12 +180,12 @@ void ln_get_equ_from_ecl(struct ln_lnlat_posn *object, double JD,
 	declination = asin(declination);
 
 	/* store in position and normalize */
-	position->ra = ln_range_radians(ra);
+	position->ra = ln2_range_radians(ra);
 	position->dec = declination;
 }
 /* Equ 12.1, 12.2 Pg 88
  */
-void ln_get_ecl_from_equ(struct ln_equ_posn *object, double JD,
+void ln2_get_ecl_from_equ(struct ln_equ_posn *object, double JD,
 						 struct ln_lnlat_posn *position)
 {
 	double ra, declination, latitude, longitude;
@@ -194,7 +194,7 @@ void ln_get_ecl_from_equ(struct ln_equ_posn *object, double JD,
 	/* object position */
 	ra = object->ra;
 	declination = object->dec;
-	ln_get_nutation(JD, &nutation);
+	ln2_get_nutation(JD, &nutation);
 
 	/* Equ 12.1, 12.2 */
 	longitude = atan2((sin(ra) * cos(nutation.ecliptic) +
@@ -206,20 +206,20 @@ void ln_get_ecl_from_equ(struct ln_equ_posn *object, double JD,
 
 	/* store in position */
 	position->lat = latitude;
-	position->lng = ln_range_radians(longitude);
+	position->lng = ln2_range_radians(longitude);
 }
 /* Equ 33.2
  */
-void ln_get_ecl_from_rect(struct ln_rect_posn *rect, struct ln_lnlat_posn *posn)
+void ln2_get_ecl_from_rect(struct ln_rect_posn *rect, struct ln_lnlat_posn *posn)
 {
 	double t;
 
 	t = sqrt(rect->X * rect->X + rect->Y * rect->Y);
-	posn->lng = ln_range_radians(atan2(rect->X, rect->Y));
+	posn->lng = ln2_range_radians(atan2(rect->X, rect->Y));
 	posn->lat = atan2(t, rect->Z);
 }
 /* Pg 94 */
-void ln_get_equ_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ)
+void ln2_get_equ_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ)
 {
 	double RAD_27_4, SIN_27_4, COS_27_4;
 	double l_123, cos_l_123;
@@ -239,16 +239,16 @@ void ln_get_equ_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ)
 	cos_b = cos(rad_gal_b);
 
 	y = atan2(sin(l_123), cos_l_123 * SIN_27_4 - (sin_b / cos_b) * COS_27_4);
-	equ->ra = ln_range_radians(y + LN_D2R(12.25));
+	equ->ra = ln2_range_radians(y + LN_D2R(12.25));
 	equ->dec = asin(sin_b * SIN_27_4 + cos_b * COS_27_4 * cos_l_123);
 }
-void ln_get_equ2000_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ)
+void ln2_get_equ2000_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ)
 {
-	ln_get_equ_from_gal(gal, equ);
-	ln_get_equ_prec2(equ, B1950, JD2000, equ);
+	ln2_get_equ_from_gal(gal, equ);
+	ln2_get_equ_prec2(equ, B1950, JD2000, equ);
 }
 /* Pg 94 */
-void ln_get_gal_from_equ(struct ln_equ_posn *equ, struct ln_gal_posn *gal)
+void ln2_get_gal_from_equ(struct ln_equ_posn *equ, struct ln_gal_posn *gal)
 {
 	double RAD_27_4, SIN_27_4, COS_27_4;
 	double ra_192_25, cos_ra_192_25;
@@ -270,14 +270,14 @@ void ln_get_gal_from_equ(struct ln_equ_posn *equ, struct ln_gal_posn *gal)
 
 	x = atan2(sin(ra_192_25),
 			  cos_ra_192_25 * SIN_27_4 - (sin_dec / cos_dec) * COS_27_4);
-	gal->l = ln_range_radians(LN_D2R(303.0) - x);
+	gal->l = ln2_range_radians(LN_D2R(303.0) - x);
 	gal->b = asin(sin_dec * SIN_27_4 + cos_dec * COS_27_4 * cos_ra_192_25);
 }
-void ln_get_gal_from_equ2000(struct ln_equ_posn *equ, struct ln_gal_posn *gal)
+void ln2_get_gal_from_equ2000(struct ln_equ_posn *equ, struct ln_gal_posn *gal)
 {
 	struct ln_equ_posn equ_1950;
-	ln_get_equ_prec2(equ, JD2000, B1950, &equ_1950);
-	ln_get_gal_from_equ(&equ_1950, gal);
+	ln2_get_equ_prec2(equ, JD2000, B1950, &equ_1950);
+	ln2_get_gal_from_equ(&equ_1950, gal);
 }
 
 /** \example transforms.c

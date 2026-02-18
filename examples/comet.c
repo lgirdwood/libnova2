@@ -65,17 +65,17 @@ int main(int argc, const char *argv[])
 
 #if MEEUS
 	date = LN_DATE(1990, 10, 6, 0, 0, 0);
-	JD = ln_get_julian_day(&date);
+	JD = ln2_get_julian_day(&date);
 #else
 	/* get Julian day from local time */
-	JD = ln_get_julian_from_sys();
+	JD = ln2_get_julian_from_sys();
 	fprintf(stdout, "JD %f\n", JD);
 #endif
 
 	/* calc epoch JD */
 #if MEEUS
 	epoch_date = LN_DATE(1990, 10, 28, 12, 30, 0);
-	e_JD = ln_get_julian_day(&epoch_date);
+	e_JD = ln2_get_julian_day(&epoch_date);
 #else
 	e_JD = 2456617.5;
 #endif
@@ -90,70 +90,70 @@ int main(int argc, const char *argv[])
 #endif
 	/* get mean anomaly */
 	if (orbit.n == 0.0)
-		orbit.n = ln_get_ell_mean_motion(orbit.a);
-	M = ln_get_ell_mean_anomaly(orbit.n, JD - orbit.JD);
+		orbit.n = ln2_get_ell_mean_motion(orbit.a);
+	M = ln2_get_ell_mean_anomaly(orbit.n, JD - orbit.JD);
 	fprintf(stdout, "(Mean Anomaly) M when n is %f and JD diff is %f = %f\n", orbit.n, JD - orbit.JD, M);
 
 	/* solve kepler for orbit */
-	E = ln_solve_kepler(orbit.e, M);
+	E = ln2_solve_kepler(orbit.e, M);
 	fprintf(stdout, "(Equation of kepler) E when e is %f and M is %f = %f\n", orbit.e, M, E);
 
 	/* true anomaly */
-	v = ln_get_ell_true_anomaly(orbit.e, E);
+	v = ln2_get_ell_true_anomaly(orbit.e, E);
 	fprintf(stdout, "(True Anomaly) v when e is %f and E is %f = %f\n", orbit.e, E, v);
 
 	/* radius vector */
-	r = ln_get_ell_radius_vector(M, orbit.e, E);
+	r = ln2_get_ell_radius_vector(M, orbit.e, E);
 	fprintf(stdout, "(Radius Vector) r when e is %f and E is %f = %f\n", orbit.e, E, r);
 
 	/* geocentric rect coords */
-	ln_get_ell_geo_rect_posn(&orbit, JD, &posn);
+	ln2_get_ell_geo_rect_posn(&orbit, JD, &posn);
 	fprintf(stdout, "(Geocentric Rect Coords X) for comet Encke  %f\n", posn.X);
 	fprintf(stdout, "(Geocentric Rect Coords Y) for comet Encke  %f\n", posn.Y);
 	fprintf(stdout, "(Geocentric Rect Coords Z) for comet Encke  %f\n", posn.Z);
 
 	/* rectangular coords */
-	ln_get_ell_helio_rect_posn(&orbit, JD, &posn);
+	ln2_get_ell_helio_rect_posn(&orbit, JD, &posn);
 	fprintf(stdout, "(Heliocentric Rect Coords X) for comet Encke  %f\n", posn.X);
 	fprintf(stdout, "(Heliocentric Rect Coords Y) for comet Encke  %f\n", posn.Y);
 	fprintf(stdout, "(Heliocentric Rect Coords Z) for comet Encke  %f\n", posn.Z);
 
 	/* ra, dec */
-	ln_get_ell_body_equ_coords(JD, &orbit, &equ);
+	ln2_get_ell_body_equ_coords(JD, &orbit, &equ);
 	fprintf(stdout, "(RA) for comet Encke  %f\n", equ.ra);
 	fprintf(stdout, "(Dec) for comet Encke  %f\n", equ.dec);
 
 	/* orbit length */
-	l = ln_get_ell_orbit_len(&orbit);
+	l = ln2_get_ell_orbit_len(&orbit);
 	fprintf(stdout, "(Orbit Length) for comet Encke in AU  %f\n", l);
 
 	/* orbital velocity at perihelion */
-	V = ln_get_ell_orbit_pvel(&orbit);
+	V = ln2_get_ell_orbit_pvel(&orbit);
 	fprintf(stdout, "(Orbit Perihelion Vel) for comet Encke in kms  %f\n", V);
 
 	/* orbital velocity at aphelion */
-	V = ln_get_ell_orbit_avel(&orbit);
+	V = ln2_get_ell_orbit_avel(&orbit);
 	fprintf(stdout, "(Orbit Aphelion Vel) for comet Encke in kms  %f\n", V);
 
 	/* average orbital velocity */
-	V = ln_get_ell_orbit_vel(JD, &orbit);
+	V = ln2_get_ell_orbit_vel(JD, &orbit);
 	fprintf(stdout, "(Orbit Vel JD) for comet Encke in kms  %f\n", V);
 
 	/* comet sun distance */
-	dist = ln_get_ell_body_solar_dist(JD, &orbit);
+	dist = ln2_get_ell_body_solar_dist(JD, &orbit);
 	fprintf(stdout, "(Body Solar Dist) for comet Encke in AU  %f\n", dist);
 
 	/* comet earth distance */
-	dist = ln_get_ell_body_earth_dist(JD, &orbit);
+	dist = ln2_get_ell_body_earth_dist(JD, &orbit);
 	fprintf(stdout, "(Body Earth Dist) for comet Encke in AU  %f\n", dist);
 
 	/* rise, set and transit */
-	if (ln_get_ell_body_rst(JD, &observer, &orbit, &rst) != 0)
+	if (ln2_get_ell_body_rst(JD, &observer, &orbit, &rst) != 0)
 		fprintf(stdout, "Comet is circumpolar\n");
 	else {
-		ln_get_local_date(rst.rise, &rise);
-		ln_get_local_date(rst.transit, &transit);
-		ln_get_local_date(rst.set, &set);
+		ln2_get_local_date(rst.rise, &rise);
+		ln2_get_local_date(rst.transit, &transit);
+		ln2_get_local_date(rst.set, &set);
 		print_date("Rise", &rise);
 		print_date("Transit", &transit);
 		print_date("Set", &set);

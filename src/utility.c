@@ -76,19 +76,19 @@ const char *ln_get_version(void)
 
 /* convert radians to degrees */
 /* convert radians to degrees */
-double ln_rad_to_deg(double radians)
+double ln2_rad_to_deg(double radians)
 {
 	return LN_R2D(radians);
 }
 
 /* convert degrees to radians */
-double ln_deg_to_rad(double degrees)
+double ln2_deg_to_rad(double degrees)
 {
 	return LN_D2R(degrees);
 }
 
 /* convert hours:mins:secs to degrees */
-double ln_hms_to_deg(struct ln_hms *hms)
+double ln2_hms_to_deg(struct ln_hms *hms)
 {
 	double degrees;
 
@@ -100,7 +100,7 @@ double ln_hms_to_deg(struct ln_hms *hms)
 }
 
 /* convert hours:mins:secs to radians */
-double ln_hms_to_rad(struct ln_hms *hms)
+double ln2_hms_to_rad(struct ln_hms *hms)
 {
 	double radians;
 
@@ -112,11 +112,11 @@ double ln_hms_to_rad(struct ln_hms *hms)
 }
 
 /* convert degrees to hh:mm:ss */
-void ln_deg_to_hms(double degrees, struct ln_hms *hms)
+void ln2_deg_to_hms(double degrees, struct ln_hms *hms)
 {
 	double dtemp;
 
-	degrees = ln_range_degrees(degrees);
+	degrees = ln2_range_degrees(degrees);
 
 	/* divide degrees by 15 to get the hours */
 	dtemp = degrees / 15.0;
@@ -141,18 +141,18 @@ void ln_deg_to_hms(double degrees, struct ln_hms *hms)
 }
 
 /* convert radians to hh:mm:ss */
-void ln_rad_to_hms(double radians, struct ln_hms *hms)
+void ln2_rad_to_hms(double radians, struct ln_hms *hms)
 {
 	double degrees;
 
-	radians = ln_range_radians(radians);
+	radians = ln2_range_radians(radians);
 	degrees = LN_R2D(radians);
 
-	ln_deg_to_hms(degrees, hms);
+	ln2_deg_to_hms(degrees, hms);
 }
 
 /* convert dms to degrees */
-double ln_dms_to_deg(struct ln_dms *dms)
+double ln2_dms_to_deg(struct ln_dms *dms)
 {
 	double degrees;
 
@@ -168,7 +168,7 @@ double ln_dms_to_deg(struct ln_dms *dms)
 }
 
 /* convert dms to radians */
-double ln_dms_to_rad(struct ln_dms *dms)
+double ln2_dms_to_rad(struct ln_dms *dms)
 {
 	double radians;
 
@@ -184,7 +184,7 @@ double ln_dms_to_rad(struct ln_dms *dms)
 }
 
 /* convert dms to radians */
-double ln_dms2_to_rad(int degrees, int minutes, double seconds)
+double ln2_dms2_to_rad(int degrees, int minutes, double seconds)
 {
 	double radians;
 
@@ -200,7 +200,7 @@ double ln_dms2_to_rad(int degrees, int minutes, double seconds)
 }
 
 /* convert degrees to dms */
-void ln_deg_to_dms(double degrees, struct ln_dms *dms)
+void ln2_deg_to_dms(double degrees, struct ln_dms *dms)
 {
 	double dtemp;
 
@@ -231,15 +231,15 @@ void ln_deg_to_dms(double degrees, struct ln_dms *dms)
 }
 
 /* convert radians to dms */
-void ln_rad_to_dms(double radians, struct ln_dms *dms)
+void ln2_rad_to_dms(double radians, struct ln_dms *dms)
 {
 	double degrees = LN_R2D(radians);
 
-	ln_deg_to_dms(degrees, dms);
+	ln2_deg_to_dms(degrees, dms);
 }
 
 /* puts a large angle in the correct range 0 - 360 degrees */
-double ln_range_degrees(double angle)
+double ln2_range_degrees(double angle)
 {
 	double temp;
 
@@ -254,7 +254,7 @@ double ln_range_degrees(double angle)
 }
 
 /* puts a large angle in the correct range 0 - 2PI radians */
-double ln_range_radians(double angle)
+double ln2_range_radians(double angle)
 {
 	double temp;
 
@@ -271,7 +271,7 @@ double ln_range_radians(double angle)
 
 /* puts a large angle in the correct range -2PI - 2PI radians */
 /* preserve sign */
-double ln_range_radians2(double angle)
+double ln2_range_radians2(double angle)
 {
 	double temp;
 
@@ -283,7 +283,7 @@ double ln_range_radians2(double angle)
 	return angle - temp;
 }
 
-double ln_range_hours(double angle)
+double ln2_range_hours(double angle)
 {
 	double temp;
 
@@ -298,7 +298,7 @@ double ln_range_hours(double angle)
 }
 
 /* add seconds to hms */
-void ln_add_secs_hms(struct ln_hms *hms, double seconds)
+void ln2_add_secs_hms(struct ln_hms *hms, double seconds)
 {
 	struct ln_hms source_hms;
 
@@ -310,11 +310,11 @@ void ln_add_secs_hms(struct ln_hms *hms, double seconds)
 	source_hms.seconds = seconds;
 
 	/* add hms to hms */
-	ln_add_hms(&source_hms, hms);
+	ln2_add_hms(&source_hms, hms);
 }
 
 /* add hms to hms */
-void ln_add_hms(struct ln_hms *source, struct ln_hms *dest)
+void ln2_add_hms(struct ln_hms *source, struct ln_hms *dest)
 {
 	dest->seconds += source->seconds;
 	if (dest->seconds >= 60.0) {
@@ -344,25 +344,25 @@ void ln_add_hms(struct ln_hms *source, struct ln_hms *dest)
 
 	dest->hours += source->hours;
 }
-void ln_hequ_to_equ(struct lnh_equ_posn *hpos, struct ln_equ_posn *pos)
+void ln2_hequ_to_equ(struct lnh_equ_posn *hpos, struct ln_equ_posn *pos)
 {
-	pos->ra = ln_hms_to_rad(&hpos->ra);
-	pos->dec = ln_dms_to_rad(&hpos->dec);
+	pos->ra = ln2_hms_to_rad(&hpos->ra);
+	pos->dec = ln2_dms_to_rad(&hpos->dec);
 }
-void ln_equ_to_hequ(struct ln_equ_posn *pos, struct lnh_equ_posn *hpos)
+void ln2_equ_to_hequ(struct ln_equ_posn *pos, struct lnh_equ_posn *hpos)
 {
-	ln_rad_to_hms(pos->ra, &hpos->ra);
-	ln_rad_to_dms(pos->dec, &hpos->dec);
+	ln2_rad_to_hms(pos->ra, &hpos->ra);
+	ln2_rad_to_dms(pos->dec, &hpos->dec);
 }
-void ln_hhrz_to_hrz(struct lnh_hrz_posn *hpos, struct ln_hrz_posn *pos)
+void ln2_hhrz_to_hrz(struct lnh_hrz_posn *hpos, struct ln_hrz_posn *pos)
 {
-	pos->alt = ln_dms_to_rad(&hpos->alt);
-	pos->az = ln_dms_to_rad(&hpos->az);
+	pos->alt = ln2_dms_to_rad(&hpos->alt);
+	pos->az = ln2_dms_to_rad(&hpos->az);
 }
-void ln_hrz_to_hhrz(struct ln_hrz_posn *pos, struct lnh_hrz_posn *hpos)
+void ln2_hrz_to_hhrz(struct ln_hrz_posn *pos, struct lnh_hrz_posn *hpos)
 {
-	ln_rad_to_dms(pos->alt, &hpos->alt);
-	ln_rad_to_dms(pos->az, &hpos->az);
+	ln2_rad_to_dms(pos->alt, &hpos->alt);
+	ln2_rad_to_dms(pos->az, &hpos->az);
 }
 const char *ln_hrz_to_nswe(struct ln_hrz_posn *pos)
 {
@@ -372,15 +372,15 @@ const char *ln_hrz_to_nswe(struct ln_hrz_posn *pos)
 
 	return directions[(int)(LN_R2D(pos->az) / 22.5)];
 }
-void ln_hlnlat_to_lnlat(struct lnh_lnlat_posn *hpos, struct ln_lnlat_posn *pos)
+void ln2_hlnlat_to_lnlat(struct lnh_lnlat_posn *hpos, struct ln_lnlat_posn *pos)
 {
-	pos->lng = ln_dms_to_rad(&hpos->lng);
-	pos->lat = ln_dms_to_rad(&hpos->lat);
+	pos->lng = ln2_dms_to_rad(&hpos->lng);
+	pos->lat = ln2_dms_to_rad(&hpos->lat);
 }
-void ln_lnlat_to_hlnlat(struct ln_lnlat_posn *pos, struct lnh_lnlat_posn *hpos)
+void ln2_lnlat_to_hlnlat(struct ln_lnlat_posn *pos, struct lnh_lnlat_posn *hpos)
 {
-	ln_rad_to_dms(pos->lng, &hpos->lng);
-	ln_rad_to_dms(pos->lat, &hpos->lat);
+	ln2_rad_to_dms(pos->lng, &hpos->lng);
+	ln2_rad_to_dms(pos->lat, &hpos->lat);
 }
 
 /*
@@ -391,7 +391,7 @@ void ln_lnlat_to_hlnlat(struct ln_lnlat_posn *pos, struct lnh_lnlat_posn *hpos)
  *
  * Calculate the distance between rectangular points a and b.
  */
-double ln_get_rect_distance(struct ln_rect_posn *a, struct ln_rect_posn *b)
+double ln2_get_rect_distance(struct ln_rect_posn *a, struct ln_rect_posn *b)
 {
 	double x, y, z;
 
@@ -412,7 +412,7 @@ double ln_get_rect_distance(struct ln_rect_posn *a, struct ln_rect_posn *b)
  *
  * Convert units of AU into light days.
  */
-double ln_get_light_time(double dist)
+double ln2_get_light_time(double dist)
 {
 	return dist * 0.005775183;
 }
@@ -456,7 +456,7 @@ static void skipwhite(char **s)
 	while (iswhite(**s))
 		(*s)++;
 }
-double ln_get_dec_location(char *s)
+double ln2_get_dec_location(char *s)
 {
 	char *ptr, *dec, *hh, *ame, *tok_ptr;
 	BOOL negative = FALSE;
@@ -541,7 +541,7 @@ const char *ln_get_humanr_location(double location)
 
 	return strdup(buf);
 }
-double ln_interpolate3(double n, double y1, double y2, double y3)
+double ln2_interpolate3(double n, double y1, double y2, double y3)
 {
 	double y, a, b, c;
 
@@ -555,7 +555,7 @@ double ln_interpolate3(double n, double y1, double y2, double y3)
 
 	return y;
 }
-double ln_interpolate5(double n, double y1, double y2, double y3, double y4,
+double ln2_interpolate5(double n, double y1, double y2, double y3, double y4,
 					   double y5)
 {
 	double y, A, B, C, D, E, F, G, H, J, K;
@@ -586,7 +586,7 @@ double ln_interpolate5(double n, double y1, double y2, double y3, double y4,
 
 	return y;
 }
-double ln_find_zero(double (*func)(double, double *), double from, double to,
+double ln2_find_zero(double (*func)(double, double *), double from, double to,
 					double *arg)
 {
 	double x, x1, x2, f;
@@ -604,7 +604,7 @@ double ln_find_zero(double (*func)(double, double *), double from, double to,
 
 	return x2;
 }
-double ln_find_max(double (*func)(double, double *), double from, double to,
+double ln2_find_max(double (*func)(double, double *), double from, double to,
 				   double *arg)
 {
 	double a, b, xl, xu, eps;

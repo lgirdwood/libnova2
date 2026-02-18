@@ -207,7 +207,7 @@ const static struct XYZ z_coefficients[TERMS] = {
 };
 /* Equ 22.3, 22.4
 */
-void ln_get_equ_aber(struct ln_equ_posn *mean_position, double JD,
+void ln2_get_equ_aber(struct ln_equ_posn *mean_position, double JD,
 	struct ln_equ_posn *position)
 {
 	long double mean_ra, mean_dec, delta_ra, delta_dec;
@@ -268,7 +268,7 @@ void ln_get_equ_aber(struct ln_equ_posn *mean_position, double JD,
 		delta_dec = (X * cos(mean_ra) + Y * sin(mean_ra)) * sin(mean_dec) - Z * cos(mean_dec);
 		delta_dec /= -c;
 	
-		position->ra = ln_range_radians(mean_ra + delta_ra);
+		position->ra = ln2_range_radians(mean_ra + delta_ra);
 		position->dec = mean_dec + delta_dec;
 	} else {
 		/* cos(mean_dec) gets to small when approaching (or at) 90.0 degrees
@@ -296,13 +296,13 @@ void ln_get_equ_aber(struct ln_equ_posn *mean_position, double JD,
 
 		dec += cos_dec * Z;
 
-		position->ra = ln_range_radians(ra);
+		position->ra = ln2_range_radians(ra);
 		position->dec = dec;
 	}
 }
 /* Equ 22.2 pg 139
 */
-void ln_get_ecl_aber(struct ln_lnlat_posn *mean_position, double JD,
+void ln2_get_ecl_aber(struct ln_lnlat_posn *mean_position, double JD,
 	struct ln_lnlat_posn *position)
 	
 {
@@ -318,7 +318,7 @@ void ln_get_ecl_aber(struct ln_lnlat_posn *mean_position, double JD,
 	T2 = T * T;
 
 	/* suns longitude in radians */
-	ln_get_solar_geom_coords(JD, &sol_position);
+	ln2_get_solar_geom_coords(JD, &sol_position);
 	true_longitude = sol_position.B;
 
 	/* Earth orbit ecentricity */
@@ -341,6 +341,6 @@ void ln_get_ecl_aber(struct ln_lnlat_posn *mean_position, double JD,
 	mean_lng += delta_lng;
 	mean_lat += delta_lat;
 
-	position->lng = ln_range_radians(mean_lng);
+	position->lng = ln2_range_radians(mean_lng);
 	position->lat = mean_lat;
 }

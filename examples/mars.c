@@ -55,43 +55,43 @@ int main(int argc, const char *argv[])
 	observer.lng = LN_D2R(-3.18); /* 3.18 W */
 	
 	/* get Julian day from local time */
-	JD = ln_get_julian_from_sys();	
+	JD = ln2_get_julian_from_sys();	
 	fprintf(stdout, "JD %f\n", JD);
 	
 	/* longitude, latitude and radius vector */
-	ln_get_mars_helio_coords(JD, &pos);	
+	ln2_get_mars_helio_coords(JD, &pos);	
 	fprintf(stdout, "Mars L %f B %f R %f\n", pos.L, pos.B, pos.R);
 	
 	/* RA, DEC */
-	ln_get_mars_equ_coords(JD, &equ);
-	ln_equ_to_hequ(&equ, &hequ);
+	ln2_get_mars_equ_coords(JD, &equ);
+	ln2_equ_to_hequ(&equ, &hequ);
 	fprintf(stdout, "Mars RA %d:%d:%f Dec %d:%d:%f\n",
 		hequ.ra.hours, hequ.ra.minutes, hequ.ra.seconds,
 		hequ.dec.degrees, hequ.dec.minutes, hequ.dec.seconds);
 	
 	/* Earth - Mars dist AU */
-	au = ln_get_mars_earth_dist(JD);
+	au = ln2_get_mars_earth_dist(JD);
 	fprintf(stdout, "mars -> Earth dist (AU) %f\n",au);
 	
 	/* Sun - Mars Dist AU */
-	au = ln_get_mars_solar_dist(JD);
+	au = ln2_get_mars_solar_dist(JD);
 	fprintf(stdout, "mars -> Sun dist (AU) %f\n",au);
 	
 	/* Mars disk, magnitude and phase */
-	au = ln_get_mars_disk(JD);
+	au = ln2_get_mars_disk(JD);
 	fprintf(stdout, "mars -> illuminated disk %f\n",au);
-	au = ln_get_mars_magnitude(JD);
+	au = ln2_get_mars_magnitude(JD);
 	fprintf(stdout, "mars -> magnitude %f\n",au);
-	au = ln_get_mars_phase(JD);
+	au = ln2_get_mars_phase(JD);
 	fprintf(stdout, "mars -> phase %f\n",au);
 	
 		/* rise, set and transit time */
-	if (ln_get_mars_rst(JD, &observer, &rst) != 0)
+	if (ln2_get_mars_rst(JD, &observer, &rst) != 0)
 		fprintf(stdout, "Mars is circumpolar\n");
 	else {
-		ln_get_local_date(rst.rise, &rise);
-		ln_get_local_date(rst.transit, &transit);
-		ln_get_local_date(rst.set, &set);
+		ln2_get_local_date(rst.rise, &rise);
+		ln2_get_local_date(rst.transit, &transit);
+		ln2_get_local_date(rst.set, &set);
 		print_date("Rise", &rise);
 		print_date("Transit", &transit);
 		print_date("Set", &set);

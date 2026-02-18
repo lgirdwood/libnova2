@@ -41,19 +41,19 @@ int transform_test(void)
 	/* date and time */
 	date = LN_DATE(1987, 4, 10, 19, 21, 0.0);
 
-	JD = ln_get_julian_day(&date);
-	ln_hequ_to_equ(&hobject, &object);
-	ln_hlnlat_to_lnlat(&hobserver, &observer);
+	JD = ln2_get_julian_day(&date);
+	ln2_hequ_to_equ(&hobject, &object);
+	ln2_hlnlat_to_lnlat(&hobserver, &observer);
 
-	ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
+	ln2_get_hrz_from_equ(&object, &observer, JD, &hrz);
 	failed += test_result("(Transforms) Equ to Horiz ALT ", LN_R2D(hrz.alt),
 						  15.12426274, 0.00000001);
 	failed += test_result("(Transforms) Equ to Horiz AZ ", LN_R2D(hrz.az),
 						  68.03429264, 0.00000001);
 
-	ln_get_hrz_from_equ_sidereal_time(&object, &observer,
-									  ln_get_apparent_sidereal_time(JD), &hrz);
-	ln_get_equ_from_hrz(&hrz, &observer, JD, &object_hrz);
+	ln2_get_hrz_from_equ_sidereal_time(&object, &observer,
+									  ln2_get_apparent_sidereal_time(JD), &hrz);
+	ln2_get_equ_from_hrz(&hrz, &observer, JD, &object_hrz);
 	failed += test_result("(Transforms) Horiz to Equ RA ",
 						  LN_R2D(object_hrz.ra), LN_R2D(object.ra), 0.00000001);
 	failed += test_result("(Transforms) Horiz to Equ DEC ",
@@ -63,7 +63,7 @@ int transform_test(void)
 	/* try something close to the pole */
 	object.dec = LN_D2R(90.0);
 
-	ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
+	ln2_get_hrz_from_equ(&object, &observer, JD, &hrz);
 	failed += test_result("(Transforms) Equ to Horiz ALT ", LN_R2D(hrz.alt),
 						  38.9213888888, 0.00000001);
 	failed += test_result("(Transforms) Equ to Horiz AZ ", LN_R2D(hrz.az),
@@ -71,7 +71,7 @@ int transform_test(void)
 
 	object.dec = LN_D2R(-90.0);
 
-	ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
+	ln2_get_hrz_from_equ(&object, &observer, JD, &hrz);
 	failed += test_result("(Transforms) Equ to Horiz ALT ", LN_R2D(hrz.alt),
 						  -38.9213888888, 0.00000001);
 	failed += test_result("(Transforms) Equ to Horiz AZ ", LN_R2D(hrz.az), 0.0,
@@ -79,7 +79,7 @@ int transform_test(void)
 
 	observer.lat *= -1.0;
 
-	ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
+	ln2_get_hrz_from_equ(&object, &observer, JD, &hrz);
 	failed += test_result("(Transforms) Equ to Horiz ALT ", LN_R2D(hrz.alt),
 						  38.9213888888, 0.00000001);
 	failed += test_result("(Transforms) Equ to Horiz AZ ", LN_R2D(hrz.az), 0.0,
@@ -87,7 +87,7 @@ int transform_test(void)
 
 	object.dec = LN_D2R(90.0);
 
-	ln_get_hrz_from_equ(&object, &observer, JD, &hrz);
+	ln2_get_hrz_from_equ(&object, &observer, JD, &hrz);
 	failed += test_result("(Transforms) Equ to Horiz ALT ", LN_R2D(hrz.alt),
 						  -38.9213888888, 0.00000001);
 	failed += test_result("(Transforms) Equ to Horiz AZ ", LN_R2D(hrz.az),
@@ -102,16 +102,16 @@ int transform_test(void)
 	hpollux.dec.minutes = 1;
 	hpollux.dec.seconds = 34.26;
 
-	ln_hequ_to_equ(&hpollux, &pollux);
-	ln_get_ecl_from_equ(&pollux, JD, &ecl);
+	ln2_hequ_to_equ(&hpollux, &pollux);
+	ln2_get_ecl_from_equ(&pollux, JD, &ecl);
 
-	ln_lnlat_to_hlnlat(&ecl, &hecl);
+	ln2_lnlat_to_hlnlat(&ecl, &hecl);
 	failed += test_result("(Transforms) Equ to Ecl longitude ", LN_R2D(ecl.lng),
 						  113.21584591, 0.00000001);
 	failed += test_result("(Transforms) Equ to Ecl latitude", LN_R2D(ecl.lat),
 						  6.68847935, 0.00000001);
 
-	ln_get_equ_from_ecl(&ecl, JD, &equ);
+	ln2_get_equ_from_ecl(&ecl, JD, &equ);
 	failed += test_result("(Transforms) Ecl to Equ RA ", LN_R2D(equ.ra),
 						  116.32894167, 0.00000001);
 	failed += test_result("(Transforms) Ecl to Equ DEC", LN_R2D(equ.dec),
@@ -121,13 +121,13 @@ int transform_test(void)
 	gal.l = LN_D2R(12.9593);
 	gal.b = LN_D2R(6.0463);
 
-	ln_get_equ_from_gal(&gal, &equ);
+	ln2_get_equ_from_gal(&gal, &equ);
 	failed += test_result("(Transforms) Gal to Equ RA", LN_R2D(equ.ra),
 						  267.24894132, 0.00000001);
 	failed += test_result("(Transforms) Gal to Equ DEC", LN_R2D(equ.dec),
 						  -14.71890083, 0.00000001);
 
-	ln_get_gal_from_equ(&equ, &gal);
+	ln2_get_gal_from_equ(&equ, &gal);
 	failed += test_result("(Transforms) Equ to Gal b", gal.b, LN_D2R(6.0463),
 						  0.00000001);
 	failed += test_result("(Transforms) Equ to Gal l", gal.l, LN_D2R(12.9593),
@@ -138,7 +138,7 @@ int transform_test(void)
 	equ.ra = LN_D2R(125.2401);
 	equ.dec = LN_D2R(+31.9260);
 
-	ln_get_gal_from_equ2000(&equ, &gal);
+	ln2_get_gal_from_equ2000(&equ, &gal);
 	failed += test_result("(Transforms) Equ J2000 to Gal l", gal.l,
 						  LN_D2R(190.54), 0.005);
 	failed += test_result("(Transforms) Equ J2000 to Gal b", gal.b,

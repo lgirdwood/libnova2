@@ -18,29 +18,29 @@ int solar_coord_test(void)
 	double val;
 
 	/* Geom Coords */
-	ln_get_solar_geom_coords(JD, &pos);
+	ln2_get_solar_geom_coords(JD, &pos);
 	failed += test_result("Solar Geom L", pos.L, 4.893491425560, 1e-6);
 	failed += test_result("Solar Geom B", pos.B, 0.000016624912, 1e-6);
 	failed += test_result("Solar Geom R", pos.R, 0.983327682322, 1e-6);
 
 	/* Equ Coords */
-	ln_get_solar_equ_coords(JD, &equ);
+	ln2_get_solar_equ_coords(JD, &equ);
 	failed += test_result("Solar Equ RA", equ.ra, 4.909247947251, 1e-6);
 	failed += test_result("Solar Equ Dec", equ.dec, -0.401920348764, 1e-6);
 
 	/* Ecl Coords */
-	ln_get_solar_ecl_coords(JD, &ecl);
+	ln2_get_solar_ecl_coords(JD, &ecl);
 	failed += test_result("Solar Ecl Lng", ecl.lng, 4.893379153722, 1e-6);
 	failed += test_result("Solar Ecl Lat", ecl.lat, 0.000016624912, 1e-6);
 
 	/* Geo Coords */
-	ln_get_solar_geo_coords(JD, &rect);
+	ln2_get_solar_geo_coords(JD, &rect);
 	failed += test_result("Solar Geo X", rect.X, 0.177111178657, 1e-6);
 	failed += test_result("Solar Geo Y", rect.Y, -0.887437422004, 1e-6);
 	failed += test_result("Solar Geo Z", rect.Z, -0.384733392332, 1e-6);
 
 	/* Sdiam */
-	val = ln_get_solar_sdiam(JD);
+	val = ln2_get_solar_sdiam(JD);
 	/* The unit of sdiam is arcseconds in some places and radians in others? 
      Header says radians. Previous test checked against 976.0 which implies arcsec.
      The output from generation was 975.900...
@@ -66,7 +66,7 @@ int solar_earth_test(void)
 	JD = 2451545.0; /* J2000 */
 
 	/* Solar Geo - just check it runs and returns reasonable values (not 0) */
-	ln_get_solar_geo_coords(JD, &rect);
+	ln2_get_solar_geo_coords(JD, &rect);
 	if (rect.X == 0.0 && rect.Y == 0.0 && rect.Z == 0.0) {
 		printf("TEST (Solar) solar_geo_coords....[FAILED]\n");
 		failed++;
@@ -75,7 +75,7 @@ int solar_earth_test(void)
 	}
 
 	/* Solar Ecl */
-	ln_get_solar_ecl_coords(JD, &ecl);
+	ln2_get_solar_ecl_coords(JD, &ecl);
 	/* Sun at J2000 should be near 280 deg long? */
 	/* geometric mean longitude 280.46646. */
 	failed += test_result("(Solar) Ecl Longitude J2000", LN_R2D(ecl.lng), 280.46, 1.0);
@@ -84,7 +84,7 @@ int solar_earth_test(void)
 	observer.lng = LN_D2R(0.0);
 	observer.lat = LN_D2R(50.0);
 	/* Horizon -18 (Astronomical Twilight) */
-	ln_get_solar_rst_horizon(JD, &observer, LN_D2R(-18.0), &rst);
+	ln2_get_solar_rst_horizon(JD, &observer, LN_D2R(-18.0), &rst);
 	/* Check validity */
 	if (rst.rise == 0.0 && rst.set == 0.0) {
 		/* It might be valid if it doesn't rise/set, but sun usually does at lat 50
@@ -95,15 +95,15 @@ int solar_earth_test(void)
 	}
 
 	/* Solar sdiam */
-	res = ln_get_solar_sdiam(JD);
+	res = ln2_get_solar_sdiam(JD);
 	/* Approx 960 arcsec * 2 ? Semidiameter is approx 16' = 960" */
 	failed += test_result("(Solar) Semidiameter J2000", res, 976.0, 10.0);
 
 	/* Earth Centre Dist */
-	/* void ln_get_earth_centre_dist(float height, double latitude, double
+	/* void ln2_get_earth_centre_dist(float height, double latitude, double
    * *p_sin_o, double *p_cos_o); */
 	double sin_o, cos_o;
-	ln_get_earth_centre_dist(100.0, 45.0, &sin_o, &cos_o);
+	ln2_get_earth_centre_dist(100.0, 45.0, &sin_o, &cos_o);
 	/* just check they are populated */
 	if (sin_o == 0.0 && cos_o == 0.0) {
 		/* unlikely both 0 for 45 deg lat */
@@ -119,7 +119,7 @@ int solar_earth_test(void)
 	failed += test_result("(Earth) Centre Dist (rho approx 1)", res, 1.0, 0.01);
 
 	/* Earth Rect Helio */
-	ln_get_earth_rect_helio(JD, &rect);
+	ln2_get_earth_rect_helio(JD, &rect);
 	/* Earth at J2000. X,Y,Z */
 	/* dist approx 1 AU */
 	res = sqrt(rect.X * rect.X + rect.Y * rect.Y + rect.Z * rect.Z);

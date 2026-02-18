@@ -4,82 +4,130 @@
 
 ## Features
 
-- Precision of 1 arc second or better.
-- Solar system ephemerides (Sun, Moon, Planets, Pluto).
-- Aberration, nutation, precession, proper motion.
-- Asteroids and Comets.
-- Time conversions (Julian Day, Sidereal Time, Dynamical Time).
-- Coordinate transformations (Equatorial, Ecliptic, Horizontal, Galactic).
-- Rise, Set and Transit calculation.
+-   **High Precision**: 1 arc second or better.
+-   **Ephemerides**:
+    -   Major Planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto.
+    -   Sun & Moon (ELP82).
+    -   Minor Bodies: Asteroids and Comets.
+-   **Astrometry**:
+    -   Aberration, Nutation, Precession, Proper Motion.
+    -   Refraction, Parallax, Airmass.
+-   **Time Systems**:
+    -   Julian Day, Sidereal Time, Dynamical Time, Heliocentric Time.
+-   **Coordinates**:
+    -   Transformations: Equatorial, Ecliptic, Horizontal, Galactic.
+    -   Rise, Set, and Transit times.
+    -   Angular Separation.
 
 ## Requirements
 
-- C compiler (GCC, Clang, MSVC)
-- CMake (3.25 or later)
-- Doxygen (optional, for documentation)
+-   C compiler (GCC, Clang, MSVC)
+-   CMake (3.25 or later)
+-   **Optional**:
+    -   `kconfig-frontends` (for `menuconfig` configuration)
+    -   Doxygen (for API documentation)
 
 ## Building
 
 libnova uses **CMake** for its build system.
 
-1. Configure the project:
-   ```bash
-   cmake -B build
-   ```
-   
-   Options:
-   - `-DBUILD_SHARED_LIBS=ON` (default): Build shared libraries. Set to `OFF` for static libraries.
-   - `-DCMAKE_BUILD_TYPE=Debug`: Build with debug symbols.
-
-2. Build the library:
-   ```bash
-   cmake --build build
-   ```
-
-## Installation
-
-To install the library and headers (requires permissions):
+### 1. Configure
 
 ```bash
-cmake --install build
+mkdir build && cd build
+cmake ..
 ```
 
-Default installation prefix is `/usr/local` on Linux. You can change this during configuration:
+**Common Options**:
+-   `-DBUILD_SHARED_LIBS=OFF`: Build static libraries (default is `ON`).
+-   `-DCMAKE_BUILD_TYPE=Release`: Optimized build.
+-   `-DCMAKE_INSTALL_PREFIX=/usr`: Installation destination.
+
+### 2. Configure Modules (Optional)
+
+You can enable or disable specific modules (e.g., planets, theories) using the Kconfig interface:
+
 ```bash
-cmake -B build -DCMAKE_INSTALL_PREFIX=/custom/path
+make menuconfig
+```
+*(Requires `kconfig-frontends`)*
+
+This creates a `.config` file that CMake will use to select source files.
+
+### 3. Build
+
+```bash
+make
+```
+
+### 4. Install
+
+```bash
+sudo make install
+```
+
+## Cross-Compilation
+
+libnova supports cross-compilation for embedded targets (e.g., ESP32, ARM).
+
+### 1. Toolchain File
+
+Create a CMake toolchain file for your target. A sample is provided in `cmake/toolchain-xtensa-sample.cmake`.
+
+### 2. Configure with Toolchain
+
+```bash
+mkdir build-cross && cd build-cross
+cmake -DCMAKE_TOOLCHAIN_FILE=../cmake/toolchain-xtensa-sample.cmake \
+      -DBUILD_TESTING=OFF \
+      -DBUILD_EXAMPLES=OFF \
+      ..
+```
+
+**Key Cross-Compilation Options**:
+-   `-DBUILD_TESTING=OFF`: Disable unit tests (they likely won't run on the build host).
+-   `-DBUILD_EXAMPLES=OFF`: Disable example programs.
+-   `HAVE_LIBM`: The build system automatically detects if `libm` is needed/available, replacing hardcoded UNIX checks.
+
+### 3. Build
+
+```bash
+make
 ```
 
 ## Running Tests
 
-Unit tests are built by default. To run the tests:
+If you built the tests (default on host builds):
 
 ```bash
-ctest --test-dir build --output-on-failure
+ctest --output-on-failure
 ```
 
-Or run the test executable directly for verbose output:
+Or run the test executable details:
 ```bash
-./build/lntest/libnova_test_exec
+./lntest/libnova_test_exec
 ```
 
 ## Documentation
 
-To generate the API documentation (requires Doxygen):
+To generate the HTML API documentation:
 
 ```bash
-cmake --build build --target doc
+make doc
 ```
-
-The documentation will be generated in `doc/html/index.html`.
+Output is in `doc/html/index.html`.
 
 ## Usage
 
-Include the main header in your C code:
+Include the main header:
 
 ```c
 #include <libnova/libnova.h>
 ```
 
-Link against the `nova` library (`-lnova`).
+Link against `libnova` (and `libm` if static/required):
+```bash
+cc my_program.c -lnova -lm -o my_program
+```
 
-See `examples/` directory for usage examples (if available) or check `lntest/test.c` for comprehensive usage of API functions.
+For more examples, see the `examples/` directory.

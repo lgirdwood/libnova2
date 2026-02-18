@@ -39,48 +39,66 @@ set(LIBRARY_PUBLIC_HEADERS
 	${HEADER_PATH}/constellation.h
 )
 
-add_library(nova
-	${LIBRARY_PUBLIC_HEADERS}
-	julian_day.c
-	dynamical_time.c
-	sidereal_time.c
-	transform.c
-	nutation.c
-	aberration.c  
-	apparent_position.c
-	solar.c
-	precession.c 
-	proper_motion.c
-	mercury.c
-	venus.c 
-	earth.c 
-	mars.c  
-	jupiter.c
-	saturn.c 
-	uranus.c 
-	neptune.c 
-	pluto.c
-	vsop87.c
-	lunar.c 
-	elliptic_motion.c
-	asteroid.c
-	comet.c
-	parabolic_motion.c
-	utility.c
-	refraction.c
-	rise_set.c
-	angular_separation.c
-	hyperbolic_motion.c
-	parallax.c
-	airmass.c
-	heliocentric_time.c
-	constellation.c
-)
+# Kconfig Logic: Defaults if no configuration found
+if(NOT EXISTS "${CMAKE_SOURCE_DIR}/.config" AND NOT EXISTS "${CMAKE_BINARY_DIR}/.config")
+    set(DEFAULT_ENABLE ON)
+else()
+    set(DEFAULT_ENABLE OFF)
+endif()
 
-# ELP seems to be a subdirectory that might contain some code or data?
-# The original CMakeLists.txt had subdirs(elp) but no linking to it in add_library(nova ...).
-# Let's check what was in elp.
-add_subdirectory(elp)
+set(NOVA_SOURCES "")
+
+# Helper macro to conditionally add sources
+macro(add_module_source CONFIG_VAR SOURCE_FILE)
+    if((${CONFIG_VAR}) OR (${DEFAULT_ENABLE}))
+        list(APPEND NOVA_SOURCES ${SOURCE_FILE})
+    endif()
+endmacro()
+
+# Always include utility
+list(APPEND NOVA_SOURCES utility.c)
+
+# Conditional Sources
+add_module_source(LIBNOVA_JULIAN_DAY julian_day.c)
+add_module_source(LIBNOVA_DYNAMICAL_TIME dynamical_time.c)
+add_module_source(LIBNOVA_SIDEREAL_TIME sidereal_time.c)
+add_module_source(LIBNOVA_TRANSFORM transform.c)
+add_module_source(LIBNOVA_NUTATION nutation.c)
+add_module_source(LIBNOVA_ABERRATION aberration.c)
+add_module_source(LIBNOVA_APPARENT_POSITION apparent_position.c)
+add_module_source(LIBNOVA_SUN solar.c)
+add_module_source(LIBNOVA_PRECESSION precession.c)
+add_module_source(LIBNOVA_PROPER_MOTION proper_motion.c)
+add_module_source(LIBNOVA_MERCURY mercury.c)
+add_module_source(LIBNOVA_VENUS venus.c)
+add_module_source(LIBNOVA_EARTH earth.c)
+add_module_source(LIBNOVA_MARS mars.c)
+add_module_source(LIBNOVA_JUPITER jupiter.c)
+add_module_source(LIBNOVA_SATURN saturn.c)
+add_module_source(LIBNOVA_URANUS uranus.c)
+add_module_source(LIBNOVA_NEPTUNE neptune.c)
+add_module_source(LIBNOVA_PLUTO pluto.c)
+add_module_source(LIBNOVA_VSOP87 vsop87.c)
+add_module_source(LIBNOVA_MOON lunar.c)
+add_module_source(LIBNOVA_ELLIPTIC_MOTION elliptic_motion.c)
+add_module_source(LIBNOVA_ASTEROID asteroid.c)
+add_module_source(LIBNOVA_COMET comet.c)
+add_module_source(LIBNOVA_PARABOLIC_MOTION parabolic_motion.c)
+add_module_source(LIBNOVA_REFRACTION refraction.c)
+add_module_source(LIBNOVA_RISE_SET rise_set.c)
+add_module_source(LIBNOVA_ANGULAR_SEPARATION angular_separation.c)
+add_module_source(LIBNOVA_HYPERBOLIC_MOTION hyperbolic_motion.c)
+add_module_source(LIBNOVA_PARALLAX parallax.c)
+add_module_source(LIBNOVA_AIRMASS airmass.c)
+add_module_source(LIBNOVA_HELIOCENTRIC_TIME heliocentric_time.c)
+add_module_source(LIBNOVA_CONSTELLATION constellation.c)
+
+add_library(nova ${NOVA_SOURCES})
+
+# ELP (Lunar Theory)
+if(LIBNOVA_MOON OR DEFAULT_ENABLE)
+    add_subdirectory(elp)
+endif()
 
 target_include_directories(nova PUBLIC 
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>

@@ -1,0 +1,248 @@
+menu "Solar System (Planets & Major Bodies)"
+
+config LIBNOVA_SUN
+    bool "Sun"
+    default y
+    help
+      Enable Solar ephemeris calculations (solar.c).
+      Required for many other calculations (Rise/Set, etc.).
+
+config LIBNOVA_MERCURY
+    bool "Mercury"
+    default y
+    select LIBNOVA_VSOP87
+    help
+      Enable Mercury ephemeris calculations (mercury.c).
+
+config LIBNOVA_VENUS
+    bool "Venus"
+    default y
+    select LIBNOVA_VSOP87
+    help
+      Enable Venus ephemeris calculations (venus.c).
+
+config LIBNOVA_EARTH
+    bool "Earth"
+    default y
+    select LIBNOVA_VSOP87
+    help
+      Enable Earth ephemeris calculations (earth.c).
+      Fundamental for geocentric coordinates.
+
+config LIBNOVA_MARS
+    bool "Mars"
+    default y
+    select LIBNOVA_VSOP87
+    help
+      Enable Mars ephemeris calculations (mars.c).
+
+config LIBNOVA_JUPITER
+    bool "Jupiter"
+    default y
+    select LIBNOVA_VSOP87
+    help
+      Enable Jupiter ephemeris calculations (jupiter.c).
+
+config LIBNOVA_SATURN
+    bool "Saturn"
+    default y
+    select LIBNOVA_VSOP87
+    help
+      Enable Saturn ephemeris calculations (saturn.c).
+
+config LIBNOVA_URANUS
+    bool "Uranus"
+    default y
+    select LIBNOVA_VSOP87
+    help
+      Enable Uranus ephemeris calculations (uranus.c).
+
+config LIBNOVA_NEPTUNE
+    bool "Neptune"
+    default y
+    select LIBNOVA_VSOP87
+    help
+      Enable Neptune ephemeris calculations (neptune.c).
+
+config LIBNOVA_PLUTO
+    bool "Pluto"
+    default y
+    help
+      Enable Pluto ephemeris calculations (pluto.c).
+
+config LIBNOVA_MOON
+    bool "Moon"
+    default y
+    help
+      Enable Lunar ephemeris calculations (lunar.c).
+      Include standard ELP82 calculations.
+      
+config LIBNOVA_VSOP87
+    bool "VSOP87 Theory"
+    default y
+    help
+      Enable VSOP87 planetary theory implementation (vsop87.c).
+      Selected automatically by planets.
+
+endmenu
+
+menu "Minor Bodies"
+
+config LIBNOVA_ASTEROID
+    bool "Asteroids"
+    default y
+    help
+      Enable Asteroid orbit calculations (asteroid.c).
+
+config LIBNOVA_COMET
+    bool "Comets"
+    default y
+    help
+      Enable Comet orbit calculations (comet.c).
+
+endmenu
+
+menu "Time & Calendars"
+
+config LIBNOVA_JULIAN_DAY
+    bool "Julian Day"
+    default y
+    help
+      Enable Julian Day conversions (julian_day.c).
+      Fundamental for almost all calculations.
+
+config LIBNOVA_DYNAMICAL_TIME
+    bool "Dynamical Time"
+    default y
+    select LIBNOVA_JULIAN_DAY
+    help
+      Enable Dynamical Time (TD) calculations (dynamical_time.c).
+
+config LIBNOVA_SIDEREAL_TIME
+    bool "Sidereal Time"
+    default y
+    select LIBNOVA_JULIAN_DAY
+    help
+      Enable Sidereal Time calculations (sidereal_time.c).
+
+config LIBNOVA_HELIOCENTRIC_TIME
+    bool "Heliocentric Time"
+    default y
+    select LIBNOVA_JULIAN_DAY
+    help
+      Enable Heliocentric Time corrections (heliocentric_time.c).
+
+endmenu
+
+menu "Motion & Orbits"
+
+config LIBNOVA_ELLIPTIC_MOTION
+    bool "Elliptic Motion"
+    default y
+    help
+      Enable Elliptic Motion calculations (elliptic_motion.c).
+
+config LIBNOVA_PARABOLIC_MOTION
+    bool "Parabolic Motion"
+    default y
+    help
+      Enable Parabolic Motion calculations (parabolic_motion.c).
+
+config LIBNOVA_HYPERBOLIC_MOTION
+    bool "Hyperbolic Motion"
+    default y
+    help
+      Enable Hyperbolic Motion calculations (hyperbolic_motion.c).
+
+config LIBNOVA_PROPER_MOTION
+    bool "Proper Motion"
+    default y
+    help
+      Enable Proper Motion calculations (proper_motion.c).
+
+endmenu
+
+menu "Astrometry & Coordinates"
+
+config LIBNOVA_TRANSFORM
+    bool "Coordinate Transformations"
+    default y
+    help
+      Enable Coordinate Transformations (transform.c).
+      (Equatorial <-> Ecliptic <-> Horizontal, etc.)
+
+config LIBNOVA_NUTATION
+    bool "Nutation"
+    default y
+    help
+      Enable Nutation calculations (nutation.c).
+
+config LIBNOVA_ABERRATION
+    bool "Aberration"
+    default y
+    help
+      Enable Aberration calculations (aberration.c).
+
+config LIBNOVA_APPARENT_POSITION
+    bool "Apparent Position"
+    default y
+    select LIBNOVA_NUTATION
+    select LIBNOVA_ABERRATION
+    help
+      Enable Apparent Position calculations (apparent_position.c).
+
+config LIBNOVA_PRECESSION
+    bool "Precession"
+    default y
+    help
+      Enable Precession calculations (precession.c).
+
+config LIBNOVA_REFRACTION
+    bool "Refraction"
+    default y
+    help
+      Enable Atmospheric Refraction calculations (refraction.c).
+
+config LIBNOVA_RISE_SET
+    bool "Rise & Set"
+    default y
+    select LIBNOVA_SIDEREAL_TIME
+    help
+      Enable Rise, Set, and Transit calculations (rise_set.c).
+
+config LIBNOVA_PARALLAX
+    bool "Parallax"
+    default y
+    help
+      Enable Parallax calculations (parallax.c).
+
+config LIBNOVA_ANGULAR_SEPARATION
+    bool "Angular Separation"
+    default y
+    help
+      Enable Angular Separation calculations (angular_separation.c).
+
+config LIBNOVA_AIRMASS
+    bool "Airmass"
+    default y
+    help
+      Enable Airmass calculations (airmass.c).
+      
+config LIBNOVA_CONSTELLATION
+    bool "Constellations"
+    default y
+    help
+      Enable Constellation identification (constellation.c).
+
+endmenu
+
+menu "Utilities"
+
+config LIBNOVA_UTILITY
+    bool "Utility Functions"
+    default y
+    help
+      Enable general utility functions (utility.c).
+      (DMS strings, angle normalization, etc.)
+
+endmenu

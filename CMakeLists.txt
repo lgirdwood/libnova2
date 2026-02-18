@@ -8,6 +8,10 @@ include(CheckFunctionExists)
 include(CheckSymbolExists)
 include(CheckLibraryExists)
 
+# Kconfig Integration
+include(tools/kconfig.cmake)
+read_kconfig_config()
+
 # Shared/Static option
 option(BUILD_SHARED_LIBS "Build shared libraries" ON)
 

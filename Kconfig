@@ -1,0 +1,10 @@
+mainmenu "Libnova Configuration"
+
+config LIBNOVA_VERSION
+    string
+    option env="PROJECT_VERSION"
+    default "2.0.0"
+
+menu "Modules"
+    source "src/Kconfig"
+endmenu

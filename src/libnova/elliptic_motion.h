@@ -97,7 +97,7 @@ double LIBNOVA_EXPORT ln_get_ell_smajor_diam(double e, double q);
 double LIBNOVA_EXPORT ln_get_ell_sminor_diam(double e, double a);
 
 /**
-* \brief Calculate the mean daily motion (degrees/day).
+* \brief Calculate the mean daily motion (radians/day).
 * \ingroup elliptic 
 * \param a Semi-major axis
 * \return Mean daily motion

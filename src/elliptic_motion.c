@@ -31,313 +31,363 @@ digit required */
 #define KEPLER_STEPS 53
 
 /* the BASIC SGN() function  for doubles */
-static inline double sgn(double x) {
-  if (x == 0.0)
-    return (x);
-  else if (x < 0.0)
-    return (-1.0);
-  else
-    return (1.0);
+static inline double sgn(double x)
+{
+	if (x == 0.0)
+		return (x);
+	else if (x < 0.0)
+		return (-1.0);
+	else
+		return (1.0);
 }
-double ln_solve_kepler(double e, double M) {
-  double Eo = M_PI_2;
-  double F, M1;
-  double D = M_PI_4;
-  int i;
 
-  /* covert to radians */
-  /* M is already in radians */
+double ln_solve_kepler(double e, double M)
+{
+	double Eo = M_PI_2;
+	double F, M1;
+	double D = M_PI_4;
+	int i;
 
-  F = sgn(M);
-  M = fabs(M) / (2.0 * M_PI);
-  M = (M - (int)M) * 2.0 * M_PI * F;
+	/* covert to radians */
+	/* M is already in radians */
 
-  if (M < 0)
-    M = M + 2.0 * M_PI;
-  F = 1.0;
+	F = sgn(M);
+	M = fabs(M) / (2.0 * M_PI);
+	M = (M - (int)M) * 2.0 * M_PI * F;
 
-  if (M > M_PI)
-    F = -1.0;
+	if (M < 0)
+		M = M + 2.0 * M_PI;
+	F = 1.0;
 
-  if (M > M_PI)
-    M = 2.0 * M_PI - M;
+	if (M > M_PI)
+		F = -1.0;
 
-  for (i = 0; i < KEPLER_STEPS; i++) {
-    M1 = Eo - e * sin(Eo);
-    Eo = Eo + D * sgn(M - M1);
-    D /= 2.0;
-  }
-  Eo *= F;
+	if (M > M_PI)
+		M = 2.0 * M_PI - M;
 
-  /* back to degrees */
-  /* Eo is radians */
-  return Eo;
+	for (i = 0; i < KEPLER_STEPS; i++) {
+		M1 = Eo - e * sin(Eo);
+		Eo = Eo + D * sgn(M - M1);
+		D /= 2.0;
+	}
+	Eo *= F;
+
+	/* Eo is radians */
+	return Eo;
 }
-double ln_get_ell_mean_anomaly(double n, double delta_JD) {
-  return delta_JD * n;
+
+double ln_get_ell_mean_anomaly(double n, double delta_JD)
+{
+	return delta_JD * n;
 }
+
 /* equ 30.1 */
-double ln_get_ell_true_anomaly(double e, double E) {
-  double v;
+double ln_get_ell_true_anomaly(double e, double E)
+{
+	double v;
 
-  /* E is radians */
-  v = sqrt((1.0 + e) / (1.0 - e)) * tan(E / 2.0);
-  v = 2.0 * atan(v);
-  v = ln_range_radians(v);
-  return v;
+	/* E is radians */
+	v = sqrt((1.0 + e) / (1.0 - e)) * tan(E / 2.0);
+	v = 2.0 * atan(v);
+	v = ln_range_radians(v);
+	return v;
 }
+
 /* equ 30.2 */
-double ln_get_ell_radius_vector(double a, double e, double E) {
-  return a * (1.0 - e * cos(E));
+double ln_get_ell_radius_vector(double a, double e, double E)
+{
+	return a * (1.0 - e * cos(E));
 }
-double ln_get_ell_smajor_diam(double e, double q) { return q / (1.0 - e); }
-double ln_get_ell_sminor_diam(double e, double a) {
-  return a * sqrt(1 - e * e);
+
+double ln_get_ell_smajor_diam(double e, double q)
+{
+	return q / (1.0 - e);
 }
-double ln_get_ell_mean_motion(double a) {
-  double q = 0.01720209895; /* Gaussian gravitational constant (radians)*/
-  return q / (a * sqrt(a));
+
+double ln_get_ell_sminor_diam(double e, double a)
+{
+	return a * sqrt(1 - e * e);
 }
+
+double ln_get_ell_mean_motion(double a)
+{
+	double q = 0.01720209895; /* Gaussian gravitational constant (radians)*/
+	return q / (a * sqrt(a));
+}
+
 void ln_get_ell_helio_rect_posn(struct ln_ell_orbit *orbit, double JD,
-                                struct ln_rect_posn *posn) {
-  double A, B, C;
-  double F, G, H;
-  double P, Q, R;
-  double sin_e, cos_e;
-  double a, b, c;
-  double sin_omega, sin_i, cos_omega, cos_i;
-  double M, v, E, r;
+								struct ln_rect_posn *posn)
+{
+	double A, B, C;
+	double F, G, H;
+	double P, Q, R;
+	double sin_e, cos_e;
+	double a, b, c;
+	double sin_omega, sin_i, cos_omega, cos_i;
+	double M, v, E, r;
 
-  /* J2000 obliquity of the ecliptic */
-  sin_e = 0.397777156;
-  cos_e = 0.917482062;
+	/* J2000 obliquity of the ecliptic */
+	sin_e = 0.397777156;
+	cos_e = 0.917482062;
 
-  /* equ 33.7 */
-  sin_omega = sin(orbit->omega);
-  cos_omega = cos(orbit->omega);
-  sin_i = sin(orbit->i);
-  cos_i = cos(orbit->i);
-  F = cos_omega;
-  G = sin_omega * cos_e;
-  H = sin_omega * sin_e;
-  P = -sin_omega * cos_i;
-  Q = cos_omega * cos_i * cos_e - sin_i * sin_e;
-  R = cos_omega * cos_i * sin_e + sin_i * cos_e;
+	/* equ 33.7 */
+	sin_omega = sin(orbit->omega);
+	cos_omega = cos(orbit->omega);
+	sin_i = sin(orbit->i);
+	cos_i = cos(orbit->i);
+	F = cos_omega;
+	G = sin_omega * cos_e;
+	H = sin_omega * sin_e;
+	P = -sin_omega * cos_i;
+	Q = cos_omega * cos_i * cos_e - sin_i * sin_e;
+	R = cos_omega * cos_i * sin_e + sin_i * cos_e;
 
-  /* equ 33.8 */
-  A = atan2(F, P);
-  B = atan2(G, Q);
-  C = atan2(H, R);
-  a = sqrt(F * F + P * P);
-  b = sqrt(G * G + Q * Q);
-  c = sqrt(H * H + R * R);
+	/* equ 33.8 */
+	A = atan2(F, P);
+	B = atan2(G, Q);
+	C = atan2(H, R);
+	a = sqrt(F * F + P * P);
+	b = sqrt(G * G + Q * Q);
+	c = sqrt(H * H + R * R);
 
-  /* get daily motion */
-  if (orbit->n == 0.0)
-    orbit->n = ln_get_ell_mean_motion(orbit->a);
+	/* get daily motion */
+	if (orbit->n == 0.0)
+		orbit->n = ln_get_ell_mean_motion(orbit->a);
 
-  /* get mean anomaly */
-  M = ln_get_ell_mean_anomaly(orbit->n, JD - orbit->JD);
+	/* get mean anomaly */
+	M = ln_get_ell_mean_anomaly(orbit->n, JD - orbit->JD);
 
-  /* get eccentric anomaly */
-  E = ln_solve_kepler(orbit->e, M);
+	/* get eccentric anomaly */
+	E = ln_solve_kepler(orbit->e, M);
 
-  /* get true anomaly */
-  v = ln_get_ell_true_anomaly(orbit->e, E);
+	/* get true anomaly */
+	v = ln_get_ell_true_anomaly(orbit->e, E);
 
-  /* get radius vector */
-  r = ln_get_ell_radius_vector(orbit->a, orbit->e, E);
+	/* get radius vector */
+	r = ln_get_ell_radius_vector(orbit->a, orbit->e, E);
 
-  /* equ 33.9 */
-  posn->X = r * a * sin(A + orbit->w + v);
-  posn->Y = r * b * sin(B + orbit->w + v);
-  posn->Z = r * c * sin(C + orbit->w + v);
+	/* equ 33.9 */
+	posn->X = r * a * sin(A + orbit->w + v);
+	posn->Y = r * b * sin(B + orbit->w + v);
+	posn->Z = r * c * sin(C + orbit->w + v);
 }
+
 void ln_get_ell_geo_rect_posn(struct ln_ell_orbit *orbit, double JD,
-                              struct ln_rect_posn *posn) {
-  struct ln_rect_posn p_posn, e_posn;
-  struct ln_helio_posn earth;
+							  struct ln_rect_posn *posn)
+{
+	struct ln_rect_posn p_posn, e_posn;
+	struct ln_helio_posn earth;
 
-  /* elliptic helio rect coords */
-  ln_get_ell_helio_rect_posn(orbit, JD, &p_posn);
+	/* elliptic helio rect coords */
+	ln_get_ell_helio_rect_posn(orbit, JD, &p_posn);
 
-  /* earth rect coords */
-  ln_get_earth_helio_coords(JD, &earth);
-  ln_get_rect_from_helio(&earth, &e_posn);
+	/* earth rect coords */
+	ln_get_earth_helio_coords(JD, &earth);
+	ln_get_rect_from_helio(&earth, &e_posn);
 
-  posn->X = e_posn.X - p_posn.X;
-  posn->Y = e_posn.Y - p_posn.Y;
-  posn->Z = e_posn.Z - p_posn.Z;
+	posn->X = e_posn.X - p_posn.X;
+	posn->Y = e_posn.Y - p_posn.Y;
+	posn->Z = e_posn.Z - p_posn.Z;
 }
+
 void ln_get_ell_body_equ_coords(double JD, struct ln_ell_orbit *orbit,
-                                struct ln_equ_posn *posn) {
-  struct ln_rect_posn body_rect_posn, sol_rect_posn;
-  double dist, t;
-  double x, y, z;
+								struct ln_equ_posn *posn)
+{
+	struct ln_rect_posn body_rect_posn, sol_rect_posn;
+	double dist, t;
+	double x, y, z;
 
-  /* get solar and body rect coords */
-  ln_get_ell_helio_rect_posn(orbit, JD, &body_rect_posn);
-  ln_get_solar_geo_coords(JD, &sol_rect_posn);
+	/* get solar and body rect coords */
+	ln_get_ell_helio_rect_posn(orbit, JD, &body_rect_posn);
+	ln_get_solar_geo_coords(JD, &sol_rect_posn);
 
-  /* calc distance and light time */
-  dist = ln_get_rect_distance(&body_rect_posn, &sol_rect_posn);
-  t = ln_get_light_time(dist);
+	/* calc distance and light time */
+	dist = ln_get_rect_distance(&body_rect_posn, &sol_rect_posn);
+	t = ln_get_light_time(dist);
 
-  /* repeat calculation with new time (i.e. JD - t) */
-  ln_get_ell_helio_rect_posn(orbit, JD - t, &body_rect_posn);
+	/* repeat calculation with new time (i.e. JD - t) */
+	ln_get_ell_helio_rect_posn(orbit, JD - t, &body_rect_posn);
 
-  /* calc equ coords equ 33.10 */
-  x = sol_rect_posn.X + body_rect_posn.X;
-  y = sol_rect_posn.Y + body_rect_posn.Y;
-  z = sol_rect_posn.Z + body_rect_posn.Z;
+	/* calc equ coords equ 33.10 */
+	x = sol_rect_posn.X + body_rect_posn.X;
+	y = sol_rect_posn.Y + body_rect_posn.Y;
+	z = sol_rect_posn.Z + body_rect_posn.Z;
 
-  posn->ra = ln_range_radians(atan2(y, x));
-  posn->dec = asin(z / sqrt(x * x + y * y + z * z));
+	posn->ra = ln_range_radians(atan2(y, x));
+	posn->dec = asin(z / sqrt(x * x + y * y + z * z));
 }
-double ln_get_ell_orbit_len(struct ln_ell_orbit *orbit) {
-  double A, G, H;
-  double b;
 
-  b = ln_get_ell_sminor_diam(orbit->e, orbit->a);
+double ln_get_ell_orbit_len(struct ln_ell_orbit *orbit)
+{
+	double A, G, H;
+	double b;
 
-  A = (orbit->a + b) / 2.0;
-  G = sqrt(orbit->a * b);
-  H = (2.0 * orbit->a * b) / (orbit->a + b);
+	b = ln_get_ell_sminor_diam(orbit->e, orbit->a);
 
-  /* Meeus, page 239, 2nd edition */
-  return M_PI * ((21.0 * A - 2.0 * G - 3.0 * H) / 8.0);
+	A = (orbit->a + b) / 2.0;
+	G = sqrt(orbit->a * b);
+	H = (2.0 * orbit->a * b) / (orbit->a + b);
+
+	/* Meeus, page 239, 2nd edition */
+	return M_PI * ((21.0 * A - 2.0 * G - 3.0 * H) / 8.0);
 }
-double ln_get_ell_orbit_vel(double JD, struct ln_ell_orbit *orbit) {
-  double V;
-  double r;
 
-  r = ln_get_ell_body_solar_dist(JD, orbit);
-  V = 1.0 / r - 1.0 / (2.0 * orbit->a);
-  V = 42.1219 * sqrt(V);
-  return V;
+double ln_get_ell_orbit_vel(double JD, struct ln_ell_orbit *orbit)
+{
+	double V;
+	double r;
+
+	r = ln_get_ell_body_solar_dist(JD, orbit);
+	V = 1.0 / r - 1.0 / (2.0 * orbit->a);
+	V = 42.1219 * sqrt(V);
+	return V;
 }
-double ln_get_ell_orbit_pvel(struct ln_ell_orbit *orbit) {
-  double V;
 
-  V = 29.7847 / sqrt(orbit->a);
-  V *= sqrt((1.0 + orbit->e) / (1.0 - orbit->e));
-  return V;
+double ln_get_ell_orbit_pvel(struct ln_ell_orbit *orbit)
+{
+	double V;
+
+	V = 29.7847 / sqrt(orbit->a);
+	V *= sqrt((1.0 + orbit->e) / (1.0 - orbit->e));
+	return V;
 }
-double ln_get_ell_orbit_avel(struct ln_ell_orbit *orbit) {
-  double V;
 
-  V = 29.7847 / sqrt(orbit->a);
-  V *= sqrt((1.0 - orbit->e) / (1.0 + orbit->e));
-  return V;
+double ln_get_ell_orbit_avel(struct ln_ell_orbit *orbit)
+{
+	double V;
+
+	V = 29.7847 / sqrt(orbit->a);
+	V *= sqrt((1.0 - orbit->e) / (1.0 + orbit->e));
+	return V;
 }
-double ln_get_ell_body_solar_dist(double JD, struct ln_ell_orbit *orbit) {
-  struct ln_rect_posn body_rect_posn, sol_rect_posn;
 
-  /* get solar and body rect coords */
-  ln_get_ell_helio_rect_posn(orbit, JD, &body_rect_posn);
-  sol_rect_posn.X = 0;
-  sol_rect_posn.Y = 0;
-  sol_rect_posn.Z = 0;
+double ln_get_ell_body_solar_dist(double JD, struct ln_ell_orbit *orbit)
+{
+	struct ln_rect_posn body_rect_posn, sol_rect_posn;
 
-  /* calc distance */
-  return ln_get_rect_distance(&body_rect_posn, &sol_rect_posn);
+	/* get solar and body rect coords */
+	ln_get_ell_helio_rect_posn(orbit, JD, &body_rect_posn);
+	sol_rect_posn.X = 0;
+	sol_rect_posn.Y = 0;
+	sol_rect_posn.Z = 0;
+
+	/* calc distance */
+	return ln_get_rect_distance(&body_rect_posn, &sol_rect_posn);
 }
-double ln_get_ell_body_earth_dist(double JD, struct ln_ell_orbit *orbit) {
-  struct ln_rect_posn body_rect_posn, earth_rect_posn;
 
-  /* get solar and body rect coords */
-  ln_get_ell_geo_rect_posn(orbit, JD, &body_rect_posn);
-  earth_rect_posn.X = 0;
-  earth_rect_posn.Y = 0;
-  earth_rect_posn.Z = 0;
+double ln_get_ell_body_earth_dist(double JD, struct ln_ell_orbit *orbit)
+{
+	struct ln_rect_posn body_rect_posn, earth_rect_posn;
 
-  /* calc distance */
-  return ln_get_rect_distance(&body_rect_posn, &earth_rect_posn);
+	/* get solar and body rect coords */
+	ln_get_ell_geo_rect_posn(orbit, JD, &body_rect_posn);
+	earth_rect_posn.X = 0;
+	earth_rect_posn.Y = 0;
+	earth_rect_posn.Z = 0;
+
+	/* calc distance */
+	return ln_get_rect_distance(&body_rect_posn, &earth_rect_posn);
 }
-double ln_get_ell_body_phase_angle(double JD, struct ln_ell_orbit *orbit) {
-  double r, R, d;
-  double E, M;
-  double phase;
 
-  /* get mean anomaly */
-  if (orbit->n == 0.0)
-    orbit->n = ln_get_ell_mean_motion(orbit->a);
-  M = ln_get_ell_mean_anomaly(orbit->n, JD - orbit->JD);
+double ln_get_ell_body_phase_angle(double JD, struct ln_ell_orbit *orbit)
+{
+	double r, R, d;
+	double E, M;
+	double phase;
 
-  /* get eccentric anomaly */
-  E = ln_solve_kepler(orbit->e, M);
+	/* get mean anomaly */
+	if (orbit->n == 0.0)
+		orbit->n = ln_get_ell_mean_motion(orbit->a);
+	M = ln_get_ell_mean_anomaly(orbit->n, JD - orbit->JD);
 
-  /* get radius vector */
-  r = ln_get_ell_radius_vector(orbit->a, orbit->e, E);
+	/* get eccentric anomaly */
+	E = ln_solve_kepler(orbit->e, M);
 
-  /* get solar and Earth distances */
-  R = ln_get_ell_body_earth_dist(JD, orbit);
-  d = ln_get_ell_body_solar_dist(JD, orbit);
+	/* get radius vector */
+	r = ln_get_ell_radius_vector(orbit->a, orbit->e, E);
 
-  phase = (r * r + d * d - R * R) / (2.0 * r * d);
-  return ln_range_radians(acos(phase));
+	/* get solar and Earth distances */
+	R = ln_get_ell_body_earth_dist(JD, orbit);
+	d = ln_get_ell_body_solar_dist(JD, orbit);
+
+	phase = (r * r + d * d - R * R) / (2.0 * r * d);
+	return ln_range_radians(acos(phase));
 }
-double ln_get_ell_body_elong(double JD, struct ln_ell_orbit *orbit) {
-  double r, R, d;
-  double t;
-  double elong;
-  double E, M;
 
-  /* time since perihelion */
-  t = JD - orbit->JD;
+double ln_get_ell_body_elong(double JD, struct ln_ell_orbit *orbit)
+{
+	double r, R, d;
+	double t;
+	double elong;
+	double E, M;
 
-  /* get mean anomaly */
-  if (orbit->n == 0.0)
-    orbit->n = ln_get_ell_mean_motion(orbit->a);
-  M = ln_get_ell_mean_anomaly(orbit->n, t);
+	/* time since perihelion */
+	t = JD - orbit->JD;
 
-  /* get eccentric anomaly */
-  E = ln_solve_kepler(orbit->e, M);
+	/* get mean anomaly */
+	if (orbit->n == 0.0)
+		orbit->n = ln_get_ell_mean_motion(orbit->a);
+	M = ln_get_ell_mean_anomaly(orbit->n, t);
 
-  /* get radius vector */
-  r = ln_get_ell_radius_vector(orbit->a, orbit->e, E);
+	/* get eccentric anomaly */
+	E = ln_solve_kepler(orbit->e, M);
 
-  /* get solar and Earth-Sun distances */
-  R = ln_get_earth_solar_dist(JD);
-  d = ln_get_ell_body_solar_dist(JD, orbit);
+	/* get radius vector */
+	r = ln_get_ell_radius_vector(orbit->a, orbit->e, E);
 
-  elong = (R * R + d * d - r * r) / (2.0 * R * d);
-  return ln_range_radians(acos(elong));
+	/* get solar and Earth-Sun distances */
+	R = ln_get_earth_solar_dist(JD);
+	d = ln_get_ell_body_solar_dist(JD, orbit);
+
+	elong = (R * R + d * d - r * r) / (2.0 * R * d);
+	return ln_range_radians(acos(elong));
 }
+
 int ln_get_ell_body_rst(double JD, struct ln_lnlat_posn *observer,
-                        struct ln_ell_orbit *orbit, struct ln_rst_time *rst) {
-  return ln_get_ell_body_rst_horizon(JD, observer, orbit,
-                                     LN_STAR_STANDART_HORIZON, rst);
+						struct ln_ell_orbit *orbit, struct ln_rst_time *rst)
+{
+	return ln_get_ell_body_rst_horizon(JD, observer, orbit,
+									   LN_STAR_STANDART_HORIZON, rst);
 }
+
 int ln_get_ell_body_rst_horizon(double JD, struct ln_lnlat_posn *observer,
-                                struct ln_ell_orbit *orbit, double horizon,
-                                struct ln_rst_time *rst) {
-  return ln_get_motion_body_rst_horizon(
-      JD, observer, (get_motion_body_coords_t)ln_get_ell_body_equ_coords, orbit,
-      horizon, rst);
+								struct ln_ell_orbit *orbit, double horizon,
+								struct ln_rst_time *rst)
+{
+	return ln_get_motion_body_rst_horizon(
+		JD, observer, (get_motion_body_coords_t)ln_get_ell_body_equ_coords,
+		orbit, horizon, rst);
 }
+
 int ln_get_ell_body_next_rst(double JD, struct ln_lnlat_posn *observer,
-                             struct ln_ell_orbit *orbit,
-                             struct ln_rst_time *rst) {
-  return ln_get_ell_body_next_rst_horizon(JD, observer, orbit,
-                                          LN_STAR_STANDART_HORIZON, rst);
+							 struct ln_ell_orbit *orbit,
+							 struct ln_rst_time *rst)
+{
+	return ln_get_ell_body_next_rst_horizon(JD, observer, orbit,
+											LN_STAR_STANDART_HORIZON, rst);
 }
+
 int ln_get_ell_body_next_rst_horizon(double JD, struct ln_lnlat_posn *observer,
-                                     struct ln_ell_orbit *orbit, double horizon,
-                                     struct ln_rst_time *rst) {
-  return ln_get_motion_body_next_rst_horizon(
-      JD, observer, (get_motion_body_coords_t)ln_get_ell_body_equ_coords, orbit,
-      horizon, rst);
+									 struct ln_ell_orbit *orbit, double horizon,
+									 struct ln_rst_time *rst)
+{
+	return ln_get_motion_body_next_rst_horizon(
+		JD, observer, (get_motion_body_coords_t)ln_get_ell_body_equ_coords,
+		orbit, horizon, rst);
 }
+
 int ln_get_ell_body_next_rst_horizon_future(double JD,
-                                            struct ln_lnlat_posn *observer,
-                                            struct ln_ell_orbit *orbit,
-                                            double horizon, int day_limit,
-                                            struct ln_rst_time *rst) {
-  return ln_get_motion_body_next_rst_horizon_future(
-      JD, observer, (get_motion_body_coords_t)ln_get_ell_body_equ_coords, orbit,
-      horizon, day_limit, rst);
+											struct ln_lnlat_posn *observer,
+											struct ln_ell_orbit *orbit,
+											double horizon, int day_limit,
+											struct ln_rst_time *rst)
+{
+	return ln_get_motion_body_next_rst_horizon_future(
+		JD, observer, (get_motion_body_coords_t)ln_get_ell_body_equ_coords,
+		orbit, horizon, day_limit, rst);
 }
-double ln_get_ell_last_perihelion(double epoch_JD, double M, double n) {
-  return epoch_JD - (M / n);
+
+double ln_get_ell_last_perihelion(double epoch_JD, double M, double n)
+{
+	return epoch_JD - (M / n);
 }

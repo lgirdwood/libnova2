@@ -35,7 +35,8 @@
 extern "C" {
 #endif
 
-#if defined(_MSC_VER) || defined(__CYGWIN__) || defined(__MINGW32__) || defined(__BCPLUSPLUS__) || defined(__MWERKS__)
+#if defined(_MSC_VER) || defined(__CYGWIN__) || defined(__MINGW32__) || \
+	defined(__BCPLUSPLUS__) || defined(__MWERKS__)
 #if defined(LIBNOVA_STATIC)
 #define LIBNOVA_EXPORT
 #elif defined(LIBNOVA_SHARED)
@@ -92,8 +93,13 @@ struct ln_date {
  * \def LN_DATE
  * \brief Macro to initialize a ln_date structure
  */
-#define LN_DATE(y, m, d, h, min, s) \
-	((struct ln_date){ .years = (y), .months = (m), .days = (d), .hours = (h), .minutes = (min), .seconds = (s) })
+#define LN_DATE(y, m, d, h, min, s)      \
+	((struct ln_date){ .years = (y),     \
+					   .months = (m),    \
+					   .days = (d),      \
+					   .hours = (h),     \
+					   .minutes = (min), \
+					   .seconds = (s) })
 
 /**
 ** Zone date
@@ -276,7 +282,7 @@ struct ln_ell_orbit {
 	double i; /**< Inclination in radians */
 	double w; /**< Argument of perihelion in radians */
 	double omega; /**< Longitude of ascending node in radians*/
-	double n; /**< Mean motion, in degrees/day */
+	double n; /**< Mean motion, in radians/day */
 	double JD; /**< Time of last passage in Perihelion, in julian day*/
 };
 

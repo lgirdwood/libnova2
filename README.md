@@ -1,6 +1,6 @@
-# libnova
+# libnova2
 
-**libnova** is a general purpose, double precision, Celestial Mechanics, Astrometry and Astrodynamics library.
+**libnova2** is a general purpose, double precision, Celestial Mechanics, Astrometry and Astrodynamics library.
 
 ## Features
 
@@ -29,7 +29,7 @@
 
 ## Building
 
-libnova uses **CMake** for its build system.
+libnova2 uses **CMake** for its build system.
 
 ### 1. Configure
 
@@ -68,7 +68,7 @@ sudo make install
 
 ## Cross-Compilation
 
-libnova supports cross-compilation for embedded targets (e.g., ESP32, ARM).
+libnova2 supports cross-compilation for embedded targets (e.g., ESP32, ARM).
 
 ### 1. Toolchain File
 
@@ -125,9 +125,9 @@ Include the main header:
 #include <libnova/libnova.h>
 ```
 
-Link against `libnova` (and `libm` if static/required):
+Link against `libnova2` (and `libm` if static/required):
 ```bash
-cc my_program.c -lnova -lm -o my_program
+cc my_program.c -lnova2 -lm -o my_program
 ```
 
 For more examples, see the `examples/` directory.

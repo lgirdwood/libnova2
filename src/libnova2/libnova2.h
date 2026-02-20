@@ -16,14 +16,14 @@
  *  Copyright (C) 2000 - 2026 Liam Girdwood <lgirdwood@gmail.com>
  */
 
-#define LIBNOVA2_VERSION "0.15.0"
+#define LIBNOVA2_VERSION "0.99.0"
 
 /** \mainpage libnova2
 * \image html libnova2.png
 * Celestial Mechanics, Astrometry and Astrodynamics Library
 * 
 * \section intro Introduction
-* libnova2 is a general purpose, double precision, Celestial Mechanics, Astrometry and Astrodynamics library.
+* libnova2 is a general purpose, double precision, Celestial Mechanics, Astrometry and Astrodynamics library. Its a successor to libnova with the significant change being use of radians instead of degrees. 
 *
 * The intended audience of libnova2 is C / C++ programmers, astronomers and anyone else interested in calculating positions of astronomical objects or celestial mechanics.
 * libnova2 is the calculation engine used by the <A href="http://nova.sf.net">Nova</A> project and most importantly, is free software.
@@ -66,11 +66,7 @@
 * API documentation for libnova2 is included in the source. It can also be found in this website and an offline tarball is available <A href="http://libnova2.sf.net/libnova2docs.tar.gz">here</A>.
 *
 * \section download Download
-* The latest released version of libnova2 is 0.15.0
-* It is available for download <A href="http://sourceforge.net/projects/libnova2/files/libnova2/">here.</A>
-*
-* \section git GIT
-* The latest GIT version of libnova2 is available via GIT <A href="http://sourceforge.net/p/libnova2/libnova2/">here.</A>
+* The latest released version of libnova2 is 0.99.0
 *
 * \section licence Licence
 * libnova2 is released under the <A href="http://www.gnu.org">GNU</A> LGPL.
@@ -80,7 +76,6 @@
 * Currently, we are needing help in the folowing areas.
 * - Documentation. (Not just API reference, but also astronomy info for novice users)
 * - Programming (in C) astronomical solutions or algorithms.
-* - Algorithms and Solutions.
 *
 * \section authors Authors
 * libnova2 is maintained by <A href="mailto:lgirdwood@gmail.com">Liam Girdwood</A> and <A href="mailto:petr@kubanek.net">Petr Kubanek</A>.
@@ -94,8 +89,6 @@
 *
 * Thanks to Messrs. Bretagnon and Francou for publishing planetary 
 * solution VSOP87.
-*
-* Also thanks to Sourceforge for hosting this project. <A href="http://sourceforge.net"> <IMG src="http://sourceforge.net/sflogo.php?group_id=57697&amp;type=5" width="210" height="62" border="0" alt="SourceForge Logo"></A> 
 */
 
 #ifndef _LN_LIBNOVA2_H

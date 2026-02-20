@@ -1,5 +1,9 @@
 # libnova2
 
+<div align="center">
+  <img src="doc/libnova2.png" alt="libnova2 logo" />
+</div>
+
 **libnova2** is a general purpose, double precision, Celestial Mechanics, Astrometry and Astrodynamics library.
 
 ## Features

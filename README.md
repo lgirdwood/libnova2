@@ -6,7 +6,7 @@
   <a href="https://github.com/lgirdwood/libnova2/actions/workflows/ci.yml"><img src="https://github.com/lgirdwood/libnova2/actions/workflows/ci.yml/badge.svg" alt="CI Status" /></a>
 </div>
 
-**libnova2** is a general purpose, double precision, Celestial Mechanics, Astrometry and Astrodynamics library.
+**libnova2** is a general purpose, double precision, Celestial Mechanics, Astrometry and Astrodynamics library. It is a successor to libnova with the significant change being use of radians instead of degrees.
 
 ## Features
 

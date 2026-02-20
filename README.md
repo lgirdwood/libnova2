@@ -2,6 +2,8 @@
 
 <div align="center">
   <img src="doc/libnova2.png" alt="libnova2 logo" />
+  <br />
+  <a href="https://github.com/lgirdwood/libnova2/actions/workflows/ci.yml"><img src="https://github.com/lgirdwood/libnova2/actions/workflows/ci.yml/badge.svg" alt="CI Status" /></a>
 </div>
 
 **libnova2** is a general purpose, double precision, Celestial Mechanics, Astrometry and Astrodynamics library.

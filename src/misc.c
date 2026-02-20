@@ -1,7 +1,7 @@
 /* $Id: misc.c,v 1.10 2008-04-12 19:13:29 pkubanek Exp $
  **
- * Copyright (C) 1999, 2000 Juan Carlos Remis
- * Copyright (C) 2002 Liam Girdwood
+ * Copyright (C) 1999, 2000 - 2026 Juan Carlos Remis
+ * Copyright (C) 2002 - 2026 Liam Girdwood
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public

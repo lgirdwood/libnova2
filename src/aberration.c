@@ -13,8 +13,8 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  *  
- *  Copyright (C) 2000 - 2005 Liam Girdwood  
- *  Copyright (C) 2015 Jeroen Vreeken (jeroen@vreeken.net)
+ *  Copyright (C) 2000 - 2026 Liam Girdwood  
+ *  Copyright (C) 2015 - 2026 Jeroen Vreeken (jeroen@vreeken.net)
  */
 
 #include <math.h>

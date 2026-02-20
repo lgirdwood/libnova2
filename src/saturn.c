@@ -16,7 +16,7 @@
  *  Some functions in this file use the VSOP87 solution by
  *  Messrs. Bretagnon and Francou.
  * 
- *  Copyright (C) 2000 - 2005 Liam Girdwood <lgirdwood@gmail.com>
+ *  Copyright (C) 2000 - 2026 Liam Girdwood <lgirdwood@gmail.com>
  */
 
 #include <math.h>

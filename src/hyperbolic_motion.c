@@ -13,8 +13,8 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  *
- *  Copyright (C) 2002 - 2005 Liam Girdwood <lgirdwood@gmail.com>
- *  Copyright (C) 2004 Petr Kubanek
+ *  Copyright (C) 2002 - 2026 Liam Girdwood <lgirdwood@gmail.com>
+ *  Copyright (C) 2004 - 2026 Petr Kubanek
  */
 
 #define _GNU_SOURCE

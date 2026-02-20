@@ -13,7 +13,7 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  *  
- *  Copyright (C) 2015 Petr Kubánek 
+ *  Copyright (C) 2015 - 2026 Petr Kubánek 
  */
 
 #ifndef _LN_CONSTELLATION_H

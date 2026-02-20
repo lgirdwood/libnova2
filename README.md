@@ -70,6 +70,14 @@ make
 sudo make install
 ```
 
+### 5. Debian / RPM Packages
+
+You can build `.deb` and `.rpm` packages using CPack (from the build directory):
+
+```bash
+make package
+```
+
 ## Cross-Compilation
 
 libnova2 supports cross-compilation for embedded targets (e.g., ESP32, ARM).

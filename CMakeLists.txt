@@ -132,3 +132,23 @@ endif()
 if(BUILD_EXAMPLES)
     add_subdirectory(examples)
 endif()
+# Packaging with CPack
+set(CPACK_GENERATOR "DEB;RPM")
+set(CPACK_PACKAGE_NAME "libnova2")
+set(CPACK_PACKAGE_VERSION_MAJOR ${libnova2_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${libnova2_VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH ${libnova2_VERSION_PATCH})
+set(CPACK_PACKAGE_CONTACT "Liam Girdwood <lgirdwood@gmail.com>")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Astrometry Library")
+
+# DEB
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.4)")
+set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
+set(CPACK_DEBIAN_PACKAGE_SECTION "libs")
+
+# RPM
+set(CPACK_RPM_PACKAGE_LICENSE "LGPL-2.0-or-later")
+set(CPACK_RPM_PACKAGE_GROUP "Development/Libraries")
+set(CPACK_RPM_PACKAGE_ARCHITECTURE "x86_64")
+
+include(CPack)

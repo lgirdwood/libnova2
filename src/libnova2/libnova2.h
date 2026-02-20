@@ -94,6 +94,10 @@
 #ifndef _LN_LIBNOVA2_H
 #define _LN_LIBNOVA2_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <libnova2/ln_types.h>
 #include <libnova2/julian_day.h>
 #include <libnova2/dynamical_time.h>
@@ -123,12 +127,15 @@
 #include <libnova2/refraction.h>
 #include <libnova2/rise_set.h>
 #include <libnova2/angular_separation.h>
-#include <libnova2/ln_types.h>
 #include <libnova2/utility.h>
 #include <libnova2/hyperbolic_motion.h>
 #include <libnova2/parallax.h>
 #include <libnova2/airmass.h>
 #include <libnova2/heliocentric_time.h>
 #include <libnova2/constellation.h>
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

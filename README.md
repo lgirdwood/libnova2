@@ -30,6 +30,8 @@
 -   **Optional**:
     -   `kconfig-frontends` (for `menuconfig` configuration)
     -   Doxygen (for API documentation)
+    -   `dpkg` (for building Debian packages)
+    -   `rpm` / `rpmbuild` (for building RPM packages)
 
 ## Building
 

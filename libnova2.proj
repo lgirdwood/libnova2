@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="Libnova"
+	Name="Libnova2"
 	ProjectGUID="{9440439E-C05C-4C5A-9B3E-27DD3AC78715}"
-	RootNamespace="Libnova"
+	RootNamespace="Libnova2"
 	>
 	<Platforms>
 		<Platform

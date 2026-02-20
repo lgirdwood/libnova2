@@ -43,7 +43,7 @@ examples/mars
 examples/sun
 examples/transforms
 
-lntest/libnovaconfig
+lntest/libnova2config
 lntest/lntest
 
 doxyfile
@@ -63,9 +63,9 @@ Testing/
 install_manifest.txt
 
 # Generated files
-libnova.pc
+libnova2.pc
 config.h
-libnova-*.tar.gz
+libnova2-*.tar.gz
 
 # Test output
 test_output*.txt

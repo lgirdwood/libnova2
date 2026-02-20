@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#include <libnova/libnova.h>
+#include <libnova2/libnova2.h>
 #include "test_helpers.h"
 
 int utility_test(void)

@@ -19,7 +19,7 @@
 #ifndef _LN_VSOP87_H
 #define _LN_VSOP87_H
 
-#include <libnova/ln_types.h>
+#include <libnova2/ln_types.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -44,7 +44,7 @@ extern "C" {
 */
 /* equation 31.3 Pg 207         */
 /* JD Julian Day */
-void LIBNOVA_EXPORT ln2_vsop87_to_fk5(struct ln_helio_posn *position, double JD);
+void LIBNOVA2_EXPORT ln2_vsop87_to_fk5(struct ln_helio_posn *position, double JD);
 
 /** \struct ln_vsop
 * \brief VSOP87 term data structure.
@@ -63,7 +63,7 @@ struct ln_vsop {
 * \param t Time
 * \return Result of series calculation
 */
-double LIBNOVA_EXPORT ln2_calc_series(const struct ln_vsop *data, int terms,
+double LIBNOVA2_EXPORT ln2_calc_series(const struct ln_vsop *data, int terms,
 									 double t);
 
 #ifdef __cplusplus

@@ -18,8 +18,8 @@
  */
 
 #include <math.h>
-#include <libnova/airmass.h>
-#include <libnova/utility.h>
+#include <libnova2/airmass.h>
+#include <libnova2/utility.h>
 
 /*
 ** Airmass

@@ -19,17 +19,17 @@ Copyright 2001 Liam Girdwood
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <libnova/utility.h>
+#include <libnova2/utility.h>
 
 static void usage(void)
 {
-	fprintf(stdout, "libnova-config --version\n");
+	fprintf(stdout, "libnova2-config --version\n");
 	exit (-1);
 }
 
 static void get_version(void)
 {
-	fprintf(stdout, "libnova %s\n", ln_get_version());
+	fprintf(stdout, "libnova2 %s\n", ln_get_version());
 }
 
 int main(int argc, const char *argv[])

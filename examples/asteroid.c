@@ -21,12 +21,12 @@ A simple example showing the asteroid Pallas.
 */
 
 #include <stdio.h>
-#include <libnova/asteroid.h>
-#include <libnova/julian_day.h>
-#include <libnova/utility.h>
-#include <libnova/rise_set.h>
-#include <libnova/transform.h>
-#include <libnova/elliptic_motion.h>
+#include <libnova2/asteroid.h>
+#include <libnova2/julian_day.h>
+#include <libnova2/utility.h>
+#include <libnova2/rise_set.h>
+#include <libnova2/transform.h>
+#include <libnova2/elliptic_motion.h>
 
 /* just prints the date */
 static void print_date(char *title, struct ln_zonedate *date)

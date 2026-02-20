@@ -19,7 +19,7 @@
 #ifndef _LN_SATURN_H
 #define _LN_SATURN_H
 
-#include <libnova/ln_types.h>
+#include <libnova2/ln_types.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -44,7 +44,7 @@ extern "C" {
 * \param JD Julian Day
 * \return Equatorial semidiameter in radians
 */
-double LIBNOVA_EXPORT ln2_get_saturn_equ_sdiam(double JD);
+double LIBNOVA2_EXPORT ln2_get_saturn_equ_sdiam(double JD);
 
 /**
 * \brief Calculate the polar semidiameter of Saturn in radians.
@@ -52,7 +52,7 @@ double LIBNOVA_EXPORT ln2_get_saturn_equ_sdiam(double JD);
 * \param JD Julian Day
 * \return Polar semidiameter in radians
 */
-double LIBNOVA_EXPORT ln2_get_saturn_pol_sdiam(double JD);
+double LIBNOVA2_EXPORT ln2_get_saturn_pol_sdiam(double JD);
 
 /**
 * \brief Calculate the time of rise, set and transit for Saturn.
@@ -62,7 +62,7 @@ double LIBNOVA_EXPORT ln2_get_saturn_pol_sdiam(double JD);
 * \param rst Pointer to store rise, set and transit times
 * \return 0 for success, 1 for circumpolar, -1 for never rises
 */
-int LIBNOVA_EXPORT ln2_get_saturn_rst(double JD, struct ln_lnlat_posn *observer, struct ln_rst_time *rst);
+int LIBNOVA2_EXPORT ln2_get_saturn_rst(double JD, struct ln_lnlat_posn *observer, struct ln_rst_time *rst);
 
 /**
 * \brief Calculate Saturn's heliocentric coordinates.
@@ -71,7 +71,7 @@ int LIBNOVA_EXPORT ln2_get_saturn_rst(double JD, struct ln_lnlat_posn *observer,
 * \param position Pointer to store heliocentric position
 */
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 */
-void LIBNOVA_EXPORT ln2_get_saturn_helio_coords(double JD, struct ln_helio_posn *position);
+void LIBNOVA2_EXPORT ln2_get_saturn_helio_coords(double JD, struct ln_helio_posn *position);
 
 /**
 * \brief Calculate Saturn's equatorial coordinates.
@@ -80,7 +80,7 @@ void LIBNOVA_EXPORT ln2_get_saturn_helio_coords(double JD, struct ln_helio_posn 
 * \param position Pointer to store equatorial position
 */
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 */
-void LIBNOVA_EXPORT ln2_get_saturn_equ_coords(double JD, struct ln_equ_posn *position);
+void LIBNOVA2_EXPORT ln2_get_saturn_equ_coords(double JD, struct ln_equ_posn *position);
 
 /**
 * \brief Calculate the distance between Saturn and the Earth.
@@ -89,7 +89,7 @@ void LIBNOVA_EXPORT ln2_get_saturn_equ_coords(double JD, struct ln_equ_posn *pos
 * \return Distance in AU
 */
 /* Chapter ?? */
-double LIBNOVA_EXPORT ln2_get_saturn_earth_dist(double JD);
+double LIBNOVA2_EXPORT ln2_get_saturn_earth_dist(double JD);
 
 /**
 * \brief Calculate the distance between Saturn and the Sun.
@@ -98,7 +98,7 @@ double LIBNOVA_EXPORT ln2_get_saturn_earth_dist(double JD);
 * \return Distance in AU
 */
 /* Chapter ?? */
-double LIBNOVA_EXPORT ln2_get_saturn_solar_dist(double JD);
+double LIBNOVA2_EXPORT ln2_get_saturn_solar_dist(double JD);
 
 /**
 * \brief Calculate the visible magnitude of Saturn
@@ -107,7 +107,7 @@ double LIBNOVA_EXPORT ln2_get_saturn_solar_dist(double JD);
 * \return Visible magnitude of Saturn
 */
 /* Chapter ?? */
-double LIBNOVA_EXPORT ln2_get_saturn_magnitude(double JD);
+double LIBNOVA2_EXPORT ln2_get_saturn_magnitude(double JD);
 
 /**
 * \brief Calculate the illuminated fraction of Saturn's disk
@@ -116,7 +116,7 @@ double LIBNOVA_EXPORT ln2_get_saturn_magnitude(double JD);
 * \return Illuminated fraction of Saturn's disk
 */
 /* Chapter 41 */
-double LIBNOVA_EXPORT ln2_get_saturn_disk(double JD);
+double LIBNOVA2_EXPORT ln2_get_saturn_disk(double JD);
 
 /**
 * \brief Calculate the phase angle of Saturn.
@@ -125,7 +125,7 @@ double LIBNOVA_EXPORT ln2_get_saturn_disk(double JD);
 * \return Phase angle of Saturn (radians)
 */
 /* Chapter 41 */
-double LIBNOVA_EXPORT ln2_get_saturn_phase(double JD);
+double LIBNOVA2_EXPORT ln2_get_saturn_phase(double JD);
 
 /**
 * \ingroup saturns
@@ -133,7 +133,7 @@ double LIBNOVA_EXPORT ln2_get_saturn_phase(double JD);
 * \param JD Julian Day
 * \param position Pointer to store rectangular position
 */
-void LIBNOVA_EXPORT ln2_get_saturn_rect_helio(double JD, struct ln_rect_posn *position);
+void LIBNOVA2_EXPORT ln2_get_saturn_rect_helio(double JD, struct ln_rect_posn *position);
 
 #ifdef __cplusplus
 };

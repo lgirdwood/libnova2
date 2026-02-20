@@ -1,5 +1,5 @@
-#include <libnova/libnova.h>
-#include <libnova/mercury.h>
+#include <libnova2/libnova2.h>
+#include <libnova2/mercury.h>
 #include "test_helpers.h"
 
 int test_mercury(void)

@@ -19,7 +19,7 @@
 #ifndef _LN_HELIOCENTRIC_TIME_H
 #define _LN_HELIOCENTRIC_TIME_H
 
-#include <libnova/ln_types.h>
+#include <libnova2/ln_types.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -45,7 +45,7 @@ extern "C" {
 *
 * Corrects for the time light takes to travel the distance between the Earth and the Sun, projected onto the line of sight to the object.
 */
-double LIBNOVA_EXPORT ln2_get_heliocentric_time_diff(double JD, struct ln_equ_posn *object);
+double LIBNOVA2_EXPORT ln2_get_heliocentric_time_diff(double JD, struct ln_equ_posn *object);
 
 #ifdef __cplusplus
 };

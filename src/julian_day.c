@@ -20,8 +20,8 @@
 #define _USE_32BIT_TIME_T
 #endif //__MINGW__
 
-#include <libnova/julian_day.h>
-#include <libnova/utility.h>
+#include <libnova2/julian_day.h>
+#include <libnova2/utility.h>
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>

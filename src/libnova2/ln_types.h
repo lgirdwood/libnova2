@@ -37,15 +37,15 @@ extern "C" {
 
 #if defined(_MSC_VER) || defined(__CYGWIN__) || defined(__MINGW32__) || \
 	defined(__BCPLUSPLUS__) || defined(__MWERKS__)
-#if defined(LIBNOVA_STATIC)
-#define LIBNOVA_EXPORT
-#elif defined(LIBNOVA_SHARED)
-#define LIBNOVA_EXPORT __declspec(dllexport)
+#if defined(LIBNOVA2_STATIC)
+#define LIBNOVA2_EXPORT
+#elif defined(LIBNOVA2_SHARED)
+#define LIBNOVA2_EXPORT __declspec(dllexport)
 #else
-#define LIBNOVA_EXPORT
+#define LIBNOVA2_EXPORT
 #endif
 #else
-#define LIBNOVA_EXPORT
+#define LIBNOVA2_EXPORT
 #endif
 
 /* define some useful constants if they are not already defined */
@@ -73,10 +73,10 @@ extern "C" {
 /**
 ** Date
 * \struct ln_date
-* \brief Human readable Date and time used by libnova
+* \brief Human readable Date and time used by libnova2
 *
 * This is the Human readable (easy printf) date format used
-* by libnova. It's always in UTC. For local time, please use
+* by libnova2. It's always in UTC. For local time, please use
 * ln_zonedate.
 */
 
@@ -105,10 +105,10 @@ struct ln_date {
 ** Zone date
 * \struct ln_zonedate
 * \brief Human readable Date and time with timezone information used
-* by libnova
+* by libnova2
 *
 * This is the Human readable (easy printf) date with timezone format
-* used by libnova.
+* used by libnova2.
 */
 
 struct ln_zonedate {

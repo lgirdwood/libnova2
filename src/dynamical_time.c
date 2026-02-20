@@ -16,7 +16,7 @@
  *  Copyright (C) 2000 - 2026 Liam Girdwood  <lgirdwood@gmail.com>
  */
 
-#include <libnova/dynamical_time.h>
+#include <libnova2/dynamical_time.h>
 #include <stdio.h>
 #define TERMS 192
 

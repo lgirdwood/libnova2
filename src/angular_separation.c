@@ -17,8 +17,8 @@
  */
  
 #include <math.h>
-#include <libnova/angular_separation.h>
-#include <libnova/utility.h>	
+#include <libnova2/angular_separation.h>
+#include <libnova2/utility.h>	
 /* Chap 17 page 115 */
 double ln2_get_angular_separation(struct ln_equ_posn* posn1,
 	struct ln_equ_posn* posn2)

@@ -16,8 +16,8 @@
  *  Copyright (C) 2000 - 2026 Liam Girdwood <lgirdwood@gmail.com>
  */
 
-#include <libnova/proper_motion.h>
-#include <libnova/utility.h>
+#include <libnova2/proper_motion.h>
+#include <libnova2/utility.h>
 
 /*
 ** Proper Motion.

@@ -16,9 +16,9 @@
  *  Copyright (C) 2000 - 2026 Liam Girdwood <lgirdwood@gmail.com>
  */
 
-#include <libnova/nutation.h>
-#include <libnova/sidereal_time.h>
-#include <libnova/utility.h>
+#include <libnova2/nutation.h>
+#include <libnova2/sidereal_time.h>
+#include <libnova2/utility.h>
 #include <math.h>
 /* Formula 11.1, 11.4 pg 83
  */

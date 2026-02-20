@@ -19,7 +19,7 @@
 #ifndef _LN_LUNAR_H
 #define _LN_LUNAR_H
 
-#include <libnova/ln_types.h>
+#include <libnova2/ln_types.h>
 
 #define LN_LUNAR_STANDART_HORIZON 0.125
 
@@ -43,7 +43,7 @@ extern "C" {
 * \param JD Julian Day
 * \return Semidiameter in arc seconds
 */
-double LIBNOVA_EXPORT ln2_get_lunar_sdiam(double JD);
+double LIBNOVA2_EXPORT ln2_get_lunar_sdiam(double JD);
 
 /**
 * \brief Calculate the time of rise, set and transit for the Moon.
@@ -54,7 +54,7 @@ double LIBNOVA_EXPORT ln2_get_lunar_sdiam(double JD);
 * \return 0 for success, 1 for circumpolar, -1 for never rises
 */
 
-int LIBNOVA_EXPORT ln2_get_lunar_rst(double JD, struct ln_lnlat_posn *observer,
+int LIBNOVA2_EXPORT ln2_get_lunar_rst(double JD, struct ln_lnlat_posn *observer,
 									struct ln_rst_time *rst);
 
 /**
@@ -65,7 +65,7 @@ int LIBNOVA_EXPORT ln2_get_lunar_rst(double JD, struct ln_lnlat_posn *observer,
 * \param precision Calculation precision
 */
 /* ELP 2000-82B theory */
-void LIBNOVA_EXPORT ln2_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon,
+void LIBNOVA2_EXPORT ln2_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon,
 										  double precision);
 
 /**
@@ -75,7 +75,7 @@ void LIBNOVA_EXPORT ln2_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon,
 * \param position Pointer to store equatorial position
 * \param precision Calculation precision
 */
-void LIBNOVA_EXPORT ln2_get_lunar_equ_coords_prec(double JD,
+void LIBNOVA2_EXPORT ln2_get_lunar_equ_coords_prec(double JD,
 												 struct ln_equ_posn *position,
 												 double precision);
 
@@ -85,7 +85,7 @@ void LIBNOVA_EXPORT ln2_get_lunar_equ_coords_prec(double JD,
 * \param JD Julian Day
 * \param position Pointer to store equatorial position
 */
-void LIBNOVA_EXPORT ln2_get_lunar_equ_coords(double JD,
+void LIBNOVA2_EXPORT ln2_get_lunar_equ_coords(double JD,
 											struct ln_equ_posn *position);
 
 /**
@@ -95,7 +95,7 @@ void LIBNOVA_EXPORT ln2_get_lunar_equ_coords(double JD,
 * \param position Pointer to store ecliptical position
 * \param precision Calculation precision
 */
-void LIBNOVA_EXPORT ln2_get_lunar_ecl_coords(double JD,
+void LIBNOVA2_EXPORT ln2_get_lunar_ecl_coords(double JD,
 											struct ln_lnlat_posn *position,
 											double precision);
 
@@ -107,7 +107,7 @@ void LIBNOVA_EXPORT ln2_get_lunar_ecl_coords(double JD,
 * \param JD Julian Day
 * \return Phase angle in radians.
 */
-double LIBNOVA_EXPORT ln2_get_lunar_phase(double JD);
+double LIBNOVA2_EXPORT ln2_get_lunar_phase(double JD);
 
 /**
 * \brief Calculate the illuminated fraction of the Moons disk
@@ -115,7 +115,7 @@ double LIBNOVA_EXPORT ln2_get_lunar_phase(double JD);
 * \param JD Julian Day
 * \return Illuminated fraction of the Moons disk
 */
-double LIBNOVA_EXPORT ln2_get_lunar_disk(double JD);
+double LIBNOVA2_EXPORT ln2_get_lunar_disk(double JD);
 
 /**
 * \brief Calculate the distance between the Earth and the Moon.
@@ -123,7 +123,7 @@ double LIBNOVA_EXPORT ln2_get_lunar_disk(double JD);
 * \param JD Julian Day
 * \return Distance in km
 */
-double LIBNOVA_EXPORT ln2_get_lunar_earth_dist(double JD);
+double LIBNOVA2_EXPORT ln2_get_lunar_earth_dist(double JD);
 
 /**
 * \brief Calculate the position angle of the Moon's bright limb.
@@ -131,7 +131,7 @@ double LIBNOVA_EXPORT ln2_get_lunar_earth_dist(double JD);
 * \param JD Julian Day
 * \return The position angle in radians.
 */
-double LIBNOVA_EXPORT ln2_get_lunar_bright_limb(double JD);
+double LIBNOVA2_EXPORT ln2_get_lunar_bright_limb(double JD);
 
 /**
 * \brief Calculate the longitude of the Moon's mean ascending node.
@@ -141,7 +141,7 @@ double LIBNOVA_EXPORT ln2_get_lunar_bright_limb(double JD);
 * \param JD Julian Day
 * \return Longitude of ascending node in radians.
 */
-double LIBNOVA_EXPORT ln2_get_lunar_long_asc_node(double JD);
+double LIBNOVA2_EXPORT ln2_get_lunar_long_asc_node(double JD);
 
 /**
 * \brief Calculate the longitude of the Moon's mean perigee.
@@ -151,7 +151,7 @@ double LIBNOVA_EXPORT ln2_get_lunar_long_asc_node(double JD);
 * \param JD Julian Day
 * \return Longitude of Moons mean perigee in radians.
 */
-double LIBNOVA_EXPORT ln2_get_lunar_long_perigee(double JD);
+double LIBNOVA2_EXPORT ln2_get_lunar_long_perigee(double JD);
 
 /**
 * \brief Calculate the Moon's argument of latitude (mean distance of the Moon from its ascending node)
@@ -161,7 +161,7 @@ double LIBNOVA_EXPORT ln2_get_lunar_long_perigee(double JD);
 * \param JD Julian Day
 * \return Moon's argument of latitude in radians
 */
-double LIBNOVA_EXPORT ln2_get_lunar_arg_latitude(double JD);
+double LIBNOVA2_EXPORT ln2_get_lunar_arg_latitude(double JD);
 
 /**
 * \brief Calculate selenographic optical libration coordinates.
@@ -169,7 +169,7 @@ double LIBNOVA_EXPORT ln2_get_lunar_arg_latitude(double JD);
 * \param JD Julian Day
 * \param position Pointer to store selenographic coordinates
 */
-void LIBNOVA_EXPORT
+void LIBNOVA2_EXPORT
 ln_get_lunar_opt_libr_coords(double JD, struct ln_lnlat_posn *position);
 
 /**
@@ -178,7 +178,7 @@ ln_get_lunar_opt_libr_coords(double JD, struct ln_lnlat_posn *position);
 * \param JD Julian Day
 * \param position Pointer to store subsolar coordinates
 */
-void LIBNOVA_EXPORT
+void LIBNOVA2_EXPORT
 ln_get_lunar_subsolar_coords(double JD, struct ln_lnlat_posn *position);
 
 /**
@@ -188,7 +188,7 @@ ln_get_lunar_subsolar_coords(double JD, struct ln_lnlat_posn *position);
 * \param phase Phase to search for (0=New Moon, 90=First Quarter, 180=Full Moon, 270=Last Quarter)
 * \return Julian Day of next phase
 */
-double LIBNOVA_EXPORT ln2_lunar_next_phase(double jd, double phase);
+double LIBNOVA2_EXPORT ln2_lunar_next_phase(double jd, double phase);
 
 /**
 * \brief Find previous moon phase relative to given time expressed as Julian Day.
@@ -197,7 +197,7 @@ double LIBNOVA_EXPORT ln2_lunar_next_phase(double jd, double phase);
 * \param phase Phase to search for (0=New Moon, 90=First Quarter, 180=Full Moon, 270=Last Quarter)
 * \return Julian Day of previous phase
 */
-double LIBNOVA_EXPORT ln2_lunar_previous_phase(double jd, double phase);
+double LIBNOVA2_EXPORT ln2_lunar_previous_phase(double jd, double phase);
 
 /**
 * \brief Find next moon apogee or perigee relative to given time expressed as Julian Day.
@@ -206,7 +206,7 @@ double LIBNOVA_EXPORT ln2_lunar_previous_phase(double jd, double phase);
 * \param apogee 1=Apogee, 0=Perigee
 * \return Julian Day of next apsis
 */
-double LIBNOVA_EXPORT ln2_lunar_next_apsis(double jd, int apogee);
+double LIBNOVA2_EXPORT ln2_lunar_next_apsis(double jd, int apogee);
 
 /**
 * \brief Find previous moon apogee or perigee relative to given time expressed as Julian Day.
@@ -215,7 +215,7 @@ double LIBNOVA_EXPORT ln2_lunar_next_apsis(double jd, int apogee);
 * \param apogee 1=Apogee, 0=Perigee
 * \return Julian Day of previous apsis
 */
-double LIBNOVA_EXPORT ln2_lunar_previous_apsis(double jd, int apogee);
+double LIBNOVA2_EXPORT ln2_lunar_previous_apsis(double jd, int apogee);
 
 /**
 * \brief Find next moon node relative to given time expressed as Julian Day.
@@ -224,7 +224,7 @@ double LIBNOVA_EXPORT ln2_lunar_previous_apsis(double jd, int apogee);
 * \param mode 1=Ascending Node, 0=Descending Node
 * \return Julian Day of next node
 */
-double LIBNOVA_EXPORT ln2_lunar_next_node(double jd, int mode);
+double LIBNOVA2_EXPORT ln2_lunar_next_node(double jd, int mode);
 
 /**
 * \brief Find previous lunar node relative to given time expressed as Julian Day.
@@ -233,7 +233,7 @@ double LIBNOVA_EXPORT ln2_lunar_next_node(double jd, int mode);
 * \param mode 1=Ascending Node, 0=Descending Node
 * \return Julian Day of previous node
 */
-double LIBNOVA_EXPORT ln2_lunar_previous_node(double jd, int mode);
+double LIBNOVA2_EXPORT ln2_lunar_previous_node(double jd, int mode);
 
 #ifdef __cplusplus
 };

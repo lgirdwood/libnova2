@@ -1,5 +1,5 @@
-#include <libnova/libnova.h>
-#include <libnova/venus.h>
+#include <libnova2/libnova2.h>
+#include <libnova2/venus.h>
 #include "test_helpers.h"
 
 int test_venus(void)

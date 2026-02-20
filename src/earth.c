@@ -19,12 +19,12 @@
  *  Copyright (C) 2000 - 2026 Liam Girdwood  <lgirdwood@gmail.com>
  */
 
-#include <libnova/earth.h>
-#include <libnova/rise_set.h>
-#include <libnova/solar.h>
-#include <libnova/transform.h>
-#include <libnova/utility.h>
-#include <libnova/vsop87.h>
+#include <libnova2/earth.h>
+#include <libnova2/rise_set.h>
+#include <libnova2/solar.h>
+#include <libnova2/transform.h>
+#include <libnova2/utility.h>
+#include <libnova2/vsop87.h>
 #include <math.h>
 #include <stdio.h>
 

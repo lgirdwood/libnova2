@@ -3,7 +3,7 @@
  */
 
 #include "test_helpers.h"
-#include <libnova/libnova.h>
+#include <libnova2/libnova2.h>
 #include <math.h>
 #include <stdio.h>
 #include <time.h>

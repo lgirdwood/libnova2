@@ -1,5 +1,5 @@
-#include <libnova/libnova.h>
-#include <libnova/pluto.h>
+#include <libnova2/libnova2.h>
+#include <libnova2/pluto.h>
 #include "test_helpers.h"
 
 int test_pluto(void)

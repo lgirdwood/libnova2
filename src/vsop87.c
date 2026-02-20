@@ -19,8 +19,8 @@
  *  Copyright (C) 2000 - 2026 Liam Girdwood <lgirdwood@gmail.com>
  */
 
-#include <libnova/utility.h>
-#include <libnova/vsop87.h>
+#include <libnova2/utility.h>
+#include <libnova2/vsop87.h>
 #include <math.h>
 
 double ln2_calc_series(const struct ln_vsop *data, int terms, double t) {

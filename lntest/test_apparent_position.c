@@ -3,8 +3,8 @@
  */
 
 #include "test_helpers.h"
-#include <libnova/libnova.h>
-#include <libnova/proper_motion.h>
+#include <libnova2/libnova2.h>
+#include <libnova2/proper_motion.h>
 #include <stdio.h>
 
 int apparent_position_test(void) {

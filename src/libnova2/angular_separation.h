@@ -19,7 +19,7 @@
 #ifndef _LN_ANGULAR_SEPARATION_H
 #define _LN_ANGULAR_SEPARATION_H
 
-#include <libnova/ln_types.h>
+#include <libnova2/ln_types.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -44,7 +44,7 @@ extern "C" {
 *
 * Uses the spherical cosine formula or Haversine formula for better precision at small angles (Meeus Formula 17.1).
 */
-double LIBNOVA_EXPORT ln2_get_angular_separation(struct ln_equ_posn *posn1, struct ln_equ_posn *posn2);
+double LIBNOVA2_EXPORT ln2_get_angular_separation(struct ln_equ_posn *posn1, struct ln_equ_posn *posn2);
 
 /**
 * \brief Calculate the relative position angle between 2 bodies
@@ -55,7 +55,7 @@ double LIBNOVA_EXPORT ln2_get_angular_separation(struct ln_equ_posn *posn1, stru
 *
 * The angle is measured counter-clockwise (East) from North.
 */
-double LIBNOVA_EXPORT ln2_get_rel_posn_angle(struct ln_equ_posn *posn1, struct ln_equ_posn *posn2);
+double LIBNOVA2_EXPORT ln2_get_rel_posn_angle(struct ln_equ_posn *posn1, struct ln_equ_posn *posn2);
 
 #ifdef __cplusplus
 };

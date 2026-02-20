@@ -20,13 +20,13 @@
  */
 
 #include <math.h>
-#include <libnova/mars.h>
-#include <libnova/vsop87.h>
-#include <libnova/solar.h>
-#include <libnova/earth.h>
-#include <libnova/transform.h>
-#include <libnova/rise_set.h>
-#include <libnova/utility.h>
+#include <libnova2/mars.h>
+#include <libnova2/vsop87.h>
+#include <libnova2/solar.h>
+#include <libnova2/earth.h>
+#include <libnova2/transform.h>
+#include <libnova2/rise_set.h>
+#include <libnova2/utility.h>
 
 #define LONG_L0 1409
 #define LONG_L1 891

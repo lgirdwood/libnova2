@@ -2,9 +2,9 @@
  * Parabolic Motion Tests
  */
 
-#include "libnova/utility.h"
+#include "libnova2/utility.h"
 #include "test_helpers.h"
-#include <libnova/libnova.h>
+#include <libnova2/libnova2.h>
 #include <stdio.h>
 
 /* need a proper parabolic orbit to properly test */

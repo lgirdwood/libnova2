@@ -41,7 +41,7 @@
 #include <string.h>
 #include <math.h>
 #include <ctype.h>
-#include <libnova/libnova.h>
+#include <libnova2/libnova2.h>
 
 #ifndef __APPLE__
 #include <malloc.h>

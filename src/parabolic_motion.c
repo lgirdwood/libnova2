@@ -17,14 +17,14 @@
  */
 
 #include <math.h>
-#include <libnova/parabolic_motion.h>
-#include <libnova/solar.h>
-#include <libnova/earth.h>
-#include <libnova/transform.h>
-#include <libnova/rise_set.h>
-#include <libnova/dynamical_time.h>
-#include <libnova/sidereal_time.h>
-#include <libnova/utility.h>
+#include <libnova2/parabolic_motion.h>
+#include <libnova2/solar.h>
+#include <libnova2/earth.h>
+#include <libnova2/transform.h>
+#include <libnova2/rise_set.h>
+#include <libnova2/dynamical_time.h>
+#include <libnova2/sidereal_time.h>
+#include <libnova2/utility.h>
 /* Equ 34.3, Barkers Equation */
 double ln2_solve_barker(double q, double t)
 {

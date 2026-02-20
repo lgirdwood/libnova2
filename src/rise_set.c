@@ -16,11 +16,11 @@
  *  Copyright (C) 2000 - 2026 Liam Girdwood <lgirdwood@gmail.com>
  */
 
-#include <libnova/dynamical_time.h>
-#include <libnova/rise_set.h>
-#include <libnova/sidereal_time.h>
-#include <libnova/transform.h>
-#include <libnova/utility.h>
+#include <libnova2/dynamical_time.h>
+#include <libnova2/rise_set.h>
+#include <libnova2/sidereal_time.h>
+#include <libnova2/transform.h>
+#include <libnova2/utility.h>
 #include <math.h>
 
 /* \brief helper function to check if object can be visible.

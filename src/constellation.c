@@ -16,11 +16,11 @@
  *  Copyright (C) 2015 - 2026 Lukasz Komsta
  */
 
-#include <libnova/lunar.h>
-#include <libnova/julian_day.h>
-#include <libnova/rise_set.h>
-#include <libnova/transform.h>
-#include <libnova/utility.h>
+#include <libnova2/lunar.h>
+#include <libnova2/julian_day.h>
+#include <libnova2/rise_set.h>
+#include <libnova2/transform.h>
+#include <libnova2/utility.h>
 const char* ln2_get_constellation(struct ln_equ_posn *position)
 {
 	static const float	ra_lower[357] =

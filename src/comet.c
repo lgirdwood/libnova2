@@ -17,9 +17,9 @@
  */
 
 #include <math.h>
-#include <libnova/comet.h>
-#include <libnova/elliptic_motion.h>
-#include <libnova/parabolic_motion.h>
+#include <libnova2/comet.h>
+#include <libnova2/elliptic_motion.h>
+#include <libnova2/parabolic_motion.h>
 double ln2_get_ell_comet_mag(double JD, struct ln_ell_orbit *orbit, double g,
 	double k)
 {

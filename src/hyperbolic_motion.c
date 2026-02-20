@@ -21,15 +21,15 @@
 
 #include <math.h>
 #include <stdlib.h>
-#include <libnova/parabolic_motion.h>
-#include <libnova/hyperbolic_motion.h>
-#include <libnova/solar.h>
-#include <libnova/earth.h>
-#include <libnova/transform.h>
-#include <libnova/rise_set.h>
-#include <libnova/dynamical_time.h>
-#include <libnova/sidereal_time.h>
-#include <libnova/utility.h>
+#include <libnova2/parabolic_motion.h>
+#include <libnova2/hyperbolic_motion.h>
+#include <libnova2/solar.h>
+#include <libnova2/earth.h>
+#include <libnova2/transform.h>
+#include <libnova2/rise_set.h>
+#include <libnova2/dynamical_time.h>
+#include <libnova2/sidereal_time.h>
+#include <libnova2/utility.h>
 
 #define GAUS_GRAV	0.01720209895	/* Gaussian gravitational constant k */
 #define PREC   1e-10

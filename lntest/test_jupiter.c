@@ -1,5 +1,5 @@
-#include <libnova/libnova.h>
-#include <libnova/jupiter.h>
+#include <libnova2/libnova2.h>
+#include <libnova2/jupiter.h>
 #include "test_helpers.h"
 
 int test_jupiter(void)

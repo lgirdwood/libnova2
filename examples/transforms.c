@@ -16,9 +16,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 Copyright 2004 Liam Girdwood
 */
 
-#include <libnova/julian_day.h>
-#include <libnova/transform.h>
-#include <libnova/utility.h>
+#include <libnova2/julian_day.h>
+#include <libnova2/transform.h>
+#include <libnova2/utility.h>
 #include <stdio.h>
 
 /*

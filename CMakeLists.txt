@@ -16,9 +16,9 @@ read_kconfig_config()
 option(BUILD_SHARED_LIBS "Build shared libraries" ON)
 
 if(BUILD_SHARED_LIBS)
-    add_compile_definitions(LIBNOVA_SHARED)
+    add_compile_definitions(LIBNOVA2_SHARED)
 else()
-    add_compile_definitions(LIBNOVA_STATIC)
+    add_compile_definitions(LIBNOVA2_STATIC)
 endif()
 
 # Windows/MSVC specific definitions
@@ -72,7 +72,7 @@ unset(CMAKE_REQUIRED_LIBRARIES)
 configure_file(config.h.in config.h)
 
 # Helper function for examples
-function(libnova_add_example EXECUTABLE_NAME)
+function(libnova2_add_example EXECUTABLE_NAME)
     add_executable(${EXECUTABLE_NAME} ${EXECUTABLE_NAME}.c)
     target_link_libraries(${EXECUTABLE_NAME} PRIVATE nova2)
     if(HAVE_LIBM)
@@ -126,7 +126,7 @@ option(BUILD_TESTING "Build tests" ON)
 if(BUILD_TESTING)
     enable_testing()
     add_subdirectory(lntest)
-    add_test(NAME libnova_test COMMAND $<TARGET_FILE:libnova_test_exec>)
+    add_test(NAME libnova2_test COMMAND $<TARGET_FILE:libnova2_test_exec>)
 endif()
 
 if(BUILD_EXAMPLES)

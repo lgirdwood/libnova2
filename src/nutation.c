@@ -16,9 +16,9 @@
  *  Copyright (C) 2000 - 2026 Liam Girdwood <lgirdwood@gmail.com>
  */
 
-#include <libnova/dynamical_time.h>
-#include <libnova/nutation.h>
-#include <libnova/utility.h>
+#include <libnova2/dynamical_time.h>
+#include <libnova2/nutation.h>
+#include <libnova2/utility.h>
 #include <math.h>
 #include <stdio.h>
 

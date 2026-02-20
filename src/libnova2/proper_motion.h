@@ -19,7 +19,7 @@
 #ifndef _LN_PROPER_MOTION_H
 #define _LN_PROPER_MOTION_H
 
-#include <libnova/ln_types.h>
+#include <libnova2/ln_types.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -45,7 +45,7 @@ extern "C" {
 * \param position Pointer to store new equatorial position
 */
 /* Equ 20.2, 20.3, 20.4 pg 126 */
-void LIBNOVA_EXPORT ln2_get_equ_pm(struct ln_equ_posn *mean_position, struct ln_equ_posn *proper_motion, double JD,
+void LIBNOVA2_EXPORT ln2_get_equ_pm(struct ln_equ_posn *mean_position, struct ln_equ_posn *proper_motion, double JD,
 								  struct ln_equ_posn *position);
 
 /**
@@ -58,7 +58,7 @@ void LIBNOVA_EXPORT ln2_get_equ_pm(struct ln_equ_posn *mean_position, struct ln_
 */
 /* Equ 20.2, 20.3, 20.4 pg 126 
 */
-void LIBNOVA_EXPORT ln2_get_equ_pm_epoch(struct ln_equ_posn *mean_position, struct ln_equ_posn *proper_motion, double JD,
+void LIBNOVA2_EXPORT ln2_get_equ_pm_epoch(struct ln_equ_posn *mean_position, struct ln_equ_posn *proper_motion, double JD,
 										double epoch_JD, struct ln_equ_posn *position);
 
 #ifdef __cplusplus

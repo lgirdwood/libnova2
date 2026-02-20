@@ -17,9 +17,9 @@
  */
 
 #include <math.h>
-#include <libnova/asteroid.h>
-#include <libnova/elliptic_motion.h>
-#include <libnova/utility.h>
+#include <libnova2/asteroid.h>
+#include <libnova2/elliptic_motion.h>
+#include <libnova2/utility.h>
 double ln2_get_asteroid_mag(double JD, struct ln_ell_orbit *orbit, double H,
 	double G)
 {

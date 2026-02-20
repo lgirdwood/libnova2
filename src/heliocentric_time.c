@@ -18,10 +18,10 @@
 
 #include <math.h>
 
-#include <libnova/earth.h>
-#include <libnova/heliocentric_time.h>
-#include <libnova/nutation.h>
-#include <libnova/utility.h>
+#include <libnova2/earth.h>
+#include <libnova2/heliocentric_time.h>
+#include <libnova2/nutation.h>
+#include <libnova2/utility.h>
 double ln2_get_heliocentric_time_diff(double JD, struct ln_equ_posn *object) {
   double theta, ra, dec, c_dec, obliq;
   struct ln_nutation nutation;

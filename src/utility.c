@@ -36,7 +36,7 @@
 /*------------------------------------------------------------------------*/
 
 #include <ctype.h>
-#include <libnova/libnova.h>
+#include <libnova2/libnova2.h>
 #include <math.h>
 #include <stdarg.h>
 #include <stdio.h>
@@ -68,7 +68,7 @@
 #define DM_PI (2 * M_PI)
 #define RADIAN (180.0 / M_PI)
 
-static const char ln_version[] = LIBNOVA_VERSION;
+static const char ln_version[] = LIBNOVA2_VERSION;
 const char *ln_get_version(void)
 {
 	return ln_version;

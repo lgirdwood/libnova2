@@ -18,13 +18,13 @@
 
 #include <math.h>
 #include <stdlib.h>
-#include <libnova/pluto.h>
-#include <libnova/vsop87.h>
-#include <libnova/solar.h>
-#include <libnova/earth.h>
-#include <libnova/transform.h>
-#include <libnova/rise_set.h>
-#include <libnova/utility.h>
+#include <libnova2/pluto.h>
+#include <libnova2/vsop87.h>
+#include <libnova2/solar.h>
+#include <libnova2/earth.h>
+#include <libnova2/transform.h>
+#include <libnova2/rise_set.h>
+#include <libnova2/utility.h>
 
 #define PLUTO_COEFFS 43
 

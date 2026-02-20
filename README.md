@@ -109,7 +109,7 @@ ctest --output-on-failure
 
 Or run the test executable details:
 ```bash
-./lntest/libnova_test_exec
+./lntest/libnova2_test_exec
 ```
 
 ## Documentation
@@ -126,7 +126,7 @@ Output is in `doc/html/index.html`.
 Include the main header:
 
 ```c
-#include <libnova/libnova.h>
+#include <libnova2/libnova2.h>
 ```
 
 Link against `libnova2` (and `libm` if static/required):

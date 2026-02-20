@@ -1,5 +1,5 @@
 /* 
- * Test Helpers for libnova unit tests
+ * Test Helpers for libnova2 unit tests
  */
 
 #define _GNU_SOURCE
@@ -13,7 +13,7 @@
 #include <string.h>
 #include <math.h>
 #include <sys/time.h>
-#include <libnova/utility.h>
+#include <libnova2/utility.h>
 #include "test_helpers.h"
 
 #ifndef __WIN32__

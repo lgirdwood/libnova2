@@ -1,5 +1,5 @@
-#include <libnova/libnova.h>
-#include <libnova/earth.h>
+#include <libnova2/libnova2.h>
+#include <libnova2/earth.h>
 #include "test_helpers.h"
 
 int test_earth(void)

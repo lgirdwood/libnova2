@@ -21,12 +21,12 @@ A simple example showing some planetary calculations.
 */
 
 #include <stdio.h>
-#include <libnova/mars.h>
-#include <libnova/julian_day.h>
-#include <libnova/rise_set.h>
-#include <libnova/transform.h>
-#include <libnova/utility.h>
-#include <libnova/utility.h>
+#include <libnova2/mars.h>
+#include <libnova2/julian_day.h>
+#include <libnova2/rise_set.h>
+#include <libnova2/transform.h>
+#include <libnova2/utility.h>
+#include <libnova2/utility.h>
 
 static void print_date(char *title, struct ln_zonedate *date)
 {

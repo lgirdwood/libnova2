@@ -1,5 +1,5 @@
-#include <libnova/libnova.h>
-#include <libnova/saturn.h>
+#include <libnova2/libnova2.h>
+#include <libnova2/saturn.h>
 #include "test_helpers.h"
 
 int test_saturn(void)

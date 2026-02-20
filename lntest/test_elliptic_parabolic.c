@@ -3,7 +3,7 @@
  */
 
 #include <stdio.h>
-#include <libnova/libnova.h>
+#include <libnova2/libnova2.h>
 #include "test_helpers.h"
 
 int elliptic_parabolic_test(void)

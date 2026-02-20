@@ -1,4 +1,4 @@
-add_executable(libnova_test_exec 
+add_executable(libnova2_test_exec 
     main_test.c
     test_helpers.c
     test_julian.c
@@ -37,16 +37,16 @@ add_executable(libnova_test_exec
     test_constellation.c
     test_aberration.c
 )
-target_link_libraries(libnova_test_exec PRIVATE nova2)
+target_link_libraries(libnova2_test_exec PRIVATE nova2)
 if(HAVE_LIBM)
-    target_link_libraries(libnova_test_exec PRIVATE m)
+    target_link_libraries(libnova2_test_exec PRIVATE m)
 endif()
 
 if(WIN32)
-    set_property(TARGET libnova_test_exec PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
+    set_property(TARGET libnova2_test_exec PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
     if(MSVC)
-        set_target_properties(libnova_test_exec PROPERTIES PREFIX "../")
+        set_target_properties(libnova2_test_exec PROPERTIES PREFIX "../")
     endif()
 endif()
 # Tests are typically not installed, but if needed:
-# install(TARGETS libnova_test_exec RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+# install(TARGETS libnova2_test_exec RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})

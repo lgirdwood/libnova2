@@ -16,8 +16,8 @@
  *  Copyright (C) 2000 - 2026 Liam Girdwood
  */
 
-#include <libnova/precession.h>
-#include <libnova/utility.h>
+#include <libnova2/precession.h>
+#include <libnova2/utility.h>
 #include <math.h>
 
 #ifdef HAVE_LIBsunmath

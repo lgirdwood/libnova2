@@ -1,6 +1,6 @@
-mainmenu "Libnova Configuration"
+mainmenu "Libnova2 Configuration"
 
-config LIBNOVA_VERSION
+config LIBNOVA2_VERSION
     string
     option env="PROJECT_VERSION"
     default "2.0.0"

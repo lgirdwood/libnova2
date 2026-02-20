@@ -17,8 +17,8 @@
  */
 
 #include <math.h>
-#include <libnova/refraction.h>
-#include <libnova/utility.h>
+#include <libnova2/refraction.h>
+#include <libnova2/utility.h>
 double ln2_get_refraction_adj(double altitude, double atm_pres, double temp)
 {
 	long double R;

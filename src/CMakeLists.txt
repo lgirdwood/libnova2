@@ -1,4 +1,4 @@
-set(HEADER_PATH ${CMAKE_CURRENT_SOURCE_DIR}/libnova)
+set(HEADER_PATH ${CMAKE_CURRENT_SOURCE_DIR}/libnova2)
 
 set(LIBRARY_PUBLIC_HEADERS
 	${HEADER_PATH}/julian_day.h
@@ -6,7 +6,7 @@ set(LIBRARY_PUBLIC_HEADERS
 	${HEADER_PATH}/sidereal_time.h
 	${HEADER_PATH}/transform.h
 	${HEADER_PATH}/nutation.h
-	${HEADER_PATH}/libnova.h
+	${HEADER_PATH}/libnova2.h
 	${HEADER_PATH}/aberration.h  
 	${HEADER_PATH}/apparent_position.h
 	${HEADER_PATH}/solar.h
@@ -59,44 +59,44 @@ endmacro()
 list(APPEND NOVA_SOURCES utility.c)
 
 # Conditional Sources
-add_module_source(LIBNOVA_JULIAN_DAY julian_day.c)
-add_module_source(LIBNOVA_DYNAMICAL_TIME dynamical_time.c)
-add_module_source(LIBNOVA_SIDEREAL_TIME sidereal_time.c)
-add_module_source(LIBNOVA_TRANSFORM transform.c)
-add_module_source(LIBNOVA_NUTATION nutation.c)
-add_module_source(LIBNOVA_ABERRATION aberration.c)
-add_module_source(LIBNOVA_APPARENT_POSITION apparent_position.c)
-add_module_source(LIBNOVA_SUN solar.c)
-add_module_source(LIBNOVA_PRECESSION precession.c)
-add_module_source(LIBNOVA_PROPER_MOTION proper_motion.c)
-add_module_source(LIBNOVA_MERCURY mercury.c)
-add_module_source(LIBNOVA_VENUS venus.c)
-add_module_source(LIBNOVA_EARTH earth.c)
-add_module_source(LIBNOVA_MARS mars.c)
-add_module_source(LIBNOVA_JUPITER jupiter.c)
-add_module_source(LIBNOVA_SATURN saturn.c)
-add_module_source(LIBNOVA_URANUS uranus.c)
-add_module_source(LIBNOVA_NEPTUNE neptune.c)
-add_module_source(LIBNOVA_PLUTO pluto.c)
-add_module_source(LIBNOVA_VSOP87 vsop87.c)
-add_module_source(LIBNOVA_MOON lunar.c)
-add_module_source(LIBNOVA_ELLIPTIC_MOTION elliptic_motion.c)
-add_module_source(LIBNOVA_ASTEROID asteroid.c)
-add_module_source(LIBNOVA_COMET comet.c)
-add_module_source(LIBNOVA_PARABOLIC_MOTION parabolic_motion.c)
-add_module_source(LIBNOVA_REFRACTION refraction.c)
-add_module_source(LIBNOVA_RISE_SET rise_set.c)
-add_module_source(LIBNOVA_ANGULAR_SEPARATION angular_separation.c)
-add_module_source(LIBNOVA_HYPERBOLIC_MOTION hyperbolic_motion.c)
-add_module_source(LIBNOVA_PARALLAX parallax.c)
-add_module_source(LIBNOVA_AIRMASS airmass.c)
-add_module_source(LIBNOVA_HELIOCENTRIC_TIME heliocentric_time.c)
-add_module_source(LIBNOVA_CONSTELLATION constellation.c)
+add_module_source(LIBNOVA2_JULIAN_DAY julian_day.c)
+add_module_source(LIBNOVA2_DYNAMICAL_TIME dynamical_time.c)
+add_module_source(LIBNOVA2_SIDEREAL_TIME sidereal_time.c)
+add_module_source(LIBNOVA2_TRANSFORM transform.c)
+add_module_source(LIBNOVA2_NUTATION nutation.c)
+add_module_source(LIBNOVA2_ABERRATION aberration.c)
+add_module_source(LIBNOVA2_APPARENT_POSITION apparent_position.c)
+add_module_source(LIBNOVA2_SUN solar.c)
+add_module_source(LIBNOVA2_PRECESSION precession.c)
+add_module_source(LIBNOVA2_PROPER_MOTION proper_motion.c)
+add_module_source(LIBNOVA2_MERCURY mercury.c)
+add_module_source(LIBNOVA2_VENUS venus.c)
+add_module_source(LIBNOVA2_EARTH earth.c)
+add_module_source(LIBNOVA2_MARS mars.c)
+add_module_source(LIBNOVA2_JUPITER jupiter.c)
+add_module_source(LIBNOVA2_SATURN saturn.c)
+add_module_source(LIBNOVA2_URANUS uranus.c)
+add_module_source(LIBNOVA2_NEPTUNE neptune.c)
+add_module_source(LIBNOVA2_PLUTO pluto.c)
+add_module_source(LIBNOVA2_VSOP87 vsop87.c)
+add_module_source(LIBNOVA2_MOON lunar.c)
+add_module_source(LIBNOVA2_ELLIPTIC_MOTION elliptic_motion.c)
+add_module_source(LIBNOVA2_ASTEROID asteroid.c)
+add_module_source(LIBNOVA2_COMET comet.c)
+add_module_source(LIBNOVA2_PARABOLIC_MOTION parabolic_motion.c)
+add_module_source(LIBNOVA2_REFRACTION refraction.c)
+add_module_source(LIBNOVA2_RISE_SET rise_set.c)
+add_module_source(LIBNOVA2_ANGULAR_SEPARATION angular_separation.c)
+add_module_source(LIBNOVA2_HYPERBOLIC_MOTION hyperbolic_motion.c)
+add_module_source(LIBNOVA2_PARALLAX parallax.c)
+add_module_source(LIBNOVA2_AIRMASS airmass.c)
+add_module_source(LIBNOVA2_HELIOCENTRIC_TIME heliocentric_time.c)
+add_module_source(LIBNOVA2_CONSTELLATION constellation.c)
 
 add_library(nova2 ${NOVA_SOURCES})
 
 # ELP (Lunar Theory)
-if(LIBNOVA_MOON OR DEFAULT_ENABLE)
+if(LIBNOVA2_MOON OR DEFAULT_ENABLE)
     add_subdirectory(elp)
 endif()
 
@@ -115,7 +115,7 @@ install(TARGETS nova2
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/libnova)
+    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/libnova2)
 
 if(HAVE_LIBM)
     target_link_libraries(nova2 PRIVATE m)

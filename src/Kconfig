@@ -1,6 +1,6 @@
 menu "Solar System (Planets & Major Bodies)"
 
-config LIBNOVA_SUN
+config LIBNOVA2_SUN
     bool "Sun"
     default y
     help
@@ -12,28 +12,28 @@ config LIBNOVA_SUN
       This module is fundamental for many other calculations, including
       Rise/Set times, Twilight, and Heliocentric corrections.
 
-config LIBNOVA_MERCURY
+config LIBNOVA2_MERCURY
     bool "Mercury"
     default y
-    select LIBNOVA_VSOP87
+    select LIBNOVA2_VSOP87
     help
       Enable Mercury ephemeris calculations (mercury.c).
 
       Calculates Heliocentric coordinates using the VSOP87 theory.
 
-config LIBNOVA_VENUS
+config LIBNOVA2_VENUS
     bool "Venus"
     default y
-    select LIBNOVA_VSOP87
+    select LIBNOVA2_VSOP87
     help
       Enable Venus ephemeris calculations (venus.c).
 
       Calculates Heliocentric coordinates using the VSOP87 theory.
 
-config LIBNOVA_EARTH
+config LIBNOVA2_EARTH
     bool "Earth"
     default y
-    select LIBNOVA_VSOP87
+    select LIBNOVA2_VSOP87
     help
       Enable Earth ephemeris calculations (earth.c).
 
@@ -41,52 +41,52 @@ config LIBNOVA_EARTH
       Fundamental for transforming Heliocentric to Geocentric coordinates
       for other planets.
 
-config LIBNOVA_MARS
+config LIBNOVA2_MARS
     bool "Mars"
     default y
-    select LIBNOVA_VSOP87
+    select LIBNOVA2_VSOP87
     help
       Enable Mars ephemeris calculations (mars.c).
 
       Calculates Heliocentric coordinates using the VSOP87 theory.
 
-config LIBNOVA_JUPITER
+config LIBNOVA2_JUPITER
     bool "Jupiter"
     default y
-    select LIBNOVA_VSOP87
+    select LIBNOVA2_VSOP87
     help
       Enable Jupiter ephemeris calculations (jupiter.c).
 
       Calculates Heliocentric coordinates using the VSOP87 theory.
 
-config LIBNOVA_SATURN
+config LIBNOVA2_SATURN
     bool "Saturn"
     default y
-    select LIBNOVA_VSOP87
+    select LIBNOVA2_VSOP87
     help
       Enable Saturn ephemeris calculations (saturn.c).
 
       Calculates Heliocentric coordinates using the VSOP87 theory.
 
-config LIBNOVA_URANUS
+config LIBNOVA2_URANUS
     bool "Uranus"
     default y
-    select LIBNOVA_VSOP87
+    select LIBNOVA2_VSOP87
     help
       Enable Uranus ephemeris calculations (uranus.c).
 
       Calculates Heliocentric coordinates using the VSOP87 theory.
 
-config LIBNOVA_NEPTUNE
+config LIBNOVA2_NEPTUNE
     bool "Neptune"
     default y
-    select LIBNOVA_VSOP87
+    select LIBNOVA2_VSOP87
     help
       Enable Neptune ephemeris calculations (neptune.c).
 
       Calculates Heliocentric coordinates using the VSOP87 theory.
 
-config LIBNOVA_PLUTO
+config LIBNOVA2_PLUTO
     bool "Pluto"
     default y
     help
@@ -95,7 +95,7 @@ config LIBNOVA_PLUTO
       Calculates Pluto's Heliocentric coordinates. Note that Pluto's orbit
       is more eccentric and inclined than major planets.
 
-config LIBNOVA_MOON
+config LIBNOVA2_MOON
     bool "Moon"
     default y
     help
@@ -105,7 +105,7 @@ config LIBNOVA_MOON
       for high-precision lunar coordinates. Required for any moon-related
       calculations (Phase, Eclipses, etc.).
 
-config LIBNOVA_VSOP87
+config LIBNOVA2_VSOP87
     bool "VSOP87 Theory"
     default y
     help
@@ -121,7 +121,7 @@ endmenu
 
 menu "Minor Bodies"
 
-config LIBNOVA_ASTEROID
+config LIBNOVA2_ASTEROID
     bool "Asteroids"
     default y
     help
@@ -130,7 +130,7 @@ config LIBNOVA_ASTEROID
       Provides functions to calculate the semi-major axis, mean motion,
       and other orbital elements for asteroids.
 
-config LIBNOVA_COMET
+config LIBNOVA2_COMET
     bool "Comets"
     default y
     help
@@ -143,7 +143,7 @@ endmenu
 
 menu "Time & Calendars"
 
-config LIBNOVA_JULIAN_DAY
+config LIBNOVA2_JULIAN_DAY
     bool "Julian Day"
     default y
     help
@@ -153,10 +153,10 @@ config LIBNOVA_JULIAN_DAY
       of the Julian Period (January 1, 4713 BC). It is the fundamental time
       variable for almost all astronomical calculations in this library.
 
-config LIBNOVA_DYNAMICAL_TIME
+config LIBNOVA2_DYNAMICAL_TIME
     bool "Dynamical Time"
     default y
-    select LIBNOVA_JULIAN_DAY
+    select LIBNOVA2_JULIAN_DAY
     help
       Enable Dynamical Time (TD) calculations (dynamical_time.c).
 
@@ -164,10 +164,10 @@ config LIBNOVA_DYNAMICAL_TIME
       This module calculates the difference (Delta T) between Universal Time (UT)
       and Dynamical Time (TD).
 
-config LIBNOVA_SIDEREAL_TIME
+config LIBNOVA2_SIDEREAL_TIME
     bool "Sidereal Time"
     default y
-    select LIBNOVA_JULIAN_DAY
+    select LIBNOVA2_JULIAN_DAY
     help
       Enable Sidereal Time calculations (sidereal_time.c).
 
@@ -175,10 +175,10 @@ config LIBNOVA_SIDEREAL_TIME
       rotation measured relative to the fixed stars. Essential for coordinate
       transformations (Equatorial <-> Horizontal).
 
-config LIBNOVA_HELIOCENTRIC_TIME
+config LIBNOVA2_HELIOCENTRIC_TIME
     bool "Heliocentric Time"
     default y
-    select LIBNOVA_JULIAN_DAY
+    select LIBNOVA2_JULIAN_DAY
     help
       Enable Heliocentric Time corrections (heliocentric_time.c).
 
@@ -189,7 +189,7 @@ endmenu
 
 menu "Motion & Orbits"
 
-config LIBNOVA_ELLIPTIC_MOTION
+config LIBNOVA2_ELLIPTIC_MOTION
     bool "Elliptic Motion"
     default y
     help
@@ -198,7 +198,7 @@ config LIBNOVA_ELLIPTIC_MOTION
       Calculates the position of a body in an elliptical orbit (eccentricity < 1).
       Used for Planets and most Asteroids.
 
-config LIBNOVA_PARABOLIC_MOTION
+config LIBNOVA2_PARABOLIC_MOTION
     bool "Parabolic Motion"
     default y
     help
@@ -207,7 +207,7 @@ config LIBNOVA_PARABOLIC_MOTION
       Calculates the position of a body in a parabolic orbit (eccentricity = 1).
       Commonly used for many Comets.
 
-config LIBNOVA_HYPERBOLIC_MOTION
+config LIBNOVA2_HYPERBOLIC_MOTION
     bool "Hyperbolic Motion"
     default y
     help
@@ -216,7 +216,7 @@ config LIBNOVA_HYPERBOLIC_MOTION
       Calculates the position of a body in a hyperbolic orbit (eccentricity > 1).
       Used for non-periodic comets or interstellar objects.
 
-config LIBNOVA_PROPER_MOTION
+config LIBNOVA2_PROPER_MOTION
     bool "Proper Motion"
     default y
     help
@@ -230,7 +230,7 @@ endmenu
 
 menu "Astrometry & Coordinates"
 
-config LIBNOVA_TRANSFORM
+config LIBNOVA2_TRANSFORM
     bool "Coordinate Transformations"
     default y
     help
@@ -241,7 +241,7 @@ config LIBNOVA_TRANSFORM
       - Equatorial <-> Horizontal (Alt/Az)
       - Equatorial <-> Galactic
 
-config LIBNOVA_NUTATION
+config LIBNOVA2_NUTATION
     bool "Nutation"
     default y
     help
@@ -251,7 +251,7 @@ config LIBNOVA_NUTATION
       This implementation uses the IAU 1980 Theory of Nutation (63 terms).
       Precise astrometry requires checking this.
 
-config LIBNOVA_ABERRATION
+config LIBNOVA2_ABERRATION
     bool "Aberration"
     default y
     help
@@ -260,11 +260,11 @@ config LIBNOVA_ABERRATION
       Aberration is the apparent displacement of a heavenly body due to
       the finite speed of light and the Earth's orbital motion.
 
-config LIBNOVA_APPARENT_POSITION
+config LIBNOVA2_APPARENT_POSITION
     bool "Apparent Position"
     default y
-    select LIBNOVA_NUTATION
-    select LIBNOVA_ABERRATION
+    select LIBNOVA2_NUTATION
+    select LIBNOVA2_ABERRATION
     help
       Enable Apparent Position calculations (apparent_position.c).
 
@@ -272,7 +272,7 @@ config LIBNOVA_APPARENT_POSITION
       light-time, aberration, nutation, and precession. This is what you
       actually see in the sky.
 
-config LIBNOVA_PRECESSION
+config LIBNOVA2_PRECESSION
     bool "Precession"
     default y
     help
@@ -281,7 +281,7 @@ config LIBNOVA_PRECESSION
       Calculates the effect of the gradual shift in the orientation of
       Earth's axis of rotation (precession of the equinoxes).
 
-config LIBNOVA_REFRACTION
+config LIBNOVA2_REFRACTION
     bool "Refraction"
     default y
     help
@@ -290,17 +290,17 @@ config LIBNOVA_REFRACTION
       Corrects altitude for the bending of light by the Earth's atmosphere.
       Important for objects near the horizon.
 
-config LIBNOVA_RISE_SET
+config LIBNOVA2_RISE_SET
     bool "Rise & Set"
     default y
-    select LIBNOVA_SIDEREAL_TIME
+    select LIBNOVA2_SIDEREAL_TIME
     help
       Enable Rise, Set, and Transit calculations (rise_set.c).
 
       Calculates the times when an object rises above, sets below, or
       transits (crosses the meridian of) the local horizon.
 
-config LIBNOVA_PARALLAX
+config LIBNOVA2_PARALLAX
     bool "Parallax"
     default y
     help
@@ -310,7 +310,7 @@ config LIBNOVA_PARALLAX
       Earth's center (geocentric) and the observer's location (topocentric).
       Crucial for nearby objects (Moon, Planets).
 
-config LIBNOVA_ANGULAR_SEPARATION
+config LIBNOVA2_ANGULAR_SEPARATION
     bool "Angular Separation"
     default y
     help
@@ -318,7 +318,7 @@ config LIBNOVA_ANGULAR_SEPARATION
 
       Calculates the angular distance between two objects on the celestial sphere.
 
-config LIBNOVA_AIRMASS
+config LIBNOVA2_AIRMASS
     bool "Airmass"
     default y
     help
@@ -327,7 +327,7 @@ config LIBNOVA_AIRMASS
       Calculates the optical path length through Earth's atmosphere.
       Used for extinction corrections in photometry.
       
-config LIBNOVA_CONSTELLATION
+config LIBNOVA2_CONSTELLATION
     bool "Constellations"
     default y
     help
@@ -339,7 +339,7 @@ endmenu
 
 menu "Utilities"
 
-config LIBNOVA_UTILITY
+config LIBNOVA2_UTILITY
     bool "Utility Functions"
     default y
     help

@@ -16,11 +16,11 @@
  *  Copyright (C) 2000 - 2026 Liam Girdwood  <lgirdwood@gmail.com>
  */
 
-#include <libnova/apparent_position.h>
-#include <libnova/proper_motion.h>
-#include <libnova/aberration.h>
-#include <libnova/precession.h>
-#include <libnova/nutation.h>
+#include <libnova2/apparent_position.h>
+#include <libnova2/proper_motion.h>
+#include <libnova2/aberration.h>
+#include <libnova2/precession.h>
+#include <libnova2/nutation.h>
 
 /*
 ** Apparent place of an Object 

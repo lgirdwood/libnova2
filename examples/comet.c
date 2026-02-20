@@ -22,12 +22,12 @@ Comet Encke
 
 */
 
-#include <libnova/comet.h>
-#include <libnova/elliptic_motion.h>
-#include <libnova/julian_day.h>
-#include <libnova/rise_set.h>
-#include <libnova/transform.h>
-#include <libnova/utility.h>
+#include <libnova2/comet.h>
+#include <libnova2/elliptic_motion.h>
+#include <libnova2/julian_day.h>
+#include <libnova2/rise_set.h>
+#include <libnova2/transform.h>
+#include <libnova2/utility.h>
 #include <stdio.h>
 
 /* use the orbital example from Meeus book */

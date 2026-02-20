@@ -16,11 +16,11 @@
  *  Copyright (C) 2000 - 2026 Liam Girdwood <lgirdwood@gmail.com>
  */
 
-#include <libnova/nutation.h>
-#include <libnova/precession.h>
-#include <libnova/sidereal_time.h>
-#include <libnova/transform.h>
-#include <libnova/utility.h>
+#include <libnova2/nutation.h>
+#include <libnova2/precession.h>
+#include <libnova2/sidereal_time.h>
+#include <libnova2/transform.h>
+#include <libnova2/utility.h>
 #include <math.h>
 /* Equ 37.1 Pg 264
  */

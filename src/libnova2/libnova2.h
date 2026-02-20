@@ -16,27 +16,27 @@
  *  Copyright (C) 2000 - 2026 Liam Girdwood <lgirdwood@gmail.com>
  */
 
-#define LIBNOVA_VERSION "0.15.0"
+#define LIBNOVA2_VERSION "0.15.0"
 
-/** \mainpage libnova
+/** \mainpage libnova2
 * \image html libnova2.png
 * Celestial Mechanics, Astrometry and Astrodynamics Library
 * 
 * \section intro Introduction
-* libnova is a general purpose, double precision, Celestial Mechanics, Astrometry and Astrodynamics library.
+* libnova2 is a general purpose, double precision, Celestial Mechanics, Astrometry and Astrodynamics library.
 *
-* The intended audience of libnova is C / C++ programmers, astronomers and anyone else interested in calculating positions of astronomical objects or celestial mechanics.
-* libnova is the calculation engine used by the <A href="http://nova.sf.net">Nova</A> project and most importantly, is free software.
+* The intended audience of libnova2 is C / C++ programmers, astronomers and anyone else interested in calculating positions of astronomical objects or celestial mechanics.
+* libnova2 is the calculation engine used by the <A href="http://nova.sf.net">Nova</A> project and most importantly, is free software.
 *
 * \section scientific Scientific Details
-* libnova implements algorithms from Jean Meeus's *Astronomical Algorithms* (2nd Edition), providing high-precision calculations for:
+* libnova2 implements algorithms from Jean Meeus's *Astronomical Algorithms* (2nd Edition), providing high-precision calculations for:
 * - **Planetary Positions**: Using the VSOP87 solution (Variations Séculaires des Orbites Planétaires) by Bretagnon and Francou, which provides high accuracy for Mercury through Neptune. Pluto's position is calculated using Meeus's truncation of the full VSOP87 theory.
 * - **Lunar Position**: Using the ELP 2000-82B theory (Ephemeride Lunaire Parisienne) by Chapront-Touze and Chapront.
 * - **Time Scales**: Support for Julian Day (JD), Modified Julian Day (MJD), and Conversions between UTC and Dynamical Time (TD).
 * - **Coordinate Systems**: Transformations between Equatorial, Ecliptic, Horizontal, and Galactic coordinates, including effects of Precession, Nutation, Aberration, and Refraction.
 *
 * \section features Features
-* The current version of libnova can calculate:
+* The current version of libnova2 can calculate:
 *
 * - Aberration (Annual)
 * - Nutation (IAU 1980 Theory)
@@ -63,27 +63,27 @@
 * - Heliocentric (barycentric) time correction
 *
 * \section docs Documentation
-* API documentation for libnova is included in the source. It can also be found in this website and an offline tarball is available <A href="http://libnova.sf.net/libnovadocs.tar.gz">here</A>.
+* API documentation for libnova2 is included in the source. It can also be found in this website and an offline tarball is available <A href="http://libnova2.sf.net/libnova2docs.tar.gz">here</A>.
 *
 * \section download Download
-* The latest released version of libnova is 0.15.0
-* It is available for download <A href="http://sourceforge.net/projects/libnova/files/libnova/">here.</A>
+* The latest released version of libnova2 is 0.15.0
+* It is available for download <A href="http://sourceforge.net/projects/libnova2/files/libnova2/">here.</A>
 *
 * \section git GIT
-* The latest GIT version of libnova is available via GIT <A href="http://sourceforge.net/p/libnova/libnova/">here.</A>
+* The latest GIT version of libnova2 is available via GIT <A href="http://sourceforge.net/p/libnova2/libnova2/">here.</A>
 *
 * \section licence Licence
-* libnova is released under the <A href="http://www.gnu.org">GNU</A> LGPL.
+* libnova2 is released under the <A href="http://www.gnu.org">GNU</A> LGPL.
 *
 * \section help Help
-* If you are interested in helping in the future development of libnova, then please get in touch.
+* If you are interested in helping in the future development of libnova2, then please get in touch.
 * Currently, we are needing help in the folowing areas.
 * - Documentation. (Not just API reference, but also astronomy info for novice users)
 * - Programming (in C) astronomical solutions or algorithms.
 * - Algorithms and Solutions.
 *
 * \section authors Authors
-* libnova is maintained by <A href="mailto:lgirdwood@gmail.com">Liam Girdwood</A> and <A href="mailto:petr@kubanek.net">Petr Kubanek</A>.
+* libnova2 is maintained by <A href="mailto:lgirdwood@gmail.com">Liam Girdwood</A> and <A href="mailto:petr@kubanek.net">Petr Kubanek</A>.
 *
 * \section thanks Thanks
 * Thanks to Jean Meeus for most of the algorithms used in this library.
@@ -98,44 +98,44 @@
 * Also thanks to Sourceforge for hosting this project. <A href="http://sourceforge.net"> <IMG src="http://sourceforge.net/sflogo.php?group_id=57697&amp;type=5" width="210" height="62" border="0" alt="SourceForge Logo"></A> 
 */
 
-#ifndef _LN_LIBNOVA_H
-#define _LN_LIBNOVA_H
+#ifndef _LN_LIBNOVA2_H
+#define _LN_LIBNOVA2_H
 
-#include <libnova/ln_types.h>
-#include <libnova/julian_day.h>
-#include <libnova/dynamical_time.h>
-#include <libnova/sidereal_time.h>
-#include <libnova/transform.h>
-#include <libnova/nutation.h>
-#include <libnova/aberration.h>
-#include <libnova/apparent_position.h>
-#include <libnova/solar.h>
-#include <libnova/precession.h>
-#include <libnova/proper_motion.h>
-#include <libnova/mercury.h>
-#include <libnova/venus.h>
-#include <libnova/earth.h>
-#include <libnova/mars.h>
-#include <libnova/jupiter.h>
-#include <libnova/saturn.h>
-#include <libnova/uranus.h>
-#include <libnova/neptune.h>
-#include <libnova/pluto.h>
-#include <libnova/vsop87.h>
-#include <libnova/lunar.h>
-#include <libnova/elliptic_motion.h>
-#include <libnova/asteroid.h>
-#include <libnova/comet.h>
-#include <libnova/parabolic_motion.h>
-#include <libnova/refraction.h>
-#include <libnova/rise_set.h>
-#include <libnova/angular_separation.h>
-#include <libnova/ln_types.h>
-#include <libnova/utility.h>
-#include <libnova/hyperbolic_motion.h>
-#include <libnova/parallax.h>
-#include <libnova/airmass.h>
-#include <libnova/heliocentric_time.h>
-#include <libnova/constellation.h>
+#include <libnova2/ln_types.h>
+#include <libnova2/julian_day.h>
+#include <libnova2/dynamical_time.h>
+#include <libnova2/sidereal_time.h>
+#include <libnova2/transform.h>
+#include <libnova2/nutation.h>
+#include <libnova2/aberration.h>
+#include <libnova2/apparent_position.h>
+#include <libnova2/solar.h>
+#include <libnova2/precession.h>
+#include <libnova2/proper_motion.h>
+#include <libnova2/mercury.h>
+#include <libnova2/venus.h>
+#include <libnova2/earth.h>
+#include <libnova2/mars.h>
+#include <libnova2/jupiter.h>
+#include <libnova2/saturn.h>
+#include <libnova2/uranus.h>
+#include <libnova2/neptune.h>
+#include <libnova2/pluto.h>
+#include <libnova2/vsop87.h>
+#include <libnova2/lunar.h>
+#include <libnova2/elliptic_motion.h>
+#include <libnova2/asteroid.h>
+#include <libnova2/comet.h>
+#include <libnova2/parabolic_motion.h>
+#include <libnova2/refraction.h>
+#include <libnova2/rise_set.h>
+#include <libnova2/angular_separation.h>
+#include <libnova2/ln_types.h>
+#include <libnova2/utility.h>
+#include <libnova2/hyperbolic_motion.h>
+#include <libnova2/parallax.h>
+#include <libnova2/airmass.h>
+#include <libnova2/heliocentric_time.h>
+#include <libnova2/constellation.h>
 
 #endif

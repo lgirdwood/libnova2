@@ -2,9 +2,9 @@
  * Elliptic Motion Tests
  */
 
-#include "libnova/utility.h"
+#include "libnova2/utility.h"
 #include "test_helpers.h"
-#include <libnova/libnova.h>
+#include <libnova2/libnova2.h>
 #include <stdio.h>
 
 int elliptic_motion_test(void)

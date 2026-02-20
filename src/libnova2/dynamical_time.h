@@ -19,7 +19,7 @@
 #ifndef _LN_DYNAMICAL_TIME_H
 #define _LN_DYNAMICAL_TIME_H
 
-#include <libnova/ln_types.h>
+#include <libnova2/ln_types.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -45,7 +45,7 @@ extern "C" {
 *
 * Uses polynomial approximations to estimate \f$ \Delta T \f$ for the given date.
 */
-double LIBNOVA_EXPORT ln2_get_dynamical_time_diff(double JD);
+double LIBNOVA2_EXPORT ln2_get_dynamical_time_diff(double JD);
 
 /**
 * \brief Calculate Julian Ephemeris Day (JDE)
@@ -53,7 +53,7 @@ double LIBNOVA_EXPORT ln2_get_dynamical_time_diff(double JD);
 * \param JD Julian Day (UT)
 * \return Julian Ephemeris Day (JDE = JD + \f$ \Delta T \f$ / 86400)
 */
-double LIBNOVA_EXPORT ln2_get_jde(double JD);
+double LIBNOVA2_EXPORT ln2_get_jde(double JD);
 
 #ifdef __cplusplus
 };

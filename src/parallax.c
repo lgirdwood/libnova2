@@ -16,10 +16,10 @@
  *  Copyright (C) 2000 - 2026 Petr Kubanek
  */
 
-#include <libnova/earth.h>
-#include <libnova/parallax.h>
-#include <libnova/sidereal_time.h>
-#include <libnova/utility.h>
+#include <libnova2/earth.h>
+#include <libnova2/parallax.h>
+#include <libnova2/sidereal_time.h>
+#include <libnova2/utility.h>
 #include <math.h>
 
 /* Equ 39.1, 39.2, 39.3 Pg 263 and 264

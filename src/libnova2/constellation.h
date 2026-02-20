@@ -41,7 +41,7 @@ extern "C" {
 * The function handles the precession to B1875.0 internally if required (or assumes input is J2000 and precesses).
 * *Note*: This implementation typically checks against a list of boundary coordinates.
 */
-const char *LIBNOVA_EXPORT ln2_get_constellation(struct ln_equ_posn *position);
+const char *LIBNOVA2_EXPORT ln2_get_constellation(struct ln_equ_posn *position);
 
 #ifdef __cplusplus
 };

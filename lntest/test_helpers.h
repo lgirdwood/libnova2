@@ -1,7 +1,7 @@
 #ifndef _LN_TEST_HELPERS_H
 #define _LN_TEST_HELPERS_H
 
-#include <libnova/libnova.h>
+#include <libnova2/libnova2.h>
 
 void start_timer(void);
 

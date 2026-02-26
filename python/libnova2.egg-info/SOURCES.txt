@@ -1,0 +1,7 @@
+setup.py
+libnova2/__init__.py
+libnova2/libnova2.py
+libnova2.egg-info/PKG-INFO
+libnova2.egg-info/SOURCES.txt
+libnova2.egg-info/dependency_links.txt
+libnova2.egg-info/top_level.txt

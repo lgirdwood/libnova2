@@ -72,3 +72,4 @@ test_output*.txt
 
 # Visual Studio / VS Code
 .vs/
+.config.old

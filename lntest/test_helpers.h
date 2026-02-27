@@ -5,7 +5,7 @@
 
 void start_timer(void);
 
-void end_timer(void);
+double end_timer(void);
 
 double compare_results(double calc, double expect, double tolerance);
 

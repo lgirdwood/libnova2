@@ -60,46 +60,48 @@ int main(int argc, const char *argv[])
 	int failed = 0;
 	int i;
 
-	test_module_t modules[] = { { julian_test, "Julian Day" },
-								{ date_time_test, "Date Time" },
-								{ dynamical_test, "Dynamical Time" },
-								{ heliocentric_test, "Heliocentric Time" },
-								{ sidereal_test, "Sidereal Time" },
-								{ nutation_test, "Nutation" },
-								{ aber_prec_nut_test, "Aberration, Prec, Nut" },
-								{ transform_test, "Coordinate Transforms" },
-								{ solar_coord_test, "Solar Coordinates" },
-								{ solar_earth_test, "Solar/Earth" },
-								{ aberration_test, "Aberration" },
-								{ precession_test, "Precession" },
-								{ apparent_position_test, "Apparent Position" },
-								{ vsop87_test, "VSOP87" },
-								{ test_mercury, "Mercury" },
-								{ test_venus, "Venus" },
-								{ test_earth, "Earth" },
-								{ test_mars, "Mars" },
-								{ test_jupiter, "Jupiter" },
-								{ test_saturn, "Saturn" },
-								{ test_uranus, "Uranus" },
-								{ test_neptune, "Neptune" },
-								{ test_pluto, "Pluto" },
-								{ lunar_test, "Lunar" },
-								{ lunar_extended_test, "Lunar Extended" },
-								{ elliptic_motion_test, "Elliptic Motion" },
-								{ parabolic_motion_test, "Parabolic Motion" },
-								{ hyperbolic_motion_test, "Hyperbolic Motion" },
-								{ elliptic_parabolic_test, "Elliptic/Parabolic" },
-								{ rst_test, "Rise/Set/Transit" },
-								{ ell_rst_test, "Elliptic RST" },
-								{ hyp_future_rst_test, "Hyperbolic Future RST" },
-								{ body_future_rst_test, "Body Future RST" },
-								{ parallax_test, "Parallax" },
-								{ angular_test, "Angular Separation" },
-								{ utility_test, "Utility" },
-								{ utility_conversion_test, "Utility Conversion" },
-								{ asteroids_misc_test, "Asteroids/Misc" },
-								{ airmass_test, "Airmass" },
-								{ constellation_test, "Constellation" } };
+	test_module_t modules[] = {
+		{ julian_test, "Julian Day" },
+		{ date_time_test, "Date Time" },
+		{ dynamical_test, "Dynamical Time" },
+		{ heliocentric_test, "Heliocentric Time" },
+		{ sidereal_test, "Sidereal Time" },
+		{ nutation_test, "Nutation" },
+		{ aber_prec_nut_test, "Aberration, Prec, Nut" },
+		{ transform_test, "Coordinate Transforms" },
+		{ solar_coord_test, "Solar Coordinates" },
+		{ solar_earth_test, "Solar/Earth" },
+		{ aberration_test, "Aberration" },
+		{ precession_test, "Precession" },
+		{ apparent_position_test, "Apparent Position" },
+		{ vsop87_test, "VSOP87" },
+		{ test_mercury, "Mercury" },
+		{ test_venus, "Venus" },
+		{ test_earth, "Earth" },
+		{ test_mars, "Mars" },
+		{ test_jupiter, "Jupiter" },
+		{ test_saturn, "Saturn" },
+		{ test_uranus, "Uranus" },
+		{ test_neptune, "Neptune" },
+		{ test_pluto, "Pluto" },
+		{ lunar_test, "Lunar" },
+		{ lunar_extended_test, "Lunar Extended" },
+		{ elliptic_motion_test, "Elliptic Motion" },
+		{ parabolic_motion_test, "Parabolic Motion" },
+		{ hyperbolic_motion_test, "Hyperbolic Motion" },
+		{ elliptic_parabolic_test, "Elliptic/Parabolic" },
+		{ rst_test, "Rise/Set/Transit" },
+		{ ell_rst_test, "Elliptic RST" },
+		{ hyp_future_rst_test, "Hyperbolic Future RST" },
+		{ body_future_rst_test, "Body Future RST" },
+		{ parallax_test, "Parallax" },
+		{ angular_test, "Angular Separation" },
+		{ utility_test, "Utility" },
+		{ utility_conversion_test, "Utility Conversion" },
+		{ asteroids_misc_test, "Asteroids/Misc" },
+		{ airmass_test, "Airmass" },
+		{ constellation_test, "Constellation" }
+	};
 
 	int num_modules = sizeof(modules) / sizeof(modules[0]);
 
@@ -112,18 +114,28 @@ int main(int argc, const char *argv[])
 		failed += modules[i].tests_failed;
 	}
 
-	end_timer();
+	double total_time = end_timer();
 
 	fprintf(stdout, "\n\nTest Summary:\n");
-	fprintf(stdout, "------------------------------------------------------------------\n");
-	fprintf(stdout, "%-25s | %5s | %6s | %6s\n", "Module", "Run", "Passed", "Failed");
-	fprintf(stdout, "------------------------------------------------------------------\n");
+	fprintf(
+		stdout,
+		"------------------------------------------------------------------\n");
+	fprintf(stdout, "%-25s | %5s | %6s | %6s\n", "Module", "Run", "Passed",
+			"Failed");
+	fprintf(
+		stdout,
+		"------------------------------------------------------------------\n");
 	for (i = 0; i < num_modules; i++) {
-		fprintf(stdout, "%-25s | %5d | %6d | %6d\n", modules[i].name, modules[i].tests_run,
-				modules[i].tests_run - modules[i].tests_failed, modules[i].tests_failed);
+		fprintf(stdout, "%-25s | %5d | %6d | %6d\n", modules[i].name,
+				modules[i].tests_run,
+				modules[i].tests_run - modules[i].tests_failed,
+				modules[i].tests_failed);
 	}
-	fprintf(stdout, "------------------------------------------------------------------\n");
-	fprintf(stdout, "Total: %d tests, %d errors.\n", test_number, failed);
+	fprintf(
+		stdout,
+		"------------------------------------------------------------------\n");
+	fprintf(stdout, "Total: %d tests, %d errors. Execution Time: %.3f ms\n",
+			test_number, failed, total_time * 1000.0);
 
 	return 0;
 }

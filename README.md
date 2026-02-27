@@ -48,6 +48,7 @@ cmake ..
 
 **Common Options**:
 -   `-DBUILD_SHARED_LIBS=OFF`: Build static libraries (default is `ON`).
+-   `-DENABLE_SIMD=ON`: Enable AVX SIMD optimizations (Linux/GCC only). Uses auto-vectorization and `libmvec` for fast math.
 -   `-DCMAKE_BUILD_TYPE=Release`: Optimized build.
 -   `-DCMAKE_INSTALL_PREFIX=/usr`: Installation destination.
 

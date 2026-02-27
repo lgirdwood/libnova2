@@ -170,42 +170,42 @@ static const double p[8][2] = {
 	{ (304.0 + 20.0 / C1 + 55.19575 / C2) * DEG, 786550.32074 / RAD }
 };
 
-extern const struct main_problem elp1[];
-extern const struct main_problem elp2[];
-extern const struct main_problem elp3[];
-extern const struct earth_pert elp4[];
-extern const struct earth_pert elp5[];
-extern const struct earth_pert elp6[];
-extern const struct earth_pert elp7[];
-extern const struct earth_pert elp8[];
-extern const struct earth_pert elp9[];
-extern const struct planet_pert elp10[];
-extern const struct planet_pert elp11[];
-extern const struct planet_pert elp12[];
-extern const struct planet_pert elp13[];
-extern const struct planet_pert elp14[];
-extern const struct planet_pert elp15[];
-extern const struct planet_pert elp16[];
-extern const struct planet_pert elp17[];
-extern const struct planet_pert elp18[];
-extern const struct planet_pert elp19[];
-extern const struct planet_pert elp20[];
-extern const struct planet_pert elp21[];
-extern const struct earth_pert elp22[];
-extern const struct earth_pert elp23[];
-extern const struct earth_pert elp24[];
-extern const struct earth_pert elp25[];
-extern const struct earth_pert elp26[];
-extern const struct earth_pert elp27[];
-extern const struct earth_pert elp28[];
-extern const struct earth_pert elp29[];
-extern const struct earth_pert elp30[];
-extern const struct earth_pert elp31[];
-extern const struct earth_pert elp32[];
-extern const struct earth_pert elp33[];
-extern const struct earth_pert elp34[];
-extern const struct earth_pert elp35[];
-extern const struct earth_pert elp36[];
+extern const struct main_problem elp1;
+extern const struct main_problem elp2;
+extern const struct main_problem elp3;
+extern const struct earth_pert elp4;
+extern const struct earth_pert elp5;
+extern const struct earth_pert elp6;
+extern const struct earth_pert elp7;
+extern const struct earth_pert elp8;
+extern const struct earth_pert elp9;
+extern const struct planet_pert elp10;
+extern const struct planet_pert elp11;
+extern const struct planet_pert elp12;
+extern const struct planet_pert elp13;
+extern const struct planet_pert elp14;
+extern const struct planet_pert elp15;
+extern const struct planet_pert elp16;
+extern const struct planet_pert elp17;
+extern const struct planet_pert elp18;
+extern const struct planet_pert elp19;
+extern const struct planet_pert elp20;
+extern const struct planet_pert elp21;
+extern const struct earth_pert elp22;
+extern const struct earth_pert elp23;
+extern const struct earth_pert elp24;
+extern const struct earth_pert elp25;
+extern const struct earth_pert elp26;
+extern const struct earth_pert elp27;
+extern const struct earth_pert elp28;
+extern const struct earth_pert elp29;
+extern const struct earth_pert elp30;
+extern const struct earth_pert elp31;
+extern const struct earth_pert elp32;
+extern const struct earth_pert elp33;
+extern const struct earth_pert elp34;
+extern const struct earth_pert elp35;
+extern const struct earth_pert elp36;
 
 /* sum lunar elp1 series */
 static double sum_series_elp1(double *t)
@@ -222,15 +222,16 @@ static double sum_series_elp1(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP1_SIZE; j++) {
 		/* derivatives of A */
-		tgv = elp1[j].B[0] + DTASM * elp1[j].B[4];
-		x = elp1[j].A + tgv * (DELNP - AM * DELNU) + elp1[j].B[1] * DELG +
-			elp1[j].B[2] * DELE + elp1[j].B[3] * DELEP;
+		tgv = elp1.B[0][j] + DTASM * elp1.B[4][j];
+		x = elp1.A[j] + tgv * (DELNP - AM * DELNU) + elp1.B[1][j] * DELG +
+			elp1.B[2][j] * DELE + elp1.B[3][j] * DELEP;
 
 		y = 0;
 		for (i = 0; i < 4; i++)
-			y += elp1[j].ilu[i] * t_del_4_5[i];
+			y += elp1.ilu[i][j] * t_del_4_5[i];
 
 		/* y in correct quad */
 		y = ln2_range_radians2(y);
@@ -254,15 +255,16 @@ static double sum_series_elp2(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP2_SIZE; j++) {
 		/* derivatives of A */
-		tgv = elp2[j].B[0] + DTASM * elp2[j].B[4];
-		x = elp2[j].A + tgv * (DELNP - AM * DELNU) + elp2[j].B[1] * DELG +
-			elp2[j].B[2] * DELE + elp2[j].B[3] * DELEP;
+		tgv = elp2.B[0][j] + DTASM * elp2.B[4][j];
+		x = elp2.A[j] + tgv * (DELNP - AM * DELNU) + elp2.B[1][j] * DELG +
+			elp2.B[2][j] * DELE + elp2.B[3][j] * DELEP;
 
 		y = 0;
 		for (i = 0; i < 4; i++)
-			y += elp2[j].ilu[i] * t_del_4_5[i];
+			y += elp2.ilu[i][j] * t_del_4_5[i];
 		/* y in correct quad */
 		y = ln2_range_radians2(y);
 		result += x * sin(y);
@@ -285,15 +287,16 @@ static double sum_series_elp3(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP3_SIZE; j++) {
 		/* derivatives of A */
-		tgv = elp3[j].B[0] + DTASM * elp3[j].B[4];
-		x = elp3[j].A + tgv * (DELNP - AM * DELNU) + elp3[j].B[1] * DELG +
-			elp3[j].B[2] * DELE + elp3[j].B[3] * DELEP;
+		tgv = elp3.B[0][j] + DTASM * elp3.B[4][j];
+		x = elp3.A[j] + tgv * (DELNP - AM * DELNU) + elp3.B[1][j] * DELG +
+			elp3.B[2][j] * DELE + elp3.B[3][j] * DELEP;
 
 		y = 0;
 		for (i = 0; i < 4; i++)
-			y += elp3[j].ilu[i] * t_del_4_5[i];
+			y += elp3.ilu[i][j] * t_del_4_5[i];
 		y += (M_PI_2);
 		/* y in correct quad */
 		y = ln2_range_radians2(y);
@@ -318,14 +321,15 @@ static double sum_series_elp4(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP4_SIZE; j++) {
-		y = elp4[j].O * DEG;
-		y += elp4[j].iz * t_zeta_2;
+		y = elp4.O[j] * DEG;
+		y += elp4.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp4[j].ilu[i] * t_del_4_2[i];
+			y += elp4.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		result += elp4[j].A * sin(y);
+		result += elp4.A[j] * sin(y);
 	}
 	return result;
 }
@@ -346,14 +350,15 @@ static double sum_series_elp5(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP5_SIZE; j++) {
-		y = elp5[j].O * DEG;
-		y += elp5[j].iz * t_zeta_2;
+		y = elp5.O[j] * DEG;
+		y += elp5.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp5[j].ilu[i] * t_del_4_2[i];
+			y += elp5.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		result += elp5[j].A * sin(y);
+		result += elp5.A[j] * sin(y);
 	}
 	return result;
 }
@@ -374,14 +379,15 @@ static double sum_series_elp6(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP6_SIZE; j++) {
-		y = elp6[j].O * DEG;
-		y += elp6[j].iz * t_zeta_2;
+		y = elp6.O[j] * DEG;
+		y += elp6.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp6[j].ilu[i] * t_del_4_2[i];
+			y += elp6.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		result += elp6[j].A * sin(y);
+		result += elp6.A[j] * sin(y);
 	}
 	return result;
 }
@@ -402,12 +408,13 @@ static double sum_series_elp7(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP7_SIZE; j++) {
-		A = elp7[j].A * t[1];
-		y = elp7[j].O * DEG;
-		y += elp7[j].iz * t_zeta_2;
+		A = elp7.A[j] * t[1];
+		y = elp7.O[j] * DEG;
+		y += elp7.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp7[j].ilu[i] * t_del_4_2[i];
+			y += elp7.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += A * sin(y);
@@ -431,12 +438,13 @@ static double sum_series_elp8(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP8_SIZE; j++) {
-		y = elp8[j].O * DEG;
-		A = elp8[j].A * t[1];
-		y += elp8[j].iz * t_zeta_2;
+		y = elp8.O[j] * DEG;
+		A = elp8.A[j] * t[1];
+		y += elp8.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp8[j].ilu[i] * t_del_4_2[i];
+			y += elp8.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += A * sin(y);
@@ -460,12 +468,13 @@ static double sum_series_elp9(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP9_SIZE; j++) {
-		A = elp9[j].A * t[1];
-		y = elp9[j].O * DEG;
-		y += elp9[j].iz * t_zeta_2;
+		A = elp9.A[j] * t[1];
+		y = elp9.O[j] * DEG;
+		y += elp9.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp9[j].ilu[i] * t_del_4_2[i];
+			y += elp9.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += A * sin(y);
@@ -491,16 +500,17 @@ static double sum_series_elp10(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP10_SIZE; j++) {
-		y = elp10[j].theta * DEG;
+		y = elp10.theta[j] * DEG;
 
-		y += elp10[j].ipla[8] * t_del0_2 + elp10[j].ipla[9] * t_del2_2 + elp10[j].ipla[10] * t_del3_2;
+		y += elp10.ipla[8][j] * t_del0_2 + elp10.ipla[9][j] * t_del2_2 + elp10.ipla[10][j] * t_del3_2;
 		for (i = 0; i < 8; i++)
-			y += elp10[j].ipla[i] * t_p_8_2[i];
+			y += elp10.ipla[i][j] * t_p_8_2[i];
 
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		result += elp10[j].O * sin(y);
+		result += elp10.O[j] * sin(y);
 	}
 	return result;
 }
@@ -523,14 +533,15 @@ static double sum_series_elp11(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP11_SIZE; j++) {
-		y = elp11[j].theta * DEG;
-		y += elp11[j].ipla[8] * t_del0_2 + elp11[j].ipla[9] * t_del2_2 + elp11[j].ipla[10] * t_del3_2;
+		y = elp11.theta[j] * DEG;
+		y += elp11.ipla[8][j] * t_del0_2 + elp11.ipla[9][j] * t_del2_2 + elp11.ipla[10][j] * t_del3_2;
 		for (i = 0; i < 8; i++)
-			y += elp11[j].ipla[i] * t_p_8_2[i];
+			y += elp11.ipla[i][j] * t_p_8_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		result += elp11[j].O * sin(y);
+		result += elp11.O[j] * sin(y);
 	}
 	return result;
 }
@@ -553,14 +564,15 @@ static double sum_series_elp12(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP12_SIZE; j++) {
-		y = elp12[j].theta * DEG;
-		y += elp12[j].ipla[8] * t_del0_2 + elp12[j].ipla[9] * t_del2_2 + elp12[j].ipla[10] * t_del3_2;
+		y = elp12.theta[j] * DEG;
+		y += elp12.ipla[8][j] * t_del0_2 + elp12.ipla[9][j] * t_del2_2 + elp12.ipla[10][j] * t_del3_2;
 		for (i = 0; i < 8; i++)
-			y += elp12[j].ipla[i] * t_p_8_2[i];
+			y += elp12.ipla[i][j] * t_p_8_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		result += elp12[j].O * sin(y);
+		result += elp12.O[j] * sin(y);
 	}
 	return result;
 }
@@ -583,14 +595,15 @@ static double sum_series_elp13(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP13_SIZE; j++) {
-		y = elp13[j].theta * DEG;
-		y += elp13[j].ipla[8] * t_del0_2 + elp13[j].ipla[9] * t_del2_2 + elp13[j].ipla[10] * t_del3_2;
+		y = elp13.theta[j] * DEG;
+		y += elp13.ipla[8][j] * t_del0_2 + elp13.ipla[9][j] * t_del2_2 + elp13.ipla[10][j] * t_del3_2;
 		for (i = 0; i < 8; i++)
-			y += elp13[j].ipla[i] * t_p_8_2[i];
+			y += elp13.ipla[i][j] * t_p_8_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		x = elp13[j].O * t[1];
+		x = elp13.O[j] * t[1];
 		result += x * sin(y);
 	}
 	return result;
@@ -614,14 +627,15 @@ static double sum_series_elp14(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP14_SIZE; j++) {
-		y = elp14[j].theta * DEG;
-		y += elp14[j].ipla[8] * t_del0_2 + elp14[j].ipla[9] * t_del2_2 + elp14[j].ipla[10] * t_del3_2;
+		y = elp14.theta[j] * DEG;
+		y += elp14.ipla[8][j] * t_del0_2 + elp14.ipla[9][j] * t_del2_2 + elp14.ipla[10][j] * t_del3_2;
 		for (i = 0; i < 8; i++)
-			y += elp14[j].ipla[i] * t_p_8_2[i];
+			y += elp14.ipla[i][j] * t_p_8_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		x = elp14[j].O * t[1];
+		x = elp14.O[j] * t[1];
 		result += x * sin(y);
 	}
 	return result;
@@ -645,14 +659,15 @@ static double sum_series_elp15(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP15_SIZE; j++) {
-		y = elp15[j].theta * DEG;
-		y += elp15[j].ipla[8] * t_del0_2 + elp15[j].ipla[9] * t_del2_2 + elp15[j].ipla[10] * t_del3_2;
+		y = elp15.theta[j] * DEG;
+		y += elp15.ipla[8][j] * t_del0_2 + elp15.ipla[9][j] * t_del2_2 + elp15.ipla[10][j] * t_del3_2;
 		for (i = 0; i < 8; i++)
-			y += elp15[j].ipla[i] * t_p_8_2[i];
+			y += elp15.ipla[i][j] * t_p_8_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		x = elp15[j].O * t[1];
+		x = elp15.O[j] * t[1];
 		result += x * sin(y);
 	}
 	return result;
@@ -676,15 +691,16 @@ static double sum_series_elp16(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP16_SIZE; j++) {
-		y = elp16[j].theta * DEG;
+		y = elp16.theta[j] * DEG;
 		for (i = 0; i < 4; i++)
-			y += elp16[j].ipla[i + 7] * t_del_4_2[i];
+			y += elp16.ipla[i + 7][j] * t_del_4_2[i];
 		for (i = 0; i < 7; i++)
-			y += elp16[j].ipla[i] * t_p_7_2[i];
+			y += elp16.ipla[i][j] * t_p_7_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		result += elp16[j].O * sin(y);
+		result += elp16.O[j] * sin(y);
 	}
 	return result;
 }
@@ -706,15 +722,16 @@ static double sum_series_elp17(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP17_SIZE; j++) {
-		y = elp17[j].theta * DEG;
+		y = elp17.theta[j] * DEG;
 		for (i = 0; i < 4; i++)
-			y += elp17[j].ipla[i + 7] * t_del_4_2[i];
+			y += elp17.ipla[i + 7][j] * t_del_4_2[i];
 		for (i = 0; i < 7; i++)
-			y += elp17[j].ipla[i] * t_p_7_2[i];
+			y += elp17.ipla[i][j] * t_p_7_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		result += elp17[j].O * sin(y);
+		result += elp17.O[j] * sin(y);
 	}
 	return result;
 }
@@ -736,15 +753,16 @@ static double sum_series_elp18(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP18_SIZE; j++) {
-		y = elp18[j].theta * DEG;
+		y = elp18.theta[j] * DEG;
 		for (i = 0; i < 4; i++)
-			y += elp18[j].ipla[i + 7] * t_del_4_2[i];
+			y += elp18.ipla[i + 7][j] * t_del_4_2[i];
 		for (i = 0; i < 7; i++)
-			y += elp18[j].ipla[i] * t_p_7_2[i];
+			y += elp18.ipla[i][j] * t_p_7_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		result += elp18[j].O * sin(y);
+		result += elp18.O[j] * sin(y);
 	}
 	return result;
 }
@@ -766,15 +784,16 @@ static double sum_series_elp19(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP19_SIZE; j++) {
-		y = elp19[j].theta * DEG;
+		y = elp19.theta[j] * DEG;
 		for (i = 0; i < 4; i++)
-			y += elp19[j].ipla[i + 7] * t_del_4_2[i];
+			y += elp19.ipla[i + 7][j] * t_del_4_2[i];
 		for (i = 0; i < 7; i++)
-			y += elp19[j].ipla[i] * t_p_7_2[i];
+			y += elp19.ipla[i][j] * t_p_7_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		x = elp19[j].O * t[1];
+		x = elp19.O[j] * t[1];
 		result += x * sin(y);
 	}
 	return result;
@@ -797,15 +816,16 @@ static double sum_series_elp20(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP20_SIZE; j++) {
-		y = elp20[j].theta * DEG;
+		y = elp20.theta[j] * DEG;
 		for (i = 0; i < 4; i++)
-			y += elp20[j].ipla[i + 7] * t_del_4_2[i];
+			y += elp20.ipla[i + 7][j] * t_del_4_2[i];
 		for (i = 0; i < 7; i++)
-			y += elp20[j].ipla[i] * t_p_7_2[i];
+			y += elp20.ipla[i][j] * t_p_7_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		x = elp20[j].O * t[1];
+		x = elp20.O[j] * t[1];
 		result += x * sin(y);
 	}
 	return result;
@@ -828,15 +848,16 @@ static double sum_series_elp21(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP21_SIZE; j++) {
-		y = elp21[j].theta * DEG;
+		y = elp21.theta[j] * DEG;
 		for (i = 0; i < 4; i++)
-			y += elp21[j].ipla[i + 7] * t_del_4_2[i];
+			y += elp21.ipla[i + 7][j] * t_del_4_2[i];
 		for (i = 0; i < 7; i++)
-			y += elp21[j].ipla[i] * t_p_7_2[i];
+			y += elp21.ipla[i][j] * t_p_7_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		x = elp21[j].O * t[1];
+		x = elp21.O[j] * t[1];
 		result += x * sin(y);
 	}
 	return result;
@@ -858,14 +879,15 @@ static double sum_series_elp22(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP22_SIZE; j++) {
-		y = elp22[j].O * DEG;
-		y += elp22[j].iz * t_zeta_2;
+		y = elp22.O[j] * DEG;
+		y += elp22.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp22[j].ilu[i] * t_del_4_2[i];
+			y += elp22.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		result += elp22[j].A * sin(y);
+		result += elp22.A[j] * sin(y);
 	}
 	return result;
 }
@@ -886,14 +908,15 @@ static double sum_series_elp23(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP23_SIZE; j++) {
-		y = elp23[j].O * DEG;
-		y += elp23[j].iz * t_zeta_2;
+		y = elp23.O[j] * DEG;
+		y += elp23.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp23[j].ilu[i] * t_del_4_2[i];
+			y += elp23.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		result += elp23[j].A * sin(y);
+		result += elp23.A[j] * sin(y);
 	}
 	return result;
 }
@@ -914,14 +937,15 @@ static double sum_series_elp24(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP24_SIZE; j++) {
-		y = elp24[j].O * DEG;
-		y += elp24[j].iz * t_zeta_2;
+		y = elp24.O[j] * DEG;
+		y += elp24.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp24[j].ilu[i] * t_del_4_2[i];
+			y += elp24.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		result += elp24[j].A * sin(y);
+		result += elp24.A[j] * sin(y);
 	}
 	return result;
 }
@@ -942,12 +966,13 @@ static double sum_series_elp25(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP25_SIZE; j++) {
-		A = elp25[j].A * t[1];
-		y = elp25[j].O * DEG;
-		y += elp25[j].iz * t_zeta_2;
+		A = elp25.A[j] * t[1];
+		y = elp25.O[j] * DEG;
+		y += elp25.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp25[j].ilu[i] * t_del_4_2[i];
+			y += elp25.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += A * sin(y);
@@ -971,12 +996,13 @@ static double sum_series_elp26(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP26_SIZE; j++) {
-		A = elp26[j].A * t[1];
-		y = elp26[j].O * DEG;
-		y += elp26[j].iz * t_zeta_2;
+		A = elp26.A[j] * t[1];
+		y = elp26.O[j] * DEG;
+		y += elp26.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp26[j].ilu[i] * t_del_4_2[i];
+			y += elp26.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += A * sin(y);
@@ -1000,12 +1026,13 @@ static double sum_series_elp27(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP27_SIZE; j++) {
-		A = elp27[j].A * t[1];
-		y = elp27[j].O * DEG;
-		y += elp27[j].iz * t_zeta_2;
+		A = elp27.A[j] * t[1];
+		y = elp27.O[j] * DEG;
+		y += elp27.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp27[j].ilu[i] * t_del_4_2[i];
+			y += elp27.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += A * sin(y);
@@ -1029,14 +1056,15 @@ static double sum_series_elp28(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP28_SIZE; j++) {
-		y = elp28[j].O * DEG;
-		y += elp28[j].iz * t_zeta_2;
+		y = elp28.O[j] * DEG;
+		y += elp28.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp28[j].ilu[i] * t_del_4_2[i];
+			y += elp28.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		result += elp28[j].A * sin(y);
+		result += elp28.A[j] * sin(y);
 	}
 	return result;
 }
@@ -1057,14 +1085,15 @@ static double sum_series_elp29(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP29_SIZE; j++) {
-		y = elp29[j].O * DEG;
-		y += elp29[j].iz * t_zeta_2;
+		y = elp29.O[j] * DEG;
+		y += elp29.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp29[j].ilu[i] * t_del_4_2[i];
+			y += elp29.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		result += elp29[j].A * sin(y);
+		result += elp29.A[j] * sin(y);
 	}
 	return result;
 }
@@ -1085,14 +1114,15 @@ static double sum_series_elp30(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP30_SIZE; j++) {
-		y = elp30[j].O * DEG;
-		y += elp30[j].iz * t_zeta_2;
+		y = elp30.O[j] * DEG;
+		y += elp30.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp30[j].ilu[i] * t_del_4_2[i];
+			y += elp30.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		result += elp30[j].A * sin(y);
+		result += elp30.A[j] * sin(y);
 	}
 	return result;
 }
@@ -1113,14 +1143,15 @@ static double sum_series_elp31(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP31_SIZE; j++) {
-		y = elp31[j].O * DEG;
-		y += elp31[j].iz * t_zeta_2;
+		y = elp31.O[j] * DEG;
+		y += elp31.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp31[j].ilu[i] * t_del_4_2[i];
+			y += elp31.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		result += elp31[j].A * sin(y);
+		result += elp31.A[j] * sin(y);
 	}
 	return result;
 }
@@ -1141,14 +1172,15 @@ static double sum_series_elp32(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP32_SIZE; j++) {
-		y = elp32[j].O * DEG;
-		y += elp32[j].iz * t_zeta_2;
+		y = elp32.O[j] * DEG;
+		y += elp32.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp32[j].ilu[i] * t_del_4_2[i];
+			y += elp32.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		result += elp32[j].A * sin(y);
+		result += elp32.A[j] * sin(y);
 	}
 	return result;
 }
@@ -1169,14 +1201,15 @@ static double sum_series_elp33(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP33_SIZE; j++) {
-		y = elp33[j].O * DEG;
-		y += elp33[j].iz * t_zeta_2;
+		y = elp33.O[j] * DEG;
+		y += elp33.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp33[j].ilu[i] * t_del_4_2[i];
+			y += elp33.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
-		result += elp33[j].A * sin(y);
+		result += elp33.A[j] * sin(y);
 	}
 	return result;
 }
@@ -1197,12 +1230,13 @@ static double sum_series_elp34(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP34_SIZE; j++) {
-		A = elp34[j].A * t[2];
-		y = elp34[j].O * DEG;
-		y += elp34[j].iz * t_zeta_2;
+		A = elp34.A[j] * t[2];
+		y = elp34.O[j] * DEG;
+		y += elp34.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp34[j].ilu[i] * t_del_4_2[i];
+			y += elp34.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += A * sin(y);
@@ -1226,12 +1260,13 @@ static double sum_series_elp35(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP35_SIZE; j++) {
-		A = elp35[j].A * t[2];
-		y = elp35[j].O * DEG;
-		y += elp35[j].iz * t_zeta_2;
+		A = elp35.A[j] * t[2];
+		y = elp35.O[j] * DEG;
+		y += elp35.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp35[j].ilu[i] * t_del_4_2[i];
+			y += elp35.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += A * sin(y);
@@ -1255,12 +1290,13 @@ static double sum_series_elp36(double *t)
 		}
 	}
 
+	#pragma GCC ivdep
 	for (j = 0; j < ELP36_SIZE; j++) {
-		A = elp36[j].A * t[2];
-		y = elp36[j].O * DEG;
-		y += elp36[j].iz * t_zeta_2;
+		A = elp36.A[j] * t[2];
+		y = elp36.O[j] * DEG;
+		y += elp36.iz[j] * t_zeta_2;
 		for (i = 0; i < 4; i++)
-			y += elp36[j].ilu[i] * t_del_4_2[i];
+			y += elp36.ilu[i][j] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += A * sin(y);

@@ -21,6 +21,11 @@ else()
     add_compile_definitions(LIBNOVA2_STATIC)
 endif()
 
+option(ENABLE_SIMD "Enable AVX SIMD optimizations" OFF)
+if(ENABLE_SIMD AND NOT MSVC)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3 -ffast-math -ftree-vectorize -march=native")
+endif()
+
 # Windows/MSVC specific definitions
 if(WIN32)
     add_compile_definitions(_USE_MATH_DEFINES)

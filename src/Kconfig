@@ -352,3 +352,20 @@ config LIBNOVA2_UTILITY
       - String formatting (DMS, HMS)
 
 endmenu
+
+menu "Compiler Options"
+
+config ENABLE_SIMD
+    bool "Enable AVX SIMD optimizations"
+    default n
+    help
+      Enable Auto-Vectorization (SIMD) and fast math optimizations.
+      
+      This speeds up complex ephemerides functions (like Lunar ELP)
+      by utilizing Advanced Vector Extensions to perform operations
+      like sine simultaneously.
+
+      Note: Requires GCC/Clang on a compatible platform (x86_64).
+      May use `libmvec` auto-vectorization on Linux.
+
+endmenu

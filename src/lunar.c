@@ -215,6 +215,13 @@ static double sum_series_elp1(double *t)
 	double tgv;
 	int i, j, k;
 
+	double t_del_4_5[4] = {0};
+	for (i = 0; i < 4; i++) {
+		for (k = 0; k < 5; k++) {
+			t_del_4_5[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP1_SIZE; j++) {
 		/* derivatives of A */
 		tgv = elp1[j].B[0] + DTASM * elp1[j].B[4];
@@ -222,10 +229,8 @@ static double sum_series_elp1(double *t)
 			elp1[j].B[2] * DELE + elp1[j].B[3] * DELEP;
 
 		y = 0;
-		for (k = 0; k < 5; k++) {
-			for (i = 0; i < 4; i++)
-				y += elp1[j].ilu[i] * del[i][k] * t[k];
-		}
+		for (i = 0; i < 4; i++)
+			y += elp1[j].ilu[i] * t_del_4_5[i];
 
 		/* y in correct quad */
 		y = ln2_range_radians2(y);
@@ -242,6 +247,13 @@ static double sum_series_elp2(double *t)
 	double tgv;
 	int i, j, k;
 
+	double t_del_4_5[4] = {0};
+	for (i = 0; i < 4; i++) {
+		for (k = 0; k < 5; k++) {
+			t_del_4_5[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP2_SIZE; j++) {
 		/* derivatives of A */
 		tgv = elp2[j].B[0] + DTASM * elp2[j].B[4];
@@ -249,10 +261,8 @@ static double sum_series_elp2(double *t)
 			elp2[j].B[2] * DELE + elp2[j].B[3] * DELEP;
 
 		y = 0;
-		for (k = 0; k < 5; k++) {
-			for (i = 0; i < 4; i++)
-				y += elp2[j].ilu[i] * del[i][k] * t[k];
-		}
+		for (i = 0; i < 4; i++)
+			y += elp2[j].ilu[i] * t_del_4_5[i];
 		/* y in correct quad */
 		y = ln2_range_radians2(y);
 		result += x * sin(y);
@@ -268,6 +278,13 @@ static double sum_series_elp3(double *t)
 	double tgv;
 	int i, j, k;
 
+	double t_del_4_5[4] = {0};
+	for (i = 0; i < 4; i++) {
+		for (k = 0; k < 5; k++) {
+			t_del_4_5[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP3_SIZE; j++) {
 		/* derivatives of A */
 		tgv = elp3[j].B[0] + DTASM * elp3[j].B[4];
@@ -275,10 +292,8 @@ static double sum_series_elp3(double *t)
 			elp3[j].B[2] * DELE + elp3[j].B[3] * DELEP;
 
 		y = 0;
-		for (k = 0; k < 5; k++) {
-			for (i = 0; i < 4; i++)
-				y += elp3[j].ilu[i] * del[i][k] * t[k];
-		}
+		for (i = 0; i < 4; i++)
+			y += elp3[j].ilu[i] * t_del_4_5[i];
 		y += (M_PI_2);
 		/* y in correct quad */
 		y = ln2_range_radians2(y);
@@ -294,13 +309,20 @@ static double sum_series_elp4(double *t)
 	int i, j, k;
 	double y;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP4_SIZE; j++) {
 		y = elp4[j].O * DEG;
-		for (k = 0; k < 2; k++) {
-			y += elp4[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp4[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp4[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp4[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += elp4[j].A * sin(y);
@@ -315,13 +337,20 @@ static double sum_series_elp5(double *t)
 	int i, j, k;
 	double y;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP5_SIZE; j++) {
 		y = elp5[j].O * DEG;
-		for (k = 0; k < 2; k++) {
-			y += elp5[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp5[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp5[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp5[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += elp5[j].A * sin(y);
@@ -336,13 +365,20 @@ static double sum_series_elp6(double *t)
 	int i, j, k;
 	double y;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP6_SIZE; j++) {
 		y = elp6[j].O * DEG;
-		for (k = 0; k < 2; k++) {
-			y += elp6[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp6[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp6[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp6[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += elp6[j].A * sin(y);
@@ -357,14 +393,21 @@ static double sum_series_elp7(double *t)
 	int i, j, k;
 	double y, A;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP7_SIZE; j++) {
 		A = elp7[j].A * t[1];
 		y = elp7[j].O * DEG;
-		for (k = 0; k < 2; k++) {
-			y += elp7[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp7[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp7[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp7[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += A * sin(y);
@@ -379,14 +422,21 @@ static double sum_series_elp8(double *t)
 	int i, j, k;
 	double y, A;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP8_SIZE; j++) {
 		y = elp8[j].O * DEG;
 		A = elp8[j].A * t[1];
-		for (k = 0; k < 2; k++) {
-			y += elp8[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp8[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp8[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp8[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += A * sin(y);
@@ -401,14 +451,21 @@ static double sum_series_elp9(double *t)
 	int i, j, k;
 	double y, A;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP9_SIZE; j++) {
 		A = elp9[j].A * t[1];
 		y = elp9[j].O * DEG;
-		for (k = 0; k < 2; k++) {
-			y += elp9[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp9[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp9[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp9[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += A * sin(y);
@@ -423,16 +480,23 @@ static double sum_series_elp10(double *t)
 	int i, j, k;
 	double y;
 
+	double t_del0_2 = 0, t_del2_2 = 0, t_del3_2 = 0;
+	double t_p_8_2[8] = {0};
+	for (k = 0; k < 2; k++) {
+		t_del0_2 += del[0][k] * t[k];
+		t_del2_2 += del[2][k] * t[k];
+		t_del3_2 += del[3][k] * t[k];
+		for (i = 0; i < 8; i++) {
+			t_p_8_2[i] += p[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP10_SIZE; j++) {
 		y = elp10[j].theta * DEG;
 
-		for (k = 0; k < 2; k++) {
-			y += (elp10[j].ipla[8] * del[0][k] + elp10[j].ipla[9] * del[2][k] +
-				  elp10[j].ipla[10] * del[3][k]) *
-				 t[k];
-			for (i = 0; i < 8; i++)
-				y += elp10[j].ipla[i] * p[i][k] * t[k];
-		}
+		y += elp10[j].ipla[8] * t_del0_2 + elp10[j].ipla[9] * t_del2_2 + elp10[j].ipla[10] * t_del3_2;
+		for (i = 0; i < 8; i++)
+			y += elp10[j].ipla[i] * t_p_8_2[i];
 
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
@@ -448,15 +512,22 @@ static double sum_series_elp11(double *t)
 	int i, j, k;
 	double y;
 
+	double t_del0_2 = 0, t_del2_2 = 0, t_del3_2 = 0;
+	double t_p_8_2[8] = {0};
+	for (k = 0; k < 2; k++) {
+		t_del0_2 += del[0][k] * t[k];
+		t_del2_2 += del[2][k] * t[k];
+		t_del3_2 += del[3][k] * t[k];
+		for (i = 0; i < 8; i++) {
+			t_p_8_2[i] += p[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP11_SIZE; j++) {
 		y = elp11[j].theta * DEG;
-		for (k = 0; k < 2; k++) {
-			y += (elp11[j].ipla[8] * del[0][k] + elp11[j].ipla[9] * del[2][k] +
-				  elp11[j].ipla[10] * del[3][k]) *
-				 t[k];
-			for (i = 0; i < 8; i++)
-				y += elp11[j].ipla[i] * p[i][k] * t[k];
-		}
+		y += elp11[j].ipla[8] * t_del0_2 + elp11[j].ipla[9] * t_del2_2 + elp11[j].ipla[10] * t_del3_2;
+		for (i = 0; i < 8; i++)
+			y += elp11[j].ipla[i] * t_p_8_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += elp11[j].O * sin(y);
@@ -471,15 +542,22 @@ static double sum_series_elp12(double *t)
 	int i, j, k;
 	double y;
 
+	double t_del0_2 = 0, t_del2_2 = 0, t_del3_2 = 0;
+	double t_p_8_2[8] = {0};
+	for (k = 0; k < 2; k++) {
+		t_del0_2 += del[0][k] * t[k];
+		t_del2_2 += del[2][k] * t[k];
+		t_del3_2 += del[3][k] * t[k];
+		for (i = 0; i < 8; i++) {
+			t_p_8_2[i] += p[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP12_SIZE; j++) {
 		y = elp12[j].theta * DEG;
-		for (k = 0; k < 2; k++) {
-			y += (elp12[j].ipla[8] * del[0][k] + elp12[j].ipla[9] * del[2][k] +
-				  elp12[j].ipla[10] * del[3][k]) *
-				 t[k];
-			for (i = 0; i < 8; i++)
-				y += elp12[j].ipla[i] * p[i][k] * t[k];
-		}
+		y += elp12[j].ipla[8] * t_del0_2 + elp12[j].ipla[9] * t_del2_2 + elp12[j].ipla[10] * t_del3_2;
+		for (i = 0; i < 8; i++)
+			y += elp12[j].ipla[i] * t_p_8_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += elp12[j].O * sin(y);
@@ -494,15 +572,22 @@ static double sum_series_elp13(double *t)
 	int i, j, k;
 	double y, x;
 
+	double t_del0_2 = 0, t_del2_2 = 0, t_del3_2 = 0;
+	double t_p_8_2[8] = {0};
+	for (k = 0; k < 2; k++) {
+		t_del0_2 += del[0][k] * t[k];
+		t_del2_2 += del[2][k] * t[k];
+		t_del3_2 += del[3][k] * t[k];
+		for (i = 0; i < 8; i++) {
+			t_p_8_2[i] += p[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP13_SIZE; j++) {
 		y = elp13[j].theta * DEG;
-		for (k = 0; k < 2; k++) {
-			y += (elp13[j].ipla[8] * del[0][k] + elp13[j].ipla[9] * del[2][k] +
-				  elp13[j].ipla[10] * del[3][k]) *
-				 t[k];
-			for (i = 0; i < 8; i++)
-				y += elp13[j].ipla[i] * p[i][k] * t[k];
-		}
+		y += elp13[j].ipla[8] * t_del0_2 + elp13[j].ipla[9] * t_del2_2 + elp13[j].ipla[10] * t_del3_2;
+		for (i = 0; i < 8; i++)
+			y += elp13[j].ipla[i] * t_p_8_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		x = elp13[j].O * t[1];
@@ -518,15 +603,22 @@ static double sum_series_elp14(double *t)
 	int i, j, k;
 	double y, x;
 
+	double t_del0_2 = 0, t_del2_2 = 0, t_del3_2 = 0;
+	double t_p_8_2[8] = {0};
+	for (k = 0; k < 2; k++) {
+		t_del0_2 += del[0][k] * t[k];
+		t_del2_2 += del[2][k] * t[k];
+		t_del3_2 += del[3][k] * t[k];
+		for (i = 0; i < 8; i++) {
+			t_p_8_2[i] += p[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP14_SIZE; j++) {
 		y = elp14[j].theta * DEG;
-		for (k = 0; k < 2; k++) {
-			y += (elp14[j].ipla[8] * del[0][k] + elp14[j].ipla[9] * del[2][k] +
-				  elp14[j].ipla[10] * del[3][k]) *
-				 t[k];
-			for (i = 0; i < 8; i++)
-				y += elp14[j].ipla[i] * p[i][k] * t[k];
-		}
+		y += elp14[j].ipla[8] * t_del0_2 + elp14[j].ipla[9] * t_del2_2 + elp14[j].ipla[10] * t_del3_2;
+		for (i = 0; i < 8; i++)
+			y += elp14[j].ipla[i] * t_p_8_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		x = elp14[j].O * t[1];
@@ -542,15 +634,22 @@ static double sum_series_elp15(double *t)
 	int i, j, k;
 	double y, x;
 
+	double t_del0_2 = 0, t_del2_2 = 0, t_del3_2 = 0;
+	double t_p_8_2[8] = {0};
+	for (k = 0; k < 2; k++) {
+		t_del0_2 += del[0][k] * t[k];
+		t_del2_2 += del[2][k] * t[k];
+		t_del3_2 += del[3][k] * t[k];
+		for (i = 0; i < 8; i++) {
+			t_p_8_2[i] += p[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP15_SIZE; j++) {
 		y = elp15[j].theta * DEG;
-		for (k = 0; k < 2; k++) {
-			y += (elp15[j].ipla[8] * del[0][k] + elp15[j].ipla[9] * del[2][k] +
-				  elp15[j].ipla[10] * del[3][k]) *
-				 t[k];
-			for (i = 0; i < 8; i++)
-				y += elp15[j].ipla[i] * p[i][k] * t[k];
-		}
+		y += elp15[j].ipla[8] * t_del0_2 + elp15[j].ipla[9] * t_del2_2 + elp15[j].ipla[10] * t_del3_2;
+		for (i = 0; i < 8; i++)
+			y += elp15[j].ipla[i] * t_p_8_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		x = elp15[j].O * t[1];
@@ -566,14 +665,23 @@ static double sum_series_elp16(double *t)
 	int i, j, k;
 	double y;
 
+	double t_del_4_2[4] = {0};
+	double t_p_7_2[7] = {0};
+	for (k = 0; k < 2; k++) {
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+		for (i = 0; i < 7; i++) {
+			t_p_7_2[i] += p[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP16_SIZE; j++) {
 		y = elp16[j].theta * DEG;
-		for (k = 0; k < 2; k++) {
-			for (i = 0; i < 4; i++)
-				y += elp16[j].ipla[i + 7] * del[i][k] * t[k];
-			for (i = 0; i < 7; i++)
-				y += elp16[j].ipla[i] * p[i][k] * t[k];
-		}
+		for (i = 0; i < 4; i++)
+			y += elp16[j].ipla[i + 7] * t_del_4_2[i];
+		for (i = 0; i < 7; i++)
+			y += elp16[j].ipla[i] * t_p_7_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += elp16[j].O * sin(y);
@@ -587,14 +695,23 @@ static double sum_series_elp17(double *t)
 	int i, j, k;
 	double y;
 
+	double t_del_4_2[4] = {0};
+	double t_p_7_2[7] = {0};
+	for (k = 0; k < 2; k++) {
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+		for (i = 0; i < 7; i++) {
+			t_p_7_2[i] += p[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP17_SIZE; j++) {
 		y = elp17[j].theta * DEG;
-		for (k = 0; k < 2; k++) {
-			for (i = 0; i < 4; i++)
-				y += elp17[j].ipla[i + 7] * del[i][k] * t[k];
-			for (i = 0; i < 7; i++)
-				y += elp17[j].ipla[i] * p[i][k] * t[k];
-		}
+		for (i = 0; i < 4; i++)
+			y += elp17[j].ipla[i + 7] * t_del_4_2[i];
+		for (i = 0; i < 7; i++)
+			y += elp17[j].ipla[i] * t_p_7_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += elp17[j].O * sin(y);
@@ -608,14 +725,23 @@ static double sum_series_elp18(double *t)
 	int i, j, k;
 	double y;
 
+	double t_del_4_2[4] = {0};
+	double t_p_7_2[7] = {0};
+	for (k = 0; k < 2; k++) {
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+		for (i = 0; i < 7; i++) {
+			t_p_7_2[i] += p[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP18_SIZE; j++) {
 		y = elp18[j].theta * DEG;
-		for (k = 0; k < 2; k++) {
-			for (i = 0; i < 4; i++)
-				y += elp18[j].ipla[i + 7] * del[i][k] * t[k];
-			for (i = 0; i < 7; i++)
-				y += elp18[j].ipla[i] * p[i][k] * t[k];
-		}
+		for (i = 0; i < 4; i++)
+			y += elp18[j].ipla[i + 7] * t_del_4_2[i];
+		for (i = 0; i < 7; i++)
+			y += elp18[j].ipla[i] * t_p_7_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += elp18[j].O * sin(y);
@@ -629,14 +755,23 @@ static double sum_series_elp19(double *t)
 	int i, j, k;
 	double y, x;
 
+	double t_del_4_2[4] = {0};
+	double t_p_7_2[7] = {0};
+	for (k = 0; k < 2; k++) {
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+		for (i = 0; i < 7; i++) {
+			t_p_7_2[i] += p[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP19_SIZE; j++) {
 		y = elp19[j].theta * DEG;
-		for (k = 0; k < 2; k++) {
-			for (i = 0; i < 4; i++)
-				y += elp19[j].ipla[i + 7] * del[i][k] * t[k];
-			for (i = 0; i < 7; i++)
-				y += elp19[j].ipla[i] * p[i][k] * t[k];
-		}
+		for (i = 0; i < 4; i++)
+			y += elp19[j].ipla[i + 7] * t_del_4_2[i];
+		for (i = 0; i < 7; i++)
+			y += elp19[j].ipla[i] * t_p_7_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		x = elp19[j].O * t[1];
@@ -651,14 +786,23 @@ static double sum_series_elp20(double *t)
 	int i, j, k;
 	double y, x;
 
+	double t_del_4_2[4] = {0};
+	double t_p_7_2[7] = {0};
+	for (k = 0; k < 2; k++) {
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+		for (i = 0; i < 7; i++) {
+			t_p_7_2[i] += p[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP20_SIZE; j++) {
 		y = elp20[j].theta * DEG;
-		for (k = 0; k < 2; k++) {
-			for (i = 0; i < 4; i++)
-				y += elp20[j].ipla[i + 7] * del[i][k] * t[k];
-			for (i = 0; i < 7; i++)
-				y += elp20[j].ipla[i] * p[i][k] * t[k];
-		}
+		for (i = 0; i < 4; i++)
+			y += elp20[j].ipla[i + 7] * t_del_4_2[i];
+		for (i = 0; i < 7; i++)
+			y += elp20[j].ipla[i] * t_p_7_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		x = elp20[j].O * t[1];
@@ -673,14 +817,23 @@ static double sum_series_elp21(double *t)
 	int i, j, k;
 	double y, x;
 
+	double t_del_4_2[4] = {0};
+	double t_p_7_2[7] = {0};
+	for (k = 0; k < 2; k++) {
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+		for (i = 0; i < 7; i++) {
+			t_p_7_2[i] += p[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP21_SIZE; j++) {
 		y = elp21[j].theta * DEG;
-		for (k = 0; k < 2; k++) {
-			for (i = 0; i < 4; i++)
-				y += elp21[j].ipla[i + 7] * del[i][k] * t[k];
-			for (i = 0; i < 7; i++)
-				y += elp21[j].ipla[i] * p[i][k] * t[k];
-		}
+		for (i = 0; i < 4; i++)
+			y += elp21[j].ipla[i + 7] * t_del_4_2[i];
+		for (i = 0; i < 7; i++)
+			y += elp21[j].ipla[i] * t_p_7_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		x = elp21[j].O * t[1];
@@ -696,13 +849,20 @@ static double sum_series_elp22(double *t)
 	int i, j, k;
 	double y;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP22_SIZE; j++) {
 		y = elp22[j].O * DEG;
-		for (k = 0; k < 2; k++) {
-			y += elp22[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp22[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp22[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp22[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += elp22[j].A * sin(y);
@@ -717,13 +877,20 @@ static double sum_series_elp23(double *t)
 	int i, j, k;
 	double y;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP23_SIZE; j++) {
 		y = elp23[j].O * DEG;
-		for (k = 0; k < 2; k++) {
-			y += elp23[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp23[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp23[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp23[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += elp23[j].A * sin(y);
@@ -738,13 +905,20 @@ static double sum_series_elp24(double *t)
 	int i, j, k;
 	double y;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP24_SIZE; j++) {
 		y = elp24[j].O * DEG;
-		for (k = 0; k < 2; k++) {
-			y += elp24[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp24[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp24[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp24[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += elp24[j].A * sin(y);
@@ -759,14 +933,21 @@ static double sum_series_elp25(double *t)
 	int i, j, k;
 	double y, A;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP25_SIZE; j++) {
 		A = elp25[j].A * t[1];
 		y = elp25[j].O * DEG;
-		for (k = 0; k < 2; k++) {
-			y += elp25[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp25[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp25[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp25[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += A * sin(y);
@@ -781,14 +962,21 @@ static double sum_series_elp26(double *t)
 	int i, j, k;
 	double y, A;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP26_SIZE; j++) {
 		A = elp26[j].A * t[1];
 		y = elp26[j].O * DEG;
-		for (k = 0; k < 2; k++) {
-			y += elp26[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp26[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp26[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp26[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += A * sin(y);
@@ -803,14 +991,21 @@ static double sum_series_elp27(double *t)
 	int i, j, k;
 	double y, A;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP27_SIZE; j++) {
 		A = elp27[j].A * t[1];
 		y = elp27[j].O * DEG;
-		for (k = 0; k < 2; k++) {
-			y += elp27[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp27[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp27[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp27[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += A * sin(y);
@@ -825,13 +1020,20 @@ static double sum_series_elp28(double *t)
 	int i, j, k;
 	double y;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP28_SIZE; j++) {
 		y = elp28[j].O * DEG;
-		for (k = 0; k < 2; k++) {
-			y += elp28[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp28[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp28[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp28[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += elp28[j].A * sin(y);
@@ -846,13 +1048,20 @@ static double sum_series_elp29(double *t)
 	int i, j, k;
 	double y;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP29_SIZE; j++) {
 		y = elp29[j].O * DEG;
-		for (k = 0; k < 2; k++) {
-			y += elp29[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp29[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp29[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp29[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += elp29[j].A * sin(y);
@@ -867,13 +1076,20 @@ static double sum_series_elp30(double *t)
 	int i, j, k;
 	double y;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP30_SIZE; j++) {
 		y = elp30[j].O * DEG;
-		for (k = 0; k < 2; k++) {
-			y += elp30[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp30[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp30[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp30[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += elp30[j].A * sin(y);
@@ -888,13 +1104,20 @@ static double sum_series_elp31(double *t)
 	int i, j, k;
 	double y;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP31_SIZE; j++) {
 		y = elp31[j].O * DEG;
-		for (k = 0; k < 2; k++) {
-			y += elp31[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp31[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp31[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp31[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += elp31[j].A * sin(y);
@@ -909,13 +1132,20 @@ static double sum_series_elp32(double *t)
 	int i, j, k;
 	double y;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP32_SIZE; j++) {
 		y = elp32[j].O * DEG;
-		for (k = 0; k < 2; k++) {
-			y += elp32[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp32[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp32[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp32[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += elp32[j].A * sin(y);
@@ -930,13 +1160,20 @@ static double sum_series_elp33(double *t)
 	int i, j, k;
 	double y;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP33_SIZE; j++) {
 		y = elp33[j].O * DEG;
-		for (k = 0; k < 2; k++) {
-			y += elp33[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp33[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp33[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp33[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += elp33[j].A * sin(y);
@@ -951,14 +1188,21 @@ static double sum_series_elp34(double *t)
 	int i, j, k;
 	double y, A;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP34_SIZE; j++) {
 		A = elp34[j].A * t[2];
 		y = elp34[j].O * DEG;
-		for (k = 0; k < 2; k++) {
-			y += elp34[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp34[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp34[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp34[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += A * sin(y);
@@ -973,14 +1217,21 @@ static double sum_series_elp35(double *t)
 	int i, j, k;
 	double y, A;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP35_SIZE; j++) {
 		A = elp35[j].A * t[2];
 		y = elp35[j].O * DEG;
-		for (k = 0; k < 2; k++) {
-			y += elp35[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp35[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp35[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp35[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += A * sin(y);
@@ -995,14 +1246,21 @@ static double sum_series_elp36(double *t)
 	int i, j, k;
 	double y, A;
 
+	double t_zeta_2 = 0;
+	double t_del_4_2[4] = {0};
+	for (k = 0; k < 2; k++) {
+		t_zeta_2 += zeta[k] * t[k];
+		for (i = 0; i < 4; i++) {
+			t_del_4_2[i] += del[i][k] * t[k];
+		}
+	}
+
 	for (j = 0; j < ELP36_SIZE; j++) {
 		A = elp36[j].A * t[2];
 		y = elp36[j].O * DEG;
-		for (k = 0; k < 2; k++) {
-			y += elp36[j].iz * zeta[k] * t[k];
-			for (i = 0; i < 4; i++)
-				y += elp36[j].ilu[i] * del[i][k] * t[k];
-		}
+		y += elp36[j].iz * t_zeta_2;
+		for (i = 0; i < 4; i++)
+			y += elp36[j].ilu[i] * t_del_4_2[i];
 		/* put y in correct quad */
 		y = ln2_range_radians2(y);
 		result += A * sin(y);

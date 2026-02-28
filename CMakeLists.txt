@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 
-project(libnova2 VERSION 2.0.0 DESCRIPTION "Astrometry Library" LANGUAGES C)
+project(libnova2 VERSION 0.99 DESCRIPTION "Astrometry Library" LANGUAGES C)
 
 include(GNUInstallDirs)
 include(CheckIncludeFile)

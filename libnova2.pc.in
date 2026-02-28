@@ -10,8 +10,7 @@ includedir=@includedir@
 
 Name: libnova2
 Description: @PROJECT_DESCRIPTION@
-#Version: @PROJECT_VERSION@
-Version: 0.17
+Version: @PROJECT_VERSION@
 
 Requires:
 Libs: -L${libdir} -lnova2 -lm

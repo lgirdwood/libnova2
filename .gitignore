@@ -1,75 +1,56 @@
+# Compiled Object files
 *.o
-*.Po
-*.Plo
 *.lo
+*.a
 *.so*
 *.la*
-*.a
-*.libs*
+*.Po
+*.Plo
+
+# Editor backups
 *.swp
 *~
-
-.cproject
-.project
 .cache
 
-lt~obsolete.m4
-ltsugar.m4
-libtool.m4
-ltoptions.m4
-ltversion.m4
+# IDEs
+.cproject
+.project
+.vs/
+.config.old
+.vscode/settings.json
 
-Makefile
-Makefile.in
-
-configure
-config.*
-
-compile
-
-autom4te*
-missing
-stamp-h1
-libtool
-ltmain.sh
-install-sh
-aclocal.m4
-depcomp
-
-examples/asteroid
-examples/comet
-examples/lunar
-examples/mars
-examples/sun
-examples/transforms
-
-lntest/libnova2config
-lntest/lntest
-
-doxyfile
-doc/man/*
-doc/html/*
-doc/doxygen_sqlite3.db
-
-tools/elp82
-
-# CMake
+# Build Directories
+build-*/
 build/
+
+# CMake Generated files (if built in-source accidentally)
 CMakeCache.txt
 CMakeFiles/
 cmake_install.cmake
 CTestTestfile.cmake
 Testing/
 install_manifest.txt
+compile_commands.json
 
-# Generated files
-libnova2.pc
-config.h
+# Documentation
+doc/man/
+doc/html/
+doc/doxygen_sqlite3.db
+doxyfile
+
+# Examples/Tests/Tools Executables
+examples/asteroid
+examples/comet
+examples/lunar
+examples/mars
+examples/sun
+examples/transforms
+lntest/libnova2config
+lntest/lntest
+lntest/libnova2_test_exec
+tools/elp82
+
+# Generated source/package files
+libnova*.pc
 libnova2-*.tar.gz
-
-# Test output
 test_output*.txt
-
-# Visual Studio / VS Code
-.vs/
-.config.old

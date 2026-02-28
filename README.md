@@ -83,6 +83,20 @@ You can build `.deb` and `.rpm` packages using CPack (from the build directory):
 make package
 ```
 
+### 6. Python Package
+
+A Python wrapper is available. You can generate a source distribution and a `.whl` package ready for `pip` using the `python-package` target:
+
+```bash
+make python-package
+```
+
+The output files will be created in the `python/dist/` directory. You can then install the `.whl` file using pip:
+
+```bash
+pip install python/dist/libnova2-*.whl
+```
+
 ## Cross-Compilation
 
 libnova2 supports cross-compilation for embedded targets (e.g., ESP32, ARM).

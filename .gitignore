@@ -54,3 +54,4 @@ tools/elp82
 libnova*.pc
 libnova2-*.tar.gz
 test_output*.txt
+*.whl

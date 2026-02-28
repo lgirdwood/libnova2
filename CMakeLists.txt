@@ -137,6 +137,17 @@ endif()
 if(BUILD_EXAMPLES)
     add_subdirectory(examples)
 endif()
+
+# Python Package
+find_package(Python3 COMPONENTS Interpreter)
+if(Python3_FOUND)
+    add_custom_target(python-package
+        COMMAND ${Python3_EXECUTABLE} setup.py sdist bdist_wheel
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/python
+        COMMENT "Building Python packages (sdist and bdist_wheel)"
+        VERBATIM)
+endif()
+
 # Packaging with CPack
 set(CPACK_GENERATOR "DEB;RPM")
 set(CPACK_PACKAGE_NAME "libnova2")

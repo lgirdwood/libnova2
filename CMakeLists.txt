@@ -132,6 +132,7 @@ if(BUILD_TESTING)
     enable_testing()
     add_subdirectory(lntest)
     add_test(NAME libnova2_test COMMAND $<TARGET_FILE:libnova2_test_exec>)
+    add_test(NAME verify_packages COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/lntest/test_packages.sh ${CMAKE_CURRENT_BINARY_DIR})
 endif()
 
 if(BUILD_EXAMPLES)

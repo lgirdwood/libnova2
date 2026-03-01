@@ -1,6 +1,6 @@
 import os
 import ctypes
-from libnova import libnova2
+from libnova2 import libnova2
 
 # Create a date object for J2000.0 (January 1.5, 2000)
 date = libnova2.struct_ln_date()

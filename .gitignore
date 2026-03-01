@@ -55,3 +55,6 @@ libnova*.pc
 libnova2-*.tar.gz
 test_output*.txt
 *.whl
+
+# Python artifacts
+__pycache__/

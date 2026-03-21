@@ -1,7 +1,0 @@
-Metadata-Version: 2.4
-Name: libnova2
-Version: 0.99
-Summary: Python ctypes bindings for libnova
-Author: libnova contributors
-Dynamic: author
-Dynamic: summary

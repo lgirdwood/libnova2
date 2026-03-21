@@ -11,7 +11,7 @@ When making changes to C source (`.c`) or header (`.h`) files in the repository,
    // turbo
 
    ```bash
-   find src lntest examples libnova2 -type f \( -name "*.c" -o -name "*.h" \) -exec clang-format -i {} +
+   find src lntest examples -type f \( -name "*.c" -o -name "*.h" \) -exec clang-format -i {} +
    ```
 
 3. **Mandatory Testing**: After modifying or formatting C code, you MUST run all C tests (`ctest`) and Python tests (`python/run_tests.sh`) to verify the repository compiles successfully and remains in a healthy state.

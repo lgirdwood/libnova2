@@ -2,6 +2,8 @@
 description: How to add a new feature
 ---
 
+# Adding a New Feature
+
 When adding a new feature to the project, you must follow these steps to ensure quality and reliability:
 
 1. **Understand Requirements**: Review the feature request and identify the specific requirements and affected components.

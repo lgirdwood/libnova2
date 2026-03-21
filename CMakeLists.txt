@@ -107,7 +107,8 @@ set(includedir ${CMAKE_INSTALL_FULL_INCLUDEDIR})
 configure_file(libnova2.pc.in libnova2.pc @ONLY)
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libnova2.pc
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
+    COMPONENT lib)
 
 # Doxygen Documentation
 find_package(Doxygen)
@@ -147,6 +148,15 @@ if(Python3_FOUND)
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/python
         COMMENT "Building Python packages (sdist and bdist_wheel)"
         VERBATIM)
+
+    # Native Python wrapper installation for CPack component
+    execute_process(COMMAND ${Python3_EXECUTABLE} -c "import sys; print(f'lib/python{sys.version_info.major}.{sys.version_info.minor}/site-packages')" 
+        OUTPUT_VARIABLE PYTHON_SITE_PACKAGES 
+        OUTPUT_STRIP_TRAILING_WHITESPACE)
+    
+    install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/python/libnova2
+        DESTINATION ${PYTHON_SITE_PACKAGES}
+        COMPONENT python)
 endif()
 
 # Packaging with CPack
@@ -162,10 +172,18 @@ set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Astrometry Library")
 set(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.4)")
 set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
 set(CPACK_DEBIAN_PACKAGE_SECTION "libs")
+set(CPACK_DEB_COMPONENT_INSTALL ON)
 
 # RPM
 set(CPACK_RPM_PACKAGE_LICENSE "LGPL-2.0-or-later")
 set(CPACK_RPM_PACKAGE_GROUP "Development/Libraries")
 set(CPACK_RPM_PACKAGE_ARCHITECTURE "x86_64")
+set(CPACK_RPM_COMPONENT_INSTALL ON)
+
+# Components Configuration
+set(CPACK_COMPONENTS_ALL lib python)
+set(CPACK_COMPONENT_PYTHON_DEPENDS lib)
+set(CPACK_COMPONENT_LIB_DESCRIPTION "C Library for libnova2")
+set(CPACK_COMPONENT_PYTHON_DESCRIPTION "Python bindings for libnova2")
 
 include(CPack)

@@ -20,17 +20,32 @@ mkdir -p "$TEST_DIR"
 
 echo "=== Testing DEB package ==="
 if command -v dpkg-deb >/dev/null 2>&1; then
-    DEB_PKG=$(ls "$BUILD_DIR"/libnova2-*.deb 2>/dev/null | head -n 1)
+    DEB_PKG=$(ls "$BUILD_DIR"/libnova2-*-lib.deb 2>/dev/null | head -n 1)
+    DEB_PY_PKG=$(ls "$BUILD_DIR"/libnova2-*-python.deb 2>/dev/null | head -n 1)
     if [ -n "$DEB_PKG" ]; then
         echo "Extracting $DEB_PKG..."
         mkdir -p "$TEST_DIR/deb"
         dpkg-deb -x "$DEB_PKG" "$TEST_DIR/deb"
+        if [ -n "$DEB_PY_PKG" ]; then
+            echo "Extracting $DEB_PY_PKG..."
+            dpkg-deb -x "$DEB_PY_PKG" "$TEST_DIR/deb"
+        fi
         
         echo "Compiling example against DEB..."
         gcc "examples/sun.c" -I"$TEST_DIR/deb/usr/include" -L"$TEST_DIR/deb/usr/lib" -lnova2 -lm -o "$TEST_DIR/deb/test_sun"
         echo "Running DEB example..."
         LD_LIBRARY_PATH="$TEST_DIR/deb/usr/lib" "$TEST_DIR/deb/test_sun" > /dev/null
         echo "DEB package test PASSED."
+
+        if [ -n "$DEB_PY_PKG" ]; then
+            echo "Testing DEB native python component..."
+            PY_PATH=$(find "$TEST_DIR/deb/usr/lib" -path "*/site-packages" -type d 2>/dev/null | head -n 1)
+            [ -z "$PY_PATH" ] && PY_PATH=$(find "$TEST_DIR/deb/lib" -path "*/site-packages" -type d 2>/dev/null | head -n 1)
+            if [ -n "$PY_PATH" ]; then
+                LD_LIBRARY_PATH="$TEST_DIR/deb/usr/lib" PYTHONPATH="$PY_PATH" python3 -c "import libnova2"
+                echo "DEB Python package test PASSED."
+            fi
+        fi
     else
         echo "DEB package not generated."
     fi
@@ -40,12 +55,18 @@ fi
 
 echo "=== Testing RPM package ==="
 if command -v rpm2cpio >/dev/null 2>&1 && command -v cpio >/dev/null 2>&1; then
-    RPM_PKG=$(ls "$BUILD_DIR"/libnova2-*.rpm 2>/dev/null | head -n 1)
+    RPM_PKG=$(ls "$BUILD_DIR"/libnova2-*-lib.rpm 2>/dev/null | head -n 1)
+    RPM_PY_PKG=$(ls "$BUILD_DIR"/libnova2-*-python.rpm 2>/dev/null | head -n 1)
     if [ -n "$RPM_PKG" ]; then
         echo "Extracting $RPM_PKG..."
         mkdir -p "$TEST_DIR/rpm"
         ABS_RPM_PKG=$(realpath "$RPM_PKG")
         (cd "$TEST_DIR/rpm" && rpm2cpio "$ABS_RPM_PKG" | cpio -idmv > /dev/null 2>&1)
+        if [ -n "$RPM_PY_PKG" ]; then
+             echo "Extracting $RPM_PY_PKG..."
+             ABS_RPM_PY_PKG=$(realpath "$RPM_PY_PKG")
+             (cd "$TEST_DIR/rpm" && rpm2cpio "$ABS_RPM_PY_PKG" | cpio -idmv > /dev/null 2>&1)
+        fi
         
         # RPM could install to /usr/lib or /usr/lib64
         LIB_DIR="$TEST_DIR/rpm/usr/lib"
@@ -58,6 +79,17 @@ if command -v rpm2cpio >/dev/null 2>&1 && command -v cpio >/dev/null 2>&1; then
         echo "Running RPM example..."
         LD_LIBRARY_PATH="$LIB_DIR" "$TEST_DIR/rpm/test_sun" > /dev/null
         echo "RPM package test PASSED."
+
+        if [ -n "$RPM_PY_PKG" ]; then
+            echo "Testing RPM native python component..."
+            PY_PATH=$(find "$TEST_DIR/rpm/usr/lib" -path "*/site-packages" -type d 2>/dev/null | head -n 1)
+            [ -z "$PY_PATH" ] && PY_PATH=$(find "$TEST_DIR/rpm/lib" -path "*/site-packages" -type d 2>/dev/null | head -n 1)
+            [ -z "$PY_PATH" ] && PY_PATH=$(find "$TEST_DIR/rpm/usr/lib64" -path "*/site-packages" -type d 2>/dev/null | head -n 1)
+            if [ -n "$PY_PATH" ]; then
+                LD_LIBRARY_PATH="$LIB_DIR" PYTHONPATH="$PY_PATH" python3 -c "import libnova2"
+                echo "RPM Python package test PASSED."
+            fi
+        fi
     else
         echo "RPM package not generated (maybe rpmbuild is missing), skipping RPM test."
     fi

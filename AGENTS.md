@@ -42,6 +42,7 @@ Before completing any task, an agent MUST:
 
 1. **Run All Tests**: Execute all related unit tests (both C and Python) as described in the sections above.
 2. **Verify Tests Pass**: Ensure that 100% of the tests pass successfully. Do not finish the task or consider it accepted if there are any failing tests. You must debug and fix the implementation or test until they pass.
+3. **Clean Temporary Files**: Check `git status` and delete any temporary or generated files from the workspace (such as `egg-info`, `__pycache__`, or `build` folders) before committing your final changes.
 
 ## Commit Message Guidelines
 

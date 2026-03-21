@@ -40,6 +40,7 @@ cd python
 
 When making commits, ensure you strictly follow these rules:
 
+- **Permission**: You must ALWAYS ask for the user's permission before executing any `git commit` commands.
 - **Line Length**: The overall commit message must be at most 80 characters per line.
 - **Subject**: The subject line must follow the format `feature: description`.
 - **Body**: The commit message body must properly describe the change and why it was made.

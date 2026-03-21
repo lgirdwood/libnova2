@@ -44,7 +44,8 @@ if command -v rpm2cpio >/dev/null 2>&1 && command -v cpio >/dev/null 2>&1; then
     if [ -n "$RPM_PKG" ]; then
         echo "Extracting $RPM_PKG..."
         mkdir -p "$TEST_DIR/rpm"
-        (cd "$TEST_DIR/rpm" && rpm2cpio "../../$RPM_PKG" | cpio -idmv > /dev/null 2>&1)
+        ABS_RPM_PKG=$(realpath "$RPM_PKG")
+        (cd "$TEST_DIR/rpm" && rpm2cpio "$ABS_RPM_PKG" | cpio -idmv > /dev/null 2>&1)
         
         # RPM could install to /usr/lib or /usr/lib64
         LIB_DIR="$TEST_DIR/rpm/usr/lib"

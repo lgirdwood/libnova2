@@ -36,6 +36,13 @@ cd python
 
 *(This script automatically sets up the `LD_LIBRARY_PATH` and `PYTHONPATH` correctly relative to the build directory before running `python3 -m unittest discover tests`.)*
 
+## Task Completion Guidelines
+
+Before completing any task, an agent MUST:
+
+1. **Run All Tests**: Execute all related unit tests (both C and Python) as described in the sections above.
+2. **Verify Tests Pass**: Ensure that 100% of the tests pass successfully. Do not finish the task or consider it accepted if there are any failing tests. You must debug and fix the implementation or test until they pass.
+
 ## Commit Message Guidelines
 
 When making commits, ensure you strictly follow these rules:

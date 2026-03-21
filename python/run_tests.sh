@@ -2,7 +2,9 @@
 # Helper script to run python unit tests using the locally built library
 
 # Find the build directory, fallback to src/.libs if built with autotools
-if [ -d "../build/src" ]; then
+if [ -d "../../build/src" ]; then
+    LIB_DIR="../../build/src"
+elif [ -d "../build/src" ]; then
     LIB_DIR="../build/src"
 elif [ -d "../src/.libs" ]; then
     LIB_DIR="../src/.libs"

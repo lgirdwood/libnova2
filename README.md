@@ -1,39 +1,36 @@
 # libnova2
 
-<div align="center">
-  <img src="doc/libnova2.png" alt="libnova2 logo" />
-  <br />
-  <a href="https://github.com/lgirdwood/libnova2/actions/workflows/ci.yml"><img src="https://github.com/lgirdwood/libnova2/actions/workflows/ci.yml/badge.svg" alt="CI Status" /></a>
-</div>
+![libnova2 logo](doc/libnova2.png)
+[![CI Status](https://github.com/lgirdwood/libnova2/actions/workflows/ci.yml/badge.svg)](https://github.com/lgirdwood/libnova2/actions/workflows/ci.yml)
 
 **libnova2** is a general purpose, double precision, Celestial Mechanics, Astrometry and Astrodynamics library. It is a successor to libnova with the significant change being use of radians instead of degrees.
 
 ## Features
 
--   **High Precision**: 1 arc second or better.
--   **Ephemerides**:
-    -   Major Planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto.
-    -   Sun & Moon (ELP82).
-    -   Minor Bodies: Asteroids and Comets.
--   **Astrometry**:
-    -   Aberration, Nutation, Precession, Proper Motion.
-    -   Refraction, Parallax, Airmass.
--   **Time Systems**:
-    -   Julian Day, Sidereal Time, Dynamical Time, Heliocentric Time.
--   **Coordinates**:
-    -   Transformations: Equatorial, Ecliptic, Horizontal, Galactic.
-    -   Rise, Set, and Transit times.
-    -   Angular Separation.
+- **High Precision**: 1 arc second or better.
+- **Ephemerides**:
+  - Major Planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto.
+  - Sun & Moon (ELP82).
+  - Minor Bodies: Asteroids and Comets.
+- **Astrometry**:
+  - Aberration, Nutation, Precession, Proper Motion.
+  - Refraction, Parallax, Airmass.
+- **Time Systems**:
+  - Julian Day, Sidereal Time, Dynamical Time, Heliocentric Time.
+- **Coordinates**:
+  - Transformations: Equatorial, Ecliptic, Horizontal, Galactic.
+  - Rise, Set, and Transit times.
+  - Angular Separation.
 
 ## Requirements
 
--   C compiler (GCC, Clang, MSVC)
--   CMake (3.25 or later)
--   **Optional**:
-    -   `kconfig-frontends` (for `menuconfig` configuration)
-    -   Doxygen (for API documentation)
-    -   `dpkg` (for building Debian packages)
-    -   `rpm` / `rpmbuild` (for building RPM packages)
+- C compiler (GCC, Clang, MSVC)
+- CMake (3.25 or later)
+- **Optional**:
+  - `kconfig-frontends` (for `menuconfig` configuration)
+  - Doxygen (for API documentation)
+  - `dpkg` (for building Debian packages)
+  - `rpm` / `rpmbuild` (for building RPM packages)
 
 ## Building
 
@@ -47,10 +44,11 @@ cmake ..
 ```
 
 **Common Options**:
--   `-DBUILD_SHARED_LIBS=OFF`: Build static libraries (default is `ON`).
--   `-DENABLE_SIMD=ON`: Enable AVX SIMD optimizations (Linux/GCC only). Uses auto-vectorization and `libmvec` for fast math.
--   `-DCMAKE_BUILD_TYPE=Release`: Optimized build.
--   `-DCMAKE_INSTALL_PREFIX=/usr`: Installation destination.
+
+- `-DBUILD_SHARED_LIBS=OFF`: Build static libraries (default is `ON`).
+- `-DENABLE_SIMD=ON`: Enable AVX SIMD optimizations (Linux/GCC only). Uses auto-vectorization and `libmvec` for fast math.
+- `-DCMAKE_BUILD_TYPE=Release`: Optimized build.
+- `-DCMAKE_INSTALL_PREFIX=/usr`: Installation destination.
 
 ### 2. Configure Modules (Optional)
 
@@ -59,6 +57,7 @@ You can enable or disable specific modules (e.g., planets, theories) using the K
 ```bash
 make menuconfig
 ```
+
 *(Requires `kconfig-frontends`)*
 
 This creates a `.config` file that CMake will use to select source files.
@@ -116,11 +115,12 @@ cmake -DCMAKE_TOOLCHAIN_FILE=../cmake/toolchain-xtensa-sample.cmake \
 ```
 
 **Key Cross-Compilation Options**:
--   `-DBUILD_TESTING=OFF`: Disable unit tests (they likely won't run on the build host).
--   `-DBUILD_EXAMPLES=OFF`: Disable example programs.
--   `HAVE_LIBM`: The build system automatically detects if `libm` is needed/available, replacing hardcoded UNIX checks.
 
-### 3. Build
+- `-DBUILD_TESTING=OFF`: Disable unit tests (they likely won't run on the build host).
+- `-DBUILD_EXAMPLES=OFF`: Disable example programs.
+- `HAVE_LIBM`: The build system automatically detects if `libm` is needed/available, replacing hardcoded UNIX checks.
+
+### 3. Cross Build
 
 ```bash
 make
@@ -135,6 +135,7 @@ ctest --output-on-failure
 ```
 
 Or run the test executable details:
+
 ```bash
 ./lntest/libnova2_test_exec
 ```
@@ -146,6 +147,7 @@ To generate the HTML API documentation:
 ```bash
 make doc
 ```
+
 Output is in `doc/html/index.html`.
 
 ## Usage
@@ -157,6 +159,7 @@ Include the main header:
 ```
 
 Link against `libnova2` (and `libm` if static/required):
+
 ```bash
 cc my_program.c -lnova2 -lm -o my_program
 ```

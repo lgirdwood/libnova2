@@ -21,10 +21,13 @@ int hyperbolic_motion_test(void)
 	// the one from Meeus..
 	v = ln2_get_hyp_true_anomaly(orbit.q, orbit.e, 1237.1);
 	failed +=
-		test_result("(True Anomaly) v when q is 3.363943 and e is 1.05731   ", v, LN_D2R(109.40598), 0.00001);
+		test_result("(True Anomaly) v when q is 3.363943 and e is 1.05731   ",
+					v, LN_D2R(109.40598), 0.00001);
 
 	r = ln2_get_hyp_radius_vector(orbit.q, orbit.e, 1237.1);
-	failed += test_result("(Radius Vector) r when q is 3.363943 and e is 1.05731  ", r, 10.668551, 0.00001);
+	failed +=
+		test_result("(Radius Vector) r when q is 3.363943 and e is 1.05731  ",
+					r, 10.668551, 0.00001);
 
 	// and now something real.. C/2001 Q4 (NEAT)
 	obs_date = LN_DATE(2004, 5, 15, 0, 0, 0);
@@ -34,17 +37,23 @@ int hyperbolic_motion_test(void)
 	e_JD = ln2_get_julian_day(&epoch_date);
 	o_JD = ln2_get_julian_day(&obs_date);
 
-	orbit = LN_HYP_ORBIT_DEG(0.961957, 1.000744, 99.6426, 1.2065, 210.2785, e_JD);
+	orbit =
+		LN_HYP_ORBIT_DEG(0.961957, 1.000744, 99.6426, 1.2065, 210.2785, e_JD);
 
 	r = ln2_get_hyp_radius_vector(orbit.q, orbit.e, o_JD - e_JD);
-	failed += test_result("(Radius Vector) r for C/2001 Q4 (NEAT)   ", r, 0.962, 0.001);
+	failed += test_result("(Radius Vector) r for C/2001 Q4 (NEAT)   ", r, 0.962,
+						  0.001);
 
 	ln2_get_hyp_body_equ_coords(o_JD, &orbit, &equ_posn);
-	failed += test_result("(RA) for comet C/2001 Q4 (NEAT)   ", LN_R2D(equ_posn.ra), 128.01, 0.01);
-	failed += test_result("(Dec) for comet C/2001 Q4 (NEAT)   ", LN_R2D(equ_posn.dec), 18.3266666666, 0.03);
+	failed += test_result("(RA) for comet C/2001 Q4 (NEAT)   ",
+						  LN_R2D(equ_posn.ra), 128.01, 0.01);
+	failed += test_result("(Dec) for comet C/2001 Q4 (NEAT)   ",
+						  LN_R2D(equ_posn.dec), 18.3266666666, 0.03);
 
 	dist = ln2_get_hyp_body_solar_dist(o_JD, &orbit);
-	failed += test_result("(Body Solar Dist) for comet C/2001 Q4 (NEAT) in AU   ", dist, 0.962, 0.001);
+	failed +=
+		test_result("(Body Solar Dist) for comet C/2001 Q4 (NEAT) in AU   ",
+					dist, 0.962, 0.001);
 
 	/* obs_date.years = 2005; */
 	/* obs_date.months = 1; */
@@ -74,11 +83,14 @@ int hyperbolic_motion_test(void)
 	o_JD = ln2_get_julian_day(&obs_date);
 
 	r = ln2_get_hyp_radius_vector(orbit.q, orbit.e, o_JD - e_JD);
-	failed += test_result("(Radius Vector) r for C/2001 Q4 (NEAT)   ", r, 3.581, 0.001);
+	failed += test_result("(Radius Vector) r for C/2001 Q4 (NEAT)   ", r, 3.581,
+						  0.001);
 
 	ln2_get_hyp_body_equ_coords(o_JD, &orbit, &equ_posn);
-	failed += test_result("(RA) for comet C/2001 Q4 (NEAT)   ", LN_R2D(equ_posn.ra), 332.9025, 0.01);
-	failed += test_result("(Dec) for comet C/2001 Q4 (NEAT)   ", LN_R2D(equ_posn.dec), 58.61288090, 0.001);
+	failed += test_result("(RA) for comet C/2001 Q4 (NEAT)   ",
+						  LN_R2D(equ_posn.ra), 332.9025, 0.01);
+	failed += test_result("(Dec) for comet C/2001 Q4 (NEAT)   ",
+						  LN_R2D(equ_posn.dec), 58.61288090, 0.001);
 
 	return failed;
 }

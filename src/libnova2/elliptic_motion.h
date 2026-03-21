@@ -112,8 +112,8 @@ double LIBNOVA2_EXPORT ln2_get_ell_mean_motion(double a);
 * \param posn Pointer to store rectangular position
 */
 void LIBNOVA2_EXPORT ln2_get_ell_geo_rect_posn(struct ln_ell_orbit *orbit,
-											 double JD,
-											 struct ln_rect_posn *posn);
+											   double JD,
+											   struct ln_rect_posn *posn);
 
 /**
 * \brief Calculate the objects rectangular heliocentric position. 
@@ -123,8 +123,8 @@ void LIBNOVA2_EXPORT ln2_get_ell_geo_rect_posn(struct ln_ell_orbit *orbit,
 * \param posn Pointer to store rectangular position
 */
 void LIBNOVA2_EXPORT ln2_get_ell_helio_rect_posn(struct ln_ell_orbit *orbit,
-											   double JD,
-											   struct ln_rect_posn *posn);
+												 double JD,
+												 struct ln_rect_posn *posn);
 
 /**
 * \brief Calculate the orbital length in AU.
@@ -142,7 +142,7 @@ double LIBNOVA2_EXPORT ln2_get_ell_orbit_len(struct ln_ell_orbit *orbit);
 * \return Orbital velocity in km/s
 */
 double LIBNOVA2_EXPORT ln2_get_ell_orbit_vel(double JD,
-										   struct ln_ell_orbit *orbit);
+											 struct ln_ell_orbit *orbit);
 
 /**
 * \brief Calculate orbital velocity at perihelion in km/s.
@@ -168,7 +168,7 @@ double LIBNOVA2_EXPORT ln2_get_ell_orbit_avel(struct ln_ell_orbit *orbit);
 * \return Phase angle
 */
 double LIBNOVA2_EXPORT ln2_get_ell_body_phase_angle(double JD,
-												  struct ln_ell_orbit *orbit);
+													struct ln_ell_orbit *orbit);
 
 /**
 * \ingroup elliptic
@@ -178,7 +178,7 @@ double LIBNOVA2_EXPORT ln2_get_ell_body_phase_angle(double JD,
 * \return Elongation to the Sun
 */
 double LIBNOVA2_EXPORT ln2_get_ell_body_elong(double JD,
-											struct ln_ell_orbit *orbit);
+											  struct ln_ell_orbit *orbit);
 
 /**
 * \brief Calculate the distance between a body and the Sun
@@ -188,7 +188,7 @@ double LIBNOVA2_EXPORT ln2_get_ell_body_elong(double JD,
 * \return Solar distance in AU
 */
 double LIBNOVA2_EXPORT ln2_get_ell_body_solar_dist(double JD,
-												 struct ln_ell_orbit *orbit);
+												   struct ln_ell_orbit *orbit);
 
 /**
 * \brief Calculate the distance between a body and the Earth
@@ -198,7 +198,7 @@ double LIBNOVA2_EXPORT ln2_get_ell_body_solar_dist(double JD,
 * \return Earth distance in AU
 */
 double LIBNOVA2_EXPORT ln2_get_ell_body_earth_dist(double JD,
-												 struct ln_ell_orbit *orbit);
+												   struct ln_ell_orbit *orbit);
 
 /**
 * \brief Calculate a bodies equatorial coords
@@ -208,8 +208,8 @@ double LIBNOVA2_EXPORT ln2_get_ell_body_earth_dist(double JD,
 * \param posn Pointer to store equatorial position
 */
 void LIBNOVA2_EXPORT ln2_get_ell_body_equ_coords(double JD,
-											   struct ln_ell_orbit *orbit,
-											   struct ln_equ_posn *posn);
+												 struct ln_ell_orbit *orbit,
+												 struct ln_equ_posn *posn);
 
 /**
 * \brief Calculate the time of rise, set and transit for a body with an elliptic orbit.
@@ -221,9 +221,9 @@ void LIBNOVA2_EXPORT ln2_get_ell_body_equ_coords(double JD,
 * \return 0 for success, 1 for circumpolar, -1 for never rises
 */
 int LIBNOVA2_EXPORT ln2_get_ell_body_rst(double JD,
-									   struct ln_lnlat_posn *observer,
-									   struct ln_ell_orbit *orbit,
-									   struct ln_rst_time *rst);
+										 struct ln_lnlat_posn *observer,
+										 struct ln_ell_orbit *orbit,
+										 struct ln_rst_time *rst);
 
 /**
 * \brief Calculate the time of rise, set and transit for a body with an elliptic orbit.
@@ -236,10 +236,10 @@ int LIBNOVA2_EXPORT ln2_get_ell_body_rst(double JD,
 * \return 0 for success, 1 for circumpolar, -1 for never rises
 */
 int LIBNOVA2_EXPORT ln2_get_ell_body_rst_horizon(double JD,
-											   struct ln_lnlat_posn *observer,
-											   struct ln_ell_orbit *orbit,
-											   double horizon,
-											   struct ln_rst_time *rst);
+												 struct ln_lnlat_posn *observer,
+												 struct ln_ell_orbit *orbit,
+												 double horizon,
+												 struct ln_rst_time *rst);
 
 /**
 * \brief Calculate the time of rise, set and transit for a body with an elliptic orbit.
@@ -251,9 +251,9 @@ int LIBNOVA2_EXPORT ln2_get_ell_body_rst_horizon(double JD,
 * \return 0 for success, 1 for circumpolar, -1 for never rises
 */
 int LIBNOVA2_EXPORT ln2_get_ell_body_next_rst(double JD,
-											struct ln_lnlat_posn *observer,
-											struct ln_ell_orbit *orbit,
-											struct ln_rst_time *rst);
+											  struct ln_lnlat_posn *observer,
+											  struct ln_ell_orbit *orbit,
+											  struct ln_rst_time *rst);
 
 /**
 * \brief Calculate the time of rise, set and transit for a body with an elliptic orbit.
@@ -293,7 +293,7 @@ int LIBNOVA2_EXPORT ln2_get_ell_body_next_rst_horizon_future(
 * \return Julian Day of last perihelion
 */
 double LIBNOVA2_EXPORT ln2_get_ell_last_perihelion(double epoch_JD, double M,
-												 double n);
+												   double n);
 
 #ifdef __cplusplus
 };

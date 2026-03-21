@@ -56,9 +56,9 @@ extern "C" {
 * \return 0 for success, 1 for circumpolar, -1 for never rises
 */
 int LIBNOVA2_EXPORT ln2_get_solar_rst_horizon(double JD,
-											struct ln_lnlat_posn *observer,
-											double horizon,
-											struct ln_rst_time *rst);
+											  struct ln_lnlat_posn *observer,
+											  double horizon,
+											  struct ln_rst_time *rst);
 
 /**
 * \brief Calculate the time of rise, set and transit for the Sun.
@@ -69,7 +69,7 @@ int LIBNOVA2_EXPORT ln2_get_solar_rst_horizon(double JD,
 * \return 0 for success, 1 for circumpolar, -1 for never rises
 */
 int LIBNOVA2_EXPORT ln2_get_solar_rst(double JD, struct ln_lnlat_posn *observer,
-									struct ln_rst_time *rst);
+									  struct ln_rst_time *rst);
 
 /**
 * \brief Calculate solar geometric coordinates. 
@@ -78,7 +78,7 @@ int LIBNOVA2_EXPORT ln2_get_solar_rst(double JD, struct ln_lnlat_posn *observer,
 * \param position Pointer to store geometric position
 */
 void LIBNOVA2_EXPORT ln2_get_solar_geom_coords(double JD,
-											 struct ln_helio_posn *position);
+											   struct ln_helio_posn *position);
 
 /**
 * \brief Calculate apparent equatorial coordinates.
@@ -87,7 +87,7 @@ void LIBNOVA2_EXPORT ln2_get_solar_geom_coords(double JD,
 * \param position Pointer to store equatorial position
 */
 void LIBNOVA2_EXPORT ln2_get_solar_equ_coords(double JD,
-											struct ln_equ_posn *position);
+											  struct ln_equ_posn *position);
 
 /**
 * \brief Calculate apparent ecliptical coordinates.
@@ -96,7 +96,7 @@ void LIBNOVA2_EXPORT ln2_get_solar_equ_coords(double JD,
 * \param position Pointer to store ecliptical position
 */
 void LIBNOVA2_EXPORT ln2_get_solar_ecl_coords(double JD,
-											struct ln_lnlat_posn *position);
+											  struct ln_lnlat_posn *position);
 
 /**
 * \brief Calculate geocentric coordinates (rectangular)
@@ -105,7 +105,7 @@ void LIBNOVA2_EXPORT ln2_get_solar_ecl_coords(double JD,
 * \param position Pointer to store rectangular position
 */
 void LIBNOVA2_EXPORT ln2_get_solar_geo_coords(double JD,
-											struct ln_rect_posn *position);
+											  struct ln_rect_posn *position);
 
 /**
 * \param JD Julian day

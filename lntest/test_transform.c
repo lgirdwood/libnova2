@@ -51,8 +51,8 @@ int transform_test(void)
 	failed += test_result("(Transforms) Equ to Horiz AZ ", LN_R2D(hrz.az),
 						  68.03429264, 0.00000001);
 
-	ln2_get_hrz_from_equ_sidereal_time(&object, &observer,
-									  ln2_get_apparent_sidereal_time(JD), &hrz);
+	ln2_get_hrz_from_equ_sidereal_time(
+		&object, &observer, ln2_get_apparent_sidereal_time(JD), &hrz);
 	ln2_get_equ_from_hrz(&hrz, &observer, JD, &object_hrz);
 	failed += test_result("(Transforms) Horiz to Equ RA ",
 						  LN_R2D(object_hrz.ra), LN_R2D(object.ra), 0.00000001);

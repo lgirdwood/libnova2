@@ -15,52 +15,53 @@
  *  
  *  Copyright (C) 2000 - 2026 Liam Girdwood  <lgirdwood@gmail.com>
  */
- 
+
 #include <math.h>
 #include <libnova2/angular_separation.h>
-#include <libnova2/utility.h>	
+#include <libnova2/utility.h>
+
 /* Chap 17 page 115 */
-double ln2_get_angular_separation(struct ln_equ_posn* posn1,
-	struct ln_equ_posn* posn2)
+double ln2_get_angular_separation(struct ln_equ_posn *posn1,
+								  struct ln_equ_posn *posn2)
 {
 	double d;
-	double x,y,z;
-	double a1,a2,d1,d2;
-	
+	double x, y, z;
+	double a1, a2, d1, d2;
+
 	/* input is in radians */
 	a1 = posn1->ra;
 	d1 = posn1->dec;
 	a2 = posn2->ra;
 	d2 = posn2->dec;
-	
-	x = (cos(d1) * sin(d2)) 
-		- (sin(d1) * cos(d2) * cos(a2 - a1));
+
+	x = (cos(d1) * sin(d2)) - (sin(d1) * cos(d2) * cos(a2 - a1));
 	y = cos(d2) * sin(a2 - a1);
 	z = (sin(d1) * sin(d2)) + (cos(d1) * cos(d2) * cos(a2 - a1));
 
 	x = x * x;
 	y = y * y;
 	d = atan2(sqrt(x + y), z);
-	
+
 	return d;
-}	
+}
+
 /* Chapt 17, page 116 */
-double ln2_get_rel_posn_angle(struct ln_equ_posn* posn1,
-	struct ln_equ_posn* posn2)
+double ln2_get_rel_posn_angle(struct ln_equ_posn *posn1,
+							  struct ln_equ_posn *posn2)
 {
 	double P;
-	double a1,a2,d1,d2;
-	double x,y;
-	
+	double a1, a2, d1, d2;
+	double x, y;
+
 	/* input is in radians */
 	a1 = posn1->ra;
 	d1 = posn1->dec;
 	a2 = posn2->ra;
 	d2 = posn2->dec;
-	
+
 	y = sin(a1 - a2);
 	x = (cos(d2) * tan(d1)) - (sin(d2) * cos(a1 - a2));
-	
+
 	P = atan2(y, x);
 	return P;
 }

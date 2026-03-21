@@ -24,7 +24,7 @@ Copyright 2001 Liam Girdwood
 static void usage(void)
 {
 	fprintf(stdout, "libnova2-config --version\n");
-	exit (-1);
+	exit(-1);
 }
 
 static void get_version(void)
@@ -36,22 +36,22 @@ int main(int argc, const char *argv[])
 {
 	int arg = 0;
 	int version = 0;
-	
+
 	if (argc < 2)
 		usage();
-		
+
 	argc--;
 	arg = 1;
-			
+
 	while (argc) {
-		if (strcmp (argv[arg], "--version") == 0)
+		if (strcmp(argv[arg], "--version") == 0)
 			version = 1;
 		arg++;
 		argc--;
 	}
-	
+
 	if (version)
 		get_version();
-		
-	exit (0);
+
+	exit(0);
 }

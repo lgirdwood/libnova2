@@ -23,34 +23,37 @@
 #include <libnova2/vsop87.h>
 #include <math.h>
 
-double ln2_calc_series(const struct ln_vsop *data, int terms, double t) {
-  double value = 0.0;
-  int i;
+double ln2_calc_series(const struct ln_vsop *data, int terms, double t)
+{
+	double value = 0.0;
+	int i;
 
-  for (i = 0; i < terms; i++) {
-    value += data->A * cos(data->B + data->C * t);
-    data++;
-  }
+	for (i = 0; i < terms; i++) {
+		value += data->A * cos(data->B + data->C * t);
+		data++;
+	}
 
-  return value;
+	return value;
 }
+
 /* Equation 31.3 Pg 207.
  */
-void ln2_vsop87_to_fk5(struct ln_helio_posn *position, double JD) {
-  double LL, cos_LL, sin_LL, T, delta_L, delta_B, B;
+void ln2_vsop87_to_fk5(struct ln_helio_posn *position, double JD)
+{
+	double LL, cos_LL, sin_LL, T, delta_L, delta_B, B;
 
-  /* get julian centuries from 2000 */
-  T = (JD - 2451545.0) / 36525.0;
+	/* get julian centuries from 2000 */
+	T = (JD - 2451545.0) / 36525.0;
 
-  LL = position->L + LN_D2R((-1.397 - 0.00031 * T) * T);
-  cos_LL = cos(LL);
-  sin_LL = sin(LL);
-  B = position->B;
+	LL = position->L + LN_D2R((-1.397 - 0.00031 * T) * T);
+	cos_LL = cos(LL);
+	sin_LL = sin(LL);
+	B = position->B;
 
-  delta_L =
-      (-0.09033 / 3600.0) + (0.03916 / 3600.0) * (cos_LL + sin_LL) * tan(B);
-  delta_B = (0.03916 / 3600.0) * (cos_LL - sin_LL);
+	delta_L =
+		(-0.09033 / 3600.0) + (0.03916 / 3600.0) * (cos_LL + sin_LL) * tan(B);
+	delta_B = (0.03916 / 3600.0) * (cos_LL - sin_LL);
 
-  position->L += delta_L;
-  position->B += delta_B;
+	position->L += delta_L;
+	position->B += delta_B;
 }

@@ -19,6 +19,7 @@
 #include <math.h>
 #include <libnova2/refraction.h>
 #include <libnova2/utility.h>
+
 double ln2_get_refraction_adj(double altitude, double atm_pres, double temp)
 {
 	long double R;
@@ -29,9 +30,9 @@ double ln2_get_refraction_adj(double altitude, double atm_pres, double temp)
 
 	/* take into account of atm press and temp */
 	R *= ((atm_pres / 1010.0) * (283.0 / (273.0 + temp)));
-	
+
 	/* convert from arcminutes to degrees */
 	R /= 60.0;
-	
+
 	return R;
 }

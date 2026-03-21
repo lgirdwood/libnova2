@@ -46,7 +46,8 @@ extern "C" {
 *
 * Result should be added to true altitude to get apparent altitude, or subtracted from apparent to get true.
 */
-double LIBNOVA2_EXPORT ln2_get_refraction_adj(double altitude, double atm_pres, double temp);
+double LIBNOVA2_EXPORT ln2_get_refraction_adj(double altitude, double atm_pres,
+											  double temp);
 
 #ifdef __cplusplus
 };

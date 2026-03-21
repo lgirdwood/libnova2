@@ -50,8 +50,10 @@ extern "C" {
 *
 * Applies corrections for precession, nutation, and annual aberration.
 */
-void LIBNOVA2_EXPORT ln2_get_apparent_posn(struct ln_equ_posn *mean_position, struct ln_equ_posn *proper_motion,
-										 double JD, struct ln_equ_posn *position);
+void LIBNOVA2_EXPORT ln2_get_apparent_posn(struct ln_equ_posn *mean_position,
+										   struct ln_equ_posn *proper_motion,
+										   double JD,
+										   struct ln_equ_posn *position);
 
 #ifdef __cplusplus
 };

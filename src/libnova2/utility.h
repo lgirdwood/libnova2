@@ -73,7 +73,7 @@ const char LIBNOVA2_EXPORT *ln_get_humanr_location(double location);
 * \return Distance between a and b
 */
 double LIBNOVA2_EXPORT ln2_get_rect_distance(struct ln_rect_posn *a,
-										   struct ln_rect_posn *b);
+											 struct ln_rect_posn *b);
 
 /** \defgroup conversion General Conversion Functions
  *
@@ -160,7 +160,8 @@ double LIBNOVA2_EXPORT ln2_dms_to_rad(struct ln_dms *dms);
  * \param seconds Seconds
  * \return Angle in radians
  */
-double LIBNOVA2_EXPORT ln2_dms2_to_rad(int degrees, int minutes, double seconds);
+double LIBNOVA2_EXPORT ln2_dms2_to_rad(int degrees, int minutes,
+									   double seconds);
 
 /**
  * \brief radians to dms
@@ -177,7 +178,7 @@ void LIBNOVA2_EXPORT ln2_rad_to_dms(double radians, struct ln_dms *dms);
  * \param pos Pointer to store equatorial position
  */
 void LIBNOVA2_EXPORT ln2_hequ_to_equ(struct lnh_equ_posn *hpos,
-								   struct ln_equ_posn *pos);
+									 struct ln_equ_posn *pos);
 
 /**
  * \brief human double equatorial position to human readable equatorial position
@@ -186,7 +187,7 @@ void LIBNOVA2_EXPORT ln2_hequ_to_equ(struct lnh_equ_posn *hpos,
  * \param hpos Pointer to store human readable equatorial position
  */
 void LIBNOVA2_EXPORT ln2_equ_to_hequ(struct ln_equ_posn *pos,
-								   struct lnh_equ_posn *hpos);
+									 struct lnh_equ_posn *hpos);
 
 /**
  * \brief human readable horizontal position to double horizontal position
@@ -195,7 +196,7 @@ void LIBNOVA2_EXPORT ln2_equ_to_hequ(struct ln_equ_posn *pos,
  * \param pos Pointer to store horizontal position
  */
 void LIBNOVA2_EXPORT ln2_hhrz_to_hrz(struct lnh_hrz_posn *hpos,
-								   struct ln_hrz_posn *pos);
+									 struct ln_hrz_posn *pos);
 
 /**
  * \brief double horizontal position to human readable horizontal position
@@ -204,7 +205,7 @@ void LIBNOVA2_EXPORT ln2_hhrz_to_hrz(struct lnh_hrz_posn *hpos,
  * \param hpos Pointer to store human readable horizontal position
  */
 void LIBNOVA2_EXPORT ln2_hrz_to_hhrz(struct ln_hrz_posn *pos,
-								   struct lnh_hrz_posn *hpos);
+									 struct lnh_hrz_posn *hpos);
 
 /**
  * \brief returns direction of given azimuth - like N,S,W,E,NSW,...
@@ -222,7 +223,7 @@ const char LIBNOVA2_EXPORT *ln_hrz_to_nswe(struct ln_hrz_posn *pos);
  * \param pos Pointer to store long/lat position
  */
 void LIBNOVA2_EXPORT ln2_hlnlat_to_lnlat(struct lnh_lnlat_posn *hpos,
-									   struct ln_lnlat_posn *pos);
+										 struct ln_lnlat_posn *pos);
 
 /**
  * *hpos)
@@ -232,7 +233,7 @@ void LIBNOVA2_EXPORT ln2_hlnlat_to_lnlat(struct lnh_lnlat_posn *hpos,
  * \param hpos Pointer to store human readable long/lat position
  */
 void LIBNOVA2_EXPORT ln2_lnlat_to_hlnlat(struct ln_lnlat_posn *pos,
-									   struct lnh_lnlat_posn *hpos);
+										 struct lnh_lnlat_posn *hpos);
 
 /**
  * \brief add seconds to hms
@@ -300,7 +301,7 @@ double LIBNOVA2_EXPORT ln2_get_light_time(double dist);
  * \return Interpolated value
  */
 double LIBNOVA2_EXPORT ln2_interpolate3(double n, double y1, double y2,
-									  double y3);
+										double y3);
 
 /**
  * y4, double y5)
@@ -314,8 +315,8 @@ double LIBNOVA2_EXPORT ln2_interpolate3(double n, double y1, double y2,
  * \param y5 Value 5
  * \return Interpolated value
  */
-double LIBNOVA2_EXPORT ln2_interpolate5(double n, double y1, double y2, double y3,
-									  double y4, double y5);
+double LIBNOVA2_EXPORT ln2_interpolate5(double n, double y1, double y2,
+										double y3, double y4, double y5);
 
 /**
  * to, double *arg)
@@ -328,8 +329,8 @@ double LIBNOVA2_EXPORT ln2_interpolate5(double n, double y1, double y2, double y
  * \param arg Argument to pass to f
  * \return Value of x where f(x) is maximum
  */
-double LIBNOVA2_EXPORT ln2_find_max(double (*func)(double, double *), double from,
-								  double to, double *arg);
+double LIBNOVA2_EXPORT ln2_find_max(double (*func)(double, double *),
+									double from, double to, double *arg);
 
 /**
  * to, double *arg)
@@ -342,7 +343,7 @@ double LIBNOVA2_EXPORT ln2_find_max(double (*func)(double, double *), double fro
  * \return Value of x where f(x) is zero
  */
 double LIBNOVA2_EXPORT ln2_find_zero(double (*func)(double, double *),
-								   double from, double to, double *arg);
+									 double from, double to, double *arg);
 
 #ifdef __WIN32__
 

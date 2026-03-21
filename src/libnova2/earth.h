@@ -49,7 +49,8 @@ extern "C" {
 * Uses the high-precision VSOP87 theory.
 */
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 */
-void LIBNOVA2_EXPORT ln2_get_earth_helio_coords(double JD, struct ln_helio_posn *position);
+void LIBNOVA2_EXPORT ln2_get_earth_helio_coords(double JD,
+												struct ln_helio_posn *position);
 
 /**
 * \brief Calculate the distance between Earth and the Sun.
@@ -68,7 +69,8 @@ double LIBNOVA2_EXPORT ln2_get_earth_solar_dist(double JD);
 * \param JD Julian Day
 * \param position Pointer to store rectangular position
 */
-void LIBNOVA2_EXPORT ln2_get_earth_rect_helio(double JD, struct ln_rect_posn *position);
+void LIBNOVA2_EXPORT ln2_get_earth_rect_helio(double JD,
+											  struct ln_rect_posn *position);
 
 /**
 * \ingroup earth
@@ -78,7 +80,9 @@ void LIBNOVA2_EXPORT ln2_get_earth_rect_helio(double JD, struct ln_rect_posn *po
 * \param p_sin_o Pointer to store p * sin(o')
 * \param p_cos_o Pointer to store p * cos(o')
 */
-void LIBNOVA2_EXPORT ln2_get_earth_centre_dist(float height, double latitude, double *p_sin_o, double *p_cos_o);
+void LIBNOVA2_EXPORT ln2_get_earth_centre_dist(float height, double latitude,
+											   double *p_sin_o,
+											   double *p_cos_o);
 
 #ifdef __cplusplus
 };

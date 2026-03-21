@@ -82,7 +82,8 @@ void LIBNOVA2_EXPORT ln2_get_date_from_tm(struct tm *t, struct ln_date *date);
 * \param JD Julian Day
 * \param zonedate Pointer to store zonedate
 */
-void LIBNOVA2_EXPORT ln2_get_local_date(double JD, struct ln_zonedate *zonedate);
+void LIBNOVA2_EXPORT ln2_get_local_date(double JD,
+										struct ln_zonedate *zonedate);
 
 /**
 * \ingroup calendar
@@ -162,7 +163,9 @@ double LIBNOVA2_EXPORT ln2_get_julian_from_mpc(char *mpc_date);
 * \param zonedate Pointer to store zonedate
 * \param gmtoff GMT offset in seconds
 */
-void LIBNOVA2_EXPORT ln2_date_to_zonedate(struct ln_date *date, struct ln_zonedate *zonedate, long gmtoff);
+void LIBNOVA2_EXPORT ln2_date_to_zonedate(struct ln_date *date,
+										  struct ln_zonedate *zonedate,
+										  long gmtoff);
 
 /**
 * \brief convert ln_zonedate to ln_date
@@ -170,7 +173,8 @@ void LIBNOVA2_EXPORT ln2_date_to_zonedate(struct ln_date *date, struct ln_zoneda
 * \param zonedate Zonedate structure
 * \param date Pointer to store date
 */
-void LIBNOVA2_EXPORT ln2_zonedate_to_date(struct ln_zonedate *zonedate, struct ln_date *date);
+void LIBNOVA2_EXPORT ln2_zonedate_to_date(struct ln_zonedate *zonedate,
+										  struct ln_date *date);
 
 #ifdef __cplusplus
 };

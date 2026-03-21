@@ -61,7 +61,8 @@ void LIBNOVA2_EXPORT ln2_get_nutation(double JD, struct ln_nutation *nutation);
 *
 * Meeus Formula 22.1. Applies the correction to Right Ascension and Declination due to nutation.
 */
-void LIBNOVA2_EXPORT ln2_get_equ_nut(struct ln_equ_posn *mean_position, double JD, struct ln_equ_posn *position);
+void LIBNOVA2_EXPORT ln2_get_equ_nut(struct ln_equ_posn *mean_position,
+									 double JD, struct ln_equ_posn *position);
 
 #ifdef __cplusplus
 };

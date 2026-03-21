@@ -25,10 +25,12 @@ int parallax_test(void)
 
 	ln2_get_parallax(&object, AU, &observer, 1706.0, JD, &parallax);
 
-	failed += test_result_dms("Mars RA parallax for Palomar observatory at 2003/08/28 3:17 UT ", LN_R2D(parallax.ra),
-							  0.0053917, 0.001);
-	failed += test_result_dms("Mars DEC parallax for Palomar observatory at 2003/08/28 3:17 UT ", LN_R2D(parallax.dec),
-							  -9.0 / 3600.0, 0.001);
+	failed += test_result_dms(
+		"Mars RA parallax for Palomar observatory at 2003/08/28 3:17 UT ",
+		LN_R2D(parallax.ra), 0.0053917, 0.001);
+	failed += test_result_dms(
+		"Mars DEC parallax for Palomar observatory at 2003/08/28 3:17 UT ",
+		LN_R2D(parallax.dec), -9.0 / 3600.0, 0.001);
 
 	return failed;
 }

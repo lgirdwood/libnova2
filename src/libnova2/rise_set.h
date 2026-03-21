@@ -49,8 +49,10 @@ extern "C" {
 *
 * Uses the standard horizon of 34 arcminutes.
 */
-int LIBNOVA2_EXPORT ln2_get_object_rst(double JD, struct ln_lnlat_posn *observer, struct ln_equ_posn *object,
-									 struct ln_rst_time *rst);
+int LIBNOVA2_EXPORT ln2_get_object_rst(double JD,
+									   struct ln_lnlat_posn *observer,
+									   struct ln_equ_posn *object,
+									   struct ln_rst_time *rst);
 
 /**
 * \brief Calculate the time of rise, set and transit above local horizon for
@@ -62,12 +64,15 @@ int LIBNOVA2_EXPORT ln2_get_object_rst(double JD, struct ln_lnlat_posn *observer
 * \param rst Pointer to store rise, set and transit times
 * \return 0 for success, 1 for circumpolar, -1 for never rises
 */
-int LIBNOVA2_EXPORT ln2_get_object_rst_horizon(double JD, struct ln_lnlat_posn *observer, struct ln_equ_posn *object,
-											 long double horizon, struct ln_rst_time *rst);
+int LIBNOVA2_EXPORT ln2_get_object_rst_horizon(double JD,
+											   struct ln_lnlat_posn *observer,
+											   struct ln_equ_posn *object,
+											   long double horizon,
+											   struct ln_rst_time *rst);
 
-int LIBNOVA2_EXPORT ln2_get_object_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer,
-													struct ln_equ_posn *object, long double horizon,
-													struct ln_rst_time *rst, double ut_offset);
+int LIBNOVA2_EXPORT ln2_get_object_rst_horizon_offset(
+	double JD, struct ln_lnlat_posn *observer, struct ln_equ_posn *object,
+	long double horizon, struct ln_rst_time *rst, double ut_offset);
 
 /**
 * \brief Calculate the time of next rise, set and transit for an object not orbiting the Sun.
@@ -80,8 +85,10 @@ int LIBNOVA2_EXPORT ln2_get_object_rst_horizon_offset(double JD, struct ln_lnlat
 * \param rst Pointer to store rise, set and transit times
 * \return 0 for success, 1 for circumpolar, -1 for never rises
 */
-int LIBNOVA2_EXPORT ln2_get_object_next_rst(double JD, struct ln_lnlat_posn *observer, struct ln_equ_posn *object,
-										  struct ln_rst_time *rst);
+int LIBNOVA2_EXPORT ln2_get_object_next_rst(double JD,
+											struct ln_lnlat_posn *observer,
+											struct ln_equ_posn *object,
+											struct ln_rst_time *rst);
 
 /**
 * \brief Calculate the time of next rise, set and transit for an object not orbiting the Sun.
@@ -94,8 +101,9 @@ int LIBNOVA2_EXPORT ln2_get_object_next_rst(double JD, struct ln_lnlat_posn *obs
 * \param rst Pointer to store rise, set and transit times
 * \return 0 for success, 1 for circumpolar, -1 for never rises
 */
-int LIBNOVA2_EXPORT ln2_get_object_next_rst_horizon(double JD, struct ln_lnlat_posn *observer, struct ln_equ_posn *object,
-												  double horizon, struct ln_rst_time *rst);
+int LIBNOVA2_EXPORT ln2_get_object_next_rst_horizon(
+	double JD, struct ln_lnlat_posn *observer, struct ln_equ_posn *object,
+	double horizon, struct ln_rst_time *rst);
 
 /**
  * \brief Calculate the time of rise, set and transit for an object a body, usually Sun, a planet or Moon.
@@ -107,13 +115,15 @@ int LIBNOVA2_EXPORT ln2_get_object_next_rst_horizon(double JD, struct ln_lnlat_p
  * \param rst Pointer to store rise, set and transit times
  * \return 0 for success, 1 for circumpolar, -1 for never rises
  */
-int LIBNOVA2_EXPORT ln2_get_body_rst_horizon(double JD, struct ln_lnlat_posn *observer,
-										   void (*get_equ_body_coords)(double, struct ln_equ_posn *), double horizon,
-										   struct ln_rst_time *rst);
+int LIBNOVA2_EXPORT ln2_get_body_rst_horizon(
+	double JD, struct ln_lnlat_posn *observer,
+	void (*get_equ_body_coords)(double, struct ln_equ_posn *), double horizon,
+	struct ln_rst_time *rst);
 
-int LIBNOVA2_EXPORT ln2_get_body_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer,
-												  void (*get_equ_body_coords)(double, struct ln_equ_posn *),
-												  double horizon, struct ln_rst_time *rst, double ut_offset);
+int LIBNOVA2_EXPORT ln2_get_body_rst_horizon_offset(
+	double JD, struct ln_lnlat_posn *observer,
+	void (*get_equ_body_coords)(double, struct ln_equ_posn *), double horizon,
+	struct ln_rst_time *rst, double ut_offset);
 
 /**
  * \brief Calculate the time of next  rise, set and transit for an object a body, usually Sun, a planet or Moon.
@@ -126,9 +136,10 @@ int LIBNOVA2_EXPORT ln2_get_body_rst_horizon_offset(double JD, struct ln_lnlat_p
  * \param rst Pointer to store rise, set and transit times
  * \return 0 for success, 1 for circumpolar, -1 for never rises
  */
-int LIBNOVA2_EXPORT ln2_get_body_next_rst_horizon(double JD, struct ln_lnlat_posn *observer,
-												void (*get_equ_body_coords)(double, struct ln_equ_posn *),
-												double horizon, struct ln_rst_time *rst);
+int LIBNOVA2_EXPORT ln2_get_body_next_rst_horizon(
+	double JD, struct ln_lnlat_posn *observer,
+	void (*get_equ_body_coords)(double, struct ln_equ_posn *), double horizon,
+	struct ln_rst_time *rst);
 
 /**
  * \brief Calculate the time of next  rise, set and transit for an object a body, usually Sun, a planet or Moon.
@@ -142,11 +153,13 @@ int LIBNOVA2_EXPORT ln2_get_body_next_rst_horizon(double JD, struct ln_lnlat_pos
  * \param rst Pointer to store rise, set and transit times
  * \return 0 for success, 1 for circumpolar, -1 for never rises
  */
-int LIBNOVA2_EXPORT ln2_get_body_next_rst_horizon_future(double JD, struct ln_lnlat_posn *observer,
-													   void (*get_equ_body_coords)(double, struct ln_equ_posn *),
-													   double horizon, int day_limit, struct ln_rst_time *rst);
+int LIBNOVA2_EXPORT ln2_get_body_next_rst_horizon_future(
+	double JD, struct ln_lnlat_posn *observer,
+	void (*get_equ_body_coords)(double, struct ln_equ_posn *), double horizon,
+	int day_limit, struct ln_rst_time *rst);
 
-typedef void (*get_motion_body_coords_t)(double, void *orbit, struct ln_equ_posn *);
+typedef void (*get_motion_body_coords_t)(double, void *orbit,
+										 struct ln_equ_posn *);
 
 /**
  * \brief Calculate the time of rise, set and transit for an object a body on elliptic, parabolic or hyperbolic orbit.
@@ -159,13 +172,15 @@ typedef void (*get_motion_body_coords_t)(double, void *orbit, struct ln_equ_posn
  * \param rst Pointer to store rise, set and transit times
  * \return 0 for success, 1 for circumpolar, -1 for never rises
  */
-int LIBNOVA2_EXPORT ln2_get_motion_body_rst_horizon(double JD, struct ln_lnlat_posn *observer,
-												  get_motion_body_coords_t get_motion_body_coords, void *orbit,
-												  double horizon, struct ln_rst_time *rst);
+int LIBNOVA2_EXPORT ln2_get_motion_body_rst_horizon(
+	double JD, struct ln_lnlat_posn *observer,
+	get_motion_body_coords_t get_motion_body_coords, void *orbit,
+	double horizon, struct ln_rst_time *rst);
 
-int LIBNOVA2_EXPORT ln2_get_motion_body_rst_horizon_offset(double JD, struct ln_lnlat_posn *observer,
-														 get_motion_body_coords_t get_motion_body_coords, void *orbit,
-														 double horizon, struct ln_rst_time *rst, double offset);
+int LIBNOVA2_EXPORT ln2_get_motion_body_rst_horizon_offset(
+	double JD, struct ln_lnlat_posn *observer,
+	get_motion_body_coords_t get_motion_body_coords, void *orbit,
+	double horizon, struct ln_rst_time *rst, double offset);
 
 /**
  * \brief Calculate the time of next  rise, set and transit for an object a body on elliptic, parabolic or hyperbolic orbit.
@@ -179,9 +194,10 @@ int LIBNOVA2_EXPORT ln2_get_motion_body_rst_horizon_offset(double JD, struct ln_
  * \param rst Pointer to store rise, set and transit times
  * \return 0 for success, 1 for circumpolar, -1 for never rises
  */
-int LIBNOVA2_EXPORT ln2_get_motion_body_next_rst_horizon(double JD, struct ln_lnlat_posn *observer,
-													   get_motion_body_coords_t get_motion_body_coords, void *orbit,
-													   double horizon, struct ln_rst_time *rst);
+int LIBNOVA2_EXPORT ln2_get_motion_body_next_rst_horizon(
+	double JD, struct ln_lnlat_posn *observer,
+	get_motion_body_coords_t get_motion_body_coords, void *orbit,
+	double horizon, struct ln_rst_time *rst);
 
 /**
  * \brief Calculate the time of next  rise, set and transit for an object a body on elliptic, parabolic or hyperbolic orbit.
@@ -196,10 +212,10 @@ int LIBNOVA2_EXPORT ln2_get_motion_body_next_rst_horizon(double JD, struct ln_ln
  * \param rst Pointer to store rise, set and transit times
  * \return 0 for success, 1 for circumpolar, -1 for never rises
  */
-int LIBNOVA2_EXPORT ln2_get_motion_body_next_rst_horizon_future(double JD, struct ln_lnlat_posn *observer,
-															  get_motion_body_coords_t get_motion_body_coords,
-															  void *orbit, double horizon, int day_limit,
-															  struct ln_rst_time *rst);
+int LIBNOVA2_EXPORT ln2_get_motion_body_next_rst_horizon_future(
+	double JD, struct ln_lnlat_posn *observer,
+	get_motion_body_coords_t get_motion_body_coords, void *orbit,
+	double horizon, int day_limit, struct ln_rst_time *rst);
 
 #ifdef __cplusplus
 };

@@ -60,7 +60,8 @@ int elliptic_parabolic_test(void)
 	ln2_get_ell_body_next_rst(JD, &observer, &orbit, &rst);
 	ln2_get_ell_body_rst_horizon(JD, &observer, &orbit, -10.0, &rst);
 	ln2_get_ell_body_next_rst_horizon(JD, &observer, &orbit, -10.0, &rst);
-	ln2_get_ell_body_next_rst_horizon_future(JD, &observer, &orbit, -10.0, 10, &rst);
+	ln2_get_ell_body_next_rst_horizon_future(JD, &observer, &orbit, -10.0, 10,
+											 &rst);
 
 	/* Comet Mag */
 	res = ln2_get_ell_comet_mag(JD, &orbit, 5.0, 10.0);
@@ -81,7 +82,8 @@ int elliptic_parabolic_test(void)
 	ln2_get_par_body_next_rst(JD, &observer, &porbit, &rst);
 	ln2_get_par_body_rst_horizon(JD, &observer, &porbit, -10.0, &rst);
 	ln2_get_par_body_next_rst_horizon(JD, &observer, &porbit, -10.0, &rst);
-	ln2_get_par_body_next_rst_horizon_future(JD, &observer, &porbit, -10.0, 10, &rst);
+	ln2_get_par_body_next_rst_horizon_future(JD, &observer, &porbit, -10.0, 10,
+											 &rst);
 
 	/* Hyperbolic */
 	horbit.q = 1.0;
@@ -105,12 +107,14 @@ int elliptic_parabolic_test(void)
 	ln2_get_hyp_body_rst_horizon(JD, &observer, &horbit, -10.0, &rst);
 	ln2_get_hyp_body_next_rst_horizon(JD, &observer, &horbit, -10.0, &rst);
 	*/
-	ln2_get_hyp_body_next_rst_horizon_future(JD, &observer, &horbit, -10.0, 10, &rst);
+	ln2_get_hyp_body_next_rst_horizon_future(JD, &observer, &horbit, -10.0, 10,
+											 &rst);
 
 	if (failed == 0) {
 		printf("TEST (Orbit) Extended Ell/Par/Hyp....[PASSED]\n");
 	} else {
-		printf("TEST (Orbit) Extended Ell/Par/Hyp....[FAILED] %d errors\n", failed);
+		printf("TEST (Orbit) Extended Ell/Par/Hyp....[FAILED] %d errors\n",
+			   failed);
 	}
 
 	return failed;

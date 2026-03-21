@@ -22,10 +22,11 @@
 #include <libnova2/transform.h>
 #include <libnova2/utility.h>
 #include <math.h>
+
 /* Equ 37.1 Pg 264
  */
 void ln2_get_rect_from_helio(struct ln_helio_posn *object,
-							struct ln_rect_posn *position)
+							 struct ln_rect_posn *position)
 {
 	double sin_e, cos_e;
 	double cos_B, sin_B, sin_L, cos_L;
@@ -45,6 +46,7 @@ void ln2_get_rect_from_helio(struct ln_helio_posn *object,
 	position->Y = object->R * (sin_L * cos_B * cos_e - sin_B * sin_e);
 	position->Z = object->R * (sin_L * cos_B * sin_e + sin_B * cos_e);
 }
+
 /* Equ 12.1,12.2 pg 88
  *
  * TODO:
@@ -52,8 +54,8 @@ void ln2_get_rect_from_helio(struct ln_helio_posn *object,
  */
 
 void ln2_get_hrz_from_equ(struct ln_equ_posn *object,
-						 struct ln_lnlat_posn *observer, double JD,
-						 struct ln_hrz_posn *position)
+						  struct ln_lnlat_posn *observer, double JD,
+						  struct ln_hrz_posn *position)
 {
 	double sidereal;
 
@@ -63,9 +65,9 @@ void ln2_get_hrz_from_equ(struct ln_equ_posn *object,
 }
 
 void ln2_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object,
-									   struct ln_lnlat_posn *observer,
-									   double sidereal,
-									   struct ln_hrz_posn *position)
+										struct ln_lnlat_posn *observer,
+										double sidereal,
+										struct ln_hrz_posn *position)
 {
 	long double H, ra, latitude, declination, A, Ac, As, h, Z, Zs;
 
@@ -127,9 +129,10 @@ void ln2_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object,
 	/* output in radians */
 	position->az = ln2_range_radians(A);
 }
+
 void ln2_get_equ_from_hrz(struct ln_hrz_posn *object,
-						 struct ln_lnlat_posn *observer, double JD,
-						 struct ln_equ_posn *position)
+						  struct ln_lnlat_posn *observer, double JD,
+						  struct ln_equ_posn *position)
 {
 	long double H, longitude, declination, latitude, A, h, sidereal;
 
@@ -154,10 +157,11 @@ void ln2_get_equ_from_hrz(struct ln_hrz_posn *object,
 	position->ra = ln2_range_radians(sidereal - H + longitude);
 	position->dec = declination;
 }
+
 /* Equ 12.3, 12.4 pg 89
  */
 void ln2_get_equ_from_ecl(struct ln_lnlat_posn *object, double JD,
-						 struct ln_equ_posn *position)
+						  struct ln_equ_posn *position)
 {
 	double ra, declination, longitude, latitude;
 	struct ln_nutation nutation;
@@ -183,10 +187,11 @@ void ln2_get_equ_from_ecl(struct ln_lnlat_posn *object, double JD,
 	position->ra = ln2_range_radians(ra);
 	position->dec = declination;
 }
+
 /* Equ 12.1, 12.2 Pg 88
  */
 void ln2_get_ecl_from_equ(struct ln_equ_posn *object, double JD,
-						 struct ln_lnlat_posn *position)
+						  struct ln_lnlat_posn *position)
 {
 	double ra, declination, latitude, longitude;
 	struct ln_nutation nutation;
@@ -208,9 +213,11 @@ void ln2_get_ecl_from_equ(struct ln_equ_posn *object, double JD,
 	position->lat = latitude;
 	position->lng = ln2_range_radians(longitude);
 }
+
 /* Equ 33.2
  */
-void ln2_get_ecl_from_rect(struct ln_rect_posn *rect, struct ln_lnlat_posn *posn)
+void ln2_get_ecl_from_rect(struct ln_rect_posn *rect,
+						   struct ln_lnlat_posn *posn)
 {
 	double t;
 
@@ -218,6 +225,7 @@ void ln2_get_ecl_from_rect(struct ln_rect_posn *rect, struct ln_lnlat_posn *posn
 	posn->lng = ln2_range_radians(atan2(rect->X, rect->Y));
 	posn->lat = atan2(t, rect->Z);
 }
+
 /* Pg 94 */
 void ln2_get_equ_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ)
 {
@@ -242,11 +250,13 @@ void ln2_get_equ_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ)
 	equ->ra = ln2_range_radians(y + LN_D2R(12.25));
 	equ->dec = asin(sin_b * SIN_27_4 + cos_b * COS_27_4 * cos_l_123);
 }
+
 void ln2_get_equ2000_from_gal(struct ln_gal_posn *gal, struct ln_equ_posn *equ)
 {
 	ln2_get_equ_from_gal(gal, equ);
 	ln2_get_equ_prec2(equ, B1950, JD2000, equ);
 }
+
 /* Pg 94 */
 void ln2_get_gal_from_equ(struct ln_equ_posn *equ, struct ln_gal_posn *gal)
 {
@@ -273,6 +283,7 @@ void ln2_get_gal_from_equ(struct ln_equ_posn *equ, struct ln_gal_posn *gal)
 	gal->l = ln2_range_radians(LN_D2R(303.0) - x);
 	gal->b = asin(sin_dec * SIN_27_4 + cos_dec * COS_27_4 * cos_ra_192_25);
 }
+
 void ln2_get_gal_from_equ2000(struct ln_equ_posn *equ, struct ln_gal_posn *gal)
 {
 	struct ln_equ_posn equ_1950;

@@ -51,8 +51,11 @@ extern "C" {
 *
 * Calculates the shift in Right Ascension and Declination due to the observer's location on Earth.
 */
-void LIBNOVA2_EXPORT ln2_get_parallax(struct ln_equ_posn *object, double au_distance, struct ln_lnlat_posn *observer,
-									double height, double JD, struct ln_equ_posn *parallax);
+void LIBNOVA2_EXPORT ln2_get_parallax(struct ln_equ_posn *object,
+									  double au_distance,
+									  struct ln_lnlat_posn *observer,
+									  double height, double JD,
+									  struct ln_equ_posn *parallax);
 
 /**
 * \ingroup parallax
@@ -64,8 +67,11 @@ void LIBNOVA2_EXPORT ln2_get_parallax(struct ln_equ_posn *object, double au_dist
 * \param H Hour angle in hours
 * \param parallax Pointer to store parallax corrected position
 */
-void LIBNOVA2_EXPORT ln2_get_parallax_ha(struct ln_equ_posn *object, double au_distance, struct ln_lnlat_posn *observer,
-									   double height, double H, struct ln_equ_posn *parallax);
+void LIBNOVA2_EXPORT ln2_get_parallax_ha(struct ln_equ_posn *object,
+										 double au_distance,
+										 struct ln_lnlat_posn *observer,
+										 double height, double H,
+										 struct ln_equ_posn *parallax);
 
 #ifdef __cplusplus
 };

@@ -69,6 +69,7 @@
 #define RADIAN (180.0 / M_PI)
 
 static const char ln_version[] = LIBNOVA2_VERSION;
+
 const char *ln_get_version(void)
 {
 	return ln_version;
@@ -344,26 +345,31 @@ void ln2_add_hms(struct ln_hms *source, struct ln_hms *dest)
 
 	dest->hours += source->hours;
 }
+
 void ln2_hequ_to_equ(struct lnh_equ_posn *hpos, struct ln_equ_posn *pos)
 {
 	pos->ra = ln2_hms_to_rad(&hpos->ra);
 	pos->dec = ln2_dms_to_rad(&hpos->dec);
 }
+
 void ln2_equ_to_hequ(struct ln_equ_posn *pos, struct lnh_equ_posn *hpos)
 {
 	ln2_rad_to_hms(pos->ra, &hpos->ra);
 	ln2_rad_to_dms(pos->dec, &hpos->dec);
 }
+
 void ln2_hhrz_to_hrz(struct lnh_hrz_posn *hpos, struct ln_hrz_posn *pos)
 {
 	pos->alt = ln2_dms_to_rad(&hpos->alt);
 	pos->az = ln2_dms_to_rad(&hpos->az);
 }
+
 void ln2_hrz_to_hhrz(struct ln_hrz_posn *pos, struct lnh_hrz_posn *hpos)
 {
 	ln2_rad_to_dms(pos->alt, &hpos->alt);
 	ln2_rad_to_dms(pos->az, &hpos->az);
 }
+
 const char *ln_hrz_to_nswe(struct ln_hrz_posn *pos)
 {
 	const char *directions[] = { "S",  "SSW", "SW", "SWW", "W",	 "NWW",
@@ -372,11 +378,13 @@ const char *ln_hrz_to_nswe(struct ln_hrz_posn *pos)
 
 	return directions[(int)(LN_R2D(pos->az) / 22.5)];
 }
+
 void ln2_hlnlat_to_lnlat(struct lnh_lnlat_posn *hpos, struct ln_lnlat_posn *pos)
 {
 	pos->lng = ln2_dms_to_rad(&hpos->lng);
 	pos->lat = ln2_dms_to_rad(&hpos->lat);
 }
+
 void ln2_lnlat_to_hlnlat(struct ln_lnlat_posn *pos, struct lnh_lnlat_posn *hpos)
 {
 	ln2_rad_to_dms(pos->lng, &hpos->lng);
@@ -456,6 +464,7 @@ static void skipwhite(char **s)
 	while (iswhite(**s))
 		(*s)++;
 }
+
 double ln2_get_dec_location(char *s)
 {
 	char *ptr, *dec, *hh, *ame, *tok_ptr;
@@ -465,6 +474,7 @@ double ln2_get_dec_location(char *s)
 	int dghh = 0, minutes = 0;
 	double seconds = 0.0, pos;
 	short count;
+
 	enum { HOURS, DEGREES, LAT, LONG } type;
 
 	if (s == NULL || !*s)
@@ -530,6 +540,7 @@ double ln2_get_dec_location(char *s)
 
 	return pos;
 }
+
 const char *ln_get_humanr_location(double location)
 {
 	char buf[32];
@@ -541,6 +552,7 @@ const char *ln_get_humanr_location(double location)
 
 	return strdup(buf);
 }
+
 double ln2_interpolate3(double n, double y1, double y2, double y3)
 {
 	double y, a, b, c;
@@ -555,8 +567,9 @@ double ln2_interpolate3(double n, double y1, double y2, double y3)
 
 	return y;
 }
+
 double ln2_interpolate5(double n, double y1, double y2, double y3, double y4,
-					   double y5)
+						double y5)
 {
 	double y, A, B, C, D, E, F, G, H, J, K;
 	double n2, n3, n4;
@@ -586,8 +599,9 @@ double ln2_interpolate5(double n, double y1, double y2, double y3, double y4,
 
 	return y;
 }
+
 double ln2_find_zero(double (*func)(double, double *), double from, double to,
-					double *arg)
+					 double *arg)
 {
 	double x, x1, x2, f;
 	int i = 0;
@@ -604,8 +618,9 @@ double ln2_find_zero(double (*func)(double, double *), double from, double to,
 
 	return x2;
 }
+
 double ln2_find_max(double (*func)(double, double *), double from, double to,
-				   double *arg)
+					double *arg)
 {
 	double a, b, xl, xu, eps;
 

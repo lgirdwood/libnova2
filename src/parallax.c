@@ -25,8 +25,8 @@
 /* Equ 39.1, 39.2, 39.3 Pg 263 and 264
  */
 void ln2_get_parallax(struct ln_equ_posn *object, double au_distance,
-					 struct ln_lnlat_posn *observer, double height, double JD,
-					 struct ln_equ_posn *parallax)
+					  struct ln_lnlat_posn *observer, double height, double JD,
+					  struct ln_equ_posn *parallax)
 {
 	double H;
 
@@ -35,11 +35,12 @@ void ln2_get_parallax(struct ln_equ_posn *object, double au_distance,
 	H = ln2_range_radians(H);
 	ln2_get_parallax_ha(object, au_distance, observer, height, H, parallax);
 }
+
 /* Equ 39.1, 39.2, 39.3 Pg 263 and 264
  */
 void ln2_get_parallax_ha(struct ln_equ_posn *object, double au_distance,
-						struct ln_lnlat_posn *observer, double height, double H,
-						struct ln_equ_posn *parallax)
+						 struct ln_lnlat_posn *observer, double height,
+						 double H, struct ln_equ_posn *parallax)
 {
 	double sin_pi, ro_sin, ro_cos, sin_H, cos_H, cos_dec;
 

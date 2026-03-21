@@ -25,63 +25,64 @@ Copyright 2004 Liam Girdwood
  * Do some RA/DEC <--> ALT/AZ conversions for Alnilam
  * in Leon (Spain) on 25/4/2004
  */
-int main(int argc, const char *argv[]) {
-  struct lnh_equ_posn hobject, hequ;
-  struct lnh_lnlat_posn hobserver;
-  struct ln_equ_posn object, equ;
-  struct ln_hrz_posn hrz;
-  struct lnh_hrz_posn hhrz;
-  struct ln_lnlat_posn observer;
-  struct ln_date date;
-  double JD;
+int main(int argc, const char *argv[])
+{
+	struct lnh_equ_posn hobject, hequ;
+	struct lnh_lnlat_posn hobserver;
+	struct ln_equ_posn object, equ;
+	struct ln_hrz_posn hrz;
+	struct lnh_hrz_posn hhrz;
+	struct ln_lnlat_posn observer;
+	struct ln_date date;
+	double JD;
 
-  /*
+	/*
    * observers position
    * longitude is measured positively eastwards
    * i.e. Long 5d36m30W (Leon, Spain) = 354d24m30
    * Lat for Leon = Lat 42d35m40 N
    */
-  hobserver.lng.degrees = -5;
-  hobserver.lng.minutes = 36;
-  hobserver.lng.seconds = 30.0;
-  hobserver.lat.degrees = 42;
-  hobserver.lat.minutes = 35;
-  hobserver.lat.seconds = 40.0;
+	hobserver.lng.degrees = -5;
+	hobserver.lng.minutes = 36;
+	hobserver.lng.seconds = 30.0;
+	hobserver.lat.degrees = 42;
+	hobserver.lat.minutes = 35;
+	hobserver.lat.seconds = 40.0;
 
-  /* Alnilam */
-  hobject.ra.hours = 5;
-  hobject.ra.minutes = 36;
-  hobject.ra.seconds = 27.0;
-  hobject.dec.neg = 1;
-  hobject.dec.degrees = 1;
-  hobject.dec.minutes = 12;
-  hobject.dec.seconds = 0.0;
+	/* Alnilam */
+	hobject.ra.hours = 5;
+	hobject.ra.minutes = 36;
+	hobject.ra.seconds = 27.0;
+	hobject.dec.neg = 1;
+	hobject.dec.degrees = 1;
+	hobject.dec.minutes = 12;
+	hobject.dec.seconds = 0.0;
 
-  /* UT date and time */
-  /* UT date and time */
-  date = LN_DATE(2004, 4, 25, 12, 18, 49.0);
+	/* UT date and time */
+	/* UT date and time */
+	date = LN_DATE(2004, 4, 25, 12, 18, 49.0);
 
-  JD = ln2_get_julian_day(&date);
-  ln2_hequ_to_equ(&hobject, &object);
-  ln2_hlnlat_to_lnlat(&hobserver, &observer);
+	JD = ln2_get_julian_day(&date);
+	ln2_hequ_to_equ(&hobject, &object);
+	ln2_hlnlat_to_lnlat(&hobserver, &observer);
 
-  ln2_get_hrz_from_equ(&object, &observer, JD, &hrz);
-  fprintf(stdout, "(Alnilam) Equ to Horiz ALT %f\n", LN_R2D(hrz.alt));
-  fprintf(stdout, "(Alnilam) Equ to Horiz AZ %f\n", LN_R2D(hrz.az));
+	ln2_get_hrz_from_equ(&object, &observer, JD, &hrz);
+	fprintf(stdout, "(Alnilam) Equ to Horiz ALT %f\n", LN_R2D(hrz.alt));
+	fprintf(stdout, "(Alnilam) Equ to Horiz AZ %f\n", LN_R2D(hrz.az));
 
-  ln2_hrz_to_hhrz(&hrz, &hhrz);
-  fprintf(stdout, "ALT %d:%d:%f  AZ %d:%d:%f\n", hhrz.alt.degrees,
-          hhrz.alt.minutes, hhrz.alt.seconds, hhrz.az.degrees, hhrz.az.minutes,
-          hhrz.az.seconds);
+	ln2_hrz_to_hhrz(&hrz, &hhrz);
+	fprintf(stdout, "ALT %d:%d:%f  AZ %d:%d:%f\n", hhrz.alt.degrees,
+			hhrz.alt.minutes, hhrz.alt.seconds, hhrz.az.degrees,
+			hhrz.az.minutes, hhrz.az.seconds);
 
-  ln2_get_equ_from_hrz(&hrz, &observer, JD, &equ);
-  fprintf(stdout, "(Alnilam) Horiz to Equ RA %f\n", equ.ra);
-  fprintf(stdout, "(Alnilam) Horiz to Equ DEC %f\n", equ.dec);
+	ln2_get_equ_from_hrz(&hrz, &observer, JD, &equ);
+	fprintf(stdout, "(Alnilam) Horiz to Equ RA %f\n", equ.ra);
+	fprintf(stdout, "(Alnilam) Horiz to Equ DEC %f\n", equ.dec);
 
-  ln2_equ_to_hequ(&equ, &hequ);
-  fprintf(stdout, "RA %d:%d:%f  DEC %d:%d:%f\n", hequ.ra.hours, hequ.ra.minutes,
-          hequ.ra.seconds, hequ.dec.degrees, hequ.dec.minutes,
-          hequ.dec.seconds);
+	ln2_equ_to_hequ(&equ, &hequ);
+	fprintf(stdout, "RA %d:%d:%f  DEC %d:%d:%f\n", hequ.ra.hours,
+			hequ.ra.minutes, hequ.ra.seconds, hequ.dec.degrees,
+			hequ.dec.minutes, hequ.dec.seconds);
 
-  return 0;
+	return 0;
 }

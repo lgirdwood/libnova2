@@ -45,7 +45,8 @@ extern "C" {
 */
 
 /* Equ 20.2, 20.3, 20.4 pg 126 */
-void LIBNOVA2_EXPORT ln2_get_equ_prec(struct ln_equ_posn *mean_position, double JD, struct ln_equ_posn *position);
+void LIBNOVA2_EXPORT ln2_get_equ_prec(struct ln_equ_posn *mean_position,
+									  double JD, struct ln_equ_posn *position);
 
 /**
 * \brief Calculate the effects of precession on equatorial coordinates, between arbitary Jxxxx epochs.
@@ -57,8 +58,9 @@ void LIBNOVA2_EXPORT ln2_get_equ_prec(struct ln_equ_posn *mean_position, double 
 */
 
 /* Equ 20.2, 20.3, 20.4 pg 126 */
-void LIBNOVA2_EXPORT ln2_get_equ_prec2(struct ln_equ_posn *mean_position, double fromJD, double toJD,
-									 struct ln_equ_posn *position);
+void LIBNOVA2_EXPORT ln2_get_equ_prec2(struct ln_equ_posn *mean_position,
+									   double fromJD, double toJD,
+									   struct ln_equ_posn *position);
 
 /**
 * \brief Calculate the effects of precession on ecliptical coordinates.
@@ -68,7 +70,9 @@ void LIBNOVA2_EXPORT ln2_get_equ_prec2(struct ln_equ_posn *mean_position, double
 * \param position Pointer to store new ecliptical position
 */
 /* Equ 20.5, 20.6 pg 128 */
-void LIBNOVA2_EXPORT ln2_get_ecl_prec(struct ln_lnlat_posn *mean_position, double JD, struct ln_lnlat_posn *position);
+void LIBNOVA2_EXPORT ln2_get_ecl_prec(struct ln_lnlat_posn *mean_position,
+									  double JD,
+									  struct ln_lnlat_posn *position);
 
 #ifdef __cplusplus
 };

@@ -27,9 +27,9 @@ A simple example showing some solar calculations.
 #include <libnova2/transform.h>
 #include <libnova2/utility.h>
 
-static void print_date (char *title, struct ln_zonedate *date)
+static void print_date(char *title, struct ln_zonedate *date)
 {
-	fprintf(stdout, "\n%s\n",title);
+	fprintf(stdout, "\n%s\n", title);
 	fprintf(stdout, " Year    : %d\n", date->years);
 	fprintf(stdout, " Month   : %d\n", date->months);
 	fprintf(stdout, " Day     : %d\n", date->days);
@@ -38,7 +38,7 @@ static void print_date (char *title, struct ln_zonedate *date)
 	fprintf(stdout, " Seconds : %f\n", date->seconds);
 }
 
-int main (int argc, const char *argv[])
+int main(int argc, const char *argv[])
 {
 	struct ln_equ_posn equ;
 	struct ln_rst_time rst;
@@ -46,26 +46,26 @@ int main (int argc, const char *argv[])
 	struct ln_lnlat_posn observer;
 	struct ln_helio_posn pos;
 	double JD;
-	
+
 	/* observers location (Edinburgh), used to calc rst */
 	observer.lat = LN_D2R(55.92); /* 55.92 N */
 	observer.lng = LN_D2R(-3.18); /* 3.18 W */
-	
+
 	/* get Julian day from local time */
-	JD = ln2_get_julian_from_sys();	
+	JD = ln2_get_julian_from_sys();
 	fprintf(stdout, "JD %f\n", JD);
-	
+
 	/* geometric coordinates */
 	ln2_get_solar_geom_coords(JD, &pos);
 	fprintf(stdout, "Solar Coords longitude (deg) %f\n", pos.L);
 	fprintf(stdout, "             latitude (deg) %f\n", pos.B);
 	fprintf(stdout, "             radius vector (AU) %f\n", pos.R);
-	
+
 	/* ra, dec */
 	ln2_get_solar_equ_coords(JD, &equ);
 	fprintf(stdout, "Solar Position RA %f\n", equ.ra);
 	fprintf(stdout, "               DEC %f\n", equ.dec);
-	
+
 	/* rise, set and transit */
 	if (ln2_get_solar_rst(JD, &observer, &rst) != 0)
 		fprintf(stdout, "Sun is circumpolar\n");
@@ -77,6 +77,6 @@ int main (int argc, const char *argv[])
 		print_date("Transit", &transit);
 		print_date("Set", &set);
 	}
-	
+
 	return 0;
 }

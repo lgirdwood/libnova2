@@ -55,7 +55,7 @@ double LIBNOVA2_EXPORT ln2_get_lunar_sdiam(double JD);
 */
 
 int LIBNOVA2_EXPORT ln2_get_lunar_rst(double JD, struct ln_lnlat_posn *observer,
-									struct ln_rst_time *rst);
+									  struct ln_rst_time *rst);
 
 /**
 * \brief Calculate the rectangular geocentric lunar cordinates.
@@ -65,8 +65,9 @@ int LIBNOVA2_EXPORT ln2_get_lunar_rst(double JD, struct ln_lnlat_posn *observer,
 * \param precision Calculation precision
 */
 /* ELP 2000-82B theory */
-void LIBNOVA2_EXPORT ln2_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon,
-										  double precision);
+void LIBNOVA2_EXPORT ln2_get_lunar_geo_posn(double JD,
+											struct ln_rect_posn *moon,
+											double precision);
 
 /**
 * \brief Calculate lunar equatorial coordinates.
@@ -76,8 +77,8 @@ void LIBNOVA2_EXPORT ln2_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon
 * \param precision Calculation precision
 */
 void LIBNOVA2_EXPORT ln2_get_lunar_equ_coords_prec(double JD,
-												 struct ln_equ_posn *position,
-												 double precision);
+												   struct ln_equ_posn *position,
+												   double precision);
 
 /**
 * \brief Calculate lunar equatorial coordinates.
@@ -86,7 +87,7 @@ void LIBNOVA2_EXPORT ln2_get_lunar_equ_coords_prec(double JD,
 * \param position Pointer to store equatorial position
 */
 void LIBNOVA2_EXPORT ln2_get_lunar_equ_coords(double JD,
-											struct ln_equ_posn *position);
+											  struct ln_equ_posn *position);
 
 /**
 * \brief Calculate lunar ecliptical coordinates.
@@ -96,8 +97,8 @@ void LIBNOVA2_EXPORT ln2_get_lunar_equ_coords(double JD,
 * \param precision Calculation precision
 */
 void LIBNOVA2_EXPORT ln2_get_lunar_ecl_coords(double JD,
-											struct ln_lnlat_posn *position,
-											double precision);
+											  struct ln_lnlat_posn *position,
+											  double precision);
 
 /**
 * \brief Calculate the phase angle of the Moon.

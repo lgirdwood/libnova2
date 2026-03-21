@@ -84,27 +84,33 @@ int main(int argc, const char *argv[])
 
 	/* Encke orbital elements */
 #if MEEUS
-	orbit = LN_ELL_ORBIT_DEG(2.2091404, 0.8502196, 11.94525, 186.23352, 334.75006, 0.0, e_JD);
+	orbit = LN_ELL_ORBIT_DEG(2.2091404, 0.8502196, 11.94525, 186.23352,
+							 334.75006, 0.0, e_JD);
 #else
-	orbit = LN_ELL_ORBIT_DEG(2.214743, 0.848232, 11.7790, 186.5356, 334.5731, 0.0, e_JD);
+	orbit = LN_ELL_ORBIT_DEG(2.214743, 0.848232, 11.7790, 186.5356, 334.5731,
+							 0.0, e_JD);
 #endif
 	/* get mean anomaly */
 	if (orbit.n == 0.0)
 		orbit.n = ln2_get_ell_mean_motion(orbit.a);
 	M = ln2_get_ell_mean_anomaly(orbit.n, JD - orbit.JD);
-	fprintf(stdout, "(Mean Anomaly) M when n is %f and JD diff is %f = %f\n", orbit.n, JD - orbit.JD, M);
+	fprintf(stdout, "(Mean Anomaly) M when n is %f and JD diff is %f = %f\n",
+			orbit.n, JD - orbit.JD, M);
 
 	/* solve kepler for orbit */
 	E = ln2_solve_kepler(orbit.e, M);
-	fprintf(stdout, "(Equation of kepler) E when e is %f and M is %f = %f\n", orbit.e, M, E);
+	fprintf(stdout, "(Equation of kepler) E when e is %f and M is %f = %f\n",
+			orbit.e, M, E);
 
 	/* true anomaly */
 	v = ln2_get_ell_true_anomaly(orbit.e, E);
-	fprintf(stdout, "(True Anomaly) v when e is %f and E is %f = %f\n", orbit.e, E, v);
+	fprintf(stdout, "(True Anomaly) v when e is %f and E is %f = %f\n", orbit.e,
+			E, v);
 
 	/* radius vector */
 	r = ln2_get_ell_radius_vector(M, orbit.e, E);
-	fprintf(stdout, "(Radius Vector) r when e is %f and E is %f = %f\n", orbit.e, E, r);
+	fprintf(stdout, "(Radius Vector) r when e is %f and E is %f = %f\n",
+			orbit.e, E, r);
 
 	/* geocentric rect coords */
 	ln2_get_ell_geo_rect_posn(&orbit, JD, &posn);
@@ -114,9 +120,12 @@ int main(int argc, const char *argv[])
 
 	/* rectangular coords */
 	ln2_get_ell_helio_rect_posn(&orbit, JD, &posn);
-	fprintf(stdout, "(Heliocentric Rect Coords X) for comet Encke  %f\n", posn.X);
-	fprintf(stdout, "(Heliocentric Rect Coords Y) for comet Encke  %f\n", posn.Y);
-	fprintf(stdout, "(Heliocentric Rect Coords Z) for comet Encke  %f\n", posn.Z);
+	fprintf(stdout, "(Heliocentric Rect Coords X) for comet Encke  %f\n",
+			posn.X);
+	fprintf(stdout, "(Heliocentric Rect Coords Y) for comet Encke  %f\n",
+			posn.Y);
+	fprintf(stdout, "(Heliocentric Rect Coords Z) for comet Encke  %f\n",
+			posn.Z);
 
 	/* ra, dec */
 	ln2_get_ell_body_equ_coords(JD, &orbit, &equ);

@@ -20,34 +20,36 @@
 #include <libnova2/comet.h>
 #include <libnova2/elliptic_motion.h>
 #include <libnova2/parabolic_motion.h>
+
 double ln2_get_ell_comet_mag(double JD, struct ln_ell_orbit *orbit, double g,
-	double k)
+							 double k)
 {
 	double d, r;
-	double E,M;
-	
+	double E, M;
+
 	/* get mean anomaly */
 	if (orbit->n == 0)
-		orbit->n = ln2_get_ell_mean_motion (orbit->a);
+		orbit->n = ln2_get_ell_mean_motion(orbit->a);
 	M = ln2_get_ell_mean_anomaly(orbit->n, JD - orbit->JD);
-	
+
 	/* get eccentric anomaly */
 	E = ln2_solve_kepler(orbit->e, M);
-	
+
 	/* get radius vector */
 	r = ln2_get_ell_radius_vector(orbit->a, orbit->e, E);
 	d = ln2_get_ell_body_solar_dist(JD, orbit);
-	
+
 	return g + 5.0 * log10(d) + k * log10(r);
 }
+
 double ln2_get_par_comet_mag(double JD, struct ln_par_orbit *orbit, double g,
-	double k)
+							 double k)
 {
-	double d,r,t;
-	
+	double d, r, t;
+
 	/* time since perihelion */
 	t = JD - orbit->JD;
-	
+
 	/* get radius vector */
 	r = ln2_get_par_radius_vector(orbit->q, t);
 	d = ln2_get_par_body_solar_dist(JD, orbit);

@@ -78,7 +78,8 @@ int solar_earth_test(void)
 	ln2_get_solar_ecl_coords(JD, &ecl);
 	/* Sun at J2000 should be near 280 deg long? */
 	/* geometric mean longitude 280.46646. */
-	failed += test_result("(Solar) Ecl Longitude J2000", LN_R2D(ecl.lng), 280.46, 1.0);
+	failed += test_result("(Solar) Ecl Longitude J2000", LN_R2D(ecl.lng),
+						  280.46, 1.0);
 
 	/* Solar RST Horizon */
 	observer.lng = LN_D2R(0.0);

@@ -49,7 +49,9 @@ extern "C" {
 *
 * Uses the IAU (H, G) magnitude system (Bowell et al. 1989).
 */
-double LIBNOVA2_EXPORT ln2_get_asteroid_mag(double JD, struct ln_ell_orbit *orbit, double H, double G);
+double LIBNOVA2_EXPORT ln2_get_asteroid_mag(double JD,
+											struct ln_ell_orbit *orbit,
+											double H, double G);
 
 /**
 * \brief Calculate the semi-diameter of an asteroid in km.
@@ -71,7 +73,9 @@ double LIBNOVA2_EXPORT ln2_get_asteroid_sdiam_km(double H, double A);
 * \param A Albedo
 * \return Semi-diameter in arc seconds
 */
-double LIBNOVA2_EXPORT ln2_get_asteroid_sdiam_arc(double JD, struct ln_ell_orbit *orbit, double H, double A);
+double LIBNOVA2_EXPORT ln2_get_asteroid_sdiam_arc(double JD,
+												  struct ln_ell_orbit *orbit,
+												  double H, double A);
 
 #ifdef __cplusplus
 };

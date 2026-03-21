@@ -20,6 +20,7 @@
 #include <libnova2/sidereal_time.h>
 #include <libnova2/utility.h>
 #include <math.h>
+
 /* Formula 11.1, 11.4 pg 83
  */
 double ln2_get_mean_sidereal_time(double JD)
@@ -41,6 +42,7 @@ double ln2_get_mean_sidereal_time(double JD)
 
 	return sidereal;
 }
+
 /* Formula 11.1, 11.4 pg 83
  */
 

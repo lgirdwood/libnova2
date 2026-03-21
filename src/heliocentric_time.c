@@ -22,24 +22,27 @@
 #include <libnova2/heliocentric_time.h>
 #include <libnova2/nutation.h>
 #include <libnova2/utility.h>
-double ln2_get_heliocentric_time_diff(double JD, struct ln_equ_posn *object) {
-  double theta, ra, dec, c_dec, obliq;
-  struct ln_nutation nutation;
-  struct ln_helio_posn earth;
 
-  ln2_get_nutation(JD, &nutation);
-  ln2_get_earth_helio_coords(JD, &earth);
+double ln2_get_heliocentric_time_diff(double JD, struct ln_equ_posn *object)
+{
+	double theta, ra, dec, c_dec, obliq;
+	struct ln_nutation nutation;
+	struct ln_helio_posn earth;
 
-  /* add 180 degrees to the longitude in radians */
-  theta = earth.L + M_PI;
-  ra = object->ra;
-  dec = object->dec;
-  c_dec = cos(dec);
-  obliq = nutation.ecliptic;
+	ln2_get_nutation(JD, &nutation);
+	ln2_get_earth_helio_coords(JD, &earth);
 
-  /* L.Binnendijk Properties of Double Stars,
+	/* add 180 degrees to the longitude in radians */
+	theta = earth.L + M_PI;
+	ra = object->ra;
+	dec = object->dec;
+	c_dec = cos(dec);
+	obliq = nutation.ecliptic;
+
+	/* L.Binnendijk Properties of Double Stars,
    * Philadelphia, University of Pennselvania Press, pp. 228-232, 1960 */
-  return -0.0057755 * earth.R *
-         (cos(theta) * cos(ra) * c_dec +
-          sin(theta) * (sin(obliq) * sin(dec) + cos(obliq) * c_dec * sin(ra)));
+	return -0.0057755 * earth.R *
+		   (cos(theta) * cos(ra) * c_dec +
+			sin(theta) *
+				(sin(obliq) * sin(dec) + cos(obliq) * c_dec * sin(ra)));
 }

@@ -215,14 +215,14 @@ static double sum_series_elp1(double *t)
 	double tgv;
 	int i, j, k;
 
-	double t_del_4_5[4] = {0};
+	double t_del_4_5[4] = { 0 };
 	for (i = 0; i < 4; i++) {
 		for (k = 0; k < 5; k++) {
 			t_del_4_5[i] += del[i][k] * t[k];
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP1_SIZE; j++) {
 		/* derivatives of A */
 		tgv = elp1.B[0][j] + DTASM * elp1.B[4][j];
@@ -248,14 +248,14 @@ static double sum_series_elp2(double *t)
 	double tgv;
 	int i, j, k;
 
-	double t_del_4_5[4] = {0};
+	double t_del_4_5[4] = { 0 };
 	for (i = 0; i < 4; i++) {
 		for (k = 0; k < 5; k++) {
 			t_del_4_5[i] += del[i][k] * t[k];
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP2_SIZE; j++) {
 		/* derivatives of A */
 		tgv = elp2.B[0][j] + DTASM * elp2.B[4][j];
@@ -280,14 +280,14 @@ static double sum_series_elp3(double *t)
 	double tgv;
 	int i, j, k;
 
-	double t_del_4_5[4] = {0};
+	double t_del_4_5[4] = { 0 };
 	for (i = 0; i < 4; i++) {
 		for (k = 0; k < 5; k++) {
 			t_del_4_5[i] += del[i][k] * t[k];
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP3_SIZE; j++) {
 		/* derivatives of A */
 		tgv = elp3.B[0][j] + DTASM * elp3.B[4][j];
@@ -313,7 +313,7 @@ static double sum_series_elp4(double *t)
 	double y;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -321,7 +321,7 @@ static double sum_series_elp4(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP4_SIZE; j++) {
 		y = elp4.O[j] * DEG;
 		y += elp4.iz[j] * t_zeta_2;
@@ -342,7 +342,7 @@ static double sum_series_elp5(double *t)
 	double y;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -350,7 +350,7 @@ static double sum_series_elp5(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP5_SIZE; j++) {
 		y = elp5.O[j] * DEG;
 		y += elp5.iz[j] * t_zeta_2;
@@ -371,7 +371,7 @@ static double sum_series_elp6(double *t)
 	double y;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -379,7 +379,7 @@ static double sum_series_elp6(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP6_SIZE; j++) {
 		y = elp6.O[j] * DEG;
 		y += elp6.iz[j] * t_zeta_2;
@@ -400,7 +400,7 @@ static double sum_series_elp7(double *t)
 	double y, A;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -408,7 +408,7 @@ static double sum_series_elp7(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP7_SIZE; j++) {
 		A = elp7.A[j] * t[1];
 		y = elp7.O[j] * DEG;
@@ -430,7 +430,7 @@ static double sum_series_elp8(double *t)
 	double y, A;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -438,7 +438,7 @@ static double sum_series_elp8(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP8_SIZE; j++) {
 		y = elp8.O[j] * DEG;
 		A = elp8.A[j] * t[1];
@@ -460,7 +460,7 @@ static double sum_series_elp9(double *t)
 	double y, A;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -468,7 +468,7 @@ static double sum_series_elp9(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP9_SIZE; j++) {
 		A = elp9.A[j] * t[1];
 		y = elp9.O[j] * DEG;
@@ -490,7 +490,7 @@ static double sum_series_elp10(double *t)
 	double y;
 
 	double t_del0_2 = 0, t_del2_2 = 0, t_del3_2 = 0;
-	double t_p_8_2[8] = {0};
+	double t_p_8_2[8] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_del0_2 += del[0][k] * t[k];
 		t_del2_2 += del[2][k] * t[k];
@@ -500,11 +500,12 @@ static double sum_series_elp10(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP10_SIZE; j++) {
 		y = elp10.theta[j] * DEG;
 
-		y += elp10.ipla[8][j] * t_del0_2 + elp10.ipla[9][j] * t_del2_2 + elp10.ipla[10][j] * t_del3_2;
+		y += elp10.ipla[8][j] * t_del0_2 + elp10.ipla[9][j] * t_del2_2 +
+			 elp10.ipla[10][j] * t_del3_2;
 		for (i = 0; i < 8; i++)
 			y += elp10.ipla[i][j] * t_p_8_2[i];
 
@@ -523,7 +524,7 @@ static double sum_series_elp11(double *t)
 	double y;
 
 	double t_del0_2 = 0, t_del2_2 = 0, t_del3_2 = 0;
-	double t_p_8_2[8] = {0};
+	double t_p_8_2[8] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_del0_2 += del[0][k] * t[k];
 		t_del2_2 += del[2][k] * t[k];
@@ -533,10 +534,11 @@ static double sum_series_elp11(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP11_SIZE; j++) {
 		y = elp11.theta[j] * DEG;
-		y += elp11.ipla[8][j] * t_del0_2 + elp11.ipla[9][j] * t_del2_2 + elp11.ipla[10][j] * t_del3_2;
+		y += elp11.ipla[8][j] * t_del0_2 + elp11.ipla[9][j] * t_del2_2 +
+			 elp11.ipla[10][j] * t_del3_2;
 		for (i = 0; i < 8; i++)
 			y += elp11.ipla[i][j] * t_p_8_2[i];
 		/* put y in correct quad */
@@ -554,7 +556,7 @@ static double sum_series_elp12(double *t)
 	double y;
 
 	double t_del0_2 = 0, t_del2_2 = 0, t_del3_2 = 0;
-	double t_p_8_2[8] = {0};
+	double t_p_8_2[8] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_del0_2 += del[0][k] * t[k];
 		t_del2_2 += del[2][k] * t[k];
@@ -564,10 +566,11 @@ static double sum_series_elp12(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP12_SIZE; j++) {
 		y = elp12.theta[j] * DEG;
-		y += elp12.ipla[8][j] * t_del0_2 + elp12.ipla[9][j] * t_del2_2 + elp12.ipla[10][j] * t_del3_2;
+		y += elp12.ipla[8][j] * t_del0_2 + elp12.ipla[9][j] * t_del2_2 +
+			 elp12.ipla[10][j] * t_del3_2;
 		for (i = 0; i < 8; i++)
 			y += elp12.ipla[i][j] * t_p_8_2[i];
 		/* put y in correct quad */
@@ -585,7 +588,7 @@ static double sum_series_elp13(double *t)
 	double y, x;
 
 	double t_del0_2 = 0, t_del2_2 = 0, t_del3_2 = 0;
-	double t_p_8_2[8] = {0};
+	double t_p_8_2[8] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_del0_2 += del[0][k] * t[k];
 		t_del2_2 += del[2][k] * t[k];
@@ -595,10 +598,11 @@ static double sum_series_elp13(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP13_SIZE; j++) {
 		y = elp13.theta[j] * DEG;
-		y += elp13.ipla[8][j] * t_del0_2 + elp13.ipla[9][j] * t_del2_2 + elp13.ipla[10][j] * t_del3_2;
+		y += elp13.ipla[8][j] * t_del0_2 + elp13.ipla[9][j] * t_del2_2 +
+			 elp13.ipla[10][j] * t_del3_2;
 		for (i = 0; i < 8; i++)
 			y += elp13.ipla[i][j] * t_p_8_2[i];
 		/* put y in correct quad */
@@ -617,7 +621,7 @@ static double sum_series_elp14(double *t)
 	double y, x;
 
 	double t_del0_2 = 0, t_del2_2 = 0, t_del3_2 = 0;
-	double t_p_8_2[8] = {0};
+	double t_p_8_2[8] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_del0_2 += del[0][k] * t[k];
 		t_del2_2 += del[2][k] * t[k];
@@ -627,10 +631,11 @@ static double sum_series_elp14(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP14_SIZE; j++) {
 		y = elp14.theta[j] * DEG;
-		y += elp14.ipla[8][j] * t_del0_2 + elp14.ipla[9][j] * t_del2_2 + elp14.ipla[10][j] * t_del3_2;
+		y += elp14.ipla[8][j] * t_del0_2 + elp14.ipla[9][j] * t_del2_2 +
+			 elp14.ipla[10][j] * t_del3_2;
 		for (i = 0; i < 8; i++)
 			y += elp14.ipla[i][j] * t_p_8_2[i];
 		/* put y in correct quad */
@@ -649,7 +654,7 @@ static double sum_series_elp15(double *t)
 	double y, x;
 
 	double t_del0_2 = 0, t_del2_2 = 0, t_del3_2 = 0;
-	double t_p_8_2[8] = {0};
+	double t_p_8_2[8] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_del0_2 += del[0][k] * t[k];
 		t_del2_2 += del[2][k] * t[k];
@@ -659,10 +664,11 @@ static double sum_series_elp15(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP15_SIZE; j++) {
 		y = elp15.theta[j] * DEG;
-		y += elp15.ipla[8][j] * t_del0_2 + elp15.ipla[9][j] * t_del2_2 + elp15.ipla[10][j] * t_del3_2;
+		y += elp15.ipla[8][j] * t_del0_2 + elp15.ipla[9][j] * t_del2_2 +
+			 elp15.ipla[10][j] * t_del3_2;
 		for (i = 0; i < 8; i++)
 			y += elp15.ipla[i][j] * t_p_8_2[i];
 		/* put y in correct quad */
@@ -680,8 +686,8 @@ static double sum_series_elp16(double *t)
 	int i, j, k;
 	double y;
 
-	double t_del_4_2[4] = {0};
-	double t_p_7_2[7] = {0};
+	double t_del_4_2[4] = { 0 };
+	double t_p_7_2[7] = { 0 };
 	for (k = 0; k < 2; k++) {
 		for (i = 0; i < 4; i++) {
 			t_del_4_2[i] += del[i][k] * t[k];
@@ -691,7 +697,7 @@ static double sum_series_elp16(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP16_SIZE; j++) {
 		y = elp16.theta[j] * DEG;
 		for (i = 0; i < 4; i++)
@@ -711,8 +717,8 @@ static double sum_series_elp17(double *t)
 	int i, j, k;
 	double y;
 
-	double t_del_4_2[4] = {0};
-	double t_p_7_2[7] = {0};
+	double t_del_4_2[4] = { 0 };
+	double t_p_7_2[7] = { 0 };
 	for (k = 0; k < 2; k++) {
 		for (i = 0; i < 4; i++) {
 			t_del_4_2[i] += del[i][k] * t[k];
@@ -722,7 +728,7 @@ static double sum_series_elp17(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP17_SIZE; j++) {
 		y = elp17.theta[j] * DEG;
 		for (i = 0; i < 4; i++)
@@ -742,8 +748,8 @@ static double sum_series_elp18(double *t)
 	int i, j, k;
 	double y;
 
-	double t_del_4_2[4] = {0};
-	double t_p_7_2[7] = {0};
+	double t_del_4_2[4] = { 0 };
+	double t_p_7_2[7] = { 0 };
 	for (k = 0; k < 2; k++) {
 		for (i = 0; i < 4; i++) {
 			t_del_4_2[i] += del[i][k] * t[k];
@@ -753,7 +759,7 @@ static double sum_series_elp18(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP18_SIZE; j++) {
 		y = elp18.theta[j] * DEG;
 		for (i = 0; i < 4; i++)
@@ -773,8 +779,8 @@ static double sum_series_elp19(double *t)
 	int i, j, k;
 	double y, x;
 
-	double t_del_4_2[4] = {0};
-	double t_p_7_2[7] = {0};
+	double t_del_4_2[4] = { 0 };
+	double t_p_7_2[7] = { 0 };
 	for (k = 0; k < 2; k++) {
 		for (i = 0; i < 4; i++) {
 			t_del_4_2[i] += del[i][k] * t[k];
@@ -784,7 +790,7 @@ static double sum_series_elp19(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP19_SIZE; j++) {
 		y = elp19.theta[j] * DEG;
 		for (i = 0; i < 4; i++)
@@ -805,8 +811,8 @@ static double sum_series_elp20(double *t)
 	int i, j, k;
 	double y, x;
 
-	double t_del_4_2[4] = {0};
-	double t_p_7_2[7] = {0};
+	double t_del_4_2[4] = { 0 };
+	double t_p_7_2[7] = { 0 };
 	for (k = 0; k < 2; k++) {
 		for (i = 0; i < 4; i++) {
 			t_del_4_2[i] += del[i][k] * t[k];
@@ -816,7 +822,7 @@ static double sum_series_elp20(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP20_SIZE; j++) {
 		y = elp20.theta[j] * DEG;
 		for (i = 0; i < 4; i++)
@@ -837,8 +843,8 @@ static double sum_series_elp21(double *t)
 	int i, j, k;
 	double y, x;
 
-	double t_del_4_2[4] = {0};
-	double t_p_7_2[7] = {0};
+	double t_del_4_2[4] = { 0 };
+	double t_p_7_2[7] = { 0 };
 	for (k = 0; k < 2; k++) {
 		for (i = 0; i < 4; i++) {
 			t_del_4_2[i] += del[i][k] * t[k];
@@ -848,7 +854,7 @@ static double sum_series_elp21(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP21_SIZE; j++) {
 		y = elp21.theta[j] * DEG;
 		for (i = 0; i < 4; i++)
@@ -871,7 +877,7 @@ static double sum_series_elp22(double *t)
 	double y;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -879,7 +885,7 @@ static double sum_series_elp22(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP22_SIZE; j++) {
 		y = elp22.O[j] * DEG;
 		y += elp22.iz[j] * t_zeta_2;
@@ -900,7 +906,7 @@ static double sum_series_elp23(double *t)
 	double y;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -908,7 +914,7 @@ static double sum_series_elp23(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP23_SIZE; j++) {
 		y = elp23.O[j] * DEG;
 		y += elp23.iz[j] * t_zeta_2;
@@ -929,7 +935,7 @@ static double sum_series_elp24(double *t)
 	double y;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -937,7 +943,7 @@ static double sum_series_elp24(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP24_SIZE; j++) {
 		y = elp24.O[j] * DEG;
 		y += elp24.iz[j] * t_zeta_2;
@@ -958,7 +964,7 @@ static double sum_series_elp25(double *t)
 	double y, A;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -966,7 +972,7 @@ static double sum_series_elp25(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP25_SIZE; j++) {
 		A = elp25.A[j] * t[1];
 		y = elp25.O[j] * DEG;
@@ -988,7 +994,7 @@ static double sum_series_elp26(double *t)
 	double y, A;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -996,7 +1002,7 @@ static double sum_series_elp26(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP26_SIZE; j++) {
 		A = elp26.A[j] * t[1];
 		y = elp26.O[j] * DEG;
@@ -1018,7 +1024,7 @@ static double sum_series_elp27(double *t)
 	double y, A;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -1026,7 +1032,7 @@ static double sum_series_elp27(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP27_SIZE; j++) {
 		A = elp27.A[j] * t[1];
 		y = elp27.O[j] * DEG;
@@ -1048,7 +1054,7 @@ static double sum_series_elp28(double *t)
 	double y;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -1056,7 +1062,7 @@ static double sum_series_elp28(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP28_SIZE; j++) {
 		y = elp28.O[j] * DEG;
 		y += elp28.iz[j] * t_zeta_2;
@@ -1077,7 +1083,7 @@ static double sum_series_elp29(double *t)
 	double y;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -1085,7 +1091,7 @@ static double sum_series_elp29(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP29_SIZE; j++) {
 		y = elp29.O[j] * DEG;
 		y += elp29.iz[j] * t_zeta_2;
@@ -1106,7 +1112,7 @@ static double sum_series_elp30(double *t)
 	double y;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -1114,7 +1120,7 @@ static double sum_series_elp30(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP30_SIZE; j++) {
 		y = elp30.O[j] * DEG;
 		y += elp30.iz[j] * t_zeta_2;
@@ -1135,7 +1141,7 @@ static double sum_series_elp31(double *t)
 	double y;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -1143,7 +1149,7 @@ static double sum_series_elp31(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP31_SIZE; j++) {
 		y = elp31.O[j] * DEG;
 		y += elp31.iz[j] * t_zeta_2;
@@ -1164,7 +1170,7 @@ static double sum_series_elp32(double *t)
 	double y;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -1172,7 +1178,7 @@ static double sum_series_elp32(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP32_SIZE; j++) {
 		y = elp32.O[j] * DEG;
 		y += elp32.iz[j] * t_zeta_2;
@@ -1193,7 +1199,7 @@ static double sum_series_elp33(double *t)
 	double y;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -1201,7 +1207,7 @@ static double sum_series_elp33(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP33_SIZE; j++) {
 		y = elp33.O[j] * DEG;
 		y += elp33.iz[j] * t_zeta_2;
@@ -1222,7 +1228,7 @@ static double sum_series_elp34(double *t)
 	double y, A;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -1230,7 +1236,7 @@ static double sum_series_elp34(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP34_SIZE; j++) {
 		A = elp34.A[j] * t[2];
 		y = elp34.O[j] * DEG;
@@ -1252,7 +1258,7 @@ static double sum_series_elp35(double *t)
 	double y, A;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -1260,7 +1266,7 @@ static double sum_series_elp35(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP35_SIZE; j++) {
 		A = elp35.A[j] * t[2];
 		y = elp35.O[j] * DEG;
@@ -1282,7 +1288,7 @@ static double sum_series_elp36(double *t)
 	double y, A;
 
 	double t_zeta_2 = 0;
-	double t_del_4_2[4] = {0};
+	double t_del_4_2[4] = { 0 };
 	for (k = 0; k < 2; k++) {
 		t_zeta_2 += zeta[k] * t[k];
 		for (i = 0; i < 4; i++) {
@@ -1290,7 +1296,7 @@ static double sum_series_elp36(double *t)
 		}
 	}
 
-	#pragma GCC ivdep
+#pragma GCC ivdep
 	for (j = 0; j < ELP36_SIZE; j++) {
 		A = elp36.A[j] * t[2];
 		y = elp36.O[j] * DEG;
@@ -1344,7 +1350,7 @@ static double _lunar_ecl_lat(double jd, double *arg)
 
 /* ELP 2000-82B theory */
 void ln2_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon,
-						   double precision)
+							double precision)
 {
 	double t[5];
 	double elp[36];
@@ -1435,7 +1441,7 @@ void ln2_get_lunar_geo_posn(double JD, struct ln_rect_posn *moon,
 }
 
 void ln2_get_lunar_equ_coords_prec(double JD, struct ln_equ_posn *position,
-								  double precision)
+								   double precision)
 {
 	struct ln_lnlat_posn ecl;
 
@@ -1449,7 +1455,7 @@ void ln2_get_lunar_equ_coords(double JD, struct ln_equ_posn *position)
 }
 
 void ln2_get_lunar_ecl_coords(double JD, struct ln_lnlat_posn *position,
-							 double precision)
+							  double precision)
 {
 	struct ln_rect_posn moon;
 
@@ -1523,10 +1529,10 @@ double ln2_get_lunar_bright_limb(double JD)
 }
 
 int ln2_get_lunar_rst(double JD, struct ln_lnlat_posn *observer,
-					 struct ln_rst_time *rst)
+					  struct ln_rst_time *rst)
 {
 	return ln2_get_body_rst_horizon(JD, observer, ln2_get_lunar_equ_coords,
-								   LN_D2R(LN_LUNAR_STANDART_HORIZON), rst);
+									LN_D2R(LN_LUNAR_STANDART_HORIZON), rst);
 }
 
 double ln2_get_lunar_sdiam(double JD)
@@ -1692,7 +1698,7 @@ double ln2_lunar_next_apsis(double jd, int apogee)
 			ap += 27.55454989;
 	} else {
 		while ((ap = ln2_find_max(lunar_neg_distance, ap - 3.0, ap + 3.0,
-								 NULL)) < jd)
+								  NULL)) < jd)
 			ap += 27.55454989;
 	}
 
@@ -1715,7 +1721,7 @@ double ln2_lunar_previous_apsis(double jd, int apogee)
 			ap -= 27.55454989;
 	} else {
 		while ((ap = ln2_find_max(lunar_neg_distance, ap - 3.0, ap + 3.0,
-								 NULL)) > jd)
+								  NULL)) > jd)
 			ap -= 27.55454989;
 	}
 

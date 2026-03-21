@@ -62,7 +62,9 @@ double LIBNOVA2_EXPORT ln2_get_saturn_pol_sdiam(double JD);
 * \param rst Pointer to store rise, set and transit times
 * \return 0 for success, 1 for circumpolar, -1 for never rises
 */
-int LIBNOVA2_EXPORT ln2_get_saturn_rst(double JD, struct ln_lnlat_posn *observer, struct ln_rst_time *rst);
+int LIBNOVA2_EXPORT ln2_get_saturn_rst(double JD,
+									   struct ln_lnlat_posn *observer,
+									   struct ln_rst_time *rst);
 
 /**
 * \brief Calculate Saturn's heliocentric coordinates.
@@ -71,7 +73,8 @@ int LIBNOVA2_EXPORT ln2_get_saturn_rst(double JD, struct ln_lnlat_posn *observer
 * \param position Pointer to store heliocentric position
 */
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 */
-void LIBNOVA2_EXPORT ln2_get_saturn_helio_coords(double JD, struct ln_helio_posn *position);
+void LIBNOVA2_EXPORT
+ln2_get_saturn_helio_coords(double JD, struct ln_helio_posn *position);
 
 /**
 * \brief Calculate Saturn's equatorial coordinates.
@@ -80,7 +83,8 @@ void LIBNOVA2_EXPORT ln2_get_saturn_helio_coords(double JD, struct ln_helio_posn
 * \param position Pointer to store equatorial position
 */
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 */
-void LIBNOVA2_EXPORT ln2_get_saturn_equ_coords(double JD, struct ln_equ_posn *position);
+void LIBNOVA2_EXPORT ln2_get_saturn_equ_coords(double JD,
+											   struct ln_equ_posn *position);
 
 /**
 * \brief Calculate the distance between Saturn and the Earth.
@@ -133,7 +137,8 @@ double LIBNOVA2_EXPORT ln2_get_saturn_phase(double JD);
 * \param JD Julian Day
 * \param position Pointer to store rectangular position
 */
-void LIBNOVA2_EXPORT ln2_get_saturn_rect_helio(double JD, struct ln_rect_posn *position);
+void LIBNOVA2_EXPORT ln2_get_saturn_rect_helio(double JD,
+											   struct ln_rect_posn *position);
 
 #ifdef __cplusplus
 };

@@ -94,17 +94,17 @@ void ln2_get_solar_geo_coords(double JD, struct ln_rect_posn *position)
 }
 
 int ln2_get_solar_rst_horizon(double JD, struct ln_lnlat_posn *observer,
-							 double horizon, struct ln_rst_time *rst)
+							  double horizon, struct ln_rst_time *rst)
 {
 	return ln2_get_body_rst_horizon(JD, observer, ln2_get_solar_equ_coords,
-								   LN_D2R(horizon), rst);
+									LN_D2R(horizon), rst);
 }
 
 int ln2_get_solar_rst(double JD, struct ln_lnlat_posn *observer,
-					 struct ln_rst_time *rst)
+					  struct ln_rst_time *rst)
 {
 	return ln2_get_solar_rst_horizon(JD, observer, LN_SOLAR_STANDART_HORIZON,
-									rst);
+									 rst);
 }
 
 double ln2_get_solar_sdiam(double JD)

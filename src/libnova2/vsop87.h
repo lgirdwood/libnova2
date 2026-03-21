@@ -44,7 +44,8 @@ extern "C" {
 */
 /* equation 31.3 Pg 207         */
 /* JD Julian Day */
-void LIBNOVA2_EXPORT ln2_vsop87_to_fk5(struct ln_helio_posn *position, double JD);
+void LIBNOVA2_EXPORT ln2_vsop87_to_fk5(struct ln_helio_posn *position,
+									   double JD);
 
 /** \struct ln_vsop
 * \brief VSOP87 term data structure.
@@ -64,7 +65,7 @@ struct ln_vsop {
 * \return Result of series calculation
 */
 double LIBNOVA2_EXPORT ln2_calc_series(const struct ln_vsop *data, int terms,
-									 double t);
+									   double t);
 
 #ifdef __cplusplus
 };

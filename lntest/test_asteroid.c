@@ -10,7 +10,7 @@
 static double test_func(double x, double *arg)
 {
 	/* Parabola y = -(x-2)^2 + 4. Max at x=2, y=4. Zeros at x=0, x=4. */
-	return -(x-2.0)*(x-2.0) + 4.0;
+	return -(x - 2.0) * (x - 2.0) + 4.0;
 }
 
 int asteroids_misc_test(void)
@@ -25,21 +25,29 @@ int asteroids_misc_test(void)
 	/* ln2_get_asteroid_sdiam_km(double H, double A) */
 	/* Ceres H=3.34, Albedo approx 0.09 */
 	res = ln2_get_asteroid_sdiam_km(3.34, 0.09);
-	failed += test_result("(Asteroid) Ceres sdiam km (H=3.34, A=0.09)", res, 950.0, 100.0);
+	failed += test_result("(Asteroid) Ceres sdiam km (H=3.34, A=0.09)", res,
+						  950.0, 100.0);
 
 	/* ln2_get_asteroid_sdiam_arc(JD, orbit, H, A) */
 	{
 		struct ln_ell_orbit orbit;
 		/* Dummy orbit for Ceres */
-		orbit.a = 2.76; orbit.e = 0.08; orbit.i = 10.6; orbit.w = 73.0; orbit.omega = 80.0; orbit.n = 0.214; orbit.JD = 2451545.0;
-		res = ln2_get_asteroid_sdiam_arc(2451545.0, &orbit, 3.34, 0.09); /* J2000 */
+		orbit.a = 2.76;
+		orbit.e = 0.08;
+		orbit.i = 10.6;
+		orbit.w = 73.0;
+		orbit.omega = 80.0;
+		orbit.n = 0.214;
+		orbit.JD = 2451545.0;
+		res = ln2_get_asteroid_sdiam_arc(2451545.0, &orbit, 3.34,
+										 0.09); /* J2000 */
 		/* Should return something reasonable > 0 */
 		if (res <= 0.0) {
 			printf("TEST (Asteroid) sdiam arc....[FAILED]\n");
-            failed++;
+			failed++;
 		} else {
-             printf("TEST (Asteroid) sdiam arc....[PASSED]\n");
-        }
+			printf("TEST (Asteroid) sdiam arc....[PASSED]\n");
+		}
 	}
 
 	/* Light time */
@@ -50,8 +58,9 @@ int asteroids_misc_test(void)
 	/* Refraction Adj */
 	/* Standard conditions. Alt 30 deg. */
 	res = ln2_get_refraction_adj(30.0, 1010.0, 10.0);
-	failed += test_result("(Misc) Refraction Adj 30deg", res, 0.0, 1.0); /* Just check it returns something small */
-	
+	failed += test_result("(Misc) Refraction Adj 30deg", res, 0.0,
+						  1.0); /* Just check it returns something small */
+
 	/* Math find max/zero */
 	/* find max between 0 and 4. Should be 2. */
 	/* double ln2_find_max(double (*func) (double, double *), double from, double to, double *arg) */

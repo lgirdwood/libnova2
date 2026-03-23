@@ -12,8 +12,8 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *  
- *  Copyright (C) 2000 - 2026 Liam Girdwood  
+ *
+ *  Copyright (C) 2000 - 2026 Liam Girdwood
  */
 
 #ifndef _LN_SOLAR_H
@@ -31,89 +31,90 @@ extern "C" {
 #endif
 
 /** \defgroup solar Solar
-*
-* Calculate solar ecliptical/equatorial coordinates for a given julian date.  
-* Accuracy 0.01 arc second error - uses **VSOP87 solution** (Variations Séculaires des Orbites Planétaires).
-*
-* - **VSOP87**: Complete theory for high precision.
-*
-* **Horizons**:
-* - **Standard**: -0.8333 degrees (refraction + semi-diameter)
-* - **Civil**: -6.0 degrees
-* - **Nautical**: -12.0 degrees
-* - **Astronomical**: -18.0 degrees
-*
-* All angles are expressed in degrees.
-*/
+ *
+ * Calculate solar ecliptical/equatorial coordinates for a given julian date.
+ * Accuracy 0.01 arc second error - uses **VSOP87 solution** (Variations
+ * Séculaires des Orbites Planétaires).
+ *
+ * - **VSOP87**: Complete theory for high precision.
+ *
+ * **Horizons**:
+ * - **Standard**: -0.8333 degrees (refraction + semi-diameter)
+ * - **Civil**: -6.0 degrees
+ * - **Nautical**: -12.0 degrees
+ * - **Astronomical**: -18.0 degrees
+ *
+ * All angles are expressed in degrees.
+ */
 
 /**
-* \brief Return solar rise/set time over local horizon (specified in degrees).
-*  \ingroup solar
-* \param JD Julian Day
-* \param observer Observer's position
-* \param horizon Horizon altitude
-* \param rst Pointer to store rise, set and transit times
-* \return 0 for success, 1 for circumpolar, -1 for never rises
-*/
+ * \brief Return solar rise/set time over local horizon (specified in degrees).
+ *  \ingroup solar
+ * \param JD Julian Day
+ * \param observer Observer's position
+ * \param horizon Horizon altitude
+ * \param rst Pointer to store rise, set and transit times
+ * \return 0 for success, 1 for circumpolar, -1 for never rises
+ */
 int LIBNOVA2_EXPORT ln2_get_solar_rst_horizon(double JD,
-											  struct ln_lnlat_posn *observer,
-											  double horizon,
-											  struct ln_rst_time *rst);
+                                              struct ln_lnlat_posn *observer,
+                                              double horizon,
+                                              struct ln_rst_time *rst);
 
 /**
-* \brief Calculate the time of rise, set and transit for the Sun.
-* \ingroup solar
-* \param JD Julian Day
-* \param observer Observer's position
-* \param rst Pointer to store rise, set and transit times
-* \return 0 for success, 1 for circumpolar, -1 for never rises
-*/
+ * \brief Calculate the time of rise, set and transit for the Sun.
+ * \ingroup solar
+ * \param JD Julian Day
+ * \param observer Observer's position
+ * \param rst Pointer to store rise, set and transit times
+ * \return 0 for success, 1 for circumpolar, -1 for never rises
+ */
 int LIBNOVA2_EXPORT ln2_get_solar_rst(double JD, struct ln_lnlat_posn *observer,
-									  struct ln_rst_time *rst);
+                                      struct ln_rst_time *rst);
 
 /**
-* \brief Calculate solar geometric coordinates. 
-* \ingroup solar 
-* \param JD Julian Day
-* \param position Pointer to store geometric position
-*/
+ * \brief Calculate solar geometric coordinates.
+ * \ingroup solar
+ * \param JD Julian Day
+ * \param position Pointer to store geometric position
+ */
 void LIBNOVA2_EXPORT ln2_get_solar_geom_coords(double JD,
-											   struct ln_helio_posn *position);
+                                               struct ln_helio_posn *position);
 
 /**
-* \brief Calculate apparent equatorial coordinates.
-* \ingroup solar
-* \param JD Julian Day
-* \param position Pointer to store equatorial position
-*/
+ * \brief Calculate apparent equatorial coordinates.
+ * \ingroup solar
+ * \param JD Julian Day
+ * \param position Pointer to store equatorial position
+ */
 void LIBNOVA2_EXPORT ln2_get_solar_equ_coords(double JD,
-											  struct ln_equ_posn *position);
+                                              struct ln_equ_posn *position);
 
 /**
-* \brief Calculate apparent ecliptical coordinates.
-* \ingroup solar
-* \param JD Julian Day
-* \param position Pointer to store ecliptical position
-*/
+ * \brief Calculate apparent ecliptical coordinates.
+ * \ingroup solar
+ * \param JD Julian Day
+ * \param position Pointer to store ecliptical position
+ */
 void LIBNOVA2_EXPORT ln2_get_solar_ecl_coords(double JD,
-											  struct ln_lnlat_posn *position);
+                                              struct ln_lnlat_posn *position);
 
 /**
-* \brief Calculate geocentric coordinates (rectangular)
-* \ingroup solar
-* \param JD Julian Day
-* \param position Pointer to store rectangular position
-*/
+ * \brief Calculate geocentric coordinates (rectangular)
+ * \ingroup solar
+ * \param JD Julian Day
+ * \param position Pointer to store rectangular position
+ */
 void LIBNOVA2_EXPORT ln2_get_solar_geo_coords(double JD,
-											  struct ln_rect_posn *position);
+                                              struct ln_rect_posn *position);
 
 /**
-* \param JD Julian day
-* \return Semidiameter in arc seconds
-*
-* Calculate the semidiameter of the Sun in arc seconds for the 
-* given julian day.
-*/
+ * \param JD Julian day
+ * \return Semidiameter in arc seconds
+ *
+ * Calculate the semidiameter of the Sun in arc seconds for the
+ * given julian day.
+ */
 double LIBNOVA2_EXPORT ln2_get_solar_sdiam(double JD);
 
 #ifdef __cplusplus

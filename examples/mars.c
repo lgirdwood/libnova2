@@ -11,7 +11,7 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA. 
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
 Copyright (C) 2003 - 2026 Liam Girdwood <lgirdwood@gmail.com>
 
@@ -66,8 +66,8 @@ int main(int argc, const char *argv[])
 	ln2_get_mars_equ_coords(JD, &equ);
 	ln2_equ_to_hequ(&equ, &hequ);
 	fprintf(stdout, "Mars RA %d:%d:%f Dec %d:%d:%f\n", hequ.ra.hours,
-			hequ.ra.minutes, hequ.ra.seconds, hequ.dec.degrees,
-			hequ.dec.minutes, hequ.dec.seconds);
+	        hequ.ra.minutes, hequ.ra.seconds, hequ.dec.degrees,
+	        hequ.dec.minutes, hequ.dec.seconds);
 
 	/* Earth - Mars dist AU */
 	au = ln2_get_mars_earth_dist(JD);

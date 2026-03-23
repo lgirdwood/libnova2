@@ -25,67 +25,67 @@ int elliptic_motion_test(void)
 	o_JD = ln2_get_julian_day(&obs_date);
 
 	orbit = LN_ELL_ORBIT_DEG(2.2091404, 0.8502196, 11.94525, 186.23352,
-							 334.75006, 0.0, e_JD);
+	                         334.75006, 0.0, e_JD);
 
 	E = ln2_solve_kepler(0.1, LN_D2R(5.0));
 	failed +=
-		test_result("(Equation of kepler) E when e is 0.1 and M is 5.0   ", E,
-					LN_D2R(5.554589253872320), 0.000000000001);
+	    test_result("(Equation of kepler) E when e is 0.1 and M is 5.0   ", E,
+	                LN_D2R(5.554589253872320), 0.000000000001);
 
 	v = ln2_get_ell_true_anomaly(0.1, E);
 	failed += test_result("(True Anomaly) v when e is 0.1 and E is 5.5545   ",
-						  v, LN_D2R(6.13976152), 0.00000001);
+	                      v, LN_D2R(6.13976152), 0.00000001);
 
 	r = ln2_get_ell_radius_vector(0.5, 0.1, E);
 	failed +=
-		test_result("(Radius Vector) r when v is , e is 0.1 and E is 5.5545   ",
-					r, 0.45023478, 0.00000001);
+	    test_result("(Radius Vector) r when v is , e is 0.1 and E is 5.5545   ",
+	                r, 0.45023478, 0.00000001);
 
 	ln2_get_ell_geo_rect_posn(&orbit, o_JD, &posn);
 	failed += test_result("(Geocentric Rect Coords X) for comet Enckle   ",
-						  posn.X, 0.72550388, 0.00000001);
+	                      posn.X, 0.72550388, 0.00000001);
 	failed += test_result("(Geocentric Rect Coords Y) for comet Enckle   ",
-						  posn.Y, -0.28446411, 0.00000001);
+	                      posn.Y, -0.28446411, 0.00000001);
 	failed += test_result("(Geocentric Rect Coords Z) for comet Enckle   ",
-						  posn.Z, -0.27031076, 0.00000001);
+	                      posn.Z, -0.27031076, 0.00000001);
 
 	ln2_get_ell_helio_rect_posn(&orbit, o_JD, &posn);
 	failed += test_result("(Heliocentric Rect Coords X) for comet Enckle   ",
-						  posn.X, 0.25017473, 0.00000001);
+	                      posn.X, 0.25017473, 0.00000001);
 	failed += test_result("(Heliocentric Rect Coords Y) for comet Enckle   ",
-						  posn.Y, 0.48476422, 0.00000001);
+	                      posn.Y, 0.48476422, 0.00000001);
 	failed += test_result("(Heliocentric Rect Coords Z) for comet Enckle   ",
-						  posn.Z, 0.35716517, 0.00000001);
+	                      posn.Z, 0.35716517, 0.00000001);
 
 	ln2_get_ell_body_equ_coords(o_JD, &orbit, &equ_posn);
 	failed += test_result("(RA) for comet Enckle   ", LN_R2D(equ_posn.ra),
-						  158.58060390, 0.00000001);
+	                      158.58060390, 0.00000001);
 	failed += test_result("(Dec) for comet Enckle   ", LN_R2D(equ_posn.dec),
-						  19.13851393, 0.00000001);
+	                      19.13851393, 0.00000001);
 
 	l = ln2_get_ell_orbit_len(&orbit);
 	failed += test_result("(Orbit Length) for comet Enckle in AU   ", l,
-						  10.85028112, 0.00000001);
+	                      10.85028112, 0.00000001);
 
 	V = ln2_get_ell_orbit_pvel(&orbit);
 	failed += test_result("(Orbit Perihelion Vel) for comet Enckle in kms   ",
-						  V, 70.43130198, 0.00000001);
+	                      V, 70.43130198, 0.00000001);
 
 	V = ln2_get_ell_orbit_avel(&orbit);
 	failed += test_result("(Orbit Aphelion Vel) for comet Enckle in kms   ", V,
-						  5.70160892, 0.00000001);
+	                      5.70160892, 0.00000001);
 
 	V = ln2_get_ell_orbit_vel(o_JD, &orbit);
 	failed += test_result("(Orbit Vel JD) for comet Enckle in kms   ", V,
-						  48.16148331, 0.00000001);
+	                      48.16148331, 0.00000001);
 
 	dist = ln2_get_ell_body_solar_dist(o_JD, &orbit);
 	failed += test_result("(Body Solar Dist) for comet Enckle in AU   ", dist,
-						  0.65203581, 0.00000001);
+	                      0.65203581, 0.00000001);
 
 	dist = ln2_get_ell_body_earth_dist(o_JD, &orbit);
 	failed += test_result("(Body Earth Dist) for comet Enckle in AU   ", dist,
-						  0.82482945, 0.00000001);
+	                      0.82482945, 0.00000001);
 
 	// TNO http://www.cfa.harvard.edu/mpec/K05/K05O42.html
 
@@ -97,7 +97,7 @@ int elliptic_motion_test(void)
 	o_JD = ln2_get_julian_day(&obs_date);
 
 	orbit = LN_ELL_ORBIT_DEG(45.7082927, 0.1550125, 28.99870, 296.40937,
-							 79.55499, 0.00318942, e_JD);
+	                         79.55499, 0.00318942, e_JD);
 
 	// MPO refers to Mean anomaly & epoch, we hence need to convert epoch
 	// to perihelion pass
@@ -106,9 +106,9 @@ int elliptic_motion_test(void)
 
 	ln2_get_ell_body_equ_coords(o_JD, &orbit, &equ_posn);
 	failed += test_result("(RA) for TNO K05F09Y   ", LN_R2D(equ_posn.ra),
-						  184.3699999995, 0.001);
+	                      184.3699999995, 0.001);
 	failed += test_result("(Dec) for TNO K05F09Y  ", LN_R2D(equ_posn.dec),
-						  30.3316666666, 0.001);
+	                      30.3316666666, 0.001);
 
 	return failed;
 }

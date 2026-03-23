@@ -40,9 +40,9 @@ double ln2_get_heliocentric_time_diff(double JD, struct ln_equ_posn *object)
 	obliq = nutation.ecliptic;
 
 	/* L.Binnendijk Properties of Double Stars,
-   * Philadelphia, University of Pennselvania Press, pp. 228-232, 1960 */
+	 * Philadelphia, University of Pennselvania Press, pp. 228-232, 1960 */
 	return -0.0057755 * earth.R *
-		   (cos(theta) * cos(ra) * c_dec +
-			sin(theta) *
-				(sin(obliq) * sin(dec) + cos(obliq) * c_dec * sin(ra)));
+	       (cos(theta) * cos(ra) * c_dec +
+	        sin(theta) *
+	            (sin(obliq) * sin(dec) + cos(obliq) * c_dec * sin(ra)));
 }

@@ -16,7 +16,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *     
+ *
  */
 
 /*------------------------------------------------------------------------*/
@@ -92,38 +92,38 @@ static inline void skipwhite(char **s)
 }
 
 /*
-* \param s Location string
-* \return angle in degrees
-*
-* Obtains Latitude, Longitude, RA or Declination from a string.
-*
-*  If the last char is N/S doesn't accept more than 90 degrees.            
-*  If it is E/W doesn't accept more than 180 degrees.                      
-*  If they are hours don't accept more than 24:00                          
-*                                                                          
-*  Any position can be expressed as follows:                               
-*  (please use a 8 bits charset if you want                                
-*  to view the degrees separator char '0xba')                              
-*
-*  42.30.35,53                                                             
-*  90�0'0,01 W                                                             
-*  42�30'35.53 N                                                           
-*  42�30'35.53S                                                            
-*  42�30'N                                                                 
-*  - 42.30.35.53                                                           
-*   42:30:35.53 S                                                          
-*  + 42.30.35.53                                                           
-*  +42�30 35,53                                                            
-*   23h36'45,0                                                             
-*                                                                          
-*                                                                          
-*  42:30:35.53 S = -42�30'35.53"                                           
-*  + 42 30.35.53 S the same previous position, the plus (+) sign is        
-*  considered like an error, the last 'S' has precedence over the sign     
-*                                                                          
-*  90�0'0,01 N ERROR: +- 90�0'00.00" latitude limit                        
-*
-*/
+ * \param s Location string
+ * \return angle in degrees
+ *
+ * Obtains Latitude, Longitude, RA or Declination from a string.
+ *
+ *  If the last char is N/S doesn't accept more than 90 degrees.
+ *  If it is E/W doesn't accept more than 180 degrees.
+ *  If they are hours don't accept more than 24:00
+ *
+ *  Any position can be expressed as follows:
+ *  (please use a 8 bits charset if you want
+ *  to view the degrees separator char '0xba')
+ *
+ *  42.30.35,53
+ *  90�0'0,01 W
+ *  42�30'35.53 N
+ *  42�30'35.53S
+ *  42�30'N
+ *  - 42.30.35.53
+ *   42:30:35.53 S
+ *  + 42.30.35.53
+ *  +42�30 35,53
+ *   23h36'45,0
+ *
+ *
+ *  42:30:35.53 S = -42�30'35.53"
+ *  + 42 30.35.53 S the same previous position, the plus (+) sign is
+ *  considered like an error, the last 'S' has precedence over the sign
+ *
+ *  90�0'0,01 N ERROR: +- 90�0'00.00" latitude limit
+ *
+ */
 double get_dec_location(char *s)
 {
 	char *ptr, *dec, *hh;
@@ -200,11 +200,11 @@ double get_dec_location(char *s)
 }
 
 /*
-* \param location Location angle in degress
-* \return Angle string
-*
-* Obtains a human readable location in the form: dd�mm'ss.ss"             
-*/
+ * \param location Location angle in degress
+ * \return Angle string
+ *
+ * Obtains a human readable location in the form: dd�mm'ss.ss"
+ */
 char *get_humanr_location(double location)
 {
 	static char buf[16];
@@ -224,15 +224,15 @@ char *get_humanr_location(double location)
 }
 
 /*
-* \return interpolation value
-* \param n Interpolation factor
-* \param y1 Argument 1
-* \param y2 Argument 2
-* \param y3 Argument 3
-*
-* Calculate an intermediate value of the 3 arguments for the given interpolation
-* factor.
-*/
+ * \return interpolation value
+ * \param n Interpolation factor
+ * \param y1 Argument 1
+ * \param y2 Argument 2
+ * \param y3 Argument 3
+ *
+ * Calculate an intermediate value of the 3 arguments for the given
+ * interpolation factor.
+ */
 double interpolate3(double n, double y1, double y2, double y3)
 {
 	double y, a, b, c;
@@ -249,19 +249,19 @@ double interpolate3(double n, double y1, double y2, double y3)
 }
 
 /*
-* \return interpolation value
-* \param n Interpolation factor
-* \param y1 Argument 1
-* \param y2 Argument 2
-* \param y3 Argument 3
-* \param y4 Argument 4
-* \param y5 Argument 5
-*
-* Calculate an intermediate value of the 5 arguments for the given interpolation
-* factor.
-*/
+ * \return interpolation value
+ * \param n Interpolation factor
+ * \param y1 Argument 1
+ * \param y2 Argument 2
+ * \param y3 Argument 3
+ * \param y4 Argument 4
+ * \param y5 Argument 5
+ *
+ * Calculate an intermediate value of the 5 arguments for the given
+ * interpolation factor.
+ */
 double interpolate5(double n, double y1, double y2, double y3, double y4,
-					double y5)
+                    double y5)
 {
 	double y, A, B, C, D, E, F, G, H, J, K;
 	double n2, n3, n4;

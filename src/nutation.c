@@ -145,7 +145,7 @@ const static struct nutation_coefficients coefficients[TERMS] = {
 
 /* cache values */
 static long double c_JD = 0.0, c_longitude = 0.0, c_obliquity = 0.0,
-				   c_ecliptic = 0.0;
+                   c_ecliptic = 0.0;
 
 /* Chapter 21 pg 131-134 Using Table 21A
  */
@@ -184,15 +184,15 @@ void ln2_get_nutation(double JD, struct ln_nutation *nutation)
 		for (i = 0; i < TERMS; i++) {
 			/* calc coefficients of sine and cosine */
 			coeff_sine = (coefficients[i].longitude1 +
-						  (coefficients[i].longitude2 * T)) /
-						 (10000.0 * 60.0 * 360.0);
+			              (coefficients[i].longitude2 * T)) /
+			             (10000.0 * 60.0 * 360.0);
 			coeff_cos = (coefficients[i].obliquity1 +
-						 (coefficients[i].obliquity2 * T)) /
-						(10000.0 * 60.0 * 360.0);
+			             (coefficients[i].obliquity2 * T)) /
+			            (10000.0 * 60.0 * 360.0);
 
 			argument = arguments[i].D * D + arguments[i].M * M +
-					   arguments[i].MM * MM + arguments[i].F * F +
-					   arguments[i].O * O;
+			           arguments[i].MM * MM + arguments[i].F * F +
+			           arguments[i].O * O;
 			argument = LN_D2R(argument);
 
 			c_longitude += coeff_sine * sinl(argument);
@@ -201,13 +201,13 @@ void ln2_get_nutation(double JD, struct ln_nutation *nutation)
 
 		/* calculate mean ecliptic - Meeus 2nd edition, eq. 22.2 */
 		c_ecliptic = 23.0 + 26.0 / 60.0 + 21.448 / (60.0 * 360.0) -
-					 46.8150 / (60.0 * 360.0) * T -
-					 0.00059 / (60.0 * 360.0) * T2 +
-					 0.001813 / (60.0 * 360.0) * T3;
+		             46.8150 / (60.0 * 360.0) * T -
+		             0.00059 / (60.0 * 360.0) * T2 +
+		             0.001813 / (60.0 * 360.0) * T3;
 
 		/* c_ecliptic += c_obliquity; * Uncomment this if function should
-                             return true obliquity rather than
-                             mean obliquity */
+		                     return true obliquity rather than
+		                     mean obliquity */
 	}
 
 	/* return results in radians */
@@ -219,7 +219,7 @@ void ln2_get_nutation(double JD, struct ln_nutation *nutation)
 /* Equ 22.1
  */
 void ln2_get_equ_nut(struct ln_equ_posn *mean_position, double JD,
-					 struct ln_equ_posn *position)
+                     struct ln_equ_posn *position)
 {
 	struct ln_nutation nut;
 	ln2_get_nutation(JD, &nut);
@@ -244,10 +244,10 @@ void ln2_get_equ_nut(struct ln_equ_posn *mean_position, double JD,
 	long double nut_obliquity_rad = nut.obliquity;
 
 	delta_ra = (cosl(nut_ecliptic) + sin_ecliptic * sin_ra * tan_dec) *
-				   nut_longitude_rad -
-			   cos_ra * tan_dec * nut_obliquity_rad;
+	               nut_longitude_rad -
+	           cos_ra * tan_dec * nut_obliquity_rad;
 	delta_dec = (sin_ecliptic * cos_ra) * nut_longitude_rad +
-				sin_ra * nut_obliquity_rad;
+	            sin_ra * nut_obliquity_rad;
 
 	position->ra = mean_position->ra + delta_ra;
 	position->dec = mean_position->dec + delta_dec;

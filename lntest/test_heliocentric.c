@@ -24,7 +24,7 @@ int heliocentric_test(void)
 	diff = ln2_get_heliocentric_time_diff(JD, &object);
 
 	failed += test_result("(Heliocentric time) TD for 01/01, object on 0h +60",
-						  diff, 15.0 * 0.0001, 0.0001);
+	                      diff, 15.0 * 0.0001, 0.0001);
 
 	object.ra = LN_D2R(270.0);
 	object.dec = LN_D2R(50.0);
@@ -32,7 +32,7 @@ int heliocentric_test(void)
 	diff = ln2_get_heliocentric_time_diff(JD, &object);
 
 	failed += test_result("(Heliocentric time) TD for 01/01, object on 18h +50",
-						  diff, -16.0 * 0.0001, 0.0001);
+	                      diff, -16.0 * 0.0001, 0.0001);
 
 	date = LN_DATE(2000, 8, 8, 0, 0, 0.0);
 
@@ -41,7 +41,7 @@ int heliocentric_test(void)
 	diff = ln2_get_heliocentric_time_diff(JD, &object);
 
 	failed += test_result("(Heliocentric time) TD for 08/08, object on 18h +50",
-						  diff, 12.0 * 0.0001, 0.0001);
+	                      diff, 12.0 * 0.0001, 0.0001);
 
 	return failed;
 }

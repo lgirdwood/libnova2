@@ -12,8 +12,8 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *  
- *  Copyright (C) 2000 - 2026 Liam Girdwood  
+ *
+ *  Copyright (C) 2000 - 2026 Liam Girdwood
  */
 
 #include <math.h>
@@ -48,14 +48,14 @@ struct pluto_radius {
 static double cJD = 0.0, cL = 0.0, cB = 0.0, cR = 0.0;
 
 static const struct pluto_argument argument[PLUTO_COEFFS] = {
-	{ 0, 0, 1 },  { 0, 0, 2 },	{ 0, 0, 3 },  { 0, 0, 4 },	{ 0, 0, 5 },
-	{ 0, 0, 6 },  { 0, 1, -1 }, { 0, 1, 0 },  { 0, 1, 1 },	{ 0, 1, 2 },
-	{ 0, 1, 3 },  { 0, 2, -2 }, { 0, 2, -1 }, { 0, 2, 0 },	{ 1, -1, 0 },
+	{ 0, 0, 1 },  { 0, 0, 2 },  { 0, 0, 3 },  { 0, 0, 4 },  { 0, 0, 5 },
+	{ 0, 0, 6 },  { 0, 1, -1 }, { 0, 1, 0 },  { 0, 1, 1 },  { 0, 1, 2 },
+	{ 0, 1, 3 },  { 0, 2, -2 }, { 0, 2, -1 }, { 0, 2, 0 },  { 1, -1, 0 },
 	{ 1, -1, 1 }, { 1, 0, -3 }, { 1, 0, -2 }, { 1, 0, -1 }, { 1, 0, 0 },
-	{ 1, 0, 1 },  { 1, 0, 2 },	{ 1, 0, 3 },  { 1, 0, 4 },	{ 1, 1, -3 },
-	{ 1, 1, -2 }, { 1, 1, -1 }, { 1, 1, 0 },  { 1, 1, 1 },	{ 1, 1, 3 },
+	{ 1, 0, 1 },  { 1, 0, 2 },  { 1, 0, 3 },  { 1, 0, 4 },  { 1, 1, -3 },
+	{ 1, 1, -2 }, { 1, 1, -1 }, { 1, 1, 0 },  { 1, 1, 1 },  { 1, 1, 3 },
 	{ 2, 0, -6 }, { 2, 0, -5 }, { 2, 0, -4 }, { 2, 0, -3 }, { 2, 0, -2 },
-	{ 2, 0, -1 }, { 2, 0, 0 },	{ 2, 0, 1 },  { 2, 0, 2 },	{ 2, 0, 3 },
+	{ 2, 0, -1 }, { 2, 0, 0 },  { 2, 0, 1 },  { 2, 0, 2 },  { 2, 0, 3 },
 	{ 3, 0, -2 }, { 3, 0, -1 }, { 3, 0, 0 }
 };
 
@@ -234,7 +234,7 @@ void ln2_get_pluto_equ_coords(double JD, struct ln_equ_posn *position)
 }
 
 /* Chap 37. Equ 37.1
-*/
+ */
 
 void ln2_get_pluto_helio_coords(double JD, struct ln_helio_posn *position)
 {
@@ -278,7 +278,7 @@ void ln2_get_pluto_helio_coords(double JD, struct ln_helio_posn *position)
 
 	/* calc L, B, R, return in radians */
 	position->L = ln2_range_radians(
-		LN_D2R(238.958116 + 144.96 * t + sum_longitude * 0.000001));
+	    LN_D2R(238.958116 + 144.96 * t + sum_longitude * 0.000001));
 	position->B = LN_D2R(-3.908239 + sum_latitude * 0.000001);
 	position->R = 40.7241346 + sum_radius * 0.0000001;
 
@@ -366,10 +366,10 @@ double ln2_get_pluto_phase(double JD)
 }
 
 int ln2_get_pluto_rst(double JD, struct ln_lnlat_posn *observer,
-					  struct ln_rst_time *rst)
+                      struct ln_rst_time *rst)
 {
 	return ln2_get_body_rst_horizon(JD, observer, ln2_get_pluto_equ_coords,
-									LN_STAR_STANDART_HORIZON, rst);
+	                                LN_STAR_STANDART_HORIZON, rst);
 }
 
 double ln2_get_pluto_sdiam(double JD)

@@ -54,10 +54,10 @@
 /* Equ 20.3, 20.4 pg 126
  */
 void ln2_get_equ_prec(struct ln_equ_posn *mean_position, double JD,
-					  struct ln_equ_posn *position)
+                      struct ln_equ_posn *position)
 {
 	long double t, t2, t3, A, B, C, zeta, eta, theta, ra, dec, mean_ra,
-		mean_dec;
+	    mean_dec;
 
 	/* input is in radians */
 	mean_ra = mean_position->ra;
@@ -78,9 +78,9 @@ void ln2_get_equ_prec(struct ln_equ_posn *mean_position, double JD,
 	/* calc A,B,C equ 20.4 */
 	A = cosl(mean_dec) * sinl(mean_ra + zeta);
 	B = cosl(theta) * cosl(mean_dec) * cosl(mean_ra + zeta) -
-		sinl(theta) * sinl(mean_dec);
+	    sinl(theta) * sinl(mean_dec);
 	C = sinl(theta) * cosl(mean_dec) * cosl(mean_ra + zeta) +
-		cosl(theta) * sinl(mean_dec);
+	    cosl(theta) * sinl(mean_dec);
 
 	ra = atan2l(A, B) + eta;
 
@@ -102,10 +102,10 @@ void ln2_get_equ_prec(struct ln_equ_posn *mean_position, double JD,
 
 /* Equ 20.2, 20.4 pg 126 */
 void ln2_get_equ_prec2(struct ln_equ_posn *mean_position, double fromJD,
-					   double toJD, struct ln_equ_posn *position)
+                       double toJD, struct ln_equ_posn *position)
 {
 	long double t, t2, t3, A, B, C, zeta, eta, theta, ra, dec, mean_ra,
-		mean_dec, T, T2;
+	    mean_dec, T, T2;
 
 	/* input is in radians */
 	mean_ra = mean_position->ra;
@@ -120,11 +120,11 @@ void ln2_get_equ_prec2(struct ln_equ_posn *mean_position, double fromJD,
 	t2 = t * t;
 	t3 = t2 * t;
 	zeta = (2306.2181 + 1.39656 * T - 0.000139 * T2) * t +
-		   (0.30188 - 0.000344 * T) * t2 + 0.017998 * t3;
+	       (0.30188 - 0.000344 * T) * t2 + 0.017998 * t3;
 	eta = (2306.2181 + 1.39656 * T - 0.000139 * T2) * t +
-		  (1.09468 + 0.000066 * T) * t2 + 0.018203 * t3;
+	      (1.09468 + 0.000066 * T) * t2 + 0.018203 * t3;
 	theta = (2004.3109 - 0.85330 * T - 0.000217 * T2) * t -
-			(0.42665 + 0.000217 * T) * t2 - 0.041833 * t3;
+	        (0.42665 + 0.000217 * T) * t2 - 0.041833 * t3;
 	zeta = LN_D2R(zeta);
 	eta = LN_D2R(eta);
 	theta = LN_D2R(theta);
@@ -132,9 +132,9 @@ void ln2_get_equ_prec2(struct ln_equ_posn *mean_position, double fromJD,
 	/* calc A,B,C equ 20.4 */
 	A = cosl(mean_dec) * sinl(mean_ra + zeta);
 	B = cosl(theta) * cosl(mean_dec) * cosl(mean_ra + zeta) -
-		sinl(theta) * sinl(mean_dec);
+	    sinl(theta) * sinl(mean_dec);
 	C = sinl(theta) * cosl(mean_dec) * cosl(mean_ra + zeta) +
-		cosl(theta) * sinl(mean_dec);
+	    cosl(theta) * sinl(mean_dec);
 
 	ra = atan2l(A, B) + eta;
 
@@ -157,6 +157,6 @@ void ln2_get_equ_prec2(struct ln_equ_posn *mean_position, double fromJD,
 /* Equ 20.5, 20.6 pg 128
  */
 void ln2_get_ecl_prec(struct ln_lnlat_posn *mean_position, double JD,
-					  struct ln_lnlat_posn *position)
+                      struct ln_lnlat_posn *position)
 {
 }

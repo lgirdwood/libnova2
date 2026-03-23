@@ -372,9 +372,9 @@ void ln2_hrz_to_hhrz(struct ln_hrz_posn *pos, struct lnh_hrz_posn *hpos)
 
 const char *ln_hrz_to_nswe(struct ln_hrz_posn *pos)
 {
-	const char *directions[] = { "S",  "SSW", "SW", "SWW", "W",	 "NWW",
-								 "NW", "NNW", "N",	"NNE", "NE", "NEE",
-								 "E",  "SEE", "SE", "SSE" };
+	const char *directions[] = { "S",  "SSW", "SW", "SWW", "W",  "NWW",
+		                         "NW", "NNW", "N",  "NNE", "NE", "NEE",
+		                         "E",  "SEE", "SE", "SSE" };
 
 	return directions[(int)(LN_R2D(pos->az) / 22.5)];
 }
@@ -569,7 +569,7 @@ double ln2_interpolate3(double n, double y1, double y2, double y3)
 }
 
 double ln2_interpolate5(double n, double y1, double y2, double y3, double y4,
-						double y5)
+                        double y5)
 {
 	double y, A, B, C, D, E, F, G, H, J, K;
 	double n2, n3, n4;
@@ -601,7 +601,7 @@ double ln2_interpolate5(double n, double y1, double y2, double y3, double y4,
 }
 
 double ln2_find_zero(double (*func)(double, double *), double from, double to,
-					 double *arg)
+                     double *arg)
 {
 	double x, x1, x2, f;
 	int i = 0;
@@ -620,7 +620,7 @@ double ln2_find_zero(double (*func)(double, double *), double from, double to,
 }
 
 double ln2_find_max(double (*func)(double, double *), double from, double to,
-					double *arg)
+                    double *arg)
 {
 	double a, b, xl, xu, eps;
 

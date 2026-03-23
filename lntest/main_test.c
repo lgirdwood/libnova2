@@ -117,25 +117,22 @@ int main(int argc, const char *argv[])
 	double total_time = end_timer();
 
 	fprintf(stdout, "\n\nTest Summary:\n");
-	fprintf(
-		stdout,
-		"------------------------------------------------------------------\n");
+	fprintf(stdout,
+	        "------------------------------------------------------------------\n");
 	fprintf(stdout, "%-25s | %5s | %6s | %6s\n", "Module", "Run", "Passed",
-			"Failed");
-	fprintf(
-		stdout,
-		"------------------------------------------------------------------\n");
+	        "Failed");
+	fprintf(stdout,
+	        "------------------------------------------------------------------\n");
 	for (i = 0; i < num_modules; i++) {
 		fprintf(stdout, "%-25s | %5d | %6d | %6d\n", modules[i].name,
-				modules[i].tests_run,
-				modules[i].tests_run - modules[i].tests_failed,
-				modules[i].tests_failed);
+		        modules[i].tests_run,
+		        modules[i].tests_run - modules[i].tests_failed,
+		        modules[i].tests_failed);
 	}
-	fprintf(
-		stdout,
-		"------------------------------------------------------------------\n");
+	fprintf(stdout,
+	        "------------------------------------------------------------------\n");
 	fprintf(stdout, "Total: %d tests, %d errors. Execution Time: %.3f ms\n",
-			test_number, failed, total_time * 1000.0);
+	        test_number, failed, total_time * 1000.0);
 
 	return 0;
 }

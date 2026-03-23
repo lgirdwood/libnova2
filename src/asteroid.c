@@ -12,7 +12,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *  
+ *
  *  Copyright (C) 2000 - 2026 Liam Girdwood  <lgirdwood@gmail.com>
  */
 
@@ -22,7 +22,7 @@
 #include <libnova2/utility.h>
 
 double ln2_get_asteroid_mag(double JD, struct ln_ell_orbit *orbit, double H,
-							double G)
+                            double G)
 {
 	double t1, t2;
 	double b, r, d;
@@ -55,7 +55,7 @@ double ln2_get_asteroid_sdiam_km(double H, double A)
 }
 
 double ln2_get_asteroid_sdiam_arc(double JD, struct ln_ell_orbit *orbit,
-								  double H, double A)
+                                  double H, double A)
 {
 	double d, dist;
 
@@ -67,6 +67,6 @@ double ln2_get_asteroid_sdiam_arc(double JD, struct ln_ell_orbit *orbit,
 }
 
 /** \example asteroid.c
- * 
- * Examples of how to use asteroid functions. 
+ *
+ * Examples of how to use asteroid functions.
  */

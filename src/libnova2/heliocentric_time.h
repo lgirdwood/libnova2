@@ -12,7 +12,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *  
+ *
  *  Copyright (C) 2009 - 2026 Petr Kubanek
  */
 
@@ -26,25 +26,29 @@ extern "C" {
 #endif
 
 /**
-* \defgroup heliocentric Heliocentric time
-*
-* Functions relating to Heliocentric Time Correction.
-*
-* - **Light Time Correction**: The time it takes for light to travel from the object to the Earth.
-* - **Heliocentric Julian Day**: Corrected for the Earth's position relative to the Sun.
-*
-* All angles are expressed in degrees.
-*/
+ * \defgroup heliocentric Heliocentric time
+ *
+ * Functions relating to Heliocentric Time Correction.
+ *
+ * - **Light Time Correction**: The time it takes for light to travel from the
+ * object to the Earth.
+ * - **Heliocentric Julian Day**: Corrected for the Earth's position relative to
+ * the Sun.
+ *
+ * All angles are expressed in degrees.
+ */
 
 /**
-* \ingroup heliocentric
-* \brief Calculate approximate heliocentric (barycentric) time correction for given date and object
-* \param JD Julian Day
-* \param object Equatorial position of object
-* \return Heliocentric time difference in days
-*
-* Corrects for the time light takes to travel the distance between the Earth and the Sun, projected onto the line of sight to the object.
-*/
+ * \ingroup heliocentric
+ * \brief Calculate approximate heliocentric (barycentric) time correction for
+ * given date and object
+ * \param JD Julian Day
+ * \param object Equatorial position of object
+ * \return Heliocentric time difference in days
+ *
+ * Corrects for the time light takes to travel the distance between the Earth
+ * and the Sun, projected onto the line of sight to the object.
+ */
 double LIBNOVA2_EXPORT
 ln2_get_heliocentric_time_diff(double JD, struct ln_equ_posn *object);
 

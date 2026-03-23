@@ -11,7 +11,7 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA. 
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
 Copyright (C) 2003 - 2026 Liam Girdwood <lgirdwood@gmail.com>
 
@@ -78,7 +78,7 @@ int main(int argc, const char *argv[])
 
 	ln_get_lunar_opt_libr_coords(JD, &ecl);
 	fprintf(stdout, "lunar libration point long %f  lat %f\n", ecl.lng,
-			ecl.lat);
+	        ecl.lat);
 
 	ln_get_lunar_subsolar_coords(JD, &ecl);
 	fprintf(stdout, "lunar subsolar point long %f  lat %f\n", ecl.lng, ecl.lat);

@@ -51,7 +51,7 @@ void ln2_vsop87_to_fk5(struct ln_helio_posn *position, double JD)
 	B = position->B;
 
 	delta_L =
-		(-0.09033 / 3600.0) + (0.03916 / 3600.0) * (cos_LL + sin_LL) * tan(B);
+	    (-0.09033 / 3600.0) + (0.03916 / 3600.0) * (cos_LL + sin_LL) * tan(B);
 	delta_B = (0.03916 / 3600.0) * (cos_LL - sin_LL);
 
 	position->L += delta_L;

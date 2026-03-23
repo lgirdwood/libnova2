@@ -116,7 +116,7 @@ double ln2_get_ell_mean_motion(double a)
 }
 
 void ln2_get_ell_helio_rect_posn(struct ln_ell_orbit *orbit, double JD,
-								 struct ln_rect_posn *posn)
+                                 struct ln_rect_posn *posn)
 {
 	double A, B, C;
 	double F, G, H;
@@ -173,7 +173,7 @@ void ln2_get_ell_helio_rect_posn(struct ln_ell_orbit *orbit, double JD,
 }
 
 void ln2_get_ell_geo_rect_posn(struct ln_ell_orbit *orbit, double JD,
-							   struct ln_rect_posn *posn)
+                               struct ln_rect_posn *posn)
 {
 	struct ln_rect_posn p_posn, e_posn;
 	struct ln_helio_posn earth;
@@ -191,7 +191,7 @@ void ln2_get_ell_geo_rect_posn(struct ln_ell_orbit *orbit, double JD,
 }
 
 void ln2_get_ell_body_equ_coords(double JD, struct ln_ell_orbit *orbit,
-								 struct ln_equ_posn *posn)
+                                 struct ln_equ_posn *posn)
 {
 	struct ln_rect_posn body_rect_posn, sol_rect_posn;
 	double dist, t;
@@ -344,47 +344,51 @@ double ln2_get_ell_body_elong(double JD, struct ln_ell_orbit *orbit)
 }
 
 int ln2_get_ell_body_rst(double JD, struct ln_lnlat_posn *observer,
-						 struct ln_ell_orbit *orbit, struct ln_rst_time *rst)
+                         struct ln_ell_orbit *orbit, struct ln_rst_time *rst)
 {
 	return ln2_get_ell_body_rst_horizon(JD, observer, orbit,
-										LN_STAR_STANDART_HORIZON, rst);
+	                                    LN_STAR_STANDART_HORIZON, rst);
 }
 
 int ln2_get_ell_body_rst_horizon(double JD, struct ln_lnlat_posn *observer,
-								 struct ln_ell_orbit *orbit, double horizon,
-								 struct ln_rst_time *rst)
+                                 struct ln_ell_orbit *orbit, double horizon,
+                                 struct ln_rst_time *rst)
 {
-	return ln2_get_motion_body_rst_horizon(
-		JD, observer, (get_motion_body_coords_t)ln2_get_ell_body_equ_coords,
-		orbit, horizon, rst);
+	return ln2_get_motion_body_rst_horizon(JD, observer,
+	                                       (get_motion_body_coords_t)
+	                                           ln2_get_ell_body_equ_coords,
+	                                       orbit, horizon, rst);
 }
 
 int ln2_get_ell_body_next_rst(double JD, struct ln_lnlat_posn *observer,
-							  struct ln_ell_orbit *orbit,
-							  struct ln_rst_time *rst)
+                              struct ln_ell_orbit *orbit,
+                              struct ln_rst_time *rst)
 {
 	return ln2_get_ell_body_next_rst_horizon(JD, observer, orbit,
-											 LN_STAR_STANDART_HORIZON, rst);
+	                                         LN_STAR_STANDART_HORIZON, rst);
 }
 
 int ln2_get_ell_body_next_rst_horizon(double JD, struct ln_lnlat_posn *observer,
-									  struct ln_ell_orbit *orbit,
-									  double horizon, struct ln_rst_time *rst)
+                                      struct ln_ell_orbit *orbit,
+                                      double horizon, struct ln_rst_time *rst)
 {
-	return ln2_get_motion_body_next_rst_horizon(
-		JD, observer, (get_motion_body_coords_t)ln2_get_ell_body_equ_coords,
-		orbit, horizon, rst);
+	return ln2_get_motion_body_next_rst_horizon(JD, observer,
+	                                            (get_motion_body_coords_t)
+	                                                ln2_get_ell_body_equ_coords,
+	                                            orbit, horizon, rst);
 }
 
 int ln2_get_ell_body_next_rst_horizon_future(double JD,
-											 struct ln_lnlat_posn *observer,
-											 struct ln_ell_orbit *orbit,
-											 double horizon, int day_limit,
-											 struct ln_rst_time *rst)
+                                             struct ln_lnlat_posn *observer,
+                                             struct ln_ell_orbit *orbit,
+                                             double horizon, int day_limit,
+                                             struct ln_rst_time *rst)
 {
-	return ln2_get_motion_body_next_rst_horizon_future(
-		JD, observer, (get_motion_body_coords_t)ln2_get_ell_body_equ_coords,
-		orbit, horizon, day_limit, rst);
+	return ln2_get_motion_body_next_rst_horizon_future(JD, observer,
+	                                                   (get_motion_body_coords_t)
+	                                                       ln2_get_ell_body_equ_coords,
+	                                                   orbit, horizon,
+	                                                   day_limit, rst);
 }
 
 double ln2_get_ell_last_perihelion(double epoch_JD, double M, double n)

@@ -12,8 +12,8 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *  
- *  Copyright (C) 2000 - 2026 Liam Girdwood  
+ *
+ *  Copyright (C) 2000 - 2026 Liam Girdwood
  */
 
 #ifndef LN_SIDEREAL_TIME_H
@@ -25,33 +25,35 @@
 extern "C" {
 #endif
 
-/** \defgroup sidereal Sidereal Time 
-*
-* Sidereal time is the hour angle of the vernal equinox.
-*
-* - **Mean Sidereal Time**: Considers only the mean position of the equinox (date).
-* - **Apparent Sidereal Time**: Considers the true position of the equinox (date + nutation).
-*
-* All angles are expressed in radians. 
-* *Note*: Function return types are double (radians).
-*/
+/** \defgroup sidereal Sidereal Time
+ *
+ * Sidereal time is the hour angle of the vernal equinox.
+ *
+ * - **Mean Sidereal Time**: Considers only the mean position of the equinox
+ * (date).
+ * - **Apparent Sidereal Time**: Considers the true position of the equinox
+ * (date + nutation).
+ *
+ * All angles are expressed in radians.
+ * *Note*: Function return types are double (radians).
+ */
 
 /**
-* \brief Calculate mean sidereal time at Greenwich from Julian day. 
-* \ingroup sidereal
-* \param JD Julian Day
-* \return Mean sidereal time in radians
-*
-* Formula based on Meeus Chapter 12.
-*/
+ * \brief Calculate mean sidereal time at Greenwich from Julian day.
+ * \ingroup sidereal
+ * \param JD Julian Day
+ * \return Mean sidereal time in radians
+ *
+ * Formula based on Meeus Chapter 12.
+ */
 double LIBNOVA2_EXPORT ln2_get_mean_sidereal_time(double JD);
 
 /**
-* \brief Calculate apparent sidereal time from date.
-* \ingroup sidereal
-* \param JD Julian Day
-* \return Apparent sidereal time in radians
-*/
+ * \brief Calculate apparent sidereal time from date.
+ * \ingroup sidereal
+ * \param JD Julian Day
+ * \return Apparent sidereal time in radians
+ */
 
 double LIBNOVA2_EXPORT ln2_get_apparent_sidereal_time(double JD);
 

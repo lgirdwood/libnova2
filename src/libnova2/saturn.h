@@ -12,8 +12,8 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *  
- *  Copyright (C) 2000 - 2026 Liam Girdwood  
+ *
+ *  Copyright (C) 2000 - 2026 Liam Girdwood
  */
 
 #ifndef _LN_SATURN_H
@@ -26,119 +26,121 @@ extern "C" {
 #endif
 
 /** \defgroup saturn Saturn
-*
-* Functions relating to the planet Saturn.
-*
-* - **Heliocentric Coordinates**: Calculated using the VSOP87 theory.
-*   - **Longitude/Latitude**: In radians.
-*   - **Radius Vector**: In Astronomical Units (AU).
-*
-* - **Rings**: Functions handling the appearance and orientation of Saturn's rings.
-*
-* All angles are expressed in radians. Algorithms based on Meeus Chapter 31 (Planets) and 40/41/45 (magnitude/disk/rings).
-*/
+ *
+ * Functions relating to the planet Saturn.
+ *
+ * - **Heliocentric Coordinates**: Calculated using the VSOP87 theory.
+ *   - **Longitude/Latitude**: In radians.
+ *   - **Radius Vector**: In Astronomical Units (AU).
+ *
+ * - **Rings**: Functions handling the appearance and orientation of Saturn's
+ * rings.
+ *
+ * All angles are expressed in radians. Algorithms based on Meeus Chapter 31
+ * (Planets) and 40/41/45 (magnitude/disk/rings).
+ */
 
 /**
-* \brief Calculate the equatorial semidiameter of Saturn in radians.
-* \ingroup saturn
-* \param JD Julian Day
-* \return Equatorial semidiameter in radians
-*/
+ * \brief Calculate the equatorial semidiameter of Saturn in radians.
+ * \ingroup saturn
+ * \param JD Julian Day
+ * \return Equatorial semidiameter in radians
+ */
 double LIBNOVA2_EXPORT ln2_get_saturn_equ_sdiam(double JD);
 
 /**
-* \brief Calculate the polar semidiameter of Saturn in radians.
-* \ingroup saturn
-* \param JD Julian Day
-* \return Polar semidiameter in radians
-*/
+ * \brief Calculate the polar semidiameter of Saturn in radians.
+ * \ingroup saturn
+ * \param JD Julian Day
+ * \return Polar semidiameter in radians
+ */
 double LIBNOVA2_EXPORT ln2_get_saturn_pol_sdiam(double JD);
 
 /**
-* \brief Calculate the time of rise, set and transit for Saturn.
-* \ingroup saturn
-* \param JD Julian Day
-* \param observer Observer's position
-* \param rst Pointer to store rise, set and transit times
-* \return 0 for success, 1 for circumpolar, -1 for never rises
-*/
+ * \brief Calculate the time of rise, set and transit for Saturn.
+ * \ingroup saturn
+ * \param JD Julian Day
+ * \param observer Observer's position
+ * \param rst Pointer to store rise, set and transit times
+ * \return 0 for success, 1 for circumpolar, -1 for never rises
+ */
 int LIBNOVA2_EXPORT ln2_get_saturn_rst(double JD,
-									   struct ln_lnlat_posn *observer,
-									   struct ln_rst_time *rst);
+                                       struct ln_lnlat_posn *observer,
+                                       struct ln_rst_time *rst);
 
 /**
-* \brief Calculate Saturn's heliocentric coordinates.
-* \ingroup saturn
-* \param JD Julian Day
-* \param position Pointer to store heliocentric position
-*/
+ * \brief Calculate Saturn's heliocentric coordinates.
+ * \ingroup saturn
+ * \param JD Julian Day
+ * \param position Pointer to store heliocentric position
+ */
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 */
 void LIBNOVA2_EXPORT
 ln2_get_saturn_helio_coords(double JD, struct ln_helio_posn *position);
 
 /**
-* \brief Calculate Saturn's equatorial coordinates.
-* \ingroup saturn
-* \param JD Julian Day
-* \param position Pointer to store equatorial position
-*/
+ * \brief Calculate Saturn's equatorial coordinates.
+ * \ingroup saturn
+ * \param JD Julian Day
+ * \param position Pointer to store equatorial position
+ */
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 */
 void LIBNOVA2_EXPORT ln2_get_saturn_equ_coords(double JD,
-											   struct ln_equ_posn *position);
+                                               struct ln_equ_posn *position);
 
 /**
-* \brief Calculate the distance between Saturn and the Earth.
-* \ingroup saturn
-* \param JD Julian Day
-* \return Distance in AU
-*/
+ * \brief Calculate the distance between Saturn and the Earth.
+ * \ingroup saturn
+ * \param JD Julian Day
+ * \return Distance in AU
+ */
 /* Chapter ?? */
 double LIBNOVA2_EXPORT ln2_get_saturn_earth_dist(double JD);
 
 /**
-* \brief Calculate the distance between Saturn and the Sun.
-* \ingroup saturn
-* \param JD Julian Day
-* \return Distance in AU
-*/
+ * \brief Calculate the distance between Saturn and the Sun.
+ * \ingroup saturn
+ * \param JD Julian Day
+ * \return Distance in AU
+ */
 /* Chapter ?? */
 double LIBNOVA2_EXPORT ln2_get_saturn_solar_dist(double JD);
 
 /**
-* \brief Calculate the visible magnitude of Saturn
-* \ingroup saturn
-* \param JD Julian Day
-* \return Visible magnitude of Saturn
-*/
+ * \brief Calculate the visible magnitude of Saturn
+ * \ingroup saturn
+ * \param JD Julian Day
+ * \return Visible magnitude of Saturn
+ */
 /* Chapter ?? */
 double LIBNOVA2_EXPORT ln2_get_saturn_magnitude(double JD);
 
 /**
-* \brief Calculate the illuminated fraction of Saturn's disk
-* \ingroup saturn
-* \param JD Julian Day
-* \return Illuminated fraction of Saturn's disk
-*/
+ * \brief Calculate the illuminated fraction of Saturn's disk
+ * \ingroup saturn
+ * \param JD Julian Day
+ * \return Illuminated fraction of Saturn's disk
+ */
 /* Chapter 41 */
 double LIBNOVA2_EXPORT ln2_get_saturn_disk(double JD);
 
 /**
-* \brief Calculate the phase angle of Saturn.
-* \ingroup saturn
-* \param JD Julian Day
-* \return Phase angle of Saturn (radians)
-*/
+ * \brief Calculate the phase angle of Saturn.
+ * \ingroup saturn
+ * \param JD Julian Day
+ * \return Phase angle of Saturn (radians)
+ */
 /* Chapter 41 */
 double LIBNOVA2_EXPORT ln2_get_saturn_phase(double JD);
 
 /**
-* \ingroup saturns
-* \brief Calculate Saturns rectangular heliocentric coordinates.
-* \param JD Julian Day
-* \param position Pointer to store rectangular position
-*/
+ * \ingroup saturns
+ * \brief Calculate Saturns rectangular heliocentric coordinates.
+ * \param JD Julian Day
+ * \param position Pointer to store rectangular position
+ */
 void LIBNOVA2_EXPORT ln2_get_saturn_rect_helio(double JD,
-											   struct ln_rect_posn *position);
+                                               struct ln_rect_posn *position);
 
 #ifdef __cplusplus
 };

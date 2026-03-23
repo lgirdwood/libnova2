@@ -31,36 +31,36 @@ int aber_prec_nut_test(void)
 	ln2_hequ_to_equ(&hmean_position, &mean_position);
 
 	failed += test_result("(Nutation) Theta Persei RA",
-						  LN_R2D(mean_position.ra), 41.0540613, 0.00001);
+	                      LN_R2D(mean_position.ra), 41.0540613, 0.00001);
 	failed += test_result("(Nutation) Theta Persei DEC",
-						  LN_R2D(mean_position.dec), 49.2277489, 0.00001);
+	                      LN_R2D(mean_position.dec), 49.2277489, 0.00001);
 
 	ln2_get_equ_aber(&mean_position, JD, &aberated);
 
-	failed += test_result(
-		"(Aberation) Theta Persei position on 13th November 2028 RA",
-		LN_R2D(aberated.ra), 41.0623836, 0.0001);
-	failed += test_result(
-		"(Aberation) Theta Persei position on 13th November 2028 DEC",
-		LN_R2D(aberated.dec), 49.2296238, 0.00001);
+	failed +=
+	    test_result("(Aberation) Theta Persei position on 13th November 2028 RA",
+	                LN_R2D(aberated.ra), 41.0623836, 0.0001);
+	failed +=
+	    test_result("(Aberation) Theta Persei position on 13th November 2028 DEC",
+	                LN_R2D(aberated.dec), 49.2296238, 0.00001);
 
 	ln2_get_equ_prec(&aberated, JD, &precessed);
 
-	failed += test_result(
-		"(Aberation + Precession) Theta Persei position on 13th November 2028 RA",
-		LN_R2D(precessed.ra), 41.5555635, 0.0001);
+	failed +=
+	    test_result("(Aberation + Precession) Theta Persei position on 13th November 2028 RA",
+	                LN_R2D(precessed.ra), 41.5555635, 0.0001);
 	failed += test_result("(Aberation + Precession) Theta Persei position on "
-						  "13th November 2028 DEC",
-						  LN_R2D(precessed.dec), 49.3503415, 0.00001);
+	                      "13th November 2028 DEC",
+	                      LN_R2D(precessed.dec), 49.3503415, 0.00001);
 
 	ln2_get_equ_nut(&precessed, JD, &nutated);
 
 	failed += test_result("(Aberation + Precession + Nutation) Theta Persei "
-						  "position on 13th November 2028 RA",
-						  LN_R2D(nutated.ra), 41.55627214, 0.0001);
+	                      "position on 13th November 2028 RA",
+	                      LN_R2D(nutated.ra), 41.55627214, 0.0001);
 	failed += test_result("(Aberation + Precession + Nutation) Theta Persei "
-						  "position on 13th November 2028 DEC",
-						  LN_R2D(nutated.dec), 49.35063679, 0.00001);
+	                      "position on 13th November 2028 DEC",
+	                      LN_R2D(nutated.dec), 49.35063679, 0.00001);
 
 	return failed;
 }

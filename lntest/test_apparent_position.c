@@ -38,8 +38,8 @@ int apparent_position_test(void)
 	ln2_get_apparent_posn(&object, &pm, JD, &pos);
 
 	failed += test_result("(Apparent Position) RA on JD 2462088.69  ",
-						  LN_R2D(pos.ra), 41.56039870, 0.00001);
+	                      LN_R2D(pos.ra), 41.56039870, 0.00001);
 	failed += test_result("(Apparent Position) DEC on JD 2462088.69  ",
-						  LN_R2D(pos.dec), 49.34991119, 0.00001);
+	                      LN_R2D(pos.dec), 49.34991119, 0.00001);
 	return failed;
 }

@@ -12,7 +12,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *  
+ *
  *  Copyright (C) 2000 - 2026 Liam Girdwood  <lgirdwood@gmail.com>
  */
 
@@ -22,7 +22,7 @@
 #include <libnova2/parabolic_motion.h>
 
 double ln2_get_ell_comet_mag(double JD, struct ln_ell_orbit *orbit, double g,
-							 double k)
+                             double k)
 {
 	double d, r;
 	double E, M;
@@ -43,7 +43,7 @@ double ln2_get_ell_comet_mag(double JD, struct ln_ell_orbit *orbit, double g,
 }
 
 double ln2_get_par_comet_mag(double JD, struct ln_par_orbit *orbit, double g,
-							 double k)
+                             double k)
 {
 	double d, r, t;
 
@@ -58,6 +58,6 @@ double ln2_get_par_comet_mag(double JD, struct ln_par_orbit *orbit, double g,
 }
 
 /** \example comet.c
- * 
- * Examples of how to use comet functions. 
+ *
+ * Examples of how to use comet functions.
  */

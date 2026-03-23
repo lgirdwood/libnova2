@@ -41,14 +41,14 @@ int solar_coord_test(void)
 
 	/* Sdiam */
 	val = ln2_get_solar_sdiam(JD);
-	/* The unit of sdiam is arcseconds in some places and radians in others? 
-     Header says radians. Previous test checked against 976.0 which implies arcsec.
-     The output from generation was 975.900...
-     Let's check the header again.
-     Header: "Calculate the semidiameter of the Sun in radians"
-     Wait, output 975.900 is definitely arcseconds (sun is ~0.5 deg = 1800 arcsec diameter, 900 semidiameter).
-     If header says radians but returns arcseconds, that acts as documentation bug or implementation quirk.
-     I'll trust the generated value 975.900523... */
+	/* The unit of sdiam is arcseconds in some places and radians in others?
+	 Header says radians. Previous test checked against 976.0 which implies
+	 arcsec. The output from generation was 975.900... Let's check the header
+	 again. Header: "Calculate the semidiameter of the Sun in radians" Wait,
+	 output 975.900 is definitely arcseconds (sun is ~0.5 deg = 1800 arcsec
+	 diameter, 900 semidiameter). If header says radians but returns arcseconds,
+	 that acts as documentation bug or implementation quirk. I'll trust the
+	 generated value 975.900523... */
 	failed += test_result("Solar Sdiam", val, 975.900523550473, 1e-6);
 
 	return failed;
@@ -79,7 +79,7 @@ int solar_earth_test(void)
 	/* Sun at J2000 should be near 280 deg long? */
 	/* geometric mean longitude 280.46646. */
 	failed += test_result("(Solar) Ecl Longitude J2000", LN_R2D(ecl.lng),
-						  280.46, 1.0);
+	                      280.46, 1.0);
 
 	/* Solar RST Horizon */
 	observer.lng = LN_D2R(0.0);
@@ -88,11 +88,12 @@ int solar_earth_test(void)
 	ln2_get_solar_rst_horizon(JD, &observer, LN_D2R(-18.0), &rst);
 	/* Check validity */
 	if (rst.rise == 0.0 && rst.set == 0.0) {
-		/* It might be valid if it doesn't rise/set, but sun usually does at lat 50
-     */
+		/* It might be valid if it doesn't rise/set, but sun usually does at lat
+		 * 50
+		 */
 		/* Unless J2000 (Jan 1) is polar day/night? No. */
-		/* But return value of function handles that. We are just exercising code
-     * path */
+		/* But return value of function handles that. We are just exercising
+		 * code path */
 	}
 
 	/* Solar sdiam */
@@ -102,7 +103,7 @@ int solar_earth_test(void)
 
 	/* Earth Centre Dist */
 	/* void ln2_get_earth_centre_dist(float height, double latitude, double
-   * *p_sin_o, double *p_cos_o); */
+	 * *p_sin_o, double *p_cos_o); */
 	double sin_o, cos_o;
 	ln2_get_earth_centre_dist(100.0, 45.0, &sin_o, &cos_o);
 	/* just check they are populated */
@@ -112,9 +113,9 @@ int solar_earth_test(void)
 	}
 	/* Check rho approx 1.0 */
 	/* rho = sqrt( (rho sin)^2 + (rho cos)^2 )?? No, these are rho sin phi' and
-   * rho cos phi'. */
+	 * rho cos phi'. */
 	/* so sqrt(sin_o^2 + cos_o^2) should be dist from earth center in AU? No, in
-   * Earth Radii? */
+	 * Earth Radii? */
 	/* usually these are in units of earth equatorial radius. */
 	res = sqrt(sin_o * sin_o + cos_o * cos_o);
 	failed += test_result("(Earth) Centre Dist (rho approx 1)", res, 1.0, 0.01);

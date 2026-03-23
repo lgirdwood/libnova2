@@ -12,7 +12,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *  
+ *
  *  Copyright (C) 2000 - 2026 Liam Girdwood  <lgirdwood@gmail.com>
  */
 
@@ -22,7 +22,7 @@
 
 /* Chap 17 page 115 */
 double ln2_get_angular_separation(struct ln_equ_posn *posn1,
-								  struct ln_equ_posn *posn2)
+                                  struct ln_equ_posn *posn2)
 {
 	double d;
 	double x, y, z;
@@ -47,7 +47,7 @@ double ln2_get_angular_separation(struct ln_equ_posn *posn1,
 
 /* Chapt 17, page 116 */
 double ln2_get_rel_posn_angle(struct ln_equ_posn *posn1,
-							  struct ln_equ_posn *posn2)
+                              struct ln_equ_posn *posn2)
 {
 	double P;
 	double a1, a2, d1, d2;

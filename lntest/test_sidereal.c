@@ -21,11 +21,11 @@ int sidereal_test(void)
 
 	/* 2.24689976 radians */
 	failed += test_result_hms("(Sidereal) mean radians on 10/04/1987 19:21:00 ",
-							  sd, 2.24689976, 0.000001);
+	                          sd, 2.24689976, 0.000001);
 	sd = ln2_get_apparent_sidereal_time(JD);
 	/* 2.24689664 radians */
 	failed +=
-		test_result_hms("(Sidereal) apparent radians on 10/04/1987 19:21:00 ",
-						sd, 2.24689664, 0.000001);
+	    test_result_hms("(Sidereal) apparent radians on 10/04/1987 19:21:00 ",
+	                    sd, 2.24689664, 0.000001);
 	return failed;
 }

@@ -12,9 +12,10 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *  
+ *
  *  Copyright (C) 2000 - 2026 Petr Kubanek
- *  Copyright (C) 2011 - 2026 Petr Kubanek, Institute of Physics <kubanek@fzu.cz>
+ *  Copyright (C) 2011 - 2026 Petr Kubanek, Institute of Physics
+ * <kubanek@fzu.cz>
  */
 
 #include <math.h>
@@ -35,5 +36,5 @@ double ln2_get_airmass(double alt, double airmass_scale)
 double ln2_get_alt_from_airmass(double X, double airmass_scale)
 {
 	return asin((2.0 * airmass_scale + 1.0 - X * X) /
-				(2.0 * X * airmass_scale));
+	            (2.0 * X * airmass_scale));
 }

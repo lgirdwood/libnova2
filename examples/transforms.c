@@ -37,11 +37,11 @@ int main(int argc, const char *argv[])
 	double JD;
 
 	/*
-   * observers position
-   * longitude is measured positively eastwards
-   * i.e. Long 5d36m30W (Leon, Spain) = 354d24m30
-   * Lat for Leon = Lat 42d35m40 N
-   */
+	 * observers position
+	 * longitude is measured positively eastwards
+	 * i.e. Long 5d36m30W (Leon, Spain) = 354d24m30
+	 * Lat for Leon = Lat 42d35m40 N
+	 */
 	hobserver.lng.degrees = -5;
 	hobserver.lng.minutes = 36;
 	hobserver.lng.seconds = 30.0;
@@ -72,8 +72,8 @@ int main(int argc, const char *argv[])
 
 	ln2_hrz_to_hhrz(&hrz, &hhrz);
 	fprintf(stdout, "ALT %d:%d:%f  AZ %d:%d:%f\n", hhrz.alt.degrees,
-			hhrz.alt.minutes, hhrz.alt.seconds, hhrz.az.degrees,
-			hhrz.az.minutes, hhrz.az.seconds);
+	        hhrz.alt.minutes, hhrz.alt.seconds, hhrz.az.degrees,
+	        hhrz.az.minutes, hhrz.az.seconds);
 
 	ln2_get_equ_from_hrz(&hrz, &observer, JD, &equ);
 	fprintf(stdout, "(Alnilam) Horiz to Equ RA %f\n", equ.ra);
@@ -81,8 +81,8 @@ int main(int argc, const char *argv[])
 
 	ln2_equ_to_hequ(&equ, &hequ);
 	fprintf(stdout, "RA %d:%d:%f  DEC %d:%d:%f\n", hequ.ra.hours,
-			hequ.ra.minutes, hequ.ra.seconds, hequ.dec.degrees,
-			hequ.dec.minutes, hequ.dec.seconds);
+	        hequ.ra.minutes, hequ.ra.seconds, hequ.dec.degrees,
+	        hequ.dec.minutes, hequ.dec.seconds);
 
 	return 0;
 }

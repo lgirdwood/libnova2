@@ -32,7 +32,7 @@ double ln2_get_mean_sidereal_time(double JD)
 
 	/* calc mean angle in degrees */
 	sidereal = 280.46061837 + (360.98564736629 * (JD - 2451545.0)) +
-			   (0.000387933 * T * T) - (T * T * T / 38710000.0);
+	           (0.000387933 * T * T) - (T * T * T / 38710000.0);
 
 	/* add a convenient multiple of 360 degrees */
 	sidereal = ln2_range_degrees(sidereal);

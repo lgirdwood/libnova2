@@ -25,8 +25,8 @@
 /* Example 20.b pg 126
  */
 void ln2_get_equ_pm(struct ln_equ_posn *mean_position,
-					struct ln_equ_posn *proper_motion, double JD,
-					struct ln_equ_posn *position)
+                    struct ln_equ_posn *proper_motion, double JD,
+                    struct ln_equ_posn *position)
 {
 	ln2_get_equ_pm_epoch(mean_position, proper_motion, JD, JD2000, position);
 }
@@ -34,8 +34,8 @@ void ln2_get_equ_pm(struct ln_equ_posn *mean_position,
 /* Example 20.b, pg 126
  */
 void ln2_get_equ_pm_epoch(struct ln_equ_posn *mean_position,
-						  struct ln_equ_posn *proper_motion, double JD,
-						  double epoch_JD, struct ln_equ_posn *position)
+                          struct ln_equ_posn *proper_motion, double JD,
+                          double epoch_JD, struct ln_equ_posn *position)
 {
 	long double T;
 	long double ra, dec;

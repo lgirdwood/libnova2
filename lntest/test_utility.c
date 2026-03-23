@@ -16,21 +16,21 @@ int utility_test(void)
 
 	ln2_deg_to_dms(deg, &dms);
 	snprintf(buf, sizeof(buf), "deg %c%d min %d sec %f", dms.neg ? '-' : '+',
-			 dms.degrees, dms.minutes, dms.seconds);
+	         dms.degrees, dms.minutes, dms.seconds);
 	failed += test_str_result("(Utility) deg_to_dms -1.23", buf,
-							  "deg -1 min 13 sec 48.000000");
+	                          "deg -1 min 13 sec 48.000000");
 
 	ln2_deg_to_dms(deg2, &dms);
 	snprintf(buf, sizeof(buf), "deg %c%d min %d sec %f", dms.neg ? '-' : '+',
-			 dms.degrees, dms.minutes, dms.seconds);
+	         dms.degrees, dms.minutes, dms.seconds);
 	failed += test_str_result("(Utility) deg_to_dms 1.23", buf,
-							  "deg +1 min 13 sec 48.000000");
+	                          "deg +1 min 13 sec 48.000000");
 
 	ln2_deg_to_dms(deg3, &dms);
 	snprintf(buf, sizeof(buf), "deg %c%d min %d sec %f", dms.neg ? '-' : '+',
-			 dms.degrees, dms.minutes, dms.seconds);
+	         dms.degrees, dms.minutes, dms.seconds);
 	failed += test_str_result("(Utility) deg_to_dms -0.5", buf,
-							  "deg -0 min 30 sec 0.000000");
+	                          "deg -0 min 30 sec 0.000000");
 
 	return failed;
 }
@@ -87,9 +87,9 @@ int utility_conversion_test(void)
 	hlnlat.lat.neg = 0;
 	ln2_hlnlat_to_lnlat(&hlnlat, &lnlat);
 	failed += test_result("(Utility) hlnlat_to_lnlat lng", LN_R2D(lnlat.lng),
-						  100.0, 1e-6);
+	                      100.0, 1e-6);
 	failed += test_result("(Utility) hlnlat_to_lnlat lat", LN_R2D(lnlat.lat),
-						  50.0, 1e-6);
+	                      50.0, 1e-6);
 
 	/* hrz to nswe */
 	/* 0=N, 90=E? No, 0=S? */
@@ -99,13 +99,13 @@ int utility_conversion_test(void)
 	/* printf("DEBUG: Calling ln_hrz_to_nswe\n"); */
 	loc_str = ln_hrz_to_nswe(&hrz);
 	failed += test_str_result("(Utility) hrz_to_nswe 0.0",
-							  loc_str ? loc_str : "NULL", "S");
+	                          loc_str ? loc_str : "NULL", "S");
 
 	/* Also test radians? Az=0 -> S. PI -> N. */
 	hrz.az = M_PI;
 	loc_str = ln_hrz_to_nswe(&hrz);
 	failed += test_str_result("(Utility) hrz_to_nswe PI",
-							  loc_str ? loc_str : "NULL", "N");
+	                          loc_str ? loc_str : "NULL", "N");
 
 	/* Interpolation */
 	res = ln2_interpolate3(0.5, 0.0, 1.0, 2.0);

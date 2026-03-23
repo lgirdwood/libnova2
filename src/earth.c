@@ -2744,7 +2744,7 @@ double ln2_get_earth_solar_dist(double JD)
 }
 
 void ln2_get_earth_centre_dist(float height, double latitude, double *p_sin_o,
-							   double *p_cos_o)
+                               double *p_cos_o)
 {
 	double a, b, f, u;
 

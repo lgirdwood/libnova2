@@ -36,7 +36,7 @@ extern "C" {
 #endif
 
 #if defined(_MSC_VER) || defined(__CYGWIN__) || defined(__MINGW32__) || \
-	defined(__BCPLUSPLUS__) || defined(__MWERKS__)
+    defined(__BCPLUSPLUS__) || defined(__MWERKS__)
 #if defined(LIBNOVA2_STATIC)
 #define LIBNOVA2_EXPORT
 #elif defined(LIBNOVA2_SHARED)
@@ -95,11 +95,11 @@ struct ln_date {
  */
 #define LN_DATE(y, m, d, h, min, s)      \
 	((struct ln_date){ .years = (y),     \
-					   .months = (m),    \
-					   .days = (d),      \
-					   .hours = (h),     \
-					   .minutes = (min), \
-					   .seconds = (s) })
+	                   .months = (m),    \
+	                   .days = (d),      \
+	                   .hours = (h),     \
+	                   .minutes = (min), \
+	                   .seconds = (s) })
 
 /**
 ** Zone date
@@ -118,8 +118,9 @@ struct ln_zonedate {
 	int hours; /**< Hours. Valid values 0 - 23. */
 	int minutes; /**< Minutes. Valid values 0 - 59. */
 	double seconds; /**< Seconds. Valid values 0 - 59.99999.... */
-	long gmtoff; /**< Timezone offset. Seconds east of UTC. Valid values 0..86400
-                */
+	long gmtoff; /**< Timezone offset. Seconds east of UTC. Valid values
+	              * 0..86400
+	              */
 };
 
 /** \struct ln_dms
@@ -203,9 +204,9 @@ struct ln_equ_posn {
 
 struct ln_hrz_posn {
 	double az; /**< AZ. Object azimuth in radians. <p>
-                0 = South, PI/2 = West, PI = North, 3PI/2 = East */
+	            0 = South, PI/2 = West, PI = North, 3PI/2 = East */
 	double alt; /**< ALT. Object altitude in radians. <p> 0 = horizon, PI/2 =
-                 zenith, -PI/2 = nadir */
+	             zenith, -PI/2 = nadir */
 };
 
 /** \struct ln_lnlat_posn
@@ -292,12 +293,12 @@ struct ln_ell_orbit {
  */
 #define LN_ELL_ORBIT_DEG(_a, _e, _i, _w, _omega, _n, _JD)         \
 	((struct ln_ell_orbit){ .a = (_a),                            \
-							.e = (_e),                            \
-							.i = ((_i) * (M_PI / 180.0)),         \
-							.w = ((_w) * (M_PI / 180.0)),         \
-							.omega = ((_omega) * (M_PI / 180.0)), \
-							.n = ((_n) * (M_PI / 180.0)),         \
-							.JD = (_JD) })
+	                        .e = (_e),                            \
+	                        .i = ((_i) * (M_PI / 180.0)),         \
+	                        .w = ((_w) * (M_PI / 180.0)),         \
+	                        .omega = ((_omega) * (M_PI / 180.0)), \
+	                        .n = ((_n) * (M_PI / 180.0)),         \
+	                        .JD = (_JD) })
 
 /**
  * \struct ln_par_orbit
@@ -320,10 +321,10 @@ struct ln_par_orbit {
  */
 #define LN_PAR_ORBIT_DEG(_q, _i, _w, _omega, _JD)                 \
 	((struct ln_par_orbit){ .q = (_q),                            \
-							.i = ((_i) * (M_PI / 180.0)),         \
-							.w = ((_w) * (M_PI / 180.0)),         \
-							.omega = ((_omega) * (M_PI / 180.0)), \
-							.JD = (_JD) })
+	                        .i = ((_i) * (M_PI / 180.0)),         \
+	                        .w = ((_w) * (M_PI / 180.0)),         \
+	                        .omega = ((_omega) * (M_PI / 180.0)), \
+	                        .JD = (_JD) })
 
 /**
  * \struct ln_hyp_orbit
@@ -347,11 +348,11 @@ struct ln_hyp_orbit {
  */
 #define LN_HYP_ORBIT_DEG(_q, _e, _i, _w, _omega, _JD)             \
 	((struct ln_hyp_orbit){ .q = (_q),                            \
-							.e = (_e),                            \
-							.i = ((_i) * (M_PI / 180.0)),         \
-							.w = ((_w) * (M_PI / 180.0)),         \
-							.omega = ((_omega) * (M_PI / 180.0)), \
-							.JD = (_JD) })
+	                        .e = (_e),                            \
+	                        .i = ((_i) * (M_PI / 180.0)),         \
+	                        .w = ((_w) * (M_PI / 180.0)),         \
+	                        .omega = ((_omega) * (M_PI / 180.0)), \
+	                        .JD = (_JD) })
 
 /**
  * \struct ln_rst_time

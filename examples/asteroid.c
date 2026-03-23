@@ -11,7 +11,7 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA. 
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
 Copyright (C) 2003 - 2026 Liam Girdwood <lgirdwood@gmail.com>
 
@@ -63,14 +63,14 @@ int main(int argc, const char *argv[])
 	JD = ln2_get_julian_from_sys();
 	fprintf(stdout, "JD (sys) %f\n", JD);
 
-	/* Pallas orbital parameters 
-	* Taken from MPCORB.DAT
-	* 00002    4.13  0.11 K036A 260.69458  310.45917  173.16479
-	* 34.84989  0.2299839  0.21343771   2.7730346    MPC 24084
-	* 5482  63 1839-1993 0.55 M-c 28  Bowell     0000     (2) Pallas          
-	*/
+	/* Pallas orbital parameters
+	 * Taken from MPCORB.DAT
+	 * 00002    4.13  0.11 K036A 260.69458  310.45917  173.16479
+	 * 34.84989  0.2299839  0.21343771   2.7730346    MPC 24084
+	 * 5482  63 1839-1993 0.55 M-c 28  Bowell     0000     (2) Pallas
+	 */
 	orbit = LN_ELL_ORBIT_DEG(2.7730346, 0.2299839, 34.84989, 310.45917,
-							 173.16479, 0.21343771, 0.0);
+	                         173.16479, 0.21343771, 0.0);
 	H = 4.13;
 	G = 0.11;
 

@@ -52,9 +52,9 @@ double ln2_get_julian_day(struct ln_date *date)
 
 	/* check for Julian or Gregorian calendar (starts Oct 4th 1582) */
 	if (local_date.years > 1582 ||
-		(local_date.years == 1582 &&
-		 (local_date.months > 10 ||
-		  (local_date.months == 10 && local_date.days >= 4)))) {
+	    (local_date.years == 1582 &&
+	     (local_date.months > 10 ||
+	      (local_date.months == 10 && local_date.days >= 4)))) {
 		/* Gregorian calendar */
 		b = 2 - a + (a / 4);
 	} else {
@@ -64,12 +64,12 @@ double ln2_get_julian_day(struct ln_date *date)
 
 	/* add a fraction of hours, minutes and secs to days*/
 	days = local_date.days + (double)(local_date.hours / 24.0) +
-		   (double)(local_date.minutes / 1440.0) +
-		   (double)(local_date.seconds / 86400.0);
+	       (double)(local_date.minutes / 1440.0) +
+	       (double)(local_date.seconds / 86400.0);
 
 	/* now get the JD */
 	JD = (int)(365.25 * (local_date.years + 4716)) +
-		 (int)(30.6001 * (local_date.months + 1)) + days + b - 1524.5;
+	     (int)(30.6001 * (local_date.months + 1)) + days + b - 1524.5;
 
 	return JD;
 }
@@ -289,7 +289,7 @@ double ln2_get_julian_from_mpc(char *mpc_date)
 }
 
 void ln2_date_to_zonedate(struct ln_date *date, struct ln_zonedate *zonedate,
-						  long gmtoff)
+                          long gmtoff)
 {
 	double jd;
 	struct ln_date dat;

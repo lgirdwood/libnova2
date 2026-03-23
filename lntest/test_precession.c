@@ -34,29 +34,29 @@ int precession_test(void)
 	ln2_get_equ_pm(&object, &pm, JD, &object);
 
 	failed += test_result_dms("(Proper motion) RA on JD 2462088.69  ",
-							  LN_R2D(object.ra), 41.05021630, 0.00001);
+	                          LN_R2D(object.ra), 41.05021630, 0.00001);
 	failed += test_result_dms("(Proper motion) DEC on JD 2462088.69  ",
-							  LN_R2D(object.dec), 49.227750, 0.00001);
+	                          LN_R2D(object.dec), 49.227750, 0.00001);
 
 	ln2_get_equ_prec(&object, JD, &pos);
 	failed += test_result_dms("(Precession) RA on JD 2462088.69  ",
-							  LN_R2D(pos.ra), 41.54333349, 0.00003);
+	                          LN_R2D(pos.ra), 41.54333349, 0.00003);
 	failed += test_result_dms("(Precession) DEC on JD 2462088.69  ",
-							  LN_R2D(pos.dec), 49.34849687, 0.00001);
+	                          LN_R2D(pos.dec), 49.34849687, 0.00001);
 
 	ln2_get_equ_prec2(&object, JD2000, JD, &pos);
 
 	failed += test_result_dms("(Precession 2) RA on JD 2462088.69  ",
-							  LN_R2D(pos.ra), 41.54333349, 0.00001);
+	                          LN_R2D(pos.ra), 41.54333349, 0.00001);
 	failed += test_result_dms("(Precession 2) DEC on JD 2462088.69  ",
-							  LN_R2D(pos.dec), 49.34849687, 0.00001);
+	                          LN_R2D(pos.dec), 49.34849687, 0.00001);
 
 	ln2_get_equ_prec2(&pos, JD, JD2000, &pos2);
 
 	failed += test_result_dms("(Precession 2) RA on JD 2451545.0  ",
-							  LN_R2D(pos2.ra), LN_R2D(object.ra), 0.00001);
+	                          LN_R2D(pos2.ra), LN_R2D(object.ra), 0.00001);
 	failed += test_result_dms("(Precession 2) DEC on JD 2451545.0  ",
-							  LN_R2D(pos2.dec), LN_R2D(object.dec), 0.00001);
+	                          LN_R2D(pos2.dec), LN_R2D(object.dec), 0.00001);
 
 	// INTEGRAL GRB050922A coordinates lead to RA not in <0-360> range
 	pos.ra = LN_D2R(271.2473);
@@ -68,9 +68,9 @@ int precession_test(void)
 	ln2_get_equ_prec2(&pos, JD, JD2000, &pos2);
 
 	failed += test_result_dms("(Precession 2) RA on JD 2451545.0  ",
-							  LN_R2D(pos2.ra), 271.1541, 0.0002);
+	                          LN_R2D(pos2.ra), 271.1541, 0.0002);
 	failed += test_result_dms("(Precession 2) DEC on JD 2451545.0  ",
-							  LN_R2D(pos2.dec), -32.0235, 0.0002);
+	                          LN_R2D(pos2.dec), -32.0235, 0.0002);
 
 	// second test from AA, p. 128
 	hobject.ra.hours = 2;
@@ -97,18 +97,18 @@ int precession_test(void)
 	// even worse then we
 
 	failed += test_result("(Precession 2) RA on B1900  ", LN_R2D(pos2.ra),
-						  20.68729628, 0.002);
+	                      20.68729628, 0.002);
 	failed += test_result("(Precession 2) DEC on B1900  ", LN_R2D(pos2.dec),
-						  88.77431170, 0.0001);
+	                      88.77431170, 0.0001);
 
 	ln2_get_equ_pm(&object, &pm, JD2050, &pos);
 
 	ln2_get_equ_prec2(&pos, JD2000, JD2050, &pos2);
 
 	failed += test_result("(Precession 2) RA on J2050  ", LN_R2D(pos2.ra),
-						  57.02160084, 0.003);
+	                      57.02160084, 0.003);
 	failed += test_result("(Precession 2) DEC on J2050  ", LN_R2D(pos2.dec),
-						  89.45444522, 0.0001);
+	                      89.45444522, 0.0001);
 
 	return failed;
 }

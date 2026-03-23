@@ -26,7 +26,7 @@
 /* Equ 37.1 Pg 264
  */
 void ln2_get_rect_from_helio(struct ln_helio_posn *object,
-							 struct ln_rect_posn *position)
+                             struct ln_rect_posn *position)
 {
 	double sin_e, cos_e;
 	double cos_B, sin_B, sin_L, cos_L;
@@ -54,8 +54,8 @@ void ln2_get_rect_from_helio(struct ln_helio_posn *object,
  */
 
 void ln2_get_hrz_from_equ(struct ln_equ_posn *object,
-						  struct ln_lnlat_posn *observer, double JD,
-						  struct ln_hrz_posn *position)
+                          struct ln_lnlat_posn *observer, double JD,
+                          struct ln_hrz_posn *position)
 {
 	double sidereal;
 
@@ -65,9 +65,9 @@ void ln2_get_hrz_from_equ(struct ln_equ_posn *object,
 }
 
 void ln2_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object,
-										struct ln_lnlat_posn *observer,
-										double sidereal,
-										struct ln_hrz_posn *position)
+                                        struct ln_lnlat_posn *observer,
+                                        double sidereal,
+                                        struct ln_hrz_posn *position)
 {
 	long double H, ra, latitude, declination, A, Ac, As, h, Z, Zs;
 
@@ -78,13 +78,14 @@ void ln2_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object,
 	H = sidereal + observer->lng - ra;
 
 	/* hence formula 12.5 and 12.6 give */
-	/* convert to radians - hour angle, observers latitude, object declination */
+	/* convert to radians - hour angle, observers latitude, object declination
+	 */
 	latitude = observer->lat;
 	declination = object->dec;
 
 	/* formula 12.6 *; missuse of A (you have been warned) */
 	A = sin(latitude) * sin(declination) +
-		cos(latitude) * cos(declination) * cos(H);
+	    cos(latitude) * cos(declination) * cos(H);
 	h = asin(A);
 
 	/* output in radians */
@@ -103,7 +104,7 @@ void ln2_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object,
 		else
 			position->az = 0.0;
 		if ((object->dec > 0.0 && observer->lat > 0.0) ||
-			(object->dec < 0.0 && observer->lat < 0.0))
+		    (object->dec < 0.0 && observer->lat < 0.0))
 			position->alt = M_PI_2;
 		else
 			position->alt = -M_PI_2;
@@ -113,8 +114,8 @@ void ln2_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object,
 	/* formulas TC 6.8d Taff 1991, pp. 2 and 13 - vector transformations */
 	As = (cos(declination) * sin(H)) / Zs;
 	Ac = (sin(latitude) * cos(declination) * cos(H) -
-		  cos(latitude) * sin(declination)) /
-		 Zs;
+	      cos(latitude) * sin(declination)) /
+	     Zs;
 
 	// don't blom at atan2
 	if (Ac == 0.0 && As == 0.0) {
@@ -131,8 +132,8 @@ void ln2_get_hrz_from_equ_sidereal_time(struct ln_equ_posn *object,
 }
 
 void ln2_get_equ_from_hrz(struct ln_hrz_posn *object,
-						  struct ln_lnlat_posn *observer, double JD,
-						  struct ln_equ_posn *position)
+                          struct ln_lnlat_posn *observer, double JD,
+                          struct ln_equ_posn *position)
 {
 	long double H, longitude, declination, latitude, A, h, sidereal;
 
@@ -161,7 +162,7 @@ void ln2_get_equ_from_hrz(struct ln_hrz_posn *object,
 /* Equ 12.3, 12.4 pg 89
  */
 void ln2_get_equ_from_ecl(struct ln_lnlat_posn *object, double JD,
-						  struct ln_equ_posn *position)
+                          struct ln_equ_posn *position)
 {
 	double ra, declination, longitude, latitude;
 	struct ln_nutation nutation;
@@ -177,10 +178,10 @@ void ln2_get_equ_from_ecl(struct ln_lnlat_posn *object, double JD,
 
 	/* Equ 12.3, 12.4 */
 	ra = atan2((sin(longitude) * cos(nutation.ecliptic) -
-				tan(latitude) * sin(nutation.ecliptic)),
-			   cos(longitude));
+	            tan(latitude) * sin(nutation.ecliptic)),
+	           cos(longitude));
 	declination = sin(latitude) * cos(nutation.ecliptic) +
-				  cos(latitude) * sin(nutation.ecliptic) * sin(longitude);
+	              cos(latitude) * sin(nutation.ecliptic) * sin(longitude);
 	declination = asin(declination);
 
 	/* store in position and normalize */
@@ -191,7 +192,7 @@ void ln2_get_equ_from_ecl(struct ln_lnlat_posn *object, double JD,
 /* Equ 12.1, 12.2 Pg 88
  */
 void ln2_get_ecl_from_equ(struct ln_equ_posn *object, double JD,
-						  struct ln_lnlat_posn *position)
+                          struct ln_lnlat_posn *position)
 {
 	double ra, declination, latitude, longitude;
 	struct ln_nutation nutation;
@@ -203,10 +204,10 @@ void ln2_get_ecl_from_equ(struct ln_equ_posn *object, double JD,
 
 	/* Equ 12.1, 12.2 */
 	longitude = atan2((sin(ra) * cos(nutation.ecliptic) +
-					   tan(declination) * sin(nutation.ecliptic)),
-					  cos(ra));
+	                   tan(declination) * sin(nutation.ecliptic)),
+	                  cos(ra));
 	latitude = sin(declination) * cos(nutation.ecliptic) -
-			   cos(declination) * sin(nutation.ecliptic) * sin(ra);
+	           cos(declination) * sin(nutation.ecliptic) * sin(ra);
 	latitude = asin(latitude);
 
 	/* store in position */
@@ -217,7 +218,7 @@ void ln2_get_ecl_from_equ(struct ln_equ_posn *object, double JD,
 /* Equ 33.2
  */
 void ln2_get_ecl_from_rect(struct ln_rect_posn *rect,
-						   struct ln_lnlat_posn *posn)
+                           struct ln_lnlat_posn *posn)
 {
 	double t;
 
@@ -279,7 +280,7 @@ void ln2_get_gal_from_equ(struct ln_equ_posn *equ, struct ln_gal_posn *gal)
 	cos_dec = cos(rad_equ_dec);
 
 	x = atan2(sin(ra_192_25),
-			  cos_ra_192_25 * SIN_27_4 - (sin_dec / cos_dec) * COS_27_4);
+	          cos_ra_192_25 * SIN_27_4 - (sin_dec / cos_dec) * COS_27_4);
 	gal->l = ln2_range_radians(LN_D2R(303.0) - x);
 	gal->b = asin(sin_dec * SIN_27_4 + cos_dec * COS_27_4 * cos_ra_192_25);
 }

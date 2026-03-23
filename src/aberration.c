@@ -12,8 +12,8 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *  
- *  Copyright (C) 2000 - 2026 Liam Girdwood  
+ *
+ *  Copyright (C) 2000 - 2026 Liam Girdwood
  *  Copyright (C) 2015 - 2026 Jeroen Vreeken (jeroen@vreeken.net)
  */
 
@@ -71,71 +71,71 @@ const static struct arg arguments[TERMS] = {
 
 const static struct XYZ x_coefficients[TERMS] = {
 	{ -1719914, -2, -25, 0 }, { 6434, 141, 28007, -107 },
-	{ 715, 0, 0, 0 },		  { 715, 0, 0, 0 },
-	{ 486, -5, -236, -4 },	  { 159, 0, 0, 0 },
-	{ 0, 0, 0, 0 },			  { 39, 0, 0, 0 },
-	{ 33, 0, -10, 0 },		  { 31, 0, 1, 0 },
-	{ 8, 0, -28, 0 },		  { 8, 0, -28, 0 },
-	{ 21, 0, 0, 0 },		  { -19, 0, 0, 0 },
-	{ 17, 0, 0, 0 },		  { 16, 0, 0, 0 },
-	{ 16, 0, 0, 0 },		  { 11, 0, -1, 0 },
-	{ 0, 0, -11, 0 },		  { -11, 0, -2, 0 },
-	{ -7, 0, -8, 0 },		  { -10, 0, 0, 0 },
-	{ -9, 0, 0, 0 },		  { -9, 0, 0, 0 },
-	{ 0, 0, -9, 0 },		  { 0, 0, -9, 0 },
-	{ 8, 0, 0, 0 },			  { 8, 0, 0, 0 },
-	{ -4, 0, -7, 0 },		  { -4, 0, -7, 0 },
-	{ -6, 0, -5, 0 },		  { -1, 0, -1, 0 },
-	{ 4, 0, -6, 0 },		  { 0, 0, -7, 0 },
-	{ 5, 0, -5, 0 },		  { 5, 0, 0, 0 }
+	{ 715, 0, 0, 0 },         { 715, 0, 0, 0 },
+	{ 486, -5, -236, -4 },    { 159, 0, 0, 0 },
+	{ 0, 0, 0, 0 },           { 39, 0, 0, 0 },
+	{ 33, 0, -10, 0 },        { 31, 0, 1, 0 },
+	{ 8, 0, -28, 0 },         { 8, 0, -28, 0 },
+	{ 21, 0, 0, 0 },          { -19, 0, 0, 0 },
+	{ 17, 0, 0, 0 },          { 16, 0, 0, 0 },
+	{ 16, 0, 0, 0 },          { 11, 0, -1, 0 },
+	{ 0, 0, -11, 0 },         { -11, 0, -2, 0 },
+	{ -7, 0, -8, 0 },         { -10, 0, 0, 0 },
+	{ -9, 0, 0, 0 },          { -9, 0, 0, 0 },
+	{ 0, 0, -9, 0 },          { 0, 0, -9, 0 },
+	{ 8, 0, 0, 0 },           { 8, 0, 0, 0 },
+	{ -4, 0, -7, 0 },         { -4, 0, -7, 0 },
+	{ -6, 0, -5, 0 },         { -1, 0, -1, 0 },
+	{ 4, 0, -6, 0 },          { 0, 0, -7, 0 },
+	{ 5, 0, -5, 0 },          { 5, 0, 0, 0 }
 };
 
 const static struct XYZ y_coefficients[TERMS] = {
 	{ 25, -13, 1578089, 156 }, { 25697, -95, -5904, -130 },
-	{ 6, 0, -657, 0 },		   { 0, 0, -656, 0 },
-	{ -216, -4, -446, 5 },	   { 2, 0, -147, 0 },
-	{ 0, 0, 26, 0 },		   { 0, 0, -36, 0 },
-	{ -9, 0, -30, 0 },		   { 1, 0, -28, 0 },
-	{ 25, 0, 8, 0 },		   { -25, 0, -8, 0 },
-	{ 0, 0, -19, 0 },		   { 0, 0, 17, 0 },
-	{ 0, 0, -16, 0 },		   { 0, 0, 15, 0 },
-	{ 1, 0, -15, 0 },		   { -1, 0, -10, 0 },
-	{ -10, 0, 0, 0 },		   { -2, 0, 9, 0 },
-	{ -8, 0, 6, 0 },		   { 0, 0, 9, 0 },
-	{ 0, 0, -9, 0 },		   { 0, 0, -8, 0 },
-	{ -8, 0, 0, 0 },		   { 8, 0, 0, 0 },
-	{ 0, 0, -8, 0 },		   { 0, 0, -7, 0 },
-	{ -6, 0, -4, 0 },		   { 6, 0, -4, 0 },
-	{ -4, 0, 5, 0 },		   { -2, 0, -7, 0 },
-	{ -5, 0, -4, 0 },		   { -6, 0, 0, 0 },
-	{ -4, 0, -5, 0 },		   { 0, 0, -5, 0 }
+	{ 6, 0, -657, 0 },         { 0, 0, -656, 0 },
+	{ -216, -4, -446, 5 },     { 2, 0, -147, 0 },
+	{ 0, 0, 26, 0 },           { 0, 0, -36, 0 },
+	{ -9, 0, -30, 0 },         { 1, 0, -28, 0 },
+	{ 25, 0, 8, 0 },           { -25, 0, -8, 0 },
+	{ 0, 0, -19, 0 },          { 0, 0, 17, 0 },
+	{ 0, 0, -16, 0 },          { 0, 0, 15, 0 },
+	{ 1, 0, -15, 0 },          { -1, 0, -10, 0 },
+	{ -10, 0, 0, 0 },          { -2, 0, 9, 0 },
+	{ -8, 0, 6, 0 },           { 0, 0, 9, 0 },
+	{ 0, 0, -9, 0 },           { 0, 0, -8, 0 },
+	{ -8, 0, 0, 0 },           { 8, 0, 0, 0 },
+	{ 0, 0, -8, 0 },           { 0, 0, -7, 0 },
+	{ -6, 0, -4, 0 },          { 6, 0, -4, 0 },
+	{ -4, 0, 5, 0 },           { -2, 0, -7, 0 },
+	{ -5, 0, -4, 0 },          { -6, 0, 0, 0 },
+	{ -4, 0, -5, 0 },          { 0, 0, -5, 0 }
 };
 
 const static struct XYZ z_coefficients[TERMS] = {
 	{ 10, 32, 684185, -358 }, { 11141, -48, -2559, -55 },
-	{ -15, 0, -282, 0 },	  { 0, 0, -285, 0 },
-	{ -94, 0, -193, 0 },	  { -6, 0, -61, 0 },
-	{ 0, 0, 59, 0 },		  { 0, 0, 16, 0 },
-	{ -5, 0, -13, 0 },		  { 0, 0, -12, 0 },
-	{ 11, 0, 3, 0 },		  { -11, 0, -3, 0 },
-	{ 0, 0, -8, 0 },		  { 0, 0, 8, 0 },
-	{ 0, 0, -7, 0 },		  { 1, 0, 7, 0 },
-	{ -3, 0, -6, 0 },		  { -1, 0, 5, 0 },
-	{ -4, 0, 0, 0 },		  { -1, 0, 4, 0 },
-	{ -3, 0, 3, 0 },		  { 0, 0, 4, 0 },
-	{ 0, 0, -4, 0 },		  { 0, 0, -4, 0 },
-	{ -3, 0, 0, 0 },		  { 3, 0, 0, 0 },
-	{ 0, 0, -3, 0 },		  { 0, 0, -3, 0 },
-	{ -3, 0, 2, 0 },		  { 3, 0, -2, 0 },
-	{ -2, 0, 2, 0 },		  { 1, 0, -4, 0 },
-	{ -2, 0, -2, 0 },		  { -3, 0, 0, 0 },
-	{ -2, 0, -2, 0 },		  { 0, 0, -2, 0 }
+	{ -15, 0, -282, 0 },      { 0, 0, -285, 0 },
+	{ -94, 0, -193, 0 },      { -6, 0, -61, 0 },
+	{ 0, 0, 59, 0 },          { 0, 0, 16, 0 },
+	{ -5, 0, -13, 0 },        { 0, 0, -12, 0 },
+	{ 11, 0, 3, 0 },          { -11, 0, -3, 0 },
+	{ 0, 0, -8, 0 },          { 0, 0, 8, 0 },
+	{ 0, 0, -7, 0 },          { 1, 0, 7, 0 },
+	{ -3, 0, -6, 0 },         { -1, 0, 5, 0 },
+	{ -4, 0, 0, 0 },          { -1, 0, 4, 0 },
+	{ -3, 0, 3, 0 },          { 0, 0, 4, 0 },
+	{ 0, 0, -4, 0 },          { 0, 0, -4, 0 },
+	{ -3, 0, 0, 0 },          { 3, 0, 0, 0 },
+	{ 0, 0, -3, 0 },          { 0, 0, -3, 0 },
+	{ -3, 0, 2, 0 },          { 3, 0, -2, 0 },
+	{ -2, 0, 2, 0 },          { 1, 0, -4, 0 },
+	{ -2, 0, -2, 0 },         { -3, 0, 0, 0 },
+	{ -2, 0, -2, 0 },         { 0, 0, -2, 0 }
 };
 
 /* Equ 22.3, 22.4
-*/
+ */
 void ln2_get_equ_aber(struct ln_equ_posn *mean_position, double JD,
-					  struct ln_equ_posn *position)
+                      struct ln_equ_posn *position)
 {
 	long double mean_ra, mean_dec, delta_ra, delta_dec;
 	long double L2, L3, L4, L5, L6, L7, L8, LL, D, MM, F, T, X, Y, Z, A;
@@ -168,18 +168,18 @@ void ln2_get_equ_aber(struct ln_equ_posn *mean_position, double JD,
 	/* sum the terms */
 	for (i = 0; i < TERMS; i++) {
 		A = arguments[i].a_L2 * L2 + arguments[i].a_L3 * L3 +
-			arguments[i].a_L4 * L4 + arguments[i].a_L5 * L5 +
-			arguments[i].a_L6 * L6 + arguments[i].a_L7 * L7 +
-			arguments[i].a_L8 * L8 + arguments[i].a_LL * LL +
-			arguments[i].a_D * D + arguments[i].a_MM * MM +
-			arguments[i].a_F * F;
+		    arguments[i].a_L4 * L4 + arguments[i].a_L5 * L5 +
+		    arguments[i].a_L6 * L6 + arguments[i].a_L7 * L7 +
+		    arguments[i].a_L8 * L8 + arguments[i].a_LL * LL +
+		    arguments[i].a_D * D + arguments[i].a_MM * MM +
+		    arguments[i].a_F * F;
 
 		X += (x_coefficients[i].sin1 + x_coefficients[i].sin2 * T) * sin(A) +
-			 (x_coefficients[i].cos1 + x_coefficients[i].cos2 * T) * cos(A);
+		     (x_coefficients[i].cos1 + x_coefficients[i].cos2 * T) * cos(A);
 		Y += (y_coefficients[i].sin1 + y_coefficients[i].sin2 * T) * sin(A) +
-			 (y_coefficients[i].cos1 + y_coefficients[i].cos2 * T) * cos(A);
+		     (y_coefficients[i].cos1 + y_coefficients[i].cos2 * T) * cos(A);
 		Z += (z_coefficients[i].sin1 + z_coefficients[i].sin2 * T) * sin(A) +
-			 (z_coefficients[i].cos1 + z_coefficients[i].cos2 * T) * cos(A);
+		     (z_coefficients[i].cos1 + z_coefficients[i].cos2 * T) * cos(A);
 	}
 
 	/* Equ 22.4 */
@@ -190,7 +190,7 @@ void ln2_get_equ_aber(struct ln_equ_posn *mean_position, double JD,
 		delta_ra = (Y * cos(mean_ra) - X * sin(mean_ra)) / cos(mean_dec);
 		delta_ra /= c;
 		delta_dec = (X * cos(mean_ra) + Y * sin(mean_ra)) * sin(mean_dec) -
-					Z * cos(mean_dec);
+		            Z * cos(mean_dec);
 		delta_dec /= -c;
 
 		position->ra = ln2_range_radians(mean_ra + delta_ra);
@@ -227,9 +227,9 @@ void ln2_get_equ_aber(struct ln_equ_posn *mean_position, double JD,
 }
 
 /* Equ 22.2 pg 139
-*/
+ */
 void ln2_get_ecl_aber(struct ln_lnlat_posn *mean_position, double JD,
-					  struct ln_lnlat_posn *position)
+                      struct ln_lnlat_posn *position)
 
 {
 	double delta_lng, delta_lat, mean_lng, mean_lat, e, t, k;
@@ -260,10 +260,10 @@ void ln2_get_ecl_aber(struct ln_lnlat_posn *mean_position, double JD,
 
 	/* equ 22.2 */
 	delta_lng =
-		(-k * cos(true_longitude - mean_lng) + e * k * cos(t - mean_lng)) /
-		cos(mean_lat);
+	    (-k * cos(true_longitude - mean_lng) + e * k * cos(t - mean_lng)) /
+	    cos(mean_lat);
 	delta_lat = -k * sin(mean_lat) *
-				(sin(true_longitude - mean_lng) - e * sin(t - mean_lng));
+	            (sin(true_longitude - mean_lng) - e * sin(t - mean_lng));
 
 	mean_lng += delta_lng;
 	mean_lat += delta_lat;

@@ -23,7 +23,8 @@ int test_earth(void)
 	dist = ln2_get_earth_solar_dist(JD);
 	failed += test_result("Earth Solar Dist", dist, 0.983327682322, 1e-6);
 
-	/* ln2_get_earth_centre_dist depends on lat/height, tested separately if needed or add check */
+	/* ln2_get_earth_centre_dist depends on lat/height, tested separately if
+	 * needed or add check */
 
 	return failed;
 }

@@ -12,10 +12,10 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- * 
+ *
  *  Some functions in this file use the VSOP87 solution by
  *  Messrs. Bretagnon and Francou.
- * 
+ *
  *  Copyright (C) 2000 - 2026 Liam Girdwood <lgirdwood@gmail.com>
  */
 
@@ -1850,8 +1850,8 @@ void ln2_get_venus_equ_coords(double JD, struct ln_equ_posn *position)
 	position->dec = dec;
 }
 
-/* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 
-*/
+/* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87
+ */
 void ln2_get_venus_helio_coords(double JD, struct ln_helio_posn *position)
 {
 	double t, t2, t3, t4, t5;
@@ -1964,7 +1964,7 @@ double ln2_get_venus_magnitude(double JD)
 	i3 = i2 * i;
 
 	return -4.40 + 5.0 * log10(r * delta) + 0.0009 * i + 0.000239 * i2 -
-		   0.00000065 * i3;
+	       0.00000065 * i3;
 }
 
 /* Chapter 41 */
@@ -1999,10 +1999,10 @@ double ln2_get_venus_phase(double JD)
 }
 
 int ln2_get_venus_rst(double JD, struct ln_lnlat_posn *observer,
-					  struct ln_rst_time *rst)
+                      struct ln_rst_time *rst)
 {
 	return ln2_get_body_rst_horizon(JD, observer, ln2_get_venus_equ_coords,
-									LN_STAR_STANDART_HORIZON, rst);
+	                                LN_STAR_STANDART_HORIZON, rst);
 }
 
 double ln2_get_venus_sdiam(double JD)

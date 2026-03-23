@@ -12,9 +12,10 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *  
+ *
  *  Copyright (C) 2000 - 2026 Petr Kubanek
- *  Copyright (C) 2011 - 2026 Petr Kubanek, Institute of Physics <kubanek@fzu.cz>
+ *  Copyright (C) 2011 - 2026 Petr Kubanek, Institute of Physics
+ * <kubanek@fzu.cz>
  */
 
 #ifndef _LN_AIRMASS_H
@@ -27,21 +28,25 @@ extern "C" {
 #endif
 
 /** \defgroup airmass Airmass
-*
-* Airmass is a measure of the amount of atmosphere the light from a celestial object passes through.
-*
-* This implementation uses a **Homogeneous Atmosphere Model** with a specific scale height.
-* - **Zenith Airmass**: 1.0
-* - **Horizon Airmass**: Increases with decreasing altitude.
-*
-* The formula accounts for the Earth's curvature, allowing calculations near the horizon where simple `sec(z)` fails.
-*/
+ *
+ * Airmass is a measure of the amount of atmosphere the light from a celestial
+ * object passes through.
+ *
+ * This implementation uses a **Homogeneous Atmosphere Model** with a specific
+ * scale height.
+ * - **Zenith Airmass**: 1.0
+ * - **Horizon Airmass**: Increases with decreasing altitude.
+ *
+ * The formula accounts for the Earth's curvature, allowing calculations near
+ * the horizon where simple `sec(z)` fails.
+ */
 
 /**
  * \brief Calculate air mass in given altitude.
  * \ingroup airmass
  * \param alt Altitude in degrees
- * \param airmass_scale Scale of airmass (usually 750 for sea level, reduces with height)
+ * \param airmass_scale Scale of airmass (usually 750 for sea level, reduces
+ * with height)
  * \return Air mass
  *
  * Uses a plane-parallel atmosphere approximation with curvature correction.

@@ -12,7 +12,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *  
+ *
  *  Copyright (C) 2000 - 2026 Liam Girdwood  <lgirdwood@gmail.com>
  */
 
@@ -23,11 +23,11 @@
 #include <libnova2/nutation.h>
 
 /*
-** Apparent place of an Object 
+** Apparent place of an Object
 */
 void ln2_get_apparent_posn(struct ln_equ_posn *mean_position,
-						   struct ln_equ_posn *proper_motion, double JD,
-						   struct ln_equ_posn *position)
+                           struct ln_equ_posn *proper_motion, double JD,
+                           struct ln_equ_posn *position)
 {
 	struct ln_equ_posn proper_position;
 	struct ln_equ_posn aberration_position;

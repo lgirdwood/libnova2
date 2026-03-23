@@ -12,8 +12,8 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *  
- *  Copyright (C) 2000 - 2026 Liam Girdwood  
+ *
+ *  Copyright (C) 2000 - 2026 Liam Girdwood
  */
 
 #ifndef _LN_EARTH_H
@@ -26,63 +26,65 @@ extern "C" {
 #endif
 
 /** \defgroup earth Earth
-*
-* Functions relating to the planet Earth.
-*
-* - **Heliocentric Coordinates**: Calculated using the VSOP87 theory.
-*   - **Longitude/Latitude**: In radians.
-*   - **Radius Vector**: In Astronomical Units (AU).
-*
-* All angles are expressed in radians. Algorithms based on Meeus Chapter 32 (VSOP87).
-*/
+ *
+ * Functions relating to the planet Earth.
+ *
+ * - **Heliocentric Coordinates**: Calculated using the VSOP87 theory.
+ *   - **Longitude/Latitude**: In radians.
+ *   - **Radius Vector**: In Astronomical Units (AU).
+ *
+ * All angles are expressed in radians. Algorithms based on Meeus Chapter 32
+ * (VSOP87).
+ */
 
 /*
 ** Earth
 */
 
 /**
-* \brief Calculate Earth's heliocentric coordinates (referenced to the center of the Sun).
-* \ingroup earth
-* \param JD Julian Day
-* \param position Pointer to store heliocentric position
-*
-* Uses the high-precision VSOP87 theory.
-*/
+ * \brief Calculate Earth's heliocentric coordinates (referenced to the center
+ * of the Sun).
+ * \ingroup earth
+ * \param JD Julian Day
+ * \param position Pointer to store heliocentric position
+ *
+ * Uses the high-precision VSOP87 theory.
+ */
 /* Chapter 31 Pg 206-207 Equ 31.1 31.2 , 31.3 using VSOP 87 */
 void LIBNOVA2_EXPORT ln2_get_earth_helio_coords(double JD,
-												struct ln_helio_posn *position);
+                                                struct ln_helio_posn *position);
 
 /**
-* \brief Calculate the distance between Earth and the Sun.
-* \ingroup earth
-* \param JD Julian Day
-* \return Distance in AU
-*
-* Uses VSOP87 to calculate the radius vector.
-*/
+ * \brief Calculate the distance between Earth and the Sun.
+ * \ingroup earth
+ * \param JD Julian Day
+ * \return Distance in AU
+ *
+ * Uses VSOP87 to calculate the radius vector.
+ */
 /* Chapter ?? */
 double LIBNOVA2_EXPORT ln2_get_earth_solar_dist(double JD);
 
 /**
-* \ingroup earth
-* \brief Calculate the Earths rectangular heliocentric coordinates.
-* \param JD Julian Day
-* \param position Pointer to store rectangular position
-*/
+ * \ingroup earth
+ * \brief Calculate the Earths rectangular heliocentric coordinates.
+ * \param JD Julian Day
+ * \param position Pointer to store rectangular position
+ */
 void LIBNOVA2_EXPORT ln2_get_earth_rect_helio(double JD,
-											  struct ln_rect_posn *position);
+                                              struct ln_rect_posn *position);
 
 /**
-* \ingroup earth
-* \brief Calculate Earth globe centre distance.
-* \param height Height above sea level in meters
-* \param latitude Latitude in radians
-* \param p_sin_o Pointer to store p * sin(o')
-* \param p_cos_o Pointer to store p * cos(o')
-*/
+ * \ingroup earth
+ * \brief Calculate Earth globe centre distance.
+ * \param height Height above sea level in meters
+ * \param latitude Latitude in radians
+ * \param p_sin_o Pointer to store p * sin(o')
+ * \param p_cos_o Pointer to store p * cos(o')
+ */
 void LIBNOVA2_EXPORT ln2_get_earth_centre_dist(float height, double latitude,
-											   double *p_sin_o,
-											   double *p_cos_o);
+                                               double *p_sin_o,
+                                               double *p_cos_o);
 
 #ifdef __cplusplus
 };

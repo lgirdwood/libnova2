@@ -12,4 +12,4 @@ When adding a new feature to the project, you must follow these steps to ensure 
 4. **Run Unit Tests**: Execute the test suite to verify your changes. You must run the tests.
 5. **Verify Tests Pass**: The unit test must ALWAYS be run and pass for a feature to be accepted. Ensure 100% of the relevant tests are passing.
 6. **Iterate if Necessary**: If any unit test fails, debug and fix the implementation or test until all tests pass successfully. Do not finish the task or consider the feature accepted until this condition is met.
-7. **Commit Changes**: Once all tests pass, YOU MUST explicitly ask the user for permission before executing any `git commit` commands.
+7. **Commit Changes**: Once all tests pass, YOU MUST explicitly ask the user for permission before executing any `git commit -s` commands with a sign-off.

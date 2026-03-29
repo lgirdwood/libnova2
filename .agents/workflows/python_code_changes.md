@@ -23,4 +23,4 @@ When making changes to Python source files (`.py`) in the `python/` directory, y
 
 4. **Run C Tests**: Run the upstream C tests using `ctest` as well to verify the underlying library continues to perform correctly without regressions.
 5. **Clean Workspace**: Check `git status` and run `git clean -fdx` or manually remove generated artifacts like `__pycache__` or `.egg-info` folders.
-6. **Commit Changes**: You must ALWAYS ask the user for permission before running any `git commit` commands.
+6. **Commit Changes**: You must ALWAYS ask the user for permission before running any `git commit -s` commands with a sign-off.

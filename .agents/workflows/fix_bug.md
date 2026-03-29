@@ -12,4 +12,4 @@ When the user gives you a bug report or you discover anomalous behavior, you mus
 4. **Verify the Fix**: Re-run the entire test suite (`ctest` for C, `./run_tests.sh` for Python). **100% of the tests must pass**, including your newly devised bug replication test.
 5. **Iterate if Necessary**: If any tests fail (or a memory leak is introduced), debug and fix the implementation until all tests pass successfully.
 6. **Clean Workspace**: Check `git status` and manually remove any generated test artifacts that shouldn't be committed.
-7. **Commit Changes**: Once all tests pass, and the workspace is clean, you must ALWAYS ask the user for permission before executing any `git commit` commands.
+7. **Commit Changes**: Once all tests pass, and the workspace is clean, you must ALWAYS ask the user for permission before executing any `git commit -s` commands with a sign-off.

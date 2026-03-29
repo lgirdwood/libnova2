@@ -16,4 +16,4 @@ When making changes to C source (`.c`) or header (`.h`) files in the repository,
 
 3. **Mandatory Testing**: After modifying or formatting C code, you MUST run all C tests (`ctest`) and Python tests (`python/run_tests.sh`) to verify the repository compiles successfully and remains in a healthy state.
 4. **Clean Workspace**: Check `git status` and run `git clean -fdx` or manually remove any generated test artifacts that shouldn't be committed.
-5. **Commit Changes**: You must ALWAYS ask the user for permission before running any `git commit` commands.
+5. **Commit Changes**: You must ALWAYS ask the user for permission before running any `git commit -s` commands with a sign-off.
